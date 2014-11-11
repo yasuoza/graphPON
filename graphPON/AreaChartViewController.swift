@@ -10,6 +10,7 @@ class AreaChartViewController: BaseChartViewController, JBLineChartViewDelegate,
     private let kJBAreaChartViewControllerChartFooterHeight = CGFloat(20.0)
     private let kJBAreaChartViewControllerChartLineWidth = CGFloat(2.0)
     private let kJBAreaChartViewControllerMaxNumChartPoints = CGFloat(12)
+    private let kJBLineChartViewControllerChartFooterHeight = CGFloat(20)
 
     private var chartData: [CGFloat]!
     private var horizontalSymbols: [NSString]!
@@ -18,17 +19,47 @@ class AreaChartViewController: BaseChartViewController, JBLineChartViewDelegate,
 
     // MARK: - View Lifecycle
 
+    override init() {
+        super.init()
+        self.initFakeData()
+    }
+
+    override init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.initFakeData()
+    }
+
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        self.initFakeData()
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.initFakeData()
-
-        self.view.backgroundColor = self.colorWithHexString("b7e3e4")
-
+        self.view.backgroundColor = self.colorWithHexString("a7e3e0")
         self.lineChartView.delegate = self
         self.lineChartView.dataSource = self
         self.lineChartView.headerPadding = kJBAreaChartViewControllerChartHeaderPadding
         self.lineChartView.backgroundColor = self.colorWithHexString("b7e3e4")
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        let footerView = LineChartFooterView(frame: CGRectMake(
+            self.lineChartView.frame.origin.x,
+            ceil(self.view.bounds.size.height * 0.5) - ceil(kJBLineChartViewControllerChartFooterHeight * 0.5),
+            self.lineChartView.bounds.width,
+            kJBLineChartViewControllerChartFooterHeight
+            ))
+        footerView.backgroundColor = UIColor.clearColor()
+        footerView.leftLabel.text = "left"
+        footerView.leftLabel.textColor = UIColor.whiteColor()
+        footerView.rightLabel.text = "right"
+        footerView.rightLabel.textColor = UIColor.whiteColor()
+        footerView.sectionCount = self.largestLineData().count
+        self.lineChartView.footerView = footerView
 
         self.lineChartView.reloadData()
     }
@@ -38,11 +69,16 @@ class AreaChartViewController: BaseChartViewController, JBLineChartViewDelegate,
         self.lineChartView.setState(JBChartViewState.Expanded, animated:true)
     }
 
+
     // MARK: - Private methods
 
     func initFakeData() {
         chartData = (1...30).map { CGFloat($0) }
         horizontalSymbols = (1...30).map { "x-\($0)" }
+    }
+
+    func largestLineData() -> NSArray {
+        return self.chartData
     }
 
     func colorWithHexString (hex:String) -> UIColor {
@@ -72,7 +108,7 @@ class AreaChartViewController: BaseChartViewController, JBLineChartViewDelegate,
     // MARK: - JBLineChartViewDataSource
 
     func numberOfLinesInLineChartView(lineChartView: JBLineChartView!) -> UInt {
-        return UInt(self.chartData.count)
+        return 1
     }
 
     func lineChartView(lineChartView: JBLineChartView!, numberOfVerticalValuesAtLineIndex lineIndex: UInt) -> UInt {

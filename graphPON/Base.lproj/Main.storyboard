@@ -32,13 +32,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Detail view content goes here" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="0XM-y9-sOw">
-                                <rect key="frame" x="20" y="292" width="560" height="17"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" size="system"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OYq-J2-cFd" customClass="JBLineChartView">
                                 <rect key="frame" x="16" y="74" width="568" height="326"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -49,10 +42,7 @@
                             <constraint firstItem="OYq-J2-cFd" firstAttribute="trailing" secondItem="svH-Pt-448" secondAttribute="trailingMargin" id="2ap-6v-CrL"/>
                             <constraint firstItem="OYq-J2-cFd" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" constant="10" id="ObB-Of-ziJ"/>
                             <constraint firstItem="GAO-Cl-Wes" firstAttribute="top" secondItem="OYq-J2-cFd" secondAttribute="bottom" constant="200" id="S76-Xj-uR1"/>
-                            <constraint firstItem="0XM-y9-sOw" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leading" constant="20" symbolic="YES" id="Tsc-yG-G1q"/>
                             <constraint firstItem="OYq-J2-cFd" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leadingMargin" id="hnG-Ir-Le5"/>
-                            <constraint firstItem="0XM-y9-sOw" firstAttribute="centerY" secondItem="svH-Pt-448" secondAttribute="centerY" id="jWN-iV-94e"/>
-                            <constraint firstAttribute="trailing" secondItem="0XM-y9-sOw" secondAttribute="trailing" constant="20" symbolic="YES" id="tHV-ZD-HQj"/>
                         </constraints>
                     </view>
                     <toolbarItems/>

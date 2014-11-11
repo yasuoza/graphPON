@@ -17,6 +17,7 @@
 		A80D19E91A11D0F80067A055 /* MasterViewTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80D19E81A11D0F80067A055 /* MasterViewTableCell.swift */; };
 		A8B212B81A11ED68005988DC /* BaseChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B212B71A11ED68005988DC /* BaseChartViewController.swift */; };
 		A8B212BC1A11EEDC005988DC /* AreaChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B212BB1A11EEDC005988DC /* AreaChartViewController.swift */; };
+		A8B212C01A1204B2005988DC /* LineChartFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B212BF1A1204B2005988DC /* LineChartFooterView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,7 @@
 		A8B212B71A11ED68005988DC /* BaseChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseChartViewController.swift; sourceTree = "<group>"; };
 		A8B212BB1A11EEDC005988DC /* AreaChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AreaChartViewController.swift; sourceTree = "<group>"; };
 		A8B212BE1A11F04B005988DC /* JBChartView-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "JBChartView-Bridging-Header.h"; path = "Bridge-Headers/JBChartView-Bridging-Header.h"; sourceTree = "<group>"; };
+		A8B212BF1A1204B2005988DC /* LineChartFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LineChartFooterView.swift; path = Views/LineChartFooterView.swift; sourceTree = "<group>"; };
 		AE40D9ABD95D339C68695ED9 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -141,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				A80D19E81A11D0F80067A055 /* MasterViewTableCell.swift */,
+				A8B212BF1A1204B2005988DC /* LineChartFooterView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -314,6 +317,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8B212C01A1204B2005988DC /* LineChartFooterView.swift in Sources */,
 				A80D19C81A11CEDA0067A055 /* MasterViewController.swift in Sources */,
 				A80D19C61A11CEDA0067A055 /* AppDelegate.swift in Sources */,
 				A80D19E91A11D0F80067A055 /* MasterViewTableCell.swift in Sources */,
