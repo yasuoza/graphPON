@@ -1,18 +1,8 @@
-//
-//  MasterViewController.swift
-//  graphPON
-//
-//  Created by Yasuharu Ozaki on 11/11/14.
-//  Copyright (c) 2014 yasuoza.com. All rights reserved.
-//
-
 import UIKit
 
 class MasterViewController: UITableViewController {
 
     var detailViewController: DetailViewController? = nil
-    var objects = NSMutableArray()
-
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,13 +16,6 @@ class MasterViewController: UITableViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
-
-        let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "insertNewObject:")
-        self.navigationItem.rightBarButtonItem = addButton
-        if let split = self.splitViewController {
-            let controllers = split.viewControllers
-            self.detailViewController = controllers[controllers.count-1].topViewController as? DetailViewController
-        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -40,18 +23,13 @@ class MasterViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    func insertNewObject(sender: AnyObject) {
-        objects.insertObject(NSDate(), atIndex: 0)
-        let indexPath = NSIndexPath(forRow: 0, inSection: 0)
-        self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-    }
 
     // MARK: - Segues
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showDetail" {
             if let indexPath = self.tableView.indexPathForSelectedRow() {
-                let object = objects[indexPath.row] as NSDate
+                let object = NSDate()
                 let controller = (segue.destinationViewController as UINavigationController).topViewController as DetailViewController
                 controller.detailItem = object
                 controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
@@ -67,31 +45,44 @@ class MasterViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return objects.count
+        return 3
+    }
+
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 100.0
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("MasterViewTableCell", forIndexPath: indexPath) as MasterViewTableCell
 
-        let object = objects[indexPath.row] as NSDate
-        cell.textLabel.text = object.description
+        var text: NSString?
+        var detailText: NSString?
+        var mode: MasterViewTableCell.Mode = MasterViewTableCell.Mode.LineChart
+        switch indexPath.row {
+        case 0:
+            text = "hello-0"
+            detailText = "desc-0"
+        case 1:
+            text = "hello-1"
+            detailText = "desc-1"
+            mode = MasterViewTableCell.Mode.BarChar
+        case 2:
+            text = "hello-2"
+            detailText = "desc-2"
+            mode = MasterViewTableCell.Mode.AreaChart
+        default:
+            break
+        }
+        cell.textLabel.text = text
+        cell.detailTextLabel?.text = detailText
+        cell.mode = mode
         return cell
     }
 
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
-        return true
+        return false
     }
-
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            objects.removeObjectAtIndex(indexPath.row)
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-        }
-    }
-
 
 }
 
