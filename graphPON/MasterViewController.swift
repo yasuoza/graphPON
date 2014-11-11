@@ -55,27 +55,18 @@ class MasterViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("MasterViewTableCell", forIndexPath: indexPath) as MasterViewTableCell
 
-        var text: NSString?
-        var detailText: NSString?
         var mode: MasterViewTableCell.Mode = MasterViewTableCell.Mode.LineChart
         switch indexPath.row {
-        case 0:
-            text = "hello-0"
-            detailText = "desc-0"
         case 1:
-            text = "hello-1"
-            detailText = "desc-1"
             mode = MasterViewTableCell.Mode.BarChar
         case 2:
-            text = "hello-2"
-            detailText = "desc-2"
             mode = MasterViewTableCell.Mode.AreaChart
         default:
             break
         }
-        cell.textLabel.text = text
-        cell.detailTextLabel?.text = detailText
         cell.mode = mode
+        cell.textLabel.text = cell.mode.textLabelText()
+        cell.detailTextLabel?.text = cell.mode.detailLabelText()
         return cell
     }
 
