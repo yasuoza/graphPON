@@ -3,6 +3,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Master-->
@@ -20,10 +21,10 @@
             </objects>
             <point key="canvasLocation" x="-38" y="-630"/>
         </scene>
-        <!--Detail-->
+        <!--Chart-->
         <scene sceneID="yUG-lL-AsK">
             <objects>
-                <viewController title="Detail" id="JEX-9P-axG" customClass="AreaChartViewController" customModule="graphPON" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Chart" id="JEX-9P-axG" customClass="AreaChartViewController" customModule="graphPON" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="SYR-Wa-9uf"/>
                         <viewControllerLayoutGuide type="bottom" id="GAO-Cl-Wes"/>
@@ -33,7 +34,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OYq-J2-cFd" customClass="JBLineChartView">
-                                <rect key="frame" x="16" y="74" width="568" height="326"/>
+                                <rect key="frame" x="16" y="74" width="568" height="207"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
@@ -41,7 +42,7 @@
                         <constraints>
                             <constraint firstItem="OYq-J2-cFd" firstAttribute="trailing" secondItem="svH-Pt-448" secondAttribute="trailingMargin" id="2ap-6v-CrL"/>
                             <constraint firstItem="OYq-J2-cFd" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" constant="10" id="ObB-Of-ziJ"/>
-                            <constraint firstItem="GAO-Cl-Wes" firstAttribute="top" secondItem="OYq-J2-cFd" secondAttribute="bottom" constant="200" id="S76-Xj-uR1"/>
+                            <constraint firstItem="GAO-Cl-Wes" firstAttribute="top" secondItem="OYq-J2-cFd" secondAttribute="bottom" multiplier="16:9" constant="100" id="S76-Xj-uR1"/>
                             <constraint firstItem="OYq-J2-cFd" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leadingMargin" id="hnG-Ir-Le5"/>
                         </constraints>
                     </view>
