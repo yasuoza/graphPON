@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		811CF85B00180E6EC14857C0 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EDE6BA3B5824BDDD22E710A /* libPods.a */; };
+		A80748621A134417008ADC0A /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80748611A134417008ADC0A /* UIColor.swift */; };
 		A80D19C61A11CEDA0067A055 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80D19C51A11CEDA0067A055 /* AppDelegate.swift */; };
 		A80D19C81A11CEDA0067A055 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80D19C71A11CEDA0067A055 /* MasterViewController.swift */; };
 		A80D19CD1A11CEDA0067A055 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A80D19CB1A11CEDA0067A055 /* Main.storyboard */; };
@@ -33,6 +34,7 @@
 /* Begin PBXFileReference section */
 		31D38B1C55A8C9F376BF7EA0 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		6EDE6BA3B5824BDDD22E710A /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		A80748611A134417008ADC0A /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIColor.swift; path = Extensions/UIColor.swift; sourceTree = "<group>"; };
 		A80D19C01A11CEDA0067A055 /* graphPON.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = graphPON.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A80D19C41A11CEDA0067A055 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A80D19C51A11CEDA0067A055 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -79,6 +81,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		A80748631A135617008ADC0A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A80748611A134417008ADC0A /* UIColor.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
 		A80D19B71A11CEDA0067A055 = {
 			isa = PBXGroup;
 			children = (
@@ -114,6 +124,7 @@
 		A80D19C31A11CEDA0067A055 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A80748631A135617008ADC0A /* Extensions */,
 				A8B212BD1A11F028005988DC /* Bridge-Headers */,
 				A80D19C41A11CEDA0067A055 /* Info.plist */,
 			);
@@ -318,6 +329,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A8B212C01A1204B2005988DC /* LineChartFooterView.swift in Sources */,
+				A80748621A134417008ADC0A /* UIColor.swift in Sources */,
 				A80D19C81A11CEDA0067A055 /* MasterViewController.swift in Sources */,
 				A80D19C61A11CEDA0067A055 /* AppDelegate.swift in Sources */,
 				A80D19E91A11D0F80067A055 /* MasterViewTableCell.swift in Sources */,
