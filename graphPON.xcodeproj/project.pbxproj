@@ -36,7 +36,7 @@
 		A80D19C01A11CEDA0067A055 /* graphPON.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = graphPON.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A80D19C41A11CEDA0067A055 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A80D19C51A11CEDA0067A055 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A80D19C71A11CEDA0067A055 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
+		A80D19C71A11CEDA0067A055 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MasterViewController.swift; path = ViewControllers/MasterViewController.swift; sourceTree = "<group>"; };
 		A80D19CC1A11CEDA0067A055 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A80D19CE1A11CEDA0067A055 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A80D19D11A11CEDA0067A055 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -44,8 +44,8 @@
 		A80D19DC1A11CEDA0067A055 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A80D19DD1A11CEDA0067A055 /* graphPONTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = graphPONTests.swift; sourceTree = "<group>"; };
 		A80D19E81A11D0F80067A055 /* MasterViewTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MasterViewTableCell.swift; path = Views/MasterViewTableCell.swift; sourceTree = "<group>"; };
-		A8B212B71A11ED68005988DC /* BaseChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseChartViewController.swift; sourceTree = "<group>"; };
-		A8B212BB1A11EEDC005988DC /* AreaChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AreaChartViewController.swift; sourceTree = "<group>"; };
+		A8B212B71A11ED68005988DC /* BaseChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseChartViewController.swift; path = ViewControllers/BaseChartViewController.swift; sourceTree = "<group>"; };
+		A8B212BB1A11EEDC005988DC /* AreaChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AreaChartViewController.swift; path = ViewControllers/AreaChartViewController.swift; sourceTree = "<group>"; };
 		A8B212BE1A11F04B005988DC /* JBChartView-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "JBChartView-Bridging-Header.h"; path = "Bridge-Headers/JBChartView-Bridging-Header.h"; sourceTree = "<group>"; };
 		A8B212BF1A1204B2005988DC /* LineChartFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LineChartFooterView.swift; path = Views/LineChartFooterView.swift; sourceTree = "<group>"; };
 		AE40D9ABD95D339C68695ED9 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -102,11 +102,9 @@
 		A80D19C21A11CEDA0067A055 /* graphPON */ = {
 			isa = PBXGroup;
 			children = (
-				A8B212BA1A11EEB6005988DC /* ViewControllers */,
-				A80D19C51A11CEDA0067A055 /* AppDelegate.swift */,
-				A80D19CB1A11CEDA0067A055 /* Main.storyboard */,
 				A80D19CE1A11CEDA0067A055 /* Images.xcassets */,
-				A80D19D01A11CEDA0067A055 /* LaunchScreen.xib */,
+				A80D19C51A11CEDA0067A055 /* AppDelegate.swift */,
+				A8B212BA1A11EEB6005988DC /* ViewControllers */,
 				A80D19E71A11D0BF0067A055 /* Views */,
 				A80D19C31A11CEDA0067A055 /* Supporting Files */,
 			);
@@ -142,6 +140,8 @@
 		A80D19E71A11D0BF0067A055 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A80D19CB1A11CEDA0067A055 /* Main.storyboard */,
+				A80D19D01A11CEDA0067A055 /* LaunchScreen.xib */,
 				A80D19E81A11D0F80067A055 /* MasterViewTableCell.swift */,
 				A8B212BF1A1204B2005988DC /* LineChartFooterView.swift */,
 			);
