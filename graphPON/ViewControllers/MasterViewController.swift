@@ -30,6 +30,14 @@ class MasterViewController: UITableViewController {
             if let indexPath = self.tableView.indexPathForSelectedRow() {
                 let object = NSDate()
                 let controller = (segue.destinationViewController as UINavigationController).topViewController as AreaChartViewController
+                switch indexPath.row {
+                case 0:
+                    controller.mode = AreaChartViewController.Mode.Line
+                case 1:
+                    controller.mode = AreaChartViewController.Mode.Bar
+                default:
+                    controller.mode = AreaChartViewController.Mode.Area
+                }
                 controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
                 controller.navigationItem.leftItemsSupplementBackButton = true
             }

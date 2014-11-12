@@ -2,6 +2,34 @@ import UIKit
 
 class AreaChartViewController: BaseChartViewController, JBLineChartViewDelegate, JBLineChartViewDataSource {
 
+    enum Mode {
+        case Line, Bar, Area
+
+        mutating func backgroundColor() -> UIColor {
+            var hex: String
+            switch self {
+            case .Line:
+                hex = "a7e3e0"
+            case .Bar:
+                hex = "ca9asc"
+            case .Area:
+                hex = "4fa9fa"
+            }
+            return UIColor(hex: hex)
+        }
+
+        mutating func titleText() -> String {
+            switch self {
+            case .Line:
+                return "Line Chart"
+            case .Bar:
+                return "Bar Chart"
+            case .Area:
+                return "Area Chart"
+            }
+        }
+    }
+
     private let kJBLineChartViewControllerChartPadding = CGFloat(10.0)
     private let kJBAreaChartViewControllerChartHeight = CGFloat(250.0)
     private let kJBAreaChartViewControllerChartPadding = CGFloat(10.0)
@@ -17,31 +45,22 @@ class AreaChartViewController: BaseChartViewController, JBLineChartViewDelegate,
 
     @IBOutlet weak var lineChartView: JBLineChartView!
 
+    var mode: Mode = .Line
+
     // MARK: - View Lifecycle
-
-    override init() {
-        super.init()
-        self.initFakeData()
-    }
-
-    override init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        self.initFakeData()
-    }
-
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        self.initFakeData()
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.view.backgroundColor = self.colorWithHexString("a7e3e0")
+        self.initFakeData()
+
+        self.view.backgroundColor = self.mode.backgroundColor()
+        self.navigationItem.title = self.mode.titleText()
+
         self.lineChartView.delegate = self
         self.lineChartView.dataSource = self
         self.lineChartView.headerPadding = kJBAreaChartViewControllerChartHeaderPadding
-        self.lineChartView.backgroundColor = self.colorWithHexString("b7e3e4")
+        self.lineChartView.backgroundColor = self.mode.backgroundColor()
     }
 
     override func viewDidLayoutSubviews() {
@@ -51,7 +70,7 @@ class AreaChartViewController: BaseChartViewController, JBLineChartViewDelegate,
             self.lineChartView.frame.origin.x,
             ceil(self.view.bounds.size.height * 0.5) - ceil(kJBLineChartViewControllerChartFooterHeight * 0.5),
             self.lineChartView.bounds.width,
-            kJBLineChartViewControllerChartFooterHeight
+            kJBLineChartViewControllerChartFooterHeight + kJBLineChartViewControllerChartPadding
             ))
         footerView.backgroundColor = UIColor.clearColor()
         footerView.leftLabel.text = "left"
@@ -64,12 +83,6 @@ class AreaChartViewController: BaseChartViewController, JBLineChartViewDelegate,
         self.lineChartView.reloadData()
     }
 
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        self.lineChartView.setState(JBChartViewState.Expanded, animated:true)
-    }
-
-
     // MARK: - Private methods
 
     func initFakeData() {
@@ -79,29 +92,6 @@ class AreaChartViewController: BaseChartViewController, JBLineChartViewDelegate,
 
     func largestLineData() -> NSArray {
         return self.chartData
-    }
-
-    func colorWithHexString (hex:String) -> UIColor {
-        var cString:String = hex.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).uppercaseString
-
-        if (cString.hasPrefix("#")) {
-            cString = (cString as NSString).substringFromIndex(1)
-        }
-
-        if (countElements(cString) != 6) {
-            return UIColor.grayColor()
-        }
-
-        var rString = (cString as NSString).substringToIndex(2)
-        var gString = ((cString as NSString).substringFromIndex(2) as NSString).substringToIndex(2)
-        var bString = ((cString as NSString).substringFromIndex(4) as NSString).substringToIndex(2)
-
-        var r:CUnsignedInt = 0, g:CUnsignedInt = 0, b:CUnsignedInt = 0;
-        NSScanner(string: rString).scanHexInt(&r)
-        NSScanner(string: gString).scanHexInt(&g)
-        NSScanner(string: bString).scanHexInt(&b)
-
-        return UIColor(red: CGFloat(r) / 255.0, green: CGFloat(g) / 255.0, blue: CGFloat(b) / 255.0, alpha: CGFloat(1))
     }
 
 
