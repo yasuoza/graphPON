@@ -16,6 +16,10 @@ class LineChartFooterView: UIView {
 
     // MARK: - Alloc/Init
 
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+
     override init(frame: CGRect) {
         super.init(frame: frame)
 
@@ -35,10 +39,6 @@ class LineChartFooterView: UIView {
         self.rightLabel.textColor = UIColor.whiteColor()
         self.rightLabel.backgroundColor = UIColor.clearColor()
         self.addSubview(self.rightLabel)
-    }
-
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
     }
 
     // MARK: - Drawing
@@ -93,4 +93,5 @@ class LineChartFooterView: UIView {
         self.leftLabel.frame = CGRectMake(xOffset, yOffset, width, self.bounds.size.height)
         self.rightLabel.frame = CGRectMake(CGRectGetMaxX(self.leftLabel.frame), yOffset, width, self.bounds.size.height)
     }
+    
 }
