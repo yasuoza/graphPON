@@ -1,11 +1,3 @@
-//
-//  AppDelegate.swift
-//  graphPON
-//
-//  Created by Yasuharu Ozaki on 11/11/14.
-//  Copyright (c) 2014 yasuoza.com. All rights reserved.
-//
-
 import UIKit
 
 @UIApplicationMain
@@ -20,6 +12,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         let navigationController = splitViewController.viewControllers[splitViewController.viewControllers.count-1] as UINavigationController
         navigationController.topViewController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem()
         splitViewController.delegate = self
+        splitViewController.presentsWithGesture = false
         return true
     }
 
@@ -48,10 +41,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     // MARK: - Split view
 
     func splitViewController(splitViewController: UISplitViewController, collapseSecondaryViewController secondaryViewController:UIViewController!, ontoPrimaryViewController primaryViewController:UIViewController!) -> Bool {
-        return false
-    }
-
-    func splitViewController(svc: UISplitViewController, shouldHideViewController vc: UIViewController, inOrientation orientation: UIInterfaceOrientation) -> Bool {
         return false
     }
 
