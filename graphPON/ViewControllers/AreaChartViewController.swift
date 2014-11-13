@@ -75,9 +75,9 @@ class AreaChartViewController: BaseChartViewController, JBLineChartViewDelegate,
             kJBLineChartViewControllerChartFooterHeight + kJBLineChartViewControllerChartPadding
             ))
         footerView.backgroundColor = UIColor.clearColor()
-        footerView.leftLabel.text = "left"
+        footerView.leftLabel.text = self.horizontalSymbols.first
         footerView.leftLabel.textColor = UIColor.whiteColor()
-        footerView.rightLabel.text = "right"
+        footerView.rightLabel.text = self.horizontalSymbols.last
         footerView.rightLabel.textColor = UIColor.whiteColor()
         footerView.sectionCount = self.largestLineData().count
         self.lineChartView.footerView = footerView
@@ -85,11 +85,17 @@ class AreaChartViewController: BaseChartViewController, JBLineChartViewDelegate,
         self.lineChartView.reloadData()
     }
 
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.lineChartView.setState(JBChartViewState.Expanded, animated: true)
+    }
+
     // MARK: - Private methods
 
     func initFakeData() {
-        chartData = (1...7).map { (_) -> CGFloat in CGFloat(Float(arc4random()) / Float(UINT32_MAX)) }
-        horizontalSymbols = (1...7).map { "x-\($0)" }
+        let length = 30
+        chartData = (1...length).map { (_) -> CGFloat in CGFloat(Float(arc4random()) / Float(UINT32_MAX)) }
+        horizontalSymbols = (1...length).map { "x-\($0)" }
     }
 
     func largestLineData() -> NSArray {
@@ -114,12 +120,27 @@ class AreaChartViewController: BaseChartViewController, JBLineChartViewDelegate,
 
     // MARK: - JBLineChartViewDelegate
 
+    func lineChartView(lineChartView: JBLineChartView!, verticalValueForHorizontalIndex horizontalIndex: UInt, atLineIndex lineIndex: UInt) -> CGFloat {
+        return self.chartData[Int(horizontalIndex)]
+    }
+
+    func lineChartView(lineChartView: JBLineChartView!, didSelectLineAtIndex lineIndex: UInt, horizontalIndex: UInt, touchPoint: CGPoint) {
+        self.setTooltipVisible(true, animated: true, touchPoint: touchPoint)
+        self.tooltipView.setText(horizontalSymbols[Int(horizontalIndex)])
+    }
+
+    func didDeselectLineInLineChartView(lineChartView: JBLineChartView!) {
+        self.setTooltipVisible(false, animated: true)
+    }
+
     func lineChartView(lineChartView: JBLineChartView!, colorForLineAtLineIndex lineIndex: UInt) -> UIColor! {
         return UIColor(white: 1.0, alpha: 0.5)
     }
 
-    func lineChartView(lineChartView: JBLineChartView!, verticalValueForHorizontalIndex horizontalIndex: UInt, atLineIndex lineIndex: UInt) -> CGFloat {
-        return self.chartData[Int(horizontalIndex)]
+    // MARK: BaseChartViewController
+    // TODO: to be a Protocol
+    override func chartView() -> JBChartView {
+        return self.lineChartView;
     }
 
 }
