@@ -40,6 +40,7 @@ class AreaChartViewController: BaseChartViewController, JBLineChartViewDelegate,
     private let kJBAreaChartViewControllerChartHeaderHeight  = CGFloat(75.0)
     private let kJBAreaChartViewControllerChartHeaderPadding = CGFloat(20.0)
     private let kJBAreaChartViewControllerChartFooterHeight  = CGFloat(20.0)
+    private let kJBAreaChartViewControllerChartFooterPadding = CGFloat(5.0)
     private let kJBAreaChartViewControllerChartLineWidth     = CGFloat(2.0)
     private let kJBAreaChartViewControllerMaxNumChartPoints  = CGFloat(12)
     private let kJBLineChartViewControllerChartFooterHeight  = CGFloat(20)
@@ -60,6 +61,7 @@ class AreaChartViewController: BaseChartViewController, JBLineChartViewDelegate,
         self.lineChartView.delegate = self
         self.lineChartView.dataSource = self
         self.lineChartView.headerPadding = kJBAreaChartViewControllerChartHeaderPadding
+        self.lineChartView.footerPadding = kJBAreaChartViewControllerChartFooterPadding
         self.lineChartView.backgroundColor = self.mode.backgroundColor()
     }
 
@@ -86,8 +88,8 @@ class AreaChartViewController: BaseChartViewController, JBLineChartViewDelegate,
     // MARK: - Private methods
 
     func initFakeData() {
-        chartData = (1...30).map { CGFloat($0) }
-        horizontalSymbols = (1...30).map { "x-\($0)" }
+        chartData = (1...7).map { (_) -> CGFloat in CGFloat(Float(arc4random()) / Float(UINT32_MAX)) }
+        horizontalSymbols = (1...7).map { "x-\($0)" }
     }
 
     func largestLineData() -> NSArray {
@@ -105,8 +107,16 @@ class AreaChartViewController: BaseChartViewController, JBLineChartViewDelegate,
         return UInt(self.chartData.count)
     }
 
+    func lineChartView(lineChartView: JBLineChartView!, smoothLineAtLineIndex lineIndex: UInt) -> Bool {
+        return true
+    }
+
 
     // MARK: - JBLineChartViewDelegate
+
+    func lineChartView(lineChartView: JBLineChartView!, colorForLineAtLineIndex lineIndex: UInt) -> UIColor! {
+        return UIColor(white: 1.0, alpha: 0.5)
+    }
 
     func lineChartView(lineChartView: JBLineChartView!, verticalValueForHorizontalIndex horizontalIndex: UInt, atLineIndex lineIndex: UInt) -> CGFloat {
         return self.chartData[Int(horizontalIndex)]

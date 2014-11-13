@@ -76,6 +76,7 @@ class LineChartFooterView: UIView {
     }
 
     // MARK: - Layout
+
     override func layoutSubviews() {
         super.layoutSubviews()
 
