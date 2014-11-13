@@ -1,6 +1,10 @@
 import UIKit
 
-class BaseChartViewController: UIViewController {
+protocol ChartViewControllerProtocol {
+    func chartView() -> JBChartView!
+}
+
+class BaseChartViewController: UIViewController, ChartViewControllerProtocol {
 
     var tooltipView: ChartTooltipView = ChartTooltipView()
     var tooltipTipView: ChartTooltipTipView = ChartTooltipTipView()
@@ -23,7 +27,6 @@ class BaseChartViewController: UIViewController {
     // MARK: - Setters
 
     func setTooltipVisible(visible: Bool, animated: Bool = false, touchPoint: CGPoint = CGPointZero) {
-
         let chartView = self.chartView()
 
         if chartView == nil {
@@ -35,14 +38,10 @@ class BaseChartViewController: UIViewController {
             var convertedTouchPoint = originalTouchPoint
             if chartView != nil {
                 let minChartX = chartView.frame.origin.x + ceil(self.tooltipView.frame.size.width * 0.5)
-                if convertedTouchPoint.x < minChartX {
-                    convertedTouchPoint.x = minChartX
-                }
+                convertedTouchPoint.x = max(convertedTouchPoint.x, minChartX)
 
                 let maxChartX = chartView.frame.origin.x + chartView.frame.size.width - ceil(self.tooltipView.frame.size.width * 0.5)
-                if convertedTouchPoint.x > maxChartX {
-                    convertedTouchPoint.x = maxChartX
-                }
+                convertedTouchPoint.x = min(convertedTouchPoint.x, maxChartX)
 
                 self.tooltipView.frame = CGRectMake(
                     convertedTouchPoint.x - ceil(self.tooltipView.frame.size.width * 0.5),
@@ -52,14 +51,10 @@ class BaseChartViewController: UIViewController {
                 )
 
                 let minTipX = chartView.frame.origin.x + self.tooltipTipView.frame.size.width
-                if originalTouchPoint.x < minTipX {
-                    originalTouchPoint.x = minTipX
-                }
+                originalTouchPoint.x = max(originalTouchPoint.x, minTipX)
 
                 let maxTipX = chartView.frame.origin.x + chartView.frame.size.width - self.tooltipTipView.frame.size.width
-                if originalTouchPoint.x > maxTipX {
-                    originalTouchPoint.x = maxTipX
-                }
+                originalTouchPoint.x = min(originalTouchPoint.x, maxTipX)
 
                 self.tooltipTipView.frame = CGRectMake(
                     originalTouchPoint.x - ceil(self.tooltipTipView.frame.size.width * 0.5),

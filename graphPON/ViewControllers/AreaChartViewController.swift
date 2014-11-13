@@ -1,6 +1,6 @@
 import UIKit
 
-class AreaChartViewController: BaseChartViewController, JBLineChartViewDelegate, JBLineChartViewDataSource {
+class AreaChartViewController: BaseChartViewController, JBLineChartViewDelegate, JBLineChartViewDataSource, ChartViewControllerProtocol {
 
     enum Mode {
         case Line, Bar, Area
@@ -137,9 +137,9 @@ class AreaChartViewController: BaseChartViewController, JBLineChartViewDelegate,
         return UIColor(white: 1.0, alpha: 0.5)
     }
 
-    // MARK: BaseChartViewController
-    // TODO: to be a Protocol
-    override func chartView() -> JBChartView {
+    // MARK: - ChartViewControllerProtocol
+
+    override func chartView() -> JBChartView! {
         return self.lineChartView;
     }
 
