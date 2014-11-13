@@ -93,9 +93,8 @@ class AreaChartViewController: BaseChartViewController, JBLineChartViewDelegate,
     // MARK: - Private methods
 
     func initFakeData() {
-        let length = 30
-        chartData = (1...length).map { (_) -> CGFloat in CGFloat(Float(arc4random()) / Float(UINT32_MAX)) }
-        horizontalSymbols = (1...length).map { "x-\($0)" }
+        chartData = [29, 44, 89, 179, 251, 321, 411, 512, 625, 700, 734, 787, 841].map { CGFloat($0) }
+        horizontalSymbols = (1...chartData.count).map { "x-\($0)" }
     }
 
     func largestLineData() -> NSArray {
@@ -134,7 +133,19 @@ class AreaChartViewController: BaseChartViewController, JBLineChartViewDelegate,
     }
 
     func lineChartView(lineChartView: JBLineChartView!, colorForLineAtLineIndex lineIndex: UInt) -> UIColor! {
+        return UIColor.clearColor()
+    }
+
+    func lineChartView(lineChartView: JBLineChartView!, fillColorForLineAtLineIndex lineIndex: UInt) -> UIColor! {
         return UIColor(white: 1.0, alpha: 0.5)
+    }
+
+    func lineChartView(lineChartView: JBLineChartView!, selectionColorForLineAtLineIndex lineIndex: UInt) -> UIColor! {
+        return UIColor.clearColor()
+    }
+
+    func lineChartView(lineChartView: JBLineChartView!, selectionFillColorForLineAtLineIndex lineIndex: UInt) -> UIColor! {
+        return UIColor(white: 1.0, alpha: 1.0)
     }
 
     // MARK: - ChartViewControllerProtocol
