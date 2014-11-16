@@ -33,9 +33,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OYq-J2-cFd" customClass="JBLineChartView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OYq-J2-cFd" customClass="ChartViewContainerView" customModule="graphPON" customModuleProvider="target">
                                 <rect key="frame" x="16" y="74" width="568" height="324"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sSd-lo-9Sb" customClass="JBLineChartView">
+                                        <rect key="frame" x="0.0" y="0.0" width="568" height="324"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </view>
+                                </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="sSd-lo-9Sb" firstAttribute="leading" secondItem="OYq-J2-cFd" secondAttribute="leading" id="APc-A1-44L"/>
+                                    <constraint firstAttribute="bottom" secondItem="sSd-lo-9Sb" secondAttribute="bottom" id="JfW-kJ-1Vv"/>
+                                    <constraint firstItem="sSd-lo-9Sb" firstAttribute="top" secondItem="OYq-J2-cFd" secondAttribute="top" id="PXb-QH-N06"/>
+                                    <constraint firstAttribute="trailing" secondItem="sSd-lo-9Sb" secondAttribute="trailing" id="pv2-Cc-cGY"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="chartView" destination="sSd-lo-9Sb" id="dYn-aF-eEZ"/>
+                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -51,7 +66,7 @@
                         <barButtonItem key="backBarButtonItem" title="Menu" id="5eS-wQ-J0T"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="lineChartView" destination="OYq-J2-cFd" id="PH6-mv-ewW"/>
+                        <outlet property="chartViewContainerView" destination="OYq-J2-cFd" id="a3Z-FA-vhX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>

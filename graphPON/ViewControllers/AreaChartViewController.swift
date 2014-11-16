@@ -30,7 +30,7 @@ class AreaChartViewController: BaseChartViewController, JBLineChartViewDelegate,
         }
     }
 
-    @IBOutlet weak var lineChartView: JBLineChartView!
+    @IBOutlet weak var chartViewContainerView: ChartViewContainerView!
 
     var mode: Mode = .Line
 
@@ -58,20 +58,17 @@ class AreaChartViewController: BaseChartViewController, JBLineChartViewDelegate,
         self.view.backgroundColor = self.mode.backgroundColor()
         self.navigationItem.title = self.mode.titleText()
 
-        self.lineChartView.delegate = self
-        self.lineChartView.dataSource = self
-        self.lineChartView.headerPadding = kJBAreaChartViewControllerChartHeaderPadding
-        self.lineChartView.footerPadding = kJBAreaChartViewControllerChartFooterPadding
-        self.lineChartView.backgroundColor = self.mode.backgroundColor()
-    }
+        self.chartViewContainerView.chartView.delegate = self
+        self.chartViewContainerView.chartView.dataSource = self
 
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
+        self.chartViewContainerView.chartView.headerPadding = kJBAreaChartViewControllerChartHeaderPadding
+        self.chartViewContainerView.chartView.footerPadding = kJBAreaChartViewControllerChartFooterPadding
+        self.chartViewContainerView.chartView.backgroundColor = self.mode.backgroundColor()
 
         let footerView = LineChartFooterView(frame: CGRectMake(
-            self.lineChartView.frame.origin.x,
+            self.chartViewContainerView.chartView.frame.origin.x,
             ceil(self.view.bounds.size.height * 0.5) - ceil(kJBLineChartViewControllerChartFooterHeight * 0.5),
-            self.lineChartView.bounds.width,
+            self.chartViewContainerView.chartView.bounds.width,
             kJBLineChartViewControllerChartFooterHeight + kJBLineChartViewControllerChartPadding
             ))
         footerView.backgroundColor = UIColor.clearColor()
@@ -80,14 +77,13 @@ class AreaChartViewController: BaseChartViewController, JBLineChartViewDelegate,
         footerView.rightLabel.text = self.horizontalSymbols.last
         footerView.rightLabel.textColor = UIColor.whiteColor()
         footerView.sectionCount = self.largestLineData().count
-        self.lineChartView.footerView = footerView
+        self.chartViewContainerView.chartView.footerView = footerView
 
-        self.lineChartView.reloadData()
     }
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.lineChartView.setState(JBChartViewState.Expanded, animated: true)
+        self.chartViewContainerView.chartView.setState(JBChartViewState.Expanded, animated: true)
     }
 
     // MARK: - Private methods
@@ -151,7 +147,7 @@ class AreaChartViewController: BaseChartViewController, JBLineChartViewDelegate,
     // MARK: - ChartViewControllerProtocol
 
     override func chartView() -> JBChartView! {
-        return self.lineChartView;
+        return self.chartViewContainerView.chartView
     }
 
 }

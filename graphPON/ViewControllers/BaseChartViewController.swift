@@ -45,7 +45,7 @@ class BaseChartViewController: UIViewController, ChartViewControllerProtocol {
 
                 self.tooltipView.frame = CGRectMake(
                     convertedTouchPoint.x - ceil(self.tooltipView.frame.size.width * 0.5),
-                    CGRectGetMinY(chartView.frame) - ceil(self.tooltipView.frame.size.height * 0.3),
+                    70,
                     self.tooltipView.frame.size.width,
                     self.tooltipView.frame.size.height
                 )
