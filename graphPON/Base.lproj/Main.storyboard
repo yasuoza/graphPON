@@ -52,11 +52,22 @@
                                     <outlet property="chartView" destination="sSd-lo-9Sb" id="dYn-aF-eEZ"/>
                                 </connections>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="45" translatesAutoresizingMaskIntoConstraints="NO" id="jES-Jp-I3I">
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="230" id="E85-7I-7h1"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="100"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="centerX" secondItem="jES-Jp-I3I" secondAttribute="centerX" id="0ib-j5-Bmh"/>
                             <constraint firstItem="OYq-J2-cFd" firstAttribute="trailing" secondItem="svH-Pt-448" secondAttribute="trailingMargin" id="2ap-6v-CrL"/>
+                            <constraint firstItem="jES-Jp-I3I" firstAttribute="top" secondItem="OYq-J2-cFd" secondAttribute="bottom" constant="33" id="4RU-5e-oUe"/>
                             <constraint firstItem="OYq-J2-cFd" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" constant="10" id="ObB-Of-ziJ"/>
+                            <constraint firstItem="GAO-Cl-Wes" firstAttribute="top" secondItem="jES-Jp-I3I" secondAttribute="bottom" constant="73" id="QKm-1a-hfn"/>
                             <constraint firstItem="GAO-Cl-Wes" firstAttribute="top" secondItem="OYq-J2-cFd" secondAttribute="centerY" multiplier="2.5" constant="10" id="S76-Xj-uR1"/>
                             <constraint firstItem="OYq-J2-cFd" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leadingMargin" id="hnG-Ir-Le5"/>
                         </constraints>
@@ -67,6 +78,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="chartViewContainerView" destination="OYq-J2-cFd" id="a3Z-FA-vhX"/>
+                        <outlet property="valueLabel" destination="jES-Jp-I3I" id="ma7-Oh-2LJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>

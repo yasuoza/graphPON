@@ -31,6 +31,7 @@ class AreaChartViewController: BaseChartViewController, JBLineChartViewDelegate,
     }
 
     @IBOutlet weak var chartViewContainerView: ChartViewContainerView!
+    @IBOutlet weak var valueLabel: UILabel!
 
     var mode: Mode = .Line
 
@@ -78,7 +79,6 @@ class AreaChartViewController: BaseChartViewController, JBLineChartViewDelegate,
         footerView.rightLabel.textColor = UIColor.whiteColor()
         footerView.sectionCount = self.largestLineData().count
         self.chartViewContainerView.chartView.footerView = footerView
-
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -89,7 +89,7 @@ class AreaChartViewController: BaseChartViewController, JBLineChartViewDelegate,
     // MARK: - Private methods
 
     func initFakeData() {
-        chartData = [29, 44, 89, 179, 251, 321, 411, 512, 625, 700, 734, 787, 841].map { CGFloat($0) }
+        chartData = [29, 44, 89, 179, 251, 321, 411, 512, 625, 700, 734, 787, 843, 954, 965, 968, 1002].map { CGFloat($0) }
         horizontalSymbols = (1...chartData.count).map { "x-\($0)" }
     }
 
@@ -122,10 +122,27 @@ class AreaChartViewController: BaseChartViewController, JBLineChartViewDelegate,
     func lineChartView(lineChartView: JBLineChartView!, didSelectLineAtIndex lineIndex: UInt, horizontalIndex: UInt, touchPoint: CGPoint) {
         self.setTooltipVisible(true, animated: true, touchPoint: touchPoint)
         self.tooltipView.setText(horizontalSymbols[Int(horizontalIndex)])
+
+        UIView.animateWithDuration(NSTimeInterval(kJBChartViewDefaultAnimationDuration) * 0.5, delay: 0.0, options: UIViewAnimationOptions.BeginFromCurrentState, animations: {
+            var value = self.chartData[Int(horizontalIndex)]
+            var unit = "MB"
+            if value >= 1000.0 {
+                value /= 1000.0
+                unit = "GB"
+            }
+            let valueText = NSString(format: "%.01f", Float(value))
+            self.valueLabel.text = "\(valueText)\(unit)"
+            self.valueLabel.alpha = 1.0
+        }, completion: nil)
     }
 
     func didDeselectLineInLineChartView(lineChartView: JBLineChartView!) {
         self.setTooltipVisible(false, animated: true)
+
+        UIView.animateWithDuration(NSTimeInterval(kJBChartViewDefaultAnimationDuration) * 0.5, delay: 0.0, options: UIViewAnimationOptions.BeginFromCurrentState, animations: {
+            self.valueLabel.alpha = 0.0
+        }, completion: nil)
+
     }
 
     func lineChartView(lineChartView: JBLineChartView!, colorForLineAtLineIndex lineIndex: UInt) -> UIColor! {
