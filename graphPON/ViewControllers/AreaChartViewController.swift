@@ -89,14 +89,28 @@ class AreaChartViewController: BaseChartViewController, JBLineChartViewDelegate,
     // MARK: - Private methods
 
     func initFakeData() {
-        chartData = [29, 44, 89, 179, 251, 321, 411, 512, 625, 700, 734, 787, 843, 954, 965, 968, 1002].map { CGFloat($0) }
-        horizontalSymbols = (1...chartData.count).map { "x-\($0)" }
+        chartData = [29, 44, 89, 179, 251, 321, 411, 512, 625, 700, 734, 787, 843, 954, 965, 968, 1009, 1079].map { CGFloat($0) }
+
+        // 今月の日付を表示
+        let today = NSDate()
+        let calendar = NSCalendar(calendarIdentifier: NSGregorianCalendar)!
+        var comps = calendar.components(
+            (NSCalendarUnit.CalendarUnitYear|NSCalendarUnit.CalendarUnitMonth|NSCalendarUnit.CalendarUnitDay), fromDate: today
+        )
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "MM/dd"
+        dateFormatter.locale = NSLocale(localeIdentifier: "en_US")
+
+        horizontalSymbols = (1...chartData.count).map {
+            comps.day = $0
+            let date = calendar.dateFromComponents(comps)!
+            return dateFormatter.stringFromDate(date)
+        }
     }
 
     func largestLineData() -> NSArray {
         return self.chartData
     }
-
 
     // MARK: - JBLineChartViewDataSource
 
