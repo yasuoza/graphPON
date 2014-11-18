@@ -1,6 +1,6 @@
 import UIKit
 
-class AreaChartViewController: BaseChartViewController, JBLineChartViewDelegate, JBLineChartViewDataSource, ChartViewControllerProtocol {
+class AreaChartViewController: BaseChartViewController, JBLineChartViewDelegate, JBLineChartViewDataSource {
 
     enum Mode {
         case Line, Bar, Area
@@ -30,7 +30,6 @@ class AreaChartViewController: BaseChartViewController, JBLineChartViewDelegate,
         }
     }
 
-    @IBOutlet weak var chartViewContainerView: ChartViewContainerView!
     @IBOutlet weak var valueLabel: UILabel!
 
     var mode: Mode = .Line
@@ -173,12 +172,6 @@ class AreaChartViewController: BaseChartViewController, JBLineChartViewDelegate,
 
     func lineChartView(lineChartView: JBLineChartView!, selectionFillColorForLineAtLineIndex lineIndex: UInt) -> UIColor! {
         return UIColor(white: 1.0, alpha: 1.0)
-    }
-
-    // MARK: - ChartViewControllerProtocol
-
-    override func chartView() -> JBChartView! {
-        return self.chartViewContainerView.chartView
     }
 
 }

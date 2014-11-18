@@ -1,10 +1,8 @@
 import UIKit
 
-protocol ChartViewControllerProtocol {
-    func chartView() -> JBChartView!
-}
+class BaseChartViewController: UIViewController {
 
-class BaseChartViewController: UIViewController, ChartViewControllerProtocol {
+    @IBOutlet weak var chartViewContainerView: ChartViewContainerView!
 
     var tooltipView: ChartTooltipView = ChartTooltipView()
     var tooltipTipView: ChartTooltipTipView = ChartTooltipTipView()
@@ -27,7 +25,7 @@ class BaseChartViewController: UIViewController, ChartViewControllerProtocol {
     // MARK: - Setters
 
     func setTooltipVisible(visible: Bool, animated: Bool = false, touchPoint: CGPoint = CGPointZero) {
-        let chartView = self.chartView()
+        let chartView = self.chartViewContainerView
 
         if chartView == nil {
             return
@@ -45,7 +43,7 @@ class BaseChartViewController: UIViewController, ChartViewControllerProtocol {
 
                 self.tooltipView.frame = CGRectMake(
                     convertedTouchPoint.x - ceil(self.tooltipView.frame.size.width * 0.5),
-                    70,
+                    CGRectGetMinY(chartView.frame) - ceil(self.tooltipView.frame.height * 0.5),
                     self.tooltipView.frame.size.width,
                     self.tooltipView.frame.size.height
                 )
@@ -85,12 +83,6 @@ class BaseChartViewController: UIViewController, ChartViewControllerProtocol {
         } else {
             adjustTooltipVisibility()
         }
-    }
-
-    // MARK: - Getters
-
-    func chartView() -> JBChartView! {
-        return JBChartView()
     }
 
 }
