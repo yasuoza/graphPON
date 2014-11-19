@@ -88,7 +88,12 @@ class AreaChartViewController: BaseChartViewController, JBLineChartViewDelegate,
     // MARK: - Private methods
 
     func initFakeData() {
-        chartData = [29, 44, 89, 179, 251, 321, 411, 512, 625, 700, 734, 787, 843, 954, 965, 968, 1009, 1079].map { CGFloat($0) }
+        let amounts = [29, 15, 45, 90, 72, 70, 90, 101, 113, 75, 34, 53, 56, 111, 11, 3, 41, 72, 8]
+        var sum = CGFloat(0.0)
+        chartData = amounts.map { (var amount) -> CGFloat in
+            sum += CGFloat(amount)
+            return sum
+        }
 
         // 今月の日付を表示
         let today = NSDate()
