@@ -15,21 +15,14 @@ class MasterViewController: UITableViewController {
     // MARK: - Segues
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "showDetail" {
-            if let indexPath = self.tableView.indexPathForSelectedRow() {
-                let object = NSDate()
-                let controller = (segue.destinationViewController as UINavigationController).topViewController as AreaChartViewController
-                switch indexPath.row {
-                case 0:
-                    controller.mode = AreaChartViewController.Mode.Line
-                case 1:
-                    controller.mode = AreaChartViewController.Mode.Bar
-                default:
-                    controller.mode = AreaChartViewController.Mode.Area
-                }
-                controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
-                controller.navigationItem.leftItemsSupplementBackButton = true
-            }
+        if segue.identifier == "showAreaChart" {
+            let controller = (segue.destinationViewController as UINavigationController).topViewController as AreaChartViewController
+            controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
+            controller.navigationItem.leftItemsSupplementBackButton = true
+        } else if segue.identifier == "showBarChart" {
+            let controller = segue.destinationViewController as BarChartViewController
+            controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
+            controller.navigationItem.leftItemsSupplementBackButton = true
         }
     }
 
@@ -63,6 +56,15 @@ class MasterViewController: UITableViewController {
         cell.textLabel.text = cell.mode.textLabelText()
         cell.detailTextLabel?.text = cell.mode.detailLabelText()
         return cell
+    }
+
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        switch indexPath.row {
+        case 1:
+            performSegueWithIdentifier("showBarChart", sender: self)
+        default:
+            performSegueWithIdentifier("showAreaChart", sender: self)
+        }
     }
 
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {

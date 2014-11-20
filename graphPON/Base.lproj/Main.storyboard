@@ -22,10 +22,10 @@
             </objects>
             <point key="canvasLocation" x="-38" y="-630"/>
         </scene>
-        <!--Chart-->
+        <!--AreaChart-->
         <scene sceneID="yUG-lL-AsK">
             <objects>
-                <viewController title="Chart" id="JEX-9P-axG" customClass="AreaChartViewController" customModule="graphPON" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="AreaChart" id="JEX-9P-axG" customClass="AreaChartViewController" customModule="graphPON" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="SYR-Wa-9uf"/>
                         <viewControllerLayoutGuide type="bottom" id="GAO-Cl-Wes"/>
@@ -133,9 +133,6 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <segue destination="vC3-pB-5Vb" kind="showDetail" identifier="showDetail" id="6S0-TO-JiA"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <sections/>
@@ -145,6 +142,10 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Menu" id="Zdf-7t-Un8"/>
+                    <connections>
+                        <segue destination="vC3-pB-5Vb" kind="showDetail" identifier="showAreaChart" id="Zcf-zk-KTW"/>
+                        <segue destination="aff-4a-p05" kind="showDetail" identifier="showBarChart" id="3Tl-OO-PfE"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rux-fX-hf1" sceneMemberID="firstResponder"/>
             </objects>
@@ -158,15 +159,80 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="JEX-9P-axG" kind="relationship" relationship="rootViewController" id="GKi-kA-LjT"/>
+                        <segue destination="JEX-9P-axG" kind="relationship" relationship="rootViewController" id="ea0-1p-Xb9"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SLD-UC-DBI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-45" y="129"/>
         </scene>
+        <!--BarChart-->
+        <scene sceneID="eJQ-IS-Ns2">
+            <objects>
+                <viewController title="BarChart" id="aff-4a-p05" customClass="BarChartViewController" customModule="graphPON" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="qRc-Tt-Yec"/>
+                        <viewControllerLayoutGuide type="bottom" id="Pca-DG-bCW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="zk3-yc-Ign">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wjw-fR-Cbx" customClass="ChartViewContainerView" customModule="graphPON" customModuleProvider="target">
+                                <rect key="frame" x="16" y="94" width="568" height="284"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JQB-aN-4Ki" customClass="JBBarChartView">
+                                        <rect key="frame" x="0.0" y="0.0" width="568" height="284"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="JQB-aN-4Ki" firstAttribute="leading" secondItem="Wjw-fR-Cbx" secondAttribute="leading" id="7oO-kz-GBJ"/>
+                                    <constraint firstItem="JQB-aN-4Ki" firstAttribute="top" secondItem="Wjw-fR-Cbx" secondAttribute="top" id="9vJ-jF-hrp"/>
+                                    <constraint firstAttribute="trailing" secondItem="JQB-aN-4Ki" secondAttribute="trailing" id="CBu-Ln-zAu"/>
+                                    <constraint firstAttribute="bottom" secondItem="JQB-aN-4Ki" secondAttribute="bottom" id="QyX-N0-4es"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="chartView" destination="JQB-aN-4Ki" id="Kys-UB-KDm"/>
+                                </connections>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="45" translatesAutoresizingMaskIntoConstraints="NO" id="zTy-Y2-xg3">
+                                <rect key="frame" x="185" y="349" width="230" height="178"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="230" id="ikE-LM-pVS"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="100"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Pca-DG-bCW" firstAttribute="top" secondItem="Wjw-fR-Cbx" secondAttribute="centerY" multiplier="2.5" constant="10" id="AJp-El-vrN"/>
+                            <constraint firstItem="Wjw-fR-Cbx" firstAttribute="leading" secondItem="zk3-yc-Ign" secondAttribute="leadingMargin" id="Es8-W6-E28"/>
+                            <constraint firstItem="Pca-DG-bCW" firstAttribute="top" relation="lessThanOrEqual" secondItem="zTy-Y2-xg3" secondAttribute="bottom" constant="73" id="HOt-QD-PK9"/>
+                            <constraint firstItem="Wjw-fR-Cbx" firstAttribute="trailing" secondItem="zk3-yc-Ign" secondAttribute="trailingMargin" id="K7q-K1-Kgn"/>
+                            <constraint firstItem="zTy-Y2-xg3" firstAttribute="centerY" secondItem="Wjw-fR-Cbx" secondAttribute="bottom" constant="60" id="Pid-IN-csN"/>
+                            <constraint firstAttribute="centerX" secondItem="zTy-Y2-xg3" secondAttribute="centerX" id="hRk-jd-u4X"/>
+                            <constraint firstItem="Wjw-fR-Cbx" firstAttribute="top" secondItem="qRc-Tt-Yec" secondAttribute="bottom" constant="30" id="oDh-yv-d1M"/>
+                        </constraints>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="5JV-3C-KTV">
+                        <barButtonItem key="backBarButtonItem" title="Menu" id="p7R-AI-hV8"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="chartViewContainerView" destination="Wjw-fR-Cbx" id="D4S-M0-iAr"/>
+                        <outlet property="valueLabel" destination="zTy-Y2-xg3" id="qAx-zu-a9t"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Uxg-sk-TxE" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1427" y="-630"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Tll-UG-LXB"/>
+        <segue reference="Zcf-zk-KTW"/>
     </inferredMetricsTieBreakers>
 </document>
