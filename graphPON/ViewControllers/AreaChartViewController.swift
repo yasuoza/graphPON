@@ -80,15 +80,15 @@ class AreaChartViewController: BaseChartViewController, JBLineChartViewDelegate,
         self.chartViewContainerView.chartView.footerView = footerView
     }
 
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         self.chartViewContainerView.chartView.setState(JBChartViewState.Expanded, animated: true)
     }
 
     // MARK: - Private methods
 
     func initFakeData() {
-        let amounts = [29, 15, 45, 90, 72, 70, 90, 101, 113, 75, 34, 53, 56, 111, 11, 3, 41, 72, 8]
+        let amounts = [29, 15, 45, 90, 72, 70, 90, 101, 113, 75, 34, 53, 56, 111, 11, 3, 41, 72, 36, 7]
         var sum = CGFloat(0.0)
         chartData = amounts.map { (var amount) -> CGFloat in
             sum += CGFloat(amount)
