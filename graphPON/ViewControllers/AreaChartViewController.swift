@@ -94,20 +94,17 @@ class AreaChartViewController: BaseChartViewController, JBLineChartViewDelegate,
             [1, 1, 1, 65, 1, 22, 18, 23, 12, 13, 2, 14, 2, 29, 8, 1, 7, 5, 1, 4, 20]
         ]
 
-        var allSum: Array<CGFloat> = []
+        var amountSummation = [CGFloat](count: amounts.first!.count, repeatedValue: 0.0)
         self.chartData = amounts.map { (var packets) -> [CGFloat] in
             var sum = CGFloat(0.0)
             var index = 0
             return packets.map { (var packet) -> CGFloat in
-                if allSum.count <= index {
-                    allSum.append(CGFloat(0))
-                }
                 sum += CGFloat(packet)
-                allSum[index] += sum
-                index++
+                amountSummation[index++] += sum
                 return sum
             }
         }
+        self.chartData.append(amountSummation)
 
         // 今月の日付を表示
         let today = NSDate()
