@@ -53,7 +53,7 @@ class MasterViewController: UITableViewController {
             break
         }
         cell.mode = mode
-        cell.textLabel.text = cell.mode.textLabelText()
+        cell.textLabel?.text = cell.mode.textLabelText()
         cell.detailTextLabel?.text = cell.mode.detailLabelText()
         return cell
     }

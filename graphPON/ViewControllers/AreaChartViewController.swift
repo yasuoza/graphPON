@@ -45,7 +45,7 @@ class AreaChartViewController: BaseChartViewController, JBLineChartViewDelegate,
     private let kJBAreaChartViewControllerMaxNumChartPoints  = CGFloat(12)
     private let kJBLineChartViewControllerChartFooterHeight  = CGFloat(20)
 
-    private var chartData: [CGFloat]!
+    private var chartData: Array<Array<CGFloat>>!
     private var horizontalSymbols: [NSString]!
 
     // MARK: - View Lifecycle
@@ -88,11 +88,25 @@ class AreaChartViewController: BaseChartViewController, JBLineChartViewDelegate,
     // MARK: - Private methods
 
     func initFakeData() {
-        let amounts = [29, 15, 45, 90, 72, 70, 90, 101, 113, 75, 34, 53, 56, 111, 11, 3, 41, 72, 36, 7]
-        var sum = CGFloat(0.0)
-        chartData = amounts.map { (var amount) -> CGFloat in
-            sum += CGFloat(amount)
-            return sum
+        let amounts = [
+            [21, 11, 32, 14, 67, 11, 66, 45, 100, 44, 31, 38, 53, 70, 2, 1, 33, 52, 34, 11, 3],
+            [7, 3, 12, 11, 4, 37, 6, 33, 1, 18, 1, 1, 1, 12, 1, 1, 1, 15, 1, 1, 1],
+            [1, 1, 1, 65, 1, 22, 18, 23, 12, 13, 2, 14, 2, 29, 8, 1, 7, 5, 1, 4, 20]
+        ]
+
+        var allSum: Array<CGFloat> = []
+        self.chartData = amounts.map { (var packets) -> [CGFloat] in
+            var sum = CGFloat(0.0)
+            var index = 0
+            return packets.map { (var packet) -> CGFloat in
+                if allSum.count <= index {
+                    allSum.append(CGFloat(0))
+                }
+                sum += CGFloat(packet)
+                allSum[index] += sum
+                index++
+                return sum
+            }
         }
 
         // 今月の日付を表示
@@ -105,7 +119,7 @@ class AreaChartViewController: BaseChartViewController, JBLineChartViewDelegate,
         dateFormatter.dateFormat = "MM/dd"
         dateFormatter.locale = NSLocale(localeIdentifier: "en_US")
 
-        horizontalSymbols = (1...chartData.count).map {
+        horizontalSymbols = (1...largestLineData().count).map {
             comps.day = $0
             let date = calendar.dateFromComponents(comps)!
             return dateFormatter.stringFromDate(date)
@@ -113,28 +127,27 @@ class AreaChartViewController: BaseChartViewController, JBLineChartViewDelegate,
     }
 
     func largestLineData() -> NSArray {
-        return self.chartData
+        return self.chartData[0]
     }
 
     // MARK: - JBLineChartViewDataSource
 
     func numberOfLinesInLineChartView(lineChartView: JBLineChartView!) -> UInt {
-        return 1
+        return UInt(self.chartData.count)
     }
 
     func lineChartView(lineChartView: JBLineChartView!, numberOfVerticalValuesAtLineIndex lineIndex: UInt) -> UInt {
-        return UInt(self.chartData.count)
+        return UInt(largestLineData().count)
     }
 
     func lineChartView(lineChartView: JBLineChartView!, smoothLineAtLineIndex lineIndex: UInt) -> Bool {
         return true
     }
 
-
     // MARK: - JBLineChartViewDelegate
 
     func lineChartView(lineChartView: JBLineChartView!, verticalValueForHorizontalIndex horizontalIndex: UInt, atLineIndex lineIndex: UInt) -> CGFloat {
-        return self.chartData[Int(horizontalIndex)]
+        return self.chartData[Int(lineIndex)][Int(horizontalIndex)]
     }
 
     func lineChartView(lineChartView: JBLineChartView!, didSelectLineAtIndex lineIndex: UInt, horizontalIndex: UInt, touchPoint: CGPoint) {
@@ -142,7 +155,7 @@ class AreaChartViewController: BaseChartViewController, JBLineChartViewDelegate,
         self.tooltipView.setText(horizontalSymbols[Int(horizontalIndex)])
 
         UIView.animateWithDuration(NSTimeInterval(kJBChartViewDefaultAnimationDuration) * 0.5, delay: 0.0, options: UIViewAnimationOptions.BeginFromCurrentState, animations: {
-            var value = self.chartData[Int(horizontalIndex)]
+            var value = self.chartData[Int(lineIndex)][Int(horizontalIndex)]
             var unit = "MB"
             if value >= 1000.0 {
                 value /= 1000.0
