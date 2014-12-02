@@ -21,6 +21,7 @@
 		A8409FB91A16F4A8007573EC /* ChartViewContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8409FB81A16F4A8007573EC /* ChartViewContainerView.swift */; };
 		A8549EFB1A2C6E9C000308AD /* PacketLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8549EFA1A2C6E9C000308AD /* PacketLog.swift */; };
 		A8549EFE1A2C6F12000308AD /* PacketInfoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8549EFD1A2C6F12000308AD /* PacketInfoManager.swift */; };
+		A88BB3701A2DDEA700E5AE4F /* HdoInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88BB36F1A2DDEA700E5AE4F /* HdoInfo.swift */; };
 		A8B212B81A11ED68005988DC /* BaseChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B212B71A11ED68005988DC /* BaseChartViewController.swift */; };
 		A8B212BC1A11EEDC005988DC /* AreaChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B212BB1A11EEDC005988DC /* AreaChartViewController.swift */; };
 		A8B212C01A1204B2005988DC /* LineChartFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B212BF1A1204B2005988DC /* LineChartFooterView.swift */; };
@@ -57,6 +58,7 @@
 		A8409FB81A16F4A8007573EC /* ChartViewContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChartViewContainerView.swift; path = Views/ChartViewContainerView.swift; sourceTree = "<group>"; };
 		A8549EFA1A2C6E9C000308AD /* PacketLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PacketLog.swift; path = Models/PacketLog.swift; sourceTree = "<group>"; };
 		A8549EFD1A2C6F12000308AD /* PacketInfoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PacketInfoManager.swift; path = Managers/PacketInfoManager.swift; sourceTree = "<group>"; };
+		A88BB36F1A2DDEA700E5AE4F /* HdoInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HdoInfo.swift; path = Models/HdoInfo.swift; sourceTree = "<group>"; };
 		A8B212B71A11ED68005988DC /* BaseChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseChartViewController.swift; path = ViewControllers/BaseChartViewController.swift; sourceTree = "<group>"; };
 		A8B212BB1A11EEDC005988DC /* AreaChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AreaChartViewController.swift; path = ViewControllers/AreaChartViewController.swift; sourceTree = "<group>"; };
 		A8B212BE1A11F04B005988DC /* JBChartView-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "JBChartView-Bridging-Header.h"; path = "Bridge-Headers/JBChartView-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				A8549EFA1A2C6E9C000308AD /* PacketLog.swift */,
+				A88BB36F1A2DDEA700E5AE4F /* HdoInfo.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -375,6 +378,7 @@
 				A80D19E91A11D0F80067A055 /* MasterViewTableCell.swift in Sources */,
 				A8B212BC1A11EEDC005988DC /* AreaChartViewController.swift in Sources */,
 				A8B212B81A11ED68005988DC /* BaseChartViewController.swift in Sources */,
+				A88BB3701A2DDEA700E5AE4F /* HdoInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
