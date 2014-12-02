@@ -4,7 +4,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Master-->
@@ -40,6 +39,9 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sSd-lo-9Sb" customClass="JBLineChartView">
                                         <rect key="frame" x="0.0" y="0.0" width="568" height="284"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <variation key="heightClass=compact" misplaced="YES">
+                                            <rect key="frame" x="0.0" y="0.0" width="568" height="217"/>
+                                        </variation>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -49,6 +51,9 @@
                                     <constraint firstItem="sSd-lo-9Sb" firstAttribute="top" secondItem="OYq-J2-cFd" secondAttribute="top" id="PXb-QH-N06"/>
                                     <constraint firstAttribute="trailing" secondItem="sSd-lo-9Sb" secondAttribute="trailing" id="pv2-Cc-cGY"/>
                                 </constraints>
+                                <variation key="heightClass=compact" misplaced="YES">
+                                    <rect key="frame" x="16" y="94" width="568" height="217"/>
+                                </variation>
                                 <connections>
                                     <outlet property="chartView" destination="sSd-lo-9Sb" id="dYn-aF-eEZ"/>
                                 </connections>
@@ -61,18 +66,33 @@
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="100"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=compact" misplaced="YES">
+                                    <rect key="frame" x="300" y="327" width="0.0" height="0.0"/>
+                                </variation>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="jES-Jp-I3I" secondAttribute="centerX" id="0ib-j5-Bmh"/>
                             <constraint firstItem="OYq-J2-cFd" firstAttribute="trailing" secondItem="svH-Pt-448" secondAttribute="trailingMargin" id="2ap-6v-CrL"/>
-                            <constraint firstItem="jES-Jp-I3I" firstAttribute="centerY" secondItem="OYq-J2-cFd" secondAttribute="bottom" constant="60" id="4RU-5e-oUe"/>
-                            <constraint firstItem="OYq-J2-cFd" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" constant="30" id="ObB-Of-ziJ"/>
-                            <constraint firstItem="GAO-Cl-Wes" firstAttribute="top" relation="lessThanOrEqual" secondItem="jES-Jp-I3I" secondAttribute="bottom" constant="73" id="QKm-1a-hfn"/>
-                            <constraint firstItem="GAO-Cl-Wes" firstAttribute="top" secondItem="OYq-J2-cFd" secondAttribute="centerY" multiplier="2.5" constant="10" id="S76-Xj-uR1"/>
+                            <constraint firstItem="jES-Jp-I3I" firstAttribute="centerY" secondItem="OYq-J2-cFd" secondAttribute="bottom" constant="60" id="4RU-5e-oUe">
+                                <variation key="heightClass=compact" constant="16"/>
+                            </constraint>
+                            <constraint firstItem="OYq-J2-cFd" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" constant="30" id="5Ia-2O-8A3"/>
+                            <constraint firstItem="GAO-Cl-Wes" firstAttribute="top" secondItem="OYq-J2-cFd" secondAttribute="bottom" constant="222" id="M8X-oh-KOk">
+                                <variation key="heightClass=compact" constant="80"/>
+                            </constraint>
                             <constraint firstItem="OYq-J2-cFd" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leadingMargin" id="hnG-Ir-Le5"/>
                         </constraints>
+                        <variation key="heightClass=compact">
+                            <mask key="subviews">
+                                <include reference="OYq-J2-cFd"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="4RU-5e-oUe"/>
+                                <include reference="M8X-oh-KOk"/>
+                            </mask>
+                        </variation>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="mOI-FS-AaM">
@@ -184,6 +204,9 @@
                                     <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JQB-aN-4Ki" customClass="JBBarChartView">
                                         <rect key="frame" x="0.0" y="0.0" width="568" height="284"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <variation key="heightClass=compact" misplaced="YES">
+                                            <rect key="frame" x="0.0" y="0.0" width="568" height="212"/>
+                                        </variation>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -193,6 +216,9 @@
                                     <constraint firstAttribute="trailing" secondItem="JQB-aN-4Ki" secondAttribute="trailing" id="CBu-Ln-zAu"/>
                                     <constraint firstAttribute="bottom" secondItem="JQB-aN-4Ki" secondAttribute="bottom" id="QyX-N0-4es"/>
                                 </constraints>
+                                <variation key="heightClass=compact" misplaced="YES">
+                                    <rect key="frame" x="16" y="50" width="568" height="212"/>
+                                </variation>
                                 <connections>
                                     <outlet property="chartView" destination="JQB-aN-4Ki" id="Kys-UB-KDm"/>
                                 </connections>
@@ -205,18 +231,31 @@
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="100"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=compact" misplaced="YES">
+                                    <rect key="frame" x="300" y="317" width="0.0" height="10"/>
+                                </variation>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Pca-DG-bCW" firstAttribute="top" secondItem="Wjw-fR-Cbx" secondAttribute="centerY" multiplier="2.5" constant="10" id="AJp-El-vrN"/>
+                            <constraint firstItem="Pca-DG-bCW" firstAttribute="top" secondItem="Wjw-fR-Cbx" secondAttribute="bottom" constant="222" id="DCN-c2-hE1">
+                                <variation key="heightClass=compact" constant="80"/>
+                            </constraint>
                             <constraint firstItem="Wjw-fR-Cbx" firstAttribute="leading" secondItem="zk3-yc-Ign" secondAttribute="leadingMargin" id="Es8-W6-E28"/>
                             <constraint firstItem="Pca-DG-bCW" firstAttribute="top" relation="lessThanOrEqual" secondItem="zTy-Y2-xg3" secondAttribute="bottom" constant="73" id="HOt-QD-PK9"/>
                             <constraint firstItem="Wjw-fR-Cbx" firstAttribute="trailing" secondItem="zk3-yc-Ign" secondAttribute="trailingMargin" id="K7q-K1-Kgn"/>
-                            <constraint firstItem="zTy-Y2-xg3" firstAttribute="centerY" secondItem="Wjw-fR-Cbx" secondAttribute="bottom" constant="60" id="Pid-IN-csN"/>
+                            <constraint firstItem="zTy-Y2-xg3" firstAttribute="centerY" secondItem="Wjw-fR-Cbx" secondAttribute="bottom" constant="60" id="Pid-IN-csN">
+                                <variation key="heightClass=compact" constant="16"/>
+                            </constraint>
                             <constraint firstAttribute="centerX" secondItem="zTy-Y2-xg3" secondAttribute="centerX" id="hRk-jd-u4X"/>
                             <constraint firstItem="Wjw-fR-Cbx" firstAttribute="top" secondItem="qRc-Tt-Yec" secondAttribute="bottom" constant="30" id="oDh-yv-d1M"/>
                         </constraints>
+                        <variation key="heightClass=compact">
+                            <mask key="constraints">
+                                <include reference="Pid-IN-csN"/>
+                                <include reference="DCN-c2-hE1"/>
+                            </mask>
+                        </variation>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="5JV-3C-KTV">
