@@ -4,6 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--AreaChart-->
@@ -43,6 +44,10 @@
                                     <outlet property="chartView" destination="sSd-lo-9Sb" id="dYn-aF-eEZ"/>
                                 </connections>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ijf-0g-1O4" customClass="ChartInformationView" customModule="graphPON" customModuleProvider="target">
+                                <rect key="frame" x="16" y="407" width="300" height="38"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="45" translatesAutoresizingMaskIntoConstraints="NO" id="jES-Jp-I3I">
                                 <rect key="frame" x="185" y="349" width="230" height="178"/>
                                 <constraints>
@@ -64,11 +69,23 @@
                                 <variation key="heightClass=compact" constant="16"/>
                             </constraint>
                             <constraint firstItem="OYq-J2-cFd" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" constant="30" id="5Ia-2O-8A3"/>
+                            <constraint firstItem="ijf-0g-1O4" firstAttribute="leading" secondItem="OYq-J2-cFd" secondAttribute="leading" id="GLY-ed-LwS"/>
+                            <constraint firstAttribute="width" secondItem="ijf-0g-1O4" secondAttribute="width" multiplier="2:1" id="Kit-fG-Eew"/>
                             <constraint firstItem="GAO-Cl-Wes" firstAttribute="top" secondItem="OYq-J2-cFd" secondAttribute="bottom" constant="144" id="M8X-oh-KOk">
                                 <variation key="heightClass=compact" constant="80"/>
                             </constraint>
+                            <constraint firstAttribute="trailing" secondItem="ijf-0g-1O4" secondAttribute="trailing" constant="226" id="Rkg-8f-9tD"/>
                             <constraint firstItem="OYq-J2-cFd" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leadingMargin" id="hnG-Ir-Le5"/>
+                            <constraint firstItem="GAO-Cl-Wes" firstAttribute="top" secondItem="ijf-0g-1O4" secondAttribute="bottom" constant="106" id="iYC-43-4qx">
+                                <variation key="heightClass=compact" constant="48"/>
+                            </constraint>
+                            <constraint firstItem="ijf-0g-1O4" firstAttribute="top" secondItem="OYq-J2-cFd" secondAttribute="bottom" id="tTt-Jl-Fjo"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Rkg-8f-9tD"/>
+                            </mask>
+                        </variation>
                         <variation key="heightClass=compact">
                             <mask key="subviews">
                                 <include reference="OYq-J2-cFd"/>
@@ -76,6 +93,7 @@
                             <mask key="constraints">
                                 <include reference="4RU-5e-oUe"/>
                                 <include reference="M8X-oh-KOk"/>
+                                <include reference="iYC-43-4qx"/>
                             </mask>
                         </variation>
                     </view>
@@ -85,10 +103,16 @@
                         <barButtonItem key="backBarButtonItem" title="Menu" style="plain" id="5eS-wQ-J0T"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="chartInformationView" destination="ijf-0g-1O4" id="dBg-OM-o6Z"/>
                         <outlet property="chartViewContainerView" destination="OYq-J2-cFd" id="a3Z-FA-vhX"/>
                         <outlet property="valueLabel" destination="jES-Jp-I3I" id="ma7-Oh-2LJ"/>
                     </connections>
                 </viewController>
+                <view contentMode="scaleToFill" id="ZOh-DA-5Oa" customClass="ChartInformationView" customModule="graphPON" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="358" height="32"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="620" y="861"/>

@@ -30,6 +30,7 @@ class AreaChartViewController: BaseChartViewController, JBLineChartViewDelegate,
         }
     }
 
+    @IBOutlet weak var chartInformationView: ChartInformationView!
     @IBOutlet weak var valueLabel: UILabel!
 
     var mode: Mode = .Line
@@ -78,6 +79,8 @@ class AreaChartViewController: BaseChartViewController, JBLineChartViewDelegate,
         footerView.rightLabel.textColor = UIColor.whiteColor()
         footerView.sectionCount = self.largestLineData().count
         self.chartViewContainerView.chartView.footerView = footerView
+
+        self.chartInformationView.setHidden(true)
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -150,6 +153,7 @@ class AreaChartViewController: BaseChartViewController, JBLineChartViewDelegate,
     func lineChartView(lineChartView: JBLineChartView!, didSelectLineAtIndex lineIndex: UInt, horizontalIndex: UInt, touchPoint: CGPoint) {
         self.setTooltipVisible(true, animated: true, touchPoint: touchPoint)
         self.tooltipView.setText(horizontalSymbols[Int(horizontalIndex)])
+        self.chartInformationView.setHidden(false, animated: true)
 
         UIView.animateWithDuration(NSTimeInterval(kJBChartViewDefaultAnimationDuration) * 0.5, delay: 0.0, options: UIViewAnimationOptions.BeginFromCurrentState, animations: {
             var value = self.chartData[Int(lineIndex)][Int(horizontalIndex)]
@@ -166,6 +170,8 @@ class AreaChartViewController: BaseChartViewController, JBLineChartViewDelegate,
 
     func didDeselectLineInLineChartView(lineChartView: JBLineChartView!) {
         self.setTooltipVisible(false, animated: true)
+
+        self.chartInformationView.setHidden(true, animated: true)
 
         UIView.animateWithDuration(NSTimeInterval(kJBChartViewDefaultAnimationDuration) * 0.5, delay: 0.0, options: UIViewAnimationOptions.BeginFromCurrentState, animations: {
             self.valueLabel.alpha = 0.0
