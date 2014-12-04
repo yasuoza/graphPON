@@ -136,6 +136,11 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="mOI-FS-AaM">
                         <barButtonItem key="backBarButtonItem" title="Menu" style="plain" id="5eS-wQ-J0T"/>
+                        <barButtonItem key="rightBarButtonItem" title="Services" id="i4K-3A-1iz">
+                            <connections>
+                                <segue destination="bSI-9S-jFO" kind="presentation" id="n52-Wc-6v2"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="chartInformationView" destination="ijf-0g-1O4" id="dBg-OM-o6Z"/>
@@ -253,6 +258,55 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uxg-sk-TxE" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1437" y="861"/>
+        </scene>
+        <!--HddServiceListTableViewController-->
+        <scene sceneID="ffR-cV-yX4">
+            <objects>
+                <tableViewController title="HddServiceListTableViewController" id="2Cr-i6-BBz" customClass="HddServiceListTableViewController" customModule="graphPON" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="mNh-Qs-0xj">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HddServiceCell" id="ATc-xu-fem">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ATc-xu-fem" id="hBA-fa-Rig">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="2Cr-i6-BBz" id="vUo-mM-Xpq"/>
+                            <outlet property="delegate" destination="2Cr-i6-BBz" id="m1E-Sn-Z9i"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="haP-64-BZw">
+                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="mwf-mH-FbX">
+                            <connections>
+                                <action selector="closeViewController" destination="2Cr-i6-BBz" id="lgW-vV-FF4"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mEe-dh-oYP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="620" y="2297"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="tCd-uP-HMx">
+            <objects>
+                <navigationController id="bSI-9S-jFO" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="IbS-mJ-0bk">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="2Cr-i6-BBz" kind="relationship" relationship="rootViewController" id="CqQ-9P-3Jd"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="12w-xB-LOL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="620" y="1558"/>
         </scene>
         <!--Item-->
         <scene sceneID="80Y-lD-jkd">
