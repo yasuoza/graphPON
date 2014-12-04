@@ -48,6 +48,7 @@ class AreaChartViewController: BaseChartViewController, JBLineChartViewDelegate,
 
     private var chartData: Array<Array<CGFloat>>!
     private var horizontalSymbols: [NSString]!
+    private let chartLabels = ["00000000000", "11111111111", "22222222222", "Total"]
 
     // MARK: - View Lifecycle
 
@@ -156,6 +157,7 @@ class AreaChartViewController: BaseChartViewController, JBLineChartViewDelegate,
     func lineChartView(lineChartView: JBLineChartView!, didSelectLineAtIndex lineIndex: UInt, horizontalIndex: UInt, touchPoint: CGPoint) {
         self.setTooltipVisible(true, animated: true, touchPoint: touchPoint)
         self.tooltipView.setText(horizontalSymbols[Int(horizontalIndex)])
+        self.chartInformationView.setTitleText(self.chartLabels[Int(lineIndex)])
         self.chartInformationView.setHidden(false, animated: true)
 
         UIView.animateWithDuration(NSTimeInterval(kJBChartViewDefaultAnimationDuration) * 0.5, delay: 0.0, options: UIViewAnimationOptions.BeginFromCurrentState, animations: {
