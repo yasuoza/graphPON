@@ -19,10 +19,40 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OYq-J2-cFd" customClass="ChartViewContainerView" customModule="graphPON" customModuleProvider="target">
+                            <view alpha="0.90000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U8s-Fg-9Wb" customClass="ExtendedNavBarView" customModule="graphPON" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="64" width="600" height="30"/>
+                                <subviews>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Wva-27-qQN">
+                                        <rect key="frame" x="48" y="0.0" width="504" height="23"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="22" id="S41-B5-Xd1"/>
+                                        </constraints>
+                                        <segments>
+                                            <segment title="All"/>
+                                            <segment title="ON"/>
+                                            <segment title="OFF"/>
+                                        </segments>
+                                    </segmentedControl>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="centerX" secondItem="Wva-27-qQN" secondAttribute="centerX" id="B2f-KX-4aO"/>
+                                    <constraint firstItem="Wva-27-qQN" firstAttribute="top" secondItem="U8s-Fg-9Wb" secondAttribute="top" id="JMF-5W-JeE"/>
+                                    <constraint firstAttribute="height" constant="30" id="m6F-pA-wEx"/>
+                                    <constraint firstAttribute="centerY" secondItem="Wva-27-qQN" secondAttribute="centerY" id="xYQ-t8-SXM"/>
+                                    <constraint firstItem="Wva-27-qQN" firstAttribute="leading" secondItem="U8s-Fg-9Wb" secondAttribute="leading" constant="48" id="zsc-n8-mlz"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="xYQ-t8-SXM"/>
+                                    </mask>
+                                </variation>
+                            </view>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OYq-J2-cFd" customClass="ChartViewContainerView" customModule="graphPON" customModuleProvider="target">
                                 <rect key="frame" x="16" y="94" width="568" height="313"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sSd-lo-9Sb" customClass="JBLineChartView">
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sSd-lo-9Sb" customClass="JBLineChartView">
                                         <rect key="frame" x="0.0" y="0.0" width="568" height="313"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <variation key="heightClass=compact" misplaced="YES">
@@ -69,7 +99,11 @@
                                 <variation key="heightClass=compact" constant="16"/>
                             </constraint>
                             <constraint firstItem="OYq-J2-cFd" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" constant="30" id="5Ia-2O-8A3"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="U8s-Fg-9Wb" secondAttribute="trailing" constant="-16" id="663-PI-v7d"/>
+                            <constraint firstItem="OYq-J2-cFd" firstAttribute="top" secondItem="U8s-Fg-9Wb" secondAttribute="bottom" constant="24" id="9Ca-Y0-7Ng"/>
+                            <constraint firstItem="U8s-Fg-9Wb" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leadingMargin" constant="-16" id="9GO-89-Rh2"/>
                             <constraint firstItem="ijf-0g-1O4" firstAttribute="leading" secondItem="OYq-J2-cFd" secondAttribute="leading" id="GLY-ed-LwS"/>
+                            <constraint firstItem="U8s-Fg-9Wb" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" id="IK7-fg-GMk"/>
                             <constraint firstAttribute="width" secondItem="ijf-0g-1O4" secondAttribute="width" multiplier="2:1" id="Kit-fG-Eew"/>
                             <constraint firstItem="GAO-Cl-Wes" firstAttribute="top" secondItem="OYq-J2-cFd" secondAttribute="bottom" constant="144" id="M8X-oh-KOk">
                                 <variation key="heightClass=compact" constant="80"/>
@@ -83,6 +117,7 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="5Ia-2O-8A3"/>
                                 <exclude reference="Rkg-8f-9tD"/>
                             </mask>
                         </variation>

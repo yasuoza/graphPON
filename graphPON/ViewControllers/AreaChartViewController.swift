@@ -81,6 +81,9 @@ class AreaChartViewController: BaseChartViewController, JBLineChartViewDelegate,
         self.chartViewContainerView.chartView.footerView = footerView
 
         self.chartInformationView.setHidden(true)
+
+        self.navigationController?.navigationBar.shadowImage = UIImage(named: "TransparentPixel")
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "Pixel"), forBarMetrics: UIBarMetrics.Default)
     }
 
     override func viewDidAppear(animated: Bool) {
