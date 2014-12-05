@@ -10,4 +10,8 @@ class ChartViewContainerView: UIView {
         self.chartView.reloadData()
     }
 
+    func reloadChartData() {
+        self.chartView.reloadData()
+    }
+
 }

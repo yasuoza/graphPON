@@ -48,8 +48,7 @@ class HddServiceListTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         dismissViewControllerAnimated(true, completion: nil)
-        // FIXME: Set delegate properly
-        delegate?.hddServiceDidSelected("")
+        delegate?.hddServiceDidSelected(self.services[indexPath.row])
     }
 
     /*

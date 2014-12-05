@@ -1,6 +1,6 @@
 import UIKit
 
-class AreaChartViewController: BaseChartViewController, JBLineChartViewDelegate, JBLineChartViewDataSource {
+class AreaChartViewController: BaseChartViewController, JBLineChartViewDelegate, JBLineChartViewDataSource, HddServiceListTableViewControllerDelegate {
 
     enum Mode {
         case Line, Bar, Area
@@ -50,6 +50,12 @@ class AreaChartViewController: BaseChartViewController, JBLineChartViewDelegate,
     private var horizontalSymbols: [NSString]!
     private let chartLabels = ["00000000000", "11111111111", "22222222222", "Total"]
 
+    var amounts = [
+        [21, 11, 32, 14, 67, 11, 66, 45, 100, 44, 31, 38, 53, 70, 2, 1, 33, 52, 34, 11, 3],
+        [7, 3, 12, 11, 4, 37, 6, 33, 1, 18, 1, 1, 1, 12, 1, 1, 1, 15, 1, 1, 1],
+        [1, 1, 1, 65, 1, 22, 18, 23, 12, 13, 2, 14, 2, 29, 8, 1, 7, 5, 1, 4, 20]
+    ]
+
     // MARK: - View Lifecycle
 
     override func viewDidLoad() {
@@ -92,17 +98,19 @@ class AreaChartViewController: BaseChartViewController, JBLineChartViewDelegate,
         self.chartViewContainerView.chartView.setState(JBChartViewState.Expanded, animated: true)
     }
 
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "SummaryHddServiceListSegue" {
+            let navigationController = segue.destinationViewController as UINavigationController
+            let hddServiceListViewController = navigationController.topViewController as HddServiceListTableViewController
+            hddServiceListViewController.delegate = self
+        }
+    }
+
     // MARK: - Private methods
 
     func initFakeData() {
-        let amounts = [
-            [21, 11, 32, 14, 67, 11, 66, 45, 100, 44, 31, 38, 53, 70, 2, 1, 33, 52, 34, 11, 3],
-            [7, 3, 12, 11, 4, 37, 6, 33, 1, 18, 1, 1, 1, 12, 1, 1, 1, 15, 1, 1, 1],
-            [1, 1, 1, 65, 1, 22, 18, 23, 12, 13, 2, 14, 2, 29, 8, 1, 7, 5, 1, 4, 20]
-        ]
-
         var amountSummation = [CGFloat](count: amounts.first!.count, repeatedValue: 0.0)
-        self.chartData = amounts.map { (var packets) -> [CGFloat] in
+        self.chartData = self.amounts.map { (var packets) -> [CGFloat] in
             var sum = CGFloat(0.0)
             var index = 0
             return packets.map { (var packet) -> CGFloat in
@@ -198,6 +206,23 @@ class AreaChartViewController: BaseChartViewController, JBLineChartViewDelegate,
 
     func lineChartView(lineChartView: JBLineChartView!, selectionFillColorForLineAtLineIndex lineIndex: UInt) -> UIColor! {
         return UIColor(white: 1.0, alpha: 1.0)
+    }
+
+    // MARK: - HddServiceListTableViewControllerDelegate
+
+    func hddServiceDidSelected(hddServiceString: String) {
+        func randomly(a: Int, b: Int) -> Bool {
+            return arc4random() % 2 == 0
+        }
+
+        self.amounts = [
+            sorted([21, 11, 32, 14, 67, 11, 66, 45, 100, 44, 31, 38, 53, 70, 2, 1, 33, 52, 34, 11, 3], randomly),
+            sorted([7, 3, 12, 11, 4, 37, 6, 33, 1, 18, 1, 1, 1, 12, 1, 1, 1, 15, 1, 1, 1], randomly),
+            sorted([1, 1, 1, 65, 1, 22, 18, 23, 12, 13, 2, 14, 2, 29, 8, 1, 7, 5, 1, 4, 20], randomly)
+        ]
+        initFakeData()
+        self.navigationController?.navigationBar.topItem?.title = hddServiceString
+        self.chartViewContainerView.reloadChartData()
     }
 
 }
