@@ -148,11 +148,6 @@
                         <outlet property="valueLabel" destination="jES-Jp-I3I" id="ma7-Oh-2LJ"/>
                     </connections>
                 </viewController>
-                <view contentMode="scaleToFill" id="ZOh-DA-5Oa" customClass="ChartInformationView" customModule="graphPON" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="0.0" width="358" height="32"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                </view>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="620" y="861"/>
@@ -186,10 +181,40 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wjw-fR-Cbx" customClass="ChartViewContainerView" customModule="graphPON" customModuleProvider="target">
+                            <view alpha="0.89999997615814209" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W6a-Jv-Xrn" customClass="ExtendedNavBarView" customModule="graphPON" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="64" width="600" height="30"/>
+                                <subviews>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="O5A-YL-Wiu">
+                                        <rect key="frame" x="48" y="0.0" width="504" height="23"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="22" id="ace-LD-Mod"/>
+                                        </constraints>
+                                        <segments>
+                                            <segment title="All"/>
+                                            <segment title="ON"/>
+                                            <segment title="OFF"/>
+                                        </segments>
+                                    </segmentedControl>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="centerX" secondItem="O5A-YL-Wiu" secondAttribute="centerX" id="8Cw-68-ivM"/>
+                                    <constraint firstItem="O5A-YL-Wiu" firstAttribute="top" secondItem="W6a-Jv-Xrn" secondAttribute="top" id="Qqk-lI-quY"/>
+                                    <constraint firstAttribute="centerY" secondItem="O5A-YL-Wiu" secondAttribute="centerY" id="XXw-eJ-tMF"/>
+                                    <constraint firstAttribute="height" constant="30" id="t99-6h-AFa"/>
+                                    <constraint firstItem="O5A-YL-Wiu" firstAttribute="leading" secondItem="W6a-Jv-Xrn" secondAttribute="leading" constant="48" id="vfz-ek-rVs"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="XXw-eJ-tMF"/>
+                                    </mask>
+                                </variation>
+                            </view>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wjw-fR-Cbx" customClass="ChartViewContainerView" customModule="graphPON" customModuleProvider="target">
                                 <rect key="frame" x="16" y="94" width="568" height="235"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JQB-aN-4Ki" customClass="JBBarChartView">
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JQB-aN-4Ki" customClass="JBBarChartView">
                                         <rect key="frame" x="0.0" y="0.0" width="568" height="235"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <variation key="heightClass=compact" misplaced="YES">
@@ -226,22 +251,32 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Pca-DG-bCW" firstAttribute="top" secondItem="Wjw-fR-Cbx" secondAttribute="bottom" constant="222" id="DCN-c2-hE1">
+                            <constraint firstItem="Pca-DG-bCW" firstAttribute="top" secondItem="Wjw-fR-Cbx" secondAttribute="bottom" constant="144" id="DCN-c2-hE1">
                                 <variation key="heightClass=compact" constant="80"/>
                             </constraint>
                             <constraint firstItem="Wjw-fR-Cbx" firstAttribute="leading" secondItem="zk3-yc-Ign" secondAttribute="leadingMargin" id="Es8-W6-E28"/>
                             <constraint firstItem="Pca-DG-bCW" firstAttribute="top" relation="lessThanOrEqual" secondItem="zTy-Y2-xg3" secondAttribute="bottom" constant="73" id="HOt-QD-PK9"/>
                             <constraint firstItem="Wjw-fR-Cbx" firstAttribute="trailing" secondItem="zk3-yc-Ign" secondAttribute="trailingMargin" id="K7q-K1-Kgn"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="W6a-Jv-Xrn" secondAttribute="trailing" constant="-16" id="NwV-av-Uhb"/>
                             <constraint firstItem="zTy-Y2-xg3" firstAttribute="centerY" secondItem="Wjw-fR-Cbx" secondAttribute="bottom" constant="60" id="Pid-IN-csN">
                                 <variation key="heightClass=compact" constant="16"/>
                             </constraint>
+                            <constraint firstItem="W6a-Jv-Xrn" firstAttribute="top" secondItem="qRc-Tt-Yec" secondAttribute="bottom" id="RqL-nC-oYX"/>
                             <constraint firstAttribute="centerX" secondItem="zTy-Y2-xg3" secondAttribute="centerX" id="hRk-jd-u4X"/>
+                            <constraint firstItem="Wjw-fR-Cbx" firstAttribute="top" secondItem="W6a-Jv-Xrn" secondAttribute="bottom" constant="24" id="jco-9I-YB0"/>
                             <constraint firstItem="Wjw-fR-Cbx" firstAttribute="top" secondItem="qRc-Tt-Yec" secondAttribute="bottom" constant="30" id="oDh-yv-d1M"/>
+                            <constraint firstItem="W6a-Jv-Xrn" firstAttribute="leading" secondItem="zk3-yc-Ign" secondAttribute="leadingMargin" constant="-16" id="wv2-oQ-B30"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="oDh-yv-d1M"/>
+                            </mask>
+                        </variation>
                         <variation key="heightClass=compact">
                             <mask key="constraints">
                                 <include reference="Pid-IN-csN"/>
                                 <include reference="DCN-c2-hE1"/>
+                                <exclude reference="HOt-QD-PK9"/>
                             </mask>
                         </variation>
                     </view>
@@ -295,7 +330,40 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mEe-dh-oYP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1034" y="2366"/>
+            <point key="canvasLocation" x="620" y="2278"/>
+        </scene>
+        <!--Hdd Service List Table View Controller-->
+        <scene sceneID="gn2-EN-M6o">
+            <objects>
+                <tableViewController id="G03-oB-wn5" customClass="HddServiceListTableViewController" customModule="graphPON" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="fyH-HY-4jd">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="HddServiceCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="HddServiceCell" id="t6f-af-1Ma">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="t6f-af-1Ma" id="0MC-2d-wI3">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="G03-oB-wn5" id="wji-4z-deK"/>
+                            <outlet property="delegate" destination="G03-oB-wn5" id="h7F-bq-Zkc"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="M7i-19-QuV">
+                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="8Pp-h7-wf0">
+                            <connections>
+                                <action selector="closeViewController" destination="G03-oB-wn5" id="z9h-XZ-bVP"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="d9b-yC-AAy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1437" y="2278"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="tCd-uP-HMx">
@@ -441,7 +509,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="2Cr-i6-BBz" kind="relationship" relationship="rootViewController" id="fy0-uU-7Fl"/>
+                        <segue destination="G03-oB-wn5" kind="relationship" relationship="rootViewController" id="66x-OZ-t15"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z0Q-ws-tCt" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -449,7 +517,4 @@
             <point key="canvasLocation" x="1437" y="1569"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="fy0-uU-7Fl"/>
-    </inferredMetricsTieBreakers>
 </document>

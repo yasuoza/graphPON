@@ -20,6 +20,10 @@ class BaseChartViewController: UIViewController {
 
         self.tooltipTipView.alpha = 0.0
         self.view.addSubview(self.tooltipTipView)
+
+        // Hide navigation bar bottom line
+        self.navigationController?.navigationBar.shadowImage = UIImage(named: "TransparentPixel")
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "Pixel"), forBarMetrics: UIBarMetrics.Default)
     }
 
     // MARK: - Setters
