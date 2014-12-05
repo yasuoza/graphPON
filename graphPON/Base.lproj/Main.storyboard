@@ -293,7 +293,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="KN7-q5-prT"/>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="5JV-3C-KTV">
+                    <navigationItem key="navigationItem" title="Daily" id="5JV-3C-KTV">
                         <barButtonItem key="backBarButtonItem" title="Menu" id="p7R-AI-hV8"/>
                         <barButtonItem key="rightBarButtonItem" title="Services" id="Kio-Qj-0In">
                             <connections>

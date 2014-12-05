@@ -2,38 +2,10 @@ import UIKit
 
 class AreaChartViewController: BaseChartViewController, JBLineChartViewDelegate, JBLineChartViewDataSource, HddServiceListTableViewControllerDelegate {
 
-    enum Mode {
-        case Line, Bar, Area
-
-        mutating func backgroundColor() -> UIColor {
-            var hex: String
-            switch self {
-            case .Line:
-                hex = "a7e3e0"
-            case .Bar:
-                hex = "ca9asc"
-            case .Area:
-                hex = "4fa9fa"
-            }
-            return UIColor(hex: hex)
-        }
-
-        mutating func titleText() -> String {
-            switch self {
-            case .Line:
-                return "Line Chart"
-            case .Bar:
-                return "Bar Chart"
-            case .Area:
-                return "Area Chart"
-            }
-        }
-    }
-
     @IBOutlet weak var chartInformationView: ChartInformationView!
     @IBOutlet weak var valueLabel: UILabel!
 
-    var mode: Mode = .Line
+    let mode: Mode = .Summary
 
     private let kJBLineChartViewControllerChartPadding       = CGFloat(10.0)
     private let kJBAreaChartViewControllerChartHeight        = CGFloat(250.0)
@@ -218,7 +190,6 @@ class AreaChartViewController: BaseChartViewController, JBLineChartViewDelegate,
             sorted([1, 1, 1, 65, 1, 22, 18, 23, 12, 13, 2, 14, 2, 29, 8, 1, 7, 5, 1, 4, 20], randomly)
         ]
         initFakeData()
-        self.navigationController?.navigationBar.topItem?.title = hddServiceString
         self.chartViewContainerView.reloadChartData()
     }
 
