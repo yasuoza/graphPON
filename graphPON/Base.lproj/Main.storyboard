@@ -236,6 +236,10 @@
                                     <outlet property="chartView" destination="JQB-aN-4Ki" id="Kys-UB-KDm"/>
                                 </connections>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UPS-PR-cHH" customClass="ChartInformationView" customModule="graphPON" customModuleProvider="target">
+                                <rect key="frame" x="16" y="407" width="300" height="38"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="45" translatesAutoresizingMaskIntoConstraints="NO" id="zTy-Y2-xg3">
                                 <rect key="frame" x="185" y="300" width="230" height="178"/>
                                 <constraints>
@@ -251,19 +255,25 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="width" secondItem="UPS-PR-cHH" secondAttribute="width" multiplier="2:1" id="7uK-tO-Uwa"/>
                             <constraint firstItem="Pca-DG-bCW" firstAttribute="top" secondItem="Wjw-fR-Cbx" secondAttribute="bottom" constant="144" id="DCN-c2-hE1">
                                 <variation key="heightClass=compact" constant="80"/>
                             </constraint>
                             <constraint firstItem="Wjw-fR-Cbx" firstAttribute="leading" secondItem="zk3-yc-Ign" secondAttribute="leadingMargin" id="Es8-W6-E28"/>
                             <constraint firstItem="Pca-DG-bCW" firstAttribute="top" relation="lessThanOrEqual" secondItem="zTy-Y2-xg3" secondAttribute="bottom" constant="73" id="HOt-QD-PK9"/>
+                            <constraint firstItem="UPS-PR-cHH" firstAttribute="leading" secondItem="zk3-yc-Ign" secondAttribute="leadingMargin" id="ISn-Qr-OrN"/>
                             <constraint firstItem="Wjw-fR-Cbx" firstAttribute="trailing" secondItem="zk3-yc-Ign" secondAttribute="trailingMargin" id="K7q-K1-Kgn"/>
                             <constraint firstAttribute="trailingMargin" secondItem="W6a-Jv-Xrn" secondAttribute="trailing" constant="-16" id="NwV-av-Uhb"/>
                             <constraint firstItem="zTy-Y2-xg3" firstAttribute="centerY" secondItem="Wjw-fR-Cbx" secondAttribute="bottom" constant="60" id="Pid-IN-csN">
                                 <variation key="heightClass=compact" constant="16"/>
                             </constraint>
                             <constraint firstItem="W6a-Jv-Xrn" firstAttribute="top" secondItem="qRc-Tt-Yec" secondAttribute="bottom" id="RqL-nC-oYX"/>
+                            <constraint firstItem="UPS-PR-cHH" firstAttribute="top" secondItem="Wjw-fR-Cbx" secondAttribute="bottom" id="VCP-UN-wmk"/>
                             <constraint firstAttribute="centerX" secondItem="zTy-Y2-xg3" secondAttribute="centerX" id="hRk-jd-u4X"/>
                             <constraint firstItem="Wjw-fR-Cbx" firstAttribute="top" secondItem="W6a-Jv-Xrn" secondAttribute="bottom" constant="24" id="jco-9I-YB0"/>
+                            <constraint firstItem="Pca-DG-bCW" firstAttribute="top" secondItem="UPS-PR-cHH" secondAttribute="bottom" constant="106" id="kOb-jc-cjd">
+                                <variation key="heightClass=compact" constant="48"/>
+                            </constraint>
                             <constraint firstItem="Wjw-fR-Cbx" firstAttribute="top" secondItem="qRc-Tt-Yec" secondAttribute="bottom" constant="30" id="oDh-yv-d1M"/>
                             <constraint firstItem="W6a-Jv-Xrn" firstAttribute="leading" secondItem="zk3-yc-Ign" secondAttribute="leadingMargin" constant="-16" id="wv2-oQ-B30"/>
                         </constraints>
@@ -277,6 +287,7 @@
                                 <include reference="Pid-IN-csN"/>
                                 <include reference="DCN-c2-hE1"/>
                                 <exclude reference="HOt-QD-PK9"/>
+                                <include reference="kOb-jc-cjd"/>
                             </mask>
                         </variation>
                     </view>
@@ -291,6 +302,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="chartInformationView" destination="UPS-PR-cHH" id="biv-EK-9jQ"/>
                         <outlet property="chartViewContainerView" destination="Wjw-fR-Cbx" id="D4S-M0-iAr"/>
                         <outlet property="valueLabel" destination="zTy-Y2-xg3" id="qAx-zu-a9t"/>
                     </connections>

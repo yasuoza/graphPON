@@ -30,6 +30,7 @@ class BarChartViewController: BaseChartViewController, JBBarChartViewDelegate, J
         }
     }
 
+    @IBOutlet weak var chartInformationView: ChartInformationView!
     @IBOutlet weak var valueLabel: UILabel!
 
     var mode: Mode = .Bar
@@ -80,6 +81,8 @@ class BarChartViewController: BaseChartViewController, JBBarChartViewDelegate, J
         footerView.rightLabel.textColor = UIColor.whiteColor()
         footerView.sectionCount = self.largestLineData().count
         self.chartViewContainerView.chartView.footerView = footerView
+
+        self.chartInformationView.setHidden(true)
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -138,6 +141,7 @@ class BarChartViewController: BaseChartViewController, JBBarChartViewDelegate, J
     func barChartView(barChartView: JBBarChartView!, didSelectBarAtIndex index: UInt, touchPoint: CGPoint) {
         self.setTooltipVisible(true, animated: true, touchPoint: touchPoint)
         self.tooltipView.setText(horizontalSymbols[Int(index)])
+        self.chartInformationView.setHidden(false, animated: true)
 
         UIView.animateWithDuration(NSTimeInterval(kJBChartViewDefaultAnimationDuration) * 0.5, delay: 0.0, options: UIViewAnimationOptions.BeginFromCurrentState, animations: {
             var value = self.chartData[Int(index)]
@@ -154,6 +158,7 @@ class BarChartViewController: BaseChartViewController, JBBarChartViewDelegate, J
 
     func didDeselectBarChartView(barChartView: JBBarChartView!) {
         self.setTooltipVisible(false, animated: true)
+        self.chartInformationView.setHidden(true, animated: true)
 
         UIView.animateWithDuration(NSTimeInterval(kJBChartViewDefaultAnimationDuration) * 0.5, delay: 0.0, options: UIViewAnimationOptions.BeginFromCurrentState, animations: {
             self.valueLabel.alpha = 0.0
