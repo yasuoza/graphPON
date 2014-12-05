@@ -99,7 +99,7 @@ class AreaChartViewController: BaseChartViewController, JBLineChartViewDelegate,
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "SummaryHddServiceListSegue" {
+        if segue.identifier == "HddServiceListFromSummaryChartSegue" {
             let navigationController = segue.destinationViewController as UINavigationController
             let hddServiceListViewController = navigationController.topViewController as HddServiceListTableViewController
             hddServiceListViewController.delegate = self

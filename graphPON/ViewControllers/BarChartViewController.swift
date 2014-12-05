@@ -1,6 +1,6 @@
 import UIKit
 
-class BarChartViewController: BaseChartViewController, JBBarChartViewDelegate, JBBarChartViewDataSource {
+class BarChartViewController: BaseChartViewController, JBBarChartViewDelegate, JBBarChartViewDataSource, HddServiceListTableViewControllerDelegate {
 
     enum Mode {
         case Line, Bar, Area
@@ -48,6 +48,8 @@ class BarChartViewController: BaseChartViewController, JBBarChartViewDelegate, J
     private var chartData: [CGFloat]!
     private var horizontalSymbols: [NSString]!
 
+    var amounts = [29, 15, 45, 90, 72, 70, 90, 101, 113, 75, 34, 53, 56, 111, 11, 3, 41, 72, 36, 7]
+
     // MARK: - View Lifecycle
 
     override func viewDidLoad() {
@@ -85,10 +87,17 @@ class BarChartViewController: BaseChartViewController, JBBarChartViewDelegate, J
         self.chartViewContainerView.chartView.setState(JBChartViewState.Expanded, animated: true)
     }
 
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "HddServiceListFromDailyChartSegue" {
+            let navigationController = segue.destinationViewController as UINavigationController
+            let hddServiceListViewController = navigationController.topViewController as HddServiceListTableViewController
+            hddServiceListViewController.delegate = self
+        }
+    }
+
     // MARK: - Private methods
 
     func initFakeData() {
-        let amounts = [29, 15, 45, 90, 72, 70, 90, 101, 113, 75, 34, 53, 56, 111, 11, 3, 41, 72, 36, 7]
         var sum = CGFloat(0.0)
         chartData = amounts.map { CGFloat($0) }
 
@@ -157,6 +166,19 @@ class BarChartViewController: BaseChartViewController, JBBarChartViewDelegate, J
 
     func barSelectionColorForBarChartView(barChartView: JBBarChartView!) -> UIColor! {
         return UIColor.whiteColor()
+    }
+
+    // MARK: - HddServiceListTableViewControllerDelegate
+
+    func hddServiceDidSelected(hddServiceString: String) {
+        func randomly(a: Int, b: Int) -> Bool {
+            return arc4random() % 2 == 0
+        }
+
+        self.amounts = sorted([29, 15, 45, 90, 72, 70, 90, 101, 113, 75, 34, 53, 56, 111, 11, 3, 41, 72, 36, 7], randomly)
+        initFakeData()
+        self.navigationController?.navigationBar.topItem?.title = hddServiceString
+        self.chartViewContainerView.reloadChartData()
     }
 
 }

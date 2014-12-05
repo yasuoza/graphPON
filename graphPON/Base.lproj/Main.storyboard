@@ -138,7 +138,7 @@
                         <barButtonItem key="backBarButtonItem" title="Menu" style="plain" id="5eS-wQ-J0T"/>
                         <barButtonItem key="rightBarButtonItem" title="Services" id="i4K-3A-1iz">
                             <connections>
-                                <segue destination="bSI-9S-jFO" kind="presentation" identifier="SummaryHddServiceListSegue" id="n52-Wc-6v2"/>
+                                <segue destination="bSI-9S-jFO" kind="presentation" identifier="HddServiceListFromSummaryChartSegue" id="n52-Wc-6v2"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -249,6 +249,11 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="5JV-3C-KTV">
                         <barButtonItem key="backBarButtonItem" title="Menu" id="p7R-AI-hV8"/>
+                        <barButtonItem key="rightBarButtonItem" title="Services" id="Kio-Qj-0In">
+                            <connections>
+                                <segue destination="jMB-ZZ-dEg" kind="presentation" identifier="HddServiceListFromDailyChartSegue" id="BbI-6S-uV9"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="chartViewContainerView" destination="Wjw-fR-Cbx" id="D4S-M0-iAr"/>
@@ -290,7 +295,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mEe-dh-oYP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="620" y="2297"/>
+            <point key="canvasLocation" x="1034" y="2366"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="tCd-uP-HMx">
@@ -427,5 +432,24 @@
             </objects>
             <point key="canvasLocation" x="1858" y="-658"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="0NG-ce-pOU">
+            <objects>
+                <navigationController id="jMB-ZZ-dEg" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="nSG-KF-JOa">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="2Cr-i6-BBz" kind="relationship" relationship="rootViewController" id="fy0-uU-7Fl"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Z0Q-ws-tCt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1437" y="1569"/>
+        </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="fy0-uU-7Fl"/>
+    </inferredMetricsTieBreakers>
 </document>
