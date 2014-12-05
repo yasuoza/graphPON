@@ -3,7 +3,7 @@ import UIKit
 class ChartInformationView: UIView {
 
     private let titleLabel: UILabel = UILabel()
-    private let kJBChartValueViewPadding = CGFloat(10.0)
+    private let kJBChartValueViewPadding = CGFloat(0.0)
     private let kJBChartValueViewSeparatorSize = CGFloat(0.5)
     private let kJBChartValueViewTitleHeight = CGFloat(50.0)
 
@@ -23,6 +23,8 @@ class ChartInformationView: UIView {
             self.frame.width - ceil(kJBChartValueViewPadding * 2),
             self.frame.height - kJBChartValueViewPadding * 2
         )
+        titleLabel.textColor = UIColor.whiteColor()
+        titleLabel.font = UIFont(name: "HelveticaNeue", size: 20)
         titleLabel.text = "FIX TEXT LATER"
     }
 

@@ -3,6 +3,7 @@ import UIKit
 class AreaChartViewController: BaseChartViewController, JBLineChartViewDelegate, JBLineChartViewDataSource, HddServiceListTableViewControllerDelegate {
 
     @IBOutlet weak var chartInformationView: ChartInformationView!
+    @IBOutlet weak var informationValueLabelSeparatorView: UIView!
     @IBOutlet weak var valueLabel: UILabel!
 
     let mode: Mode = .Summary
@@ -138,6 +139,8 @@ class AreaChartViewController: BaseChartViewController, JBLineChartViewDelegate,
         self.chartInformationView.setHidden(false, animated: true)
 
         UIView.animateWithDuration(NSTimeInterval(kJBChartViewDefaultAnimationDuration) * 0.5, delay: 0.0, options: UIViewAnimationOptions.BeginFromCurrentState, animations: {
+            self.informationValueLabelSeparatorView.alpha = 1.0
+
             var value = self.chartData[Int(lineIndex)][Int(horizontalIndex)]
             var unit = "MB"
             if value >= 1000.0 {
@@ -156,6 +159,7 @@ class AreaChartViewController: BaseChartViewController, JBLineChartViewDelegate,
         self.chartInformationView.setHidden(true, animated: true)
 
         UIView.animateWithDuration(NSTimeInterval(kJBChartViewDefaultAnimationDuration) * 0.5, delay: 0.0, options: UIViewAnimationOptions.BeginFromCurrentState, animations: {
+            self.informationValueLabelSeparatorView.alpha = 0.0
             self.valueLabel.alpha = 0.0
         }, completion: nil)
 

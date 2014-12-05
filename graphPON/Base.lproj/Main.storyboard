@@ -7,10 +7,10 @@
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
-        <!--AreaChart-->
+        <!--Summary-->
         <scene sceneID="yUG-lL-AsK">
             <objects>
-                <viewController title="AreaChart" id="JEX-9P-axG" customClass="AreaChartViewController" customModule="graphPON" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Summary" id="JEX-9P-axG" customClass="AreaChartViewController" customModule="graphPON" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="SYR-Wa-9uf"/>
                         <viewControllerLayoutGuide type="bottom" id="GAO-Cl-Wes"/>
@@ -49,11 +49,25 @@
                                     </mask>
                                 </variation>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="hddservice: service00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hy3-xD-wbb">
+                                <rect key="frame" x="51" y="110" width="501" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="IxJ-eR-Ydo"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="IxJ-eR-Ydo"/>
+                                    </mask>
+                                </variation>
+                            </label>
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OYq-J2-cFd" customClass="ChartViewContainerView" customModule="graphPON" customModuleProvider="target">
-                                <rect key="frame" x="16" y="94" width="568" height="313"/>
+                                <rect key="frame" x="16" y="147" width="568" height="260"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sSd-lo-9Sb" customClass="JBLineChartView">
-                                        <rect key="frame" x="0.0" y="0.0" width="568" height="313"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="568" height="260"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <variation key="heightClass=compact" misplaced="YES">
                                             <rect key="frame" x="0.0" y="0.0" width="568" height="217"/>
@@ -74,17 +88,27 @@
                                     <outlet property="chartView" destination="sSd-lo-9Sb" id="dYn-aF-eEZ"/>
                                 </connections>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ijf-0g-1O4" customClass="ChartInformationView" customModule="graphPON" customModuleProvider="target">
-                                <rect key="frame" x="16" y="407" width="300" height="38"/>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ijf-0g-1O4" customClass="ChartInformationView" customModule="graphPON" customModuleProvider="target">
+                                <rect key="frame" x="16" y="383" width="300" height="30"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="KYB-xd-ZYq"/>
+                                </constraints>
+                            </view>
+                            <view alpha="0.0" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dGs-Or-dAF">
+                                <rect key="frame" x="24" y="395" width="552" height="1"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="6J7-2a-Hhg"/>
+                                </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="45" translatesAutoresizingMaskIntoConstraints="NO" id="jES-Jp-I3I">
-                                <rect key="frame" x="185" y="349" width="230" height="178"/>
+                                <rect key="frame" x="185" y="449" width="230" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="230" id="E85-7I-7h1"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="100"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="100"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=compact" misplaced="YES">
                                     <rect key="frame" x="300" y="327" width="0.0" height="0.0"/>
@@ -95,30 +119,43 @@
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="jES-Jp-I3I" secondAttribute="centerX" id="0ib-j5-Bmh"/>
                             <constraint firstItem="OYq-J2-cFd" firstAttribute="trailing" secondItem="svH-Pt-448" secondAttribute="trailingMargin" id="2ap-6v-CrL"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="dGs-Or-dAF" secondAttribute="trailing" id="4QV-to-P8R"/>
                             <constraint firstItem="jES-Jp-I3I" firstAttribute="centerY" secondItem="OYq-J2-cFd" secondAttribute="bottom" constant="60" id="4RU-5e-oUe">
                                 <variation key="heightClass=compact" constant="16"/>
                             </constraint>
                             <constraint firstItem="OYq-J2-cFd" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" constant="30" id="5Ia-2O-8A3"/>
                             <constraint firstAttribute="trailingMargin" secondItem="U8s-Fg-9Wb" secondAttribute="trailing" constant="-16" id="663-PI-v7d"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="hy3-xD-wbb" secondAttribute="trailing" constant="32" id="8E2-F8-Du2"/>
                             <constraint firstItem="OYq-J2-cFd" firstAttribute="top" secondItem="U8s-Fg-9Wb" secondAttribute="bottom" constant="24" id="9Ca-Y0-7Ng"/>
                             <constraint firstItem="U8s-Fg-9Wb" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leadingMargin" constant="-16" id="9GO-89-Rh2"/>
+                            <constraint firstItem="jES-Jp-I3I" firstAttribute="top" secondItem="hy3-xD-wbb" secondAttribute="bottom" constant="63" id="Ew2-UA-clQ"/>
                             <constraint firstItem="ijf-0g-1O4" firstAttribute="leading" secondItem="OYq-J2-cFd" secondAttribute="leading" id="GLY-ed-LwS"/>
                             <constraint firstItem="U8s-Fg-9Wb" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" id="IK7-fg-GMk"/>
                             <constraint firstAttribute="width" secondItem="ijf-0g-1O4" secondAttribute="width" multiplier="2:1" id="Kit-fG-Eew"/>
-                            <constraint firstItem="GAO-Cl-Wes" firstAttribute="top" secondItem="OYq-J2-cFd" secondAttribute="bottom" constant="144" id="M8X-oh-KOk">
+                            <constraint firstItem="GAO-Cl-Wes" firstAttribute="top" secondItem="OYq-J2-cFd" secondAttribute="bottom" constant="168" id="M8X-oh-KOk">
                                 <variation key="heightClass=compact" constant="80"/>
                             </constraint>
                             <constraint firstAttribute="trailing" secondItem="ijf-0g-1O4" secondAttribute="trailing" constant="226" id="Rkg-8f-9tD"/>
+                            <constraint firstItem="jES-Jp-I3I" firstAttribute="top" secondItem="ijf-0g-1O4" secondAttribute="bottom" constant="4" id="TCr-xU-eaW"/>
+                            <constraint firstItem="dGs-Or-dAF" firstAttribute="top" secondItem="ijf-0g-1O4" secondAttribute="bottom" constant="8" id="UNJ-4L-tC4"/>
+                            <constraint firstItem="hy3-xD-wbb" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leadingMargin" constant="35" id="Wva-le-eaF"/>
+                            <constraint firstItem="jES-Jp-I3I" firstAttribute="top" secondItem="ijf-0g-1O4" secondAttribute="bottom" constant="8" id="Y2Z-0U-Bee"/>
+                            <constraint firstItem="hy3-xD-wbb" firstAttribute="top" secondItem="U8s-Fg-9Wb" secondAttribute="bottom" constant="16" id="gHU-Kb-yZq"/>
                             <constraint firstItem="OYq-J2-cFd" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leadingMargin" id="hnG-Ir-Le5"/>
-                            <constraint firstItem="GAO-Cl-Wes" firstAttribute="top" secondItem="ijf-0g-1O4" secondAttribute="bottom" constant="106" id="iYC-43-4qx">
-                                <variation key="heightClass=compact" constant="48"/>
-                            </constraint>
-                            <constraint firstItem="ijf-0g-1O4" firstAttribute="top" secondItem="OYq-J2-cFd" secondAttribute="bottom" id="tTt-Jl-Fjo"/>
+                            <constraint firstItem="hy3-xD-wbb" firstAttribute="centerY" secondItem="svH-Pt-448" secondAttribute="centerY" id="l40-Nk-Coh"/>
+                            <constraint firstItem="ijf-0g-1O4" firstAttribute="top" secondItem="OYq-J2-cFd" secondAttribute="bottom" constant="8" id="tTt-Jl-Fjo"/>
+                            <constraint firstItem="OYq-J2-cFd" firstAttribute="top" secondItem="hy3-xD-wbb" secondAttribute="bottom" constant="16" id="vlz-0C-lC4"/>
+                            <constraint firstItem="dGs-Or-dAF" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leadingMargin" id="zVE-Is-yX9"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="l40-Nk-Coh"/>
                                 <exclude reference="5Ia-2O-8A3"/>
+                                <exclude reference="9Ca-Y0-7Ng"/>
                                 <exclude reference="Rkg-8f-9tD"/>
+                                <exclude reference="4RU-5e-oUe"/>
+                                <exclude reference="Ew2-UA-clQ"/>
+                                <exclude reference="Y2Z-0U-Bee"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact">
@@ -128,7 +165,6 @@
                             <mask key="constraints">
                                 <include reference="4RU-5e-oUe"/>
                                 <include reference="M8X-oh-KOk"/>
-                                <include reference="iYC-43-4qx"/>
                             </mask>
                         </variation>
                     </view>
@@ -145,6 +181,7 @@
                     <connections>
                         <outlet property="chartInformationView" destination="ijf-0g-1O4" id="dBg-OM-o6Z"/>
                         <outlet property="chartViewContainerView" destination="OYq-J2-cFd" id="a3Z-FA-vhX"/>
+                        <outlet property="informationValueLabelSeparatorView" destination="dGs-Or-dAF" id="A9i-kn-473"/>
                         <outlet property="valueLabel" destination="jES-Jp-I3I" id="ma7-Oh-2LJ"/>
                     </connections>
                 </viewController>
