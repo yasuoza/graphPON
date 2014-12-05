@@ -181,6 +181,7 @@
                     <connections>
                         <outlet property="chartInformationView" destination="ijf-0g-1O4" id="dBg-OM-o6Z"/>
                         <outlet property="chartViewContainerView" destination="OYq-J2-cFd" id="a3Z-FA-vhX"/>
+                        <outlet property="hddServiceNameLabel" destination="hy3-xD-wbb" id="G2d-yq-5Gk"/>
                         <outlet property="informationValueLabelSeparatorView" destination="dGs-Or-dAF" id="A9i-kn-473"/>
                         <outlet property="valueLabel" destination="jES-Jp-I3I" id="ma7-Oh-2LJ"/>
                     </connections>

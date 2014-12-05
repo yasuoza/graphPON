@@ -2,6 +2,7 @@ import UIKit
 
 class AreaChartViewController: BaseChartViewController, JBLineChartViewDelegate, JBLineChartViewDataSource, HddServiceListTableViewControllerDelegate {
 
+    @IBOutlet weak var hddServiceNameLabel: UILabel!
     @IBOutlet weak var chartInformationView: ChartInformationView!
     @IBOutlet weak var informationValueLabelSeparatorView: UIView!
     @IBOutlet weak var valueLabel: UILabel!
@@ -61,6 +62,8 @@ class AreaChartViewController: BaseChartViewController, JBLineChartViewDelegate,
         self.chartViewContainerView.chartView.footerView = footerView
 
         self.chartInformationView.setHidden(true)
+
+        self.hddServiceNameLabel.text = "hddservice: service00"
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -184,6 +187,8 @@ class AreaChartViewController: BaseChartViewController, JBLineChartViewDelegate,
     // MARK: - HddServiceListTableViewControllerDelegate
 
     func hddServiceDidSelected(hddServiceString: String) {
+        self.hddServiceNameLabel.text = "hddservice: \(hddServiceString)"
+
         func randomly(a: Int, b: Int) -> Bool {
             return arc4random() % 2 == 0
         }
