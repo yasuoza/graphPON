@@ -85,6 +85,7 @@
                                         <variation key="heightClass=compact" constant="8"/>
                                         <variation key="widthClass=regular" constant="8"/>
                                     </constraint>
+                                    <constraint firstItem="sSd-lo-9Sb" firstAttribute="top" secondItem="hy3-xD-wbb" secondAttribute="bottom" id="n4w-ie-vlZ"/>
                                     <constraint firstAttribute="trailing" secondItem="sSd-lo-9Sb" secondAttribute="trailing" id="pv2-Cc-cGY"/>
                                     <constraint firstItem="sSd-lo-9Sb" firstAttribute="top" secondItem="hy3-xD-wbb" secondAttribute="bottom" id="sLR-gi-53n"/>
                                 </constraints>
@@ -93,27 +94,34 @@
                                         <exclude reference="OaD-YO-lJK"/>
                                         <exclude reference="SVl-Wc-Oaz"/>
                                         <exclude reference="hfZ-7W-dEG"/>
+                                        <exclude reference="n4w-ie-vlZ"/>
                                         <exclude reference="sLR-gi-53n"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=compact" misplaced="YES">
                                     <rect key="frame" x="16" y="150" width="360" height="201"/>
                                     <mask key="constraints">
+                                        <exclude reference="8UI-Q1-SwF"/>
+                                        <exclude reference="UEI-Ea-ia7"/>
                                         <include reference="OaD-YO-lJK"/>
                                         <exclude reference="PXb-QH-N06"/>
                                         <exclude reference="hfZ-7W-dEG"/>
-                                        <exclude reference="8UI-Q1-SwF"/>
-                                        <exclude reference="UEI-Ea-ia7"/>
                                     </mask>
                                 </variation>
                                 <variation key="widthClass=regular">
                                     <mask key="constraints">
+                                        <exclude reference="PA9-2m-Q2R"/>
                                         <exclude reference="OaD-YO-lJK"/>
                                         <exclude reference="PXb-QH-N06"/>
                                         <include reference="SVl-Wc-Oaz"/>
                                         <include reference="hfZ-7W-dEG"/>
                                         <exclude reference="sLR-gi-53n"/>
-                                        <exclude reference="PA9-2m-Q2R"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="constraints">
+                                        <exclude reference="PXb-QH-N06"/>
+                                        <include reference="n4w-ie-vlZ"/>
                                     </mask>
                                 </variation>
                                 <connections>
@@ -165,6 +173,11 @@
                                         </variation>
                                         <variation key="heightClass=compact" misplaced="YES">
                                             <rect key="frame" x="90" y="41" width="0.0" height="80"/>
+                                            <mask key="constraints">
+                                                <exclude reference="E85-7I-7h1"/>
+                                            </mask>
+                                        </variation>
+                                        <variation key="heightClass=regular-widthClass=compact">
                                             <mask key="constraints">
                                                 <exclude reference="E85-7I-7h1"/>
                                             </mask>
