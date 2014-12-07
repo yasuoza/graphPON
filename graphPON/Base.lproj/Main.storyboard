@@ -72,8 +72,6 @@
                                             </constraint>
                                             <constraint firstAttribute="trailing" secondItem="sSd-lo-9Sb" secondAttribute="trailing" id="pv2-Cc-cGY"/>
                                         </constraints>
-                                        <variation key="heightClass=compact"/>
-                                        <variation key="widthClass=regular"/>
                                         <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
                                             <rect key="frame" x="161" y="8" width="207" height="460"/>
                                         </variation>
@@ -151,9 +149,7 @@
                                             <constraint firstAttribute="centerX" secondItem="dGs-Or-dAF" secondAttribute="centerX" id="3s2-1A-iID"/>
                                             <constraint firstItem="ijf-0g-1O4" firstAttribute="leading" secondItem="bNI-Ht-YV3" secondAttribute="leading" id="4FF-uQ-pRp"/>
                                             <constraint firstAttribute="centerY" secondItem="dGs-Or-dAF" secondAttribute="centerY" id="5NN-lh-ghP"/>
-                                            <constraint firstItem="ijf-0g-1O4" firstAttribute="top" secondItem="bNI-Ht-YV3" secondAttribute="top" id="8Mo-t5-VDA">
-                                                <variation key="heightClass=regular-widthClass=compact" constant="8"/>
-                                            </constraint>
+                                            <constraint firstItem="ijf-0g-1O4" firstAttribute="top" secondItem="bNI-Ht-YV3" secondAttribute="top" constant="12" id="8Mo-t5-VDA"/>
                                             <constraint firstAttribute="centerX" secondItem="jES-Jp-I3I" secondAttribute="centerX" id="8Yq-by-7eO"/>
                                             <constraint firstItem="dGs-Or-dAF" firstAttribute="leading" secondItem="bNI-Ht-YV3" secondAttribute="leading" id="BcT-YW-o3M"/>
                                             <constraint firstAttribute="centerY" secondItem="dGs-Or-dAF" secondAttribute="centerY" constant="14" id="CQH-kf-O1h"/>
@@ -323,11 +319,12 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="mOI-FS-AaM">
                         <barButtonItem key="backBarButtonItem" title="Menu" style="plain" id="5eS-wQ-J0T"/>
-                        <barButtonItem key="rightBarButtonItem" title="Services" id="i4K-3A-1iz">
+                        <barButtonItem key="leftBarButtonItem" title="Services" id="i4K-3A-1iz">
                             <connections>
                                 <segue destination="bSI-9S-jFO" kind="presentation" identifier="HddServiceListFromSummaryChartSegue" id="n52-Wc-6v2"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="T6p-37-1eI"/>
                     </navigationItem>
                     <connections>
                         <outlet property="chartInformationView" destination="ijf-0g-1O4" id="dBg-OM-o6Z"/>

@@ -24,7 +24,7 @@ class ChartInformationView: UIView {
             self.frame.height - kJBChartValueViewPadding * 2
         )
         titleLabel.textColor = UIColor.whiteColor()
-        titleLabel.font = UIFont(name: "HelveticaNeue", size: 20)
+        titleLabel.font = UIFont(name: "HelveticaNeue-CondensedBold", size: 20)
         titleLabel.text = "FIX TEXT LATER"
     }
 
