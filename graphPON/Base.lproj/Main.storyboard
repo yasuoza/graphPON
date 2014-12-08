@@ -241,6 +241,7 @@
                                     </constraint>
                                     <constraint firstAttribute="width" secondItem="bNI-Ht-YV3" secondAttribute="width" multiplier="10:3" id="u1Z-xJ-4C4"/>
                                     <constraint firstItem="OYq-J2-cFd" firstAttribute="top" secondItem="yQL-KM-CDt" secondAttribute="top" id="yBg-gv-zQi">
+                                        <variation key="heightClass=compact" constant="8"/>
                                         <variation key="heightClass=regular-widthClass=compact" constant="8"/>
                                     </constraint>
                                     <constraint firstItem="hy3-xD-wbb" firstAttribute="width" secondItem="yQL-KM-CDt" secondAttribute="width" id="zUf-c9-28d"/>
@@ -281,6 +282,7 @@
                                         <include reference="OMg-fj-XUv"/>
                                         <include reference="SvV-Sx-ogO"/>
                                         <include reference="euo-kV-gmi"/>
+                                        <exclude reference="yBg-gv-zQi"/>
                                         <include reference="aBK-jb-FN3"/>
                                         <include reference="fCg-fh-ORF"/>
                                         <exclude reference="nVO-EW-BzE"/>
@@ -717,8 +719,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="area_chart" width="32" height="32"/>
-        <image name="bar_chart" width="32" height="32"/>
-        <image name="doughnut_chart" width="32" height="32"/>
+        <image name="area_chart" width="25" height="25"/>
+        <image name="bar_chart" width="25" height="25"/>
+        <image name="doughnut_chart" width="25" height="25"/>
     </resources>
 </document>

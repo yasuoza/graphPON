@@ -63,10 +63,10 @@ class BaseChartViewController: UIViewController {
             var originalTouchPoint = chartView.convertPoint(touchPoint, fromCoordinateSpace: chartView)
             var convertedTouchPoint = originalTouchPoint
             if chartView != nil {
-                let minChartX = chartView.frame.origin.x + ceil(self.tooltipView.frame.size.width * 0.5)
+                let minChartX = ceil(self.tooltipView.frame.size.width * 0.5)
                 convertedTouchPoint.x = max(convertedTouchPoint.x, minChartX)
 
-                let maxChartX = chartView.frame.origin.x + chartView.frame.size.width - ceil(self.tooltipView.frame.size.width * 0.5)
+                let maxChartX = chartView.frame.size.width - ceil(self.tooltipView.frame.size.width * 0.5)
                 convertedTouchPoint.x = min(convertedTouchPoint.x, maxChartX)
 
                 self.tooltipView.frame = CGRectMake(
@@ -76,10 +76,10 @@ class BaseChartViewController: UIViewController {
                     self.tooltipView.frame.size.height
                 )
 
-                let minTipX = chartView.frame.origin.x + self.tooltipTipView.frame.size.width
+                let minTipX = self.tooltipTipView.frame.size.width
                 originalTouchPoint.x = max(originalTouchPoint.x, minTipX)
 
-                let maxTipX = chartView.frame.origin.x + chartView.frame.size.width - self.tooltipTipView.frame.size.width
+                let maxTipX = chartView.frame.size.width - self.tooltipTipView.frame.size.width
                 originalTouchPoint.x = min(originalTouchPoint.x, maxTipX)
 
                 self.tooltipTipView.frame = CGRectMake(
