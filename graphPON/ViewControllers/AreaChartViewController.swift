@@ -2,12 +2,14 @@ import UIKit
 
 class AreaChartViewController: BaseChartViewController, JBLineChartViewDelegate, JBLineChartViewDataSource, HddServiceListTableViewControllerDelegate {
 
+    enum ChartDataSegment: Int {
+        case All = 0, WithCoupon = 1, WithoutCoupon = 2
+    }
+
     @IBOutlet weak var hddServiceNameLabel: UILabel!
     @IBOutlet weak var chartInformationView: ChartInformationView!
     @IBOutlet weak var informationValueLabelSeparatorView: UIView!
     @IBOutlet weak var valueLabel: UILabel!
-
-    let mode: Mode = .Summary
 
     private let kJBLineChartViewControllerChartPadding       = CGFloat(10.0)
     private let kJBAreaChartViewControllerChartHeight        = CGFloat(250.0)
@@ -20,9 +22,12 @@ class AreaChartViewController: BaseChartViewController, JBLineChartViewDelegate,
     private let kJBAreaChartViewControllerMaxNumChartPoints  = CGFloat(12)
     private let kJBLineChartViewControllerChartFooterHeight  = CGFloat(20)
 
+    private let mode: Mode = .Summary
+    private let chartLabels = ["00000000000", "11111111111", "22222222222", "Total"]
+
+    private var chartDataSegment: ChartDataSegment = .All
     private var chartData: Array<Array<CGFloat>>!
     private var horizontalSymbols: [NSString]!
-    private let chartLabels = ["00000000000", "11111111111", "22222222222", "Total"]
 
     var amounts = [
         [21, 11, 32, 14, 67, 11, 66, 45, 100, 44, 31, 38, 53, 70, 2, 1, 33, 52, 34, 11, 3],
@@ -36,6 +41,7 @@ class AreaChartViewController: BaseChartViewController, JBLineChartViewDelegate,
         super.viewDidLoad()
 
         self.initFakeData()
+        self.chartViewContainerView.chartView.maximumValue = self.chartData.last!.last!
 
         self.view.backgroundColor = self.mode.backgroundColor()
         self.navigationItem.title = self.mode.titleText()
@@ -79,15 +85,23 @@ class AreaChartViewController: BaseChartViewController, JBLineChartViewDelegate,
         }
     }
 
+    // MARK: - Actions
+    @IBAction func chartSegmentedControlValueDidChanged(segmentedControl: UISegmentedControl) {
+        self.chartDataSegment = ChartDataSegment(rawValue: segmentedControl.selectedSegmentIndex)!
+        initFakeData()
+        self.chartViewContainerView.reloadChartData()
+    }
+
     // MARK: - Private methods
 
     func initFakeData() {
         var amountSummation = [CGFloat](count: amounts.first!.count, repeatedValue: 0.0)
-        self.chartData = self.amounts.map { (var packets) -> [CGFloat] in
+        let multipler = self.chartDataSegment.rawValue == 0 ? 1.0 : CGFloat(2.0 / 3.0) / CGFloat(self.chartDataSegment.rawValue)
+        self.chartData = self.amounts.map { packets -> [CGFloat] in
             var sum = CGFloat(0.0)
             var index = 0
-            return packets.map { (var packet) -> CGFloat in
-                sum += CGFloat(packet)
+            return packets.map { packet -> CGFloat in
+                sum += CGFloat(packet) * multipler
                 amountSummation[index++] += sum
                 return sum
             }
