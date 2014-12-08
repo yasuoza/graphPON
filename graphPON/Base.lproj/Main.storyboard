@@ -343,9 +343,7 @@
         <scene sceneID="QQU-kd-gtN">
             <objects>
                 <navigationController id="XMX-od-Atw" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Daily" image="bar_chart" id="Hjv-Yj-UqX">
-                        <inset key="imageInsets" minX="2" minY="2" maxX="2" maxY="2"/>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="Daily" image="bar_chart" id="Hjv-Yj-UqX"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="0VU-sL-wMl">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -606,9 +604,7 @@
         <scene sceneID="Apm-5s-4XF">
             <objects>
                 <navigationController title="AreaChart Navigation" id="Fq7-hd-MSV" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Summary" image="area_chart" id="IO0-qi-r7P">
-                        <inset key="imageInsets" minX="2" minY="2" maxX="2" maxY="2"/>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="Summary" image="area_chart" id="IO0-qi-r7P"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="nEg-xM-cus">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -652,9 +648,7 @@
         <scene sceneID="Gga-qa-ywg">
             <objects>
                 <navigationController id="Z2W-eC-eh7" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Ratio" image="doughnut_chart" id="35h-Du-r7v">
-                        <inset key="imageInsets" minX="2" minY="2" maxX="2" maxY="2"/>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="Ratio" image="doughnut_chart" id="35h-Du-r7v"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="faq-0m-jc7">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
