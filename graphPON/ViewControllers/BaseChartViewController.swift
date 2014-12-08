@@ -39,11 +39,11 @@ class BaseChartViewController: UIViewController {
         }
         self.view.backgroundColor = UIColor.whiteColor()
 
-        self.tooltipView.alpha = 1.0
-        self.view.addSubview(self.tooltipView)
+        self.tooltipView.alpha = 0.0
+        self.chartViewContainerView.addSubview(self.tooltipView)
 
         self.tooltipTipView.alpha = 0.0
-        self.view.addSubview(self.tooltipTipView)
+        self.chartViewContainerView.addSubview(self.tooltipTipView)
 
         // Hide navigation bar bottom line
         self.navigationController?.navigationBar.shadowImage = UIImage(named: "TransparentPixel")
@@ -60,7 +60,7 @@ class BaseChartViewController: UIViewController {
         }
 
         let adjustTooltipPosition: dispatch_block_t = {
-            var originalTouchPoint = self.view.convertPoint(touchPoint, fromCoordinateSpace: chartView)
+            var originalTouchPoint = chartView.convertPoint(touchPoint, fromCoordinateSpace: chartView)
             var convertedTouchPoint = originalTouchPoint
             if chartView != nil {
                 let minChartX = chartView.frame.origin.x + ceil(self.tooltipView.frame.size.width * 0.5)
@@ -71,7 +71,7 @@ class BaseChartViewController: UIViewController {
 
                 self.tooltipView.frame = CGRectMake(
                     convertedTouchPoint.x - ceil(self.tooltipView.frame.size.width * 0.5),
-                    CGRectGetMinY(chartView.frame) - ceil(self.tooltipView.frame.height * 0.5),
+                    CGRectGetMinY(chartView.frame) + ceil(self.tooltipView.frame.height * 0.5),
                     self.tooltipView.frame.size.width,
                     self.tooltipView.frame.size.height
                 )

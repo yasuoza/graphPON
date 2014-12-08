@@ -67,9 +67,7 @@
                                         <constraints>
                                             <constraint firstItem="sSd-lo-9Sb" firstAttribute="leading" secondItem="OYq-J2-cFd" secondAttribute="leading" id="APc-A1-44L"/>
                                             <constraint firstAttribute="bottom" secondItem="sSd-lo-9Sb" secondAttribute="bottom" id="JfW-kJ-1Vv"/>
-                                            <constraint firstItem="sSd-lo-9Sb" firstAttribute="top" secondItem="OYq-J2-cFd" secondAttribute="top" id="PXb-QH-N06">
-                                                <variation key="heightClass=regular-widthClass=compact" constant="16"/>
-                                            </constraint>
+                                            <constraint firstItem="sSd-lo-9Sb" firstAttribute="top" secondItem="OYq-J2-cFd" secondAttribute="top" constant="36" id="PXb-QH-N06"/>
                                             <constraint firstAttribute="trailing" secondItem="sSd-lo-9Sb" secondAttribute="trailing" id="pv2-Cc-cGY"/>
                                         </constraints>
                                         <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
@@ -161,7 +159,7 @@
                                             <constraint firstAttribute="centerX" secondItem="dGs-Or-dAF" secondAttribute="centerX" id="P8a-R9-EJi"/>
                                             <constraint firstItem="ijf-0g-1O4" firstAttribute="top" secondItem="jES-Jp-I3I" secondAttribute="bottom" id="XIl-ae-ROm"/>
                                             <constraint firstItem="jES-Jp-I3I" firstAttribute="width" secondItem="bNI-Ht-YV3" secondAttribute="width" id="YCe-Qz-A9g"/>
-                                            <constraint firstItem="dGs-Or-dAF" firstAttribute="top" secondItem="ijf-0g-1O4" secondAttribute="bottom" constant="8" id="Z18-2v-tMj"/>
+                                            <constraint firstItem="dGs-Or-dAF" firstAttribute="top" secondItem="ijf-0g-1O4" secondAttribute="bottom" constant="4" id="Z18-2v-tMj"/>
                                             <constraint firstAttribute="width" secondItem="ijf-0g-1O4" secondAttribute="width" id="dVa-WF-aB7"/>
                                             <constraint firstAttribute="centerY" secondItem="dGs-Or-dAF" secondAttribute="centerY" id="egw-zX-0lw"/>
                                             <constraint firstItem="ijf-0g-1O4" firstAttribute="leading" secondItem="bNI-Ht-YV3" secondAttribute="leading" id="fXl-a7-B48"/>
