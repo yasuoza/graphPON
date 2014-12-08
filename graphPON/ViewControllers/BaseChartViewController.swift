@@ -34,11 +34,6 @@ class BaseChartViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if self.respondsToSelector(Selector("setEdgesForExtendedLayout:")) {
-            self.edgesForExtendedLayout = UIRectEdge.Top
-        }
-        self.view.backgroundColor = UIColor.whiteColor()
-
         self.tooltipView.alpha = 0.0
         self.chartViewContainerView.addSubview(self.tooltipView)
 
@@ -47,48 +42,44 @@ class BaseChartViewController: UIViewController {
 
         // Hide navigation bar bottom line
         self.navigationController?.navigationBar.shadowImage = UIImage(named: "TransparentPixel")
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "Pixel"), forBarMetrics: UIBarMetrics.Default)
+        self.navigationController?.navigationBar.setBackgroundImage(
+            UIImage(named: "Pixel"),
+            forBarMetrics: UIBarMetrics.Default
+        )
     }
 
     // MARK: - Setters
 
     func setTooltipVisible(visible: Bool, animated: Bool = false, touchPoint: CGPoint = CGPointZero) {
-        let chartView = self.chartViewContainerView
-
-        if chartView == nil {
-            return
-        }
-
         let adjustTooltipPosition: dispatch_block_t = {
-            var originalTouchPoint = chartView.convertPoint(touchPoint, fromCoordinateSpace: chartView)
+            var originalTouchPoint = self.chartViewContainerView.convertPoint(touchPoint, fromCoordinateSpace: self.chartViewContainerView)
             var convertedTouchPoint = originalTouchPoint
-            if chartView != nil {
-                let minChartX = ceil(self.tooltipView.frame.size.width * 0.5)
-                convertedTouchPoint.x = max(convertedTouchPoint.x, minChartX)
 
-                let maxChartX = chartView.frame.size.width - ceil(self.tooltipView.frame.size.width * 0.5)
-                convertedTouchPoint.x = min(convertedTouchPoint.x, maxChartX)
+            let minChartX = ceil(self.tooltipView.frame.size.width * 0.5)
+            convertedTouchPoint.x = max(convertedTouchPoint.x, minChartX)
 
-                self.tooltipView.frame = CGRectMake(
-                    convertedTouchPoint.x - ceil(self.tooltipView.frame.size.width * 0.5),
-                    CGRectGetMinY(chartView.frame) + ceil(self.tooltipView.frame.height * 0.5),
-                    self.tooltipView.frame.size.width,
-                    self.tooltipView.frame.size.height
-                )
+            let maxChartX = self.chartViewContainerView.frame.size.width - ceil(self.tooltipView.frame.size.width * 0.5)
+            convertedTouchPoint.x = min(convertedTouchPoint.x, maxChartX)
 
-                let minTipX = self.tooltipTipView.frame.size.width
-                originalTouchPoint.x = max(originalTouchPoint.x, minTipX)
+            self.tooltipView.frame = CGRectMake(
+                convertedTouchPoint.x - ceil(self.tooltipView.frame.size.width * 0.5),
+                CGRectGetMinY(self.chartViewContainerView.frame) + ceil(self.tooltipView.frame.height * 0.5),
+                self.tooltipView.frame.size.width,
+                self.tooltipView.frame.size.height
+            )
 
-                let maxTipX = chartView.frame.size.width - self.tooltipTipView.frame.size.width
-                originalTouchPoint.x = min(originalTouchPoint.x, maxTipX)
+            let minTipX = self.tooltipTipView.frame.size.width
+            originalTouchPoint.x = max(originalTouchPoint.x, minTipX)
 
-                self.tooltipTipView.frame = CGRectMake(
-                    originalTouchPoint.x - ceil(self.tooltipTipView.frame.size.width * 0.5),
-                    CGRectGetMaxY(self.tooltipView.frame),
-                    self.tooltipTipView.frame.size.width,
-                    self.tooltipTipView.frame.size.height
-                )
-            }
+            let maxTipX = self.chartViewContainerView.frame.size.width - self.tooltipTipView.frame.size.width
+            originalTouchPoint.x = min(originalTouchPoint.x, maxTipX)
+
+            self.tooltipTipView.frame = CGRectMake(
+                originalTouchPoint.x - ceil(self.tooltipTipView.frame.size.width * 0.5),
+                CGRectGetMaxY(self.tooltipView.frame),
+                self.tooltipTipView.frame.size.width,
+                self.tooltipTipView.frame.size.height
+            )
         }
 
         let adjustTooltipVisibility: dispatch_block_t = {

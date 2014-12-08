@@ -26,23 +26,42 @@
                                         <rect key="frame" x="48" y="0.0" width="504" height="23"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="22" id="S41-B5-Xd1"/>
+                                            <constraint firstAttribute="height" constant="22" id="S41-B5-Xd1">
+                                                <variation key="heightClass=compact" constant="24"/>
+                                            </constraint>
                                         </constraints>
                                         <segments>
-                                            <segment title="All"/>
+                                            <segment title="ALL"/>
                                             <segment title="ON"/>
                                             <segment title="OFF"/>
                                         </segments>
+                                        <variation key="heightClass=compact">
+                                            <mask key="constraints">
+                                                <exclude reference="S41-B5-Xd1"/>
+                                            </mask>
+                                        </variation>
+                                        <variation key="heightClass=regular-widthClass=compact">
+                                            <mask key="constraints">
+                                                <exclude reference="S41-B5-Xd1"/>
+                                            </mask>
+                                        </variation>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <mask key="constraints">
+                                                <exclude reference="S41-B5-Xd1"/>
+                                            </mask>
+                                        </variation>
                                         <connections>
                                             <action selector="chartSegmentedControlValueDidChanged:" destination="JEX-9P-axG" eventType="valueChanged" id="hbv-FY-enM"/>
                                         </connections>
                                     </segmentedControl>
                                 </subviews>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="centerX" secondItem="Wva-27-qQN" secondAttribute="centerX" id="B2f-KX-4aO"/>
-                                    <constraint firstItem="Wva-27-qQN" firstAttribute="top" secondItem="U8s-Fg-9Wb" secondAttribute="top" id="JMF-5W-JeE"/>
-                                    <constraint firstAttribute="height" constant="30" id="m6F-pA-wEx"/>
+                                    <constraint firstItem="Wva-27-qQN" firstAttribute="top" secondItem="U8s-Fg-9Wb" secondAttribute="top" id="JMF-5W-JeE">
+                                        <variation key="heightClass=compact" constant="4"/>
+                                    </constraint>
+                                    <constraint firstAttribute="height" constant="36" id="m6F-pA-wEx"/>
                                     <constraint firstAttribute="centerY" secondItem="Wva-27-qQN" secondAttribute="centerY" id="xYQ-t8-SXM"/>
                                     <constraint firstItem="Wva-27-qQN" firstAttribute="leading" secondItem="U8s-Fg-9Wb" secondAttribute="leading" constant="48" id="zsc-n8-mlz"/>
                                 </constraints>
