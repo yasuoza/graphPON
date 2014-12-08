@@ -339,11 +339,13 @@
             </objects>
             <point key="canvasLocation" x="620" y="861"/>
         </scene>
-        <!--Item-->
+        <!--Daily-->
         <scene sceneID="QQU-kd-gtN">
             <objects>
                 <navigationController id="XMX-od-Atw" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="Hjv-Yj-UqX"/>
+                    <tabBarItem key="tabBarItem" title="Daily" image="bar_chart" id="Hjv-Yj-UqX">
+                        <inset key="imageInsets" minX="2" minY="2" maxX="2" maxY="2"/>
+                    </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="0VU-sL-wMl">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -604,7 +606,9 @@
         <scene sceneID="Apm-5s-4XF">
             <objects>
                 <navigationController title="AreaChart Navigation" id="Fq7-hd-MSV" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="IO0-qi-r7P"/>
+                    <tabBarItem key="tabBarItem" title="Summary" image="area_chart" id="IO0-qi-r7P">
+                        <inset key="imageInsets" minX="2" minY="2" maxX="2" maxY="2"/>
+                    </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="nEg-xM-cus">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -644,11 +648,13 @@
             </objects>
             <point key="canvasLocation" x="3763" y="129"/>
         </scene>
-        <!--Item-->
+        <!--Ratio-->
         <scene sceneID="Gga-qa-ywg">
             <objects>
                 <navigationController id="Z2W-eC-eh7" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="35h-Du-r7v"/>
+                    <tabBarItem key="tabBarItem" title="Ratio" image="doughnut_chart" id="35h-Du-r7v">
+                        <inset key="imageInsets" minX="2" minY="2" maxX="2" maxY="2"/>
+                    </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="faq-0m-jc7">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -661,11 +667,11 @@
             </objects>
             <point key="canvasLocation" x="2197" y="129"/>
         </scene>
-        <!--Item-->
+        <!--Navigation Controller-->
         <scene sceneID="fbL-wK-P9N">
             <objects>
                 <navigationController id="FsK-wD-X12" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="SqD-03-ovD"/>
+                    <tabBarItem key="tabBarItem" systemItem="more" id="SqD-03-ovD"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="icu-yb-YxD">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -716,4 +722,9 @@
             <point key="canvasLocation" x="1437" y="1569"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="area_chart" width="32" height="32"/>
+        <image name="bar_chart" width="32" height="32"/>
+        <image name="doughnut_chart" width="32" height="32"/>
+    </resources>
 </document>
