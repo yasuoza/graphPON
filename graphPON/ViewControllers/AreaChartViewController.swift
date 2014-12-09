@@ -156,13 +156,13 @@ class AreaChartViewController: BaseChartViewController, JBLineChartViewDelegate,
         self.chartInformationView.setHidden(false, animated: true)
 
         UIView.animateWithDuration(NSTimeInterval(kJBChartViewDefaultAnimationDuration) * 0.5, delay: 0.0, options: UIViewAnimationOptions.BeginFromCurrentState, animations: {
+            if let footerView = self.chartViewContainerView.chartView.footerView as? LineChartFooterView {
+                (footerView.leftLabel.alpha, footerView.rightLabel.alpha) = (0.0, 0.0)
+            }
             self.informationValueLabelSeparatorView.alpha = 1.0
-
-            var value = self.chartData[Int(lineIndex)][Int(horizontalIndex)]
-            var unit = "MB"
-            if value >= 1000.0 {
-                value /= 1000.0
-                unit = "GB"
+            var (value, unit) = (self.chartData[Int(lineIndex)][Int(horizontalIndex)], "MB")
+            if value >= 100_0.0 {
+                (value, unit) =  (value / 100_0.0, "GB")
             }
             let valueText = NSString(format: "%.01f", Float(value))
             self.valueLabel.text = "\(valueText)\(unit)"
@@ -176,6 +176,9 @@ class AreaChartViewController: BaseChartViewController, JBLineChartViewDelegate,
         self.chartInformationView.setHidden(true, animated: true)
 
         UIView.animateWithDuration(NSTimeInterval(kJBChartViewDefaultAnimationDuration) * 0.5, delay: 0.0, options: UIViewAnimationOptions.BeginFromCurrentState, animations: {
+            if let footerView = self.chartViewContainerView.chartView.footerView as? LineChartFooterView {
+                (footerView.leftLabel.alpha, footerView.rightLabel.alpha) = (1.0, 1.0)
+            }
             self.informationValueLabelSeparatorView.alpha = 0.0
             self.valueLabel.alpha = 0.0
         }, completion: nil)
