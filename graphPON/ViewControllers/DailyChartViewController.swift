@@ -1,6 +1,6 @@
 import UIKit
 
-class BarChartViewController: BaseChartViewController, JBBarChartViewDelegate, JBBarChartViewDataSource, HddServiceListTableViewControllerDelegate {
+class DailyChartViewController: BaseChartViewController, JBBarChartViewDelegate, JBBarChartViewDataSource, HddServiceListTableViewControllerDelegate {
 
     @IBOutlet weak var chartInformationView: ChartInformationView!
     @IBOutlet weak var valueLabel: UILabel!

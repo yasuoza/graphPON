@@ -7,10 +7,10 @@
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
-        <!--Summary-->
+        <!--SummaryChart-->
         <scene sceneID="yUG-lL-AsK">
             <objects>
-                <viewController title="Summary" id="JEX-9P-axG" customClass="SummaryChartViewController" customModule="graphPON" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="SummaryChart" id="JEX-9P-axG" customClass="SummaryChartViewController" customModule="graphPON" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="SYR-Wa-9uf"/>
                         <viewControllerLayoutGuide type="bottom" id="GAO-Cl-Wes"/>
@@ -360,10 +360,10 @@
             </objects>
             <point key="canvasLocation" x="620" y="861"/>
         </scene>
-        <!--Daily-->
+        <!--DailyChart Navigation-->
         <scene sceneID="QQU-kd-gtN">
             <objects>
-                <navigationController id="XMX-od-Atw" sceneMemberID="viewController">
+                <navigationController title="DailyChart Navigation" id="XMX-od-Atw" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Daily" image="bar_chart" id="Hjv-Yj-UqX"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="0VU-sL-wMl">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -377,10 +377,10 @@
             </objects>
             <point key="canvasLocation" x="1437" y="129"/>
         </scene>
-        <!--BarChart-->
+        <!--DailyChart-->
         <scene sceneID="eJQ-IS-Ns2">
             <objects>
-                <viewController title="BarChart" id="aff-4a-p05" customClass="BarChartViewController" customModule="graphPON" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="DailyChart" id="aff-4a-p05" customClass="DailyChartViewController" customModule="graphPON" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qRc-Tt-Yec"/>
                         <viewControllerLayoutGuide type="bottom" id="Pca-DG-bCW"/>
@@ -601,10 +601,10 @@
             </objects>
             <point key="canvasLocation" x="620" y="1558"/>
         </scene>
-        <!--Item-->
+        <!--RatioChart-->
         <scene sceneID="80Y-lD-jkd">
             <objects>
-                <viewController id="ebN-AP-8eu" sceneMemberID="viewController">
+                <viewController title="RatioChart" id="ebN-AP-8eu" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Jdh-iQ-Jlg"/>
                         <viewControllerLayoutGuide type="bottom" id="pPu-AO-dVF"/>
@@ -621,10 +621,10 @@
             </objects>
             <point key="canvasLocation" x="2197" y="861"/>
         </scene>
-        <!--AreaChart Navigation-->
+        <!--SummaryChart Navigation-->
         <scene sceneID="Apm-5s-4XF">
             <objects>
-                <navigationController title="AreaChart Navigation" id="Fq7-hd-MSV" sceneMemberID="viewController">
+                <navigationController title="SummaryChart Navigation" id="Fq7-hd-MSV" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Summary" image="area_chart" id="IO0-qi-r7P"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="nEg-xM-cus">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -665,10 +665,10 @@
             </objects>
             <point key="canvasLocation" x="3763" y="129"/>
         </scene>
-        <!--Ratio-->
+        <!--RatioChart-->
         <scene sceneID="Gga-qa-ywg">
             <objects>
-                <navigationController id="Z2W-eC-eh7" sceneMemberID="viewController">
+                <navigationController title="RatioChart" id="Z2W-eC-eh7" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Ratio" image="doughnut_chart" id="35h-Du-r7v"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="faq-0m-jc7">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -699,10 +699,10 @@
             </objects>
             <point key="canvasLocation" x="2944" y="129"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--InitialViewController-->
         <scene sceneID="XdX-FA-7lQ">
             <objects>
-                <tabBarController id="T6D-GE-Lnu" sceneMemberID="viewController">
+                <tabBarController title="InitialViewController" id="T6D-GE-Lnu" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" translucent="NO" id="ZFV-yj-YQR">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>

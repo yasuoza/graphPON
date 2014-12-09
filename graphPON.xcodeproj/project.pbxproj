@@ -27,7 +27,7 @@
 		A8B212B81A11ED68005988DC /* BaseChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B212B71A11ED68005988DC /* BaseChartViewController.swift */; };
 		A8B212BC1A11EEDC005988DC /* SummaryChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B212BB1A11EEDC005988DC /* SummaryChartViewController.swift */; };
 		A8B212C01A1204B2005988DC /* LineChartFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B212BF1A1204B2005988DC /* LineChartFooterView.swift */; };
-		A8BC58B51A1DE4B2006CD44D /* BarChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BC58B41A1DE4B2006CD44D /* BarChartViewController.swift */; };
+		A8BC58B51A1DE4B2006CD44D /* DailyChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BC58B41A1DE4B2006CD44D /* DailyChartViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,7 +67,7 @@
 		A8B212BB1A11EEDC005988DC /* SummaryChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SummaryChartViewController.swift; path = ViewControllers/SummaryChartViewController.swift; sourceTree = "<group>"; };
 		A8B212BE1A11F04B005988DC /* JBChartView-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "JBChartView-Bridging-Header.h"; path = "Bridge-Headers/JBChartView-Bridging-Header.h"; sourceTree = "<group>"; };
 		A8B212BF1A1204B2005988DC /* LineChartFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LineChartFooterView.swift; path = Views/LineChartFooterView.swift; sourceTree = "<group>"; };
-		A8BC58B41A1DE4B2006CD44D /* BarChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BarChartViewController.swift; path = ViewControllers/BarChartViewController.swift; sourceTree = "<group>"; };
+		A8BC58B41A1DE4B2006CD44D /* DailyChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DailyChartViewController.swift; path = ViewControllers/DailyChartViewController.swift; sourceTree = "<group>"; };
 		AE40D9ABD95D339C68695ED9 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -214,7 +214,7 @@
 			children = (
 				A8B212B71A11ED68005988DC /* BaseChartViewController.swift */,
 				A8B212BB1A11EEDC005988DC /* SummaryChartViewController.swift */,
-				A8BC58B41A1DE4B2006CD44D /* BarChartViewController.swift */,
+				A8BC58B41A1DE4B2006CD44D /* DailyChartViewController.swift */,
 			);
 			name = CharViewController;
 			sourceTree = "<group>";
@@ -383,7 +383,7 @@
 				A83F30EC1A2EF4AF00FE2D86 /* ChartInformationView.swift in Sources */,
 				A8341F951A147C6800B67594 /* ChartTooltipView.swift in Sources */,
 				A8867A0C1A304E8B001D8578 /* HddServiceListTableViewController.swift in Sources */,
-				A8BC58B51A1DE4B2006CD44D /* BarChartViewController.swift in Sources */,
+				A8BC58B51A1DE4B2006CD44D /* DailyChartViewController.swift in Sources */,
 				A8549EFE1A2C6F12000308AD /* PacketInfoManager.swift in Sources */,
 				A80748621A134417008ADC0A /* UIColor.swift in Sources */,
 				A8549EFB1A2C6E9C000308AD /* PacketLog.swift in Sources */,
