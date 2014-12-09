@@ -150,7 +150,7 @@ class SummaryChartViewController: BaseChartViewController, JBLineChartViewDelega
     }
 
     func lineChartView(lineChartView: JBLineChartView!, didSelectLineAtIndex lineIndex: UInt, horizontalIndex: UInt, touchPoint: CGPoint) {
-        self.setTooltipVisible(true, animated: true, touchPoint: touchPoint)
+        self.setTooltipVisible(true, animated: false, touchPoint: touchPoint)
         self.tooltipView.setText(horizontalSymbols[Int(horizontalIndex)])
         self.chartInformationView.setTitleText(self.chartLabels[Int(lineIndex)])
         self.chartInformationView.setHidden(false, animated: true)

@@ -83,6 +83,9 @@
                                                 <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
                                                     <rect key="frame" x="0.0" y="32" width="207" height="428"/>
                                                 </variation>
+                                                <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                                    <rect key="frame" x="0.0" y="36" width="461" height="0.0"/>
+                                                </variation>
                                             </view>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -94,6 +97,9 @@
                                         </constraints>
                                         <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
                                             <rect key="frame" x="161" y="8" width="207" height="460"/>
+                                        </variation>
+                                        <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                            <rect key="frame" x="307" y="0.0" width="461" height="456"/>
                                         </variation>
                                         <connections>
                                             <outlet property="chartView" destination="sSd-lo-9Sb" id="dYn-aF-eEZ"/>
@@ -213,7 +219,6 @@
                                                 <include reference="dVa-WF-aB7"/>
                                             </mask>
                                         </variation>
-                                        <variation key="heightClass=regular-widthClass=compact"/>
                                         <variation key="heightClass=regular-widthClass=regular">
                                             <mask key="constraints">
                                                 <include reference="Fdu-Rv-X3t"/>
@@ -242,7 +247,7 @@
                                     <constraint firstAttribute="width" secondItem="bNI-Ht-YV3" secondAttribute="width" multiplier="10:3" id="F3h-3W-zJd"/>
                                     <constraint firstItem="OYq-J2-cFd" firstAttribute="width" secondItem="yQL-KM-CDt" secondAttribute="width" multiplier="6:10" id="IeX-1C-zJ5"/>
                                     <constraint firstAttribute="bottom" secondItem="OYq-J2-cFd" secondAttribute="bottom" id="J8u-0p-w9X"/>
-                                    <constraint firstItem="hy3-xD-wbb" firstAttribute="top" secondItem="yQL-KM-CDt" secondAttribute="top" id="KfH-qx-FL4"/>
+                                    <constraint firstItem="hy3-xD-wbb" firstAttribute="top" secondItem="yQL-KM-CDt" secondAttribute="top" constant="8" id="KfH-qx-FL4"/>
                                     <constraint firstAttribute="trailing" secondItem="OYq-J2-cFd" secondAttribute="trailing" id="KmX-C5-n6l"/>
                                     <constraint firstItem="OYq-J2-cFd" firstAttribute="width" secondItem="yQL-KM-CDt" secondAttribute="width" id="OMg-fj-XUv"/>
                                     <constraint firstAttribute="bottom" secondItem="bNI-Ht-YV3" secondAttribute="bottom" id="RJg-yD-ii1"/>
@@ -251,9 +256,7 @@
                                     </constraint>
                                     <constraint firstItem="bNI-Ht-YV3" firstAttribute="top" secondItem="yQL-KM-CDt" secondAttribute="top" id="ZMC-aw-Qeo"/>
                                     <constraint firstAttribute="height" secondItem="bNI-Ht-YV3" secondAttribute="height" multiplier="10:3" id="aBK-jb-FN3"/>
-                                    <constraint firstItem="OYq-J2-cFd" firstAttribute="height" secondItem="yQL-KM-CDt" secondAttribute="height" multiplier="7:10" id="euo-kV-gmi">
-                                        <variation key="heightClass=regular-widthClass=compact" constant="10"/>
-                                    </constraint>
+                                    <constraint firstItem="OYq-J2-cFd" firstAttribute="height" secondItem="yQL-KM-CDt" secondAttribute="height" multiplier="7:10" constant="2" id="euo-kV-gmi"/>
                                     <constraint firstAttribute="height" secondItem="bNI-Ht-YV3" secondAttribute="height" multiplier="4:3" id="ezi-PG-0Jy"/>
                                     <constraint firstAttribute="width" secondItem="bNI-Ht-YV3" secondAttribute="width" id="fCg-fh-ORF"/>
                                     <constraint firstItem="bNI-Ht-YV3" firstAttribute="leading" secondItem="yQL-KM-CDt" secondAttribute="leading" id="i4H-6D-BJq">
