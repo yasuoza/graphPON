@@ -28,16 +28,10 @@ class BaseChartViewController: UIViewController {
 
     var tooltipView: ChartTooltipView = ChartTooltipView()
     var tooltipTipView: ChartTooltipTipView = ChartTooltipTipView()
+    var navBarHairlineImageView: UIImageView?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        
-
-//        self.tabBarItem.setTitleTextAttributes(
-//            [NSForegroundColorAttributeName: UIColor.whiteColor()],
-//            forState: UIControlState.Normal
-//        )
 
         self.tooltipView.alpha = 0.0
         self.chartViewContainerView.addSubview(self.tooltipView)
@@ -45,12 +39,9 @@ class BaseChartViewController: UIViewController {
         self.tooltipTipView.alpha = 0.0
         self.chartViewContainerView.addSubview(self.tooltipTipView)
 
-        // Hide navigation bar bottom line
-        self.navigationController?.navigationBar.shadowImage = UIImage(named: "TransparentPixel")
-        self.navigationController?.navigationBar.setBackgroundImage(
-            UIImage(named: "Pixel"),
-            forBarMetrics: UIBarMetrics.Default
-        )
+        self.navBarHairlineImageView = self.findHairlineImageViewUnder(self.navigationController!.navigationBar)
+        self.navBarHairlineImageView?.hidden = true
+        self.navigationController?.navigationBar.translucent = true
     }
 
     // MARK: - Setters
@@ -107,6 +98,20 @@ class BaseChartViewController: UIViewController {
         } else {
             adjustTooltipVisibility()
         }
+    }
+
+    // MARK: - Private
+
+    func findHairlineImageViewUnder(view: UIView) -> UIImageView? {
+        if view.isKindOfClass(UIImageView) && view.bounds.size.height <= 1.0 {
+            return view as? UIImageView
+        }
+        for subview in view.subviews {
+            if let view = self.findHairlineImageViewUnder(subview as UIView) {
+                return view
+            }
+        }
+        return nil
     }
 
 }

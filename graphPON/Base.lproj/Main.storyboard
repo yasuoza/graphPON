@@ -19,6 +19,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f8j-JE-LHi">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <view key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.76000000000000001" contentMode="center" id="njE-Ux-dix">
+                                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </view>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <blurEffect style="light"/>
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="80" y="312" width="240" height="128"/>
+                                </variation>
+                            </visualEffectView>
                             <view alpha="0.90000000000000002" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U8s-Fg-9Wb" customClass="ExtendedNavBarView" customModule="graphPON" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="64" width="600" height="30"/>
                                 <subviews>
@@ -55,7 +68,7 @@
                                         </connections>
                                     </segmentedControl>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="centerX" secondItem="Wva-27-qQN" secondAttribute="centerX" id="B2f-KX-4aO"/>
                                     <constraint firstItem="Wva-27-qQN" firstAttribute="top" secondItem="U8s-Fg-9Wb" secondAttribute="top" id="JMF-5W-JeE">
@@ -332,11 +345,16 @@
                             <constraint firstAttribute="trailingMargin" secondItem="U8s-Fg-9Wb" secondAttribute="trailing" constant="-16" id="663-PI-v7d"/>
                             <constraint firstItem="U8s-Fg-9Wb" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leadingMargin" constant="-16" id="9GO-89-Rh2"/>
                             <constraint firstItem="yQL-KM-CDt" firstAttribute="top" secondItem="U8s-Fg-9Wb" secondAttribute="bottom" id="ANr-UQ-c94"/>
+                            <constraint firstItem="f8j-JE-LHi" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" id="Acq-Uh-TIw"/>
                             <constraint firstItem="U8s-Fg-9Wb" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" id="IK7-fg-GMk"/>
+                            <constraint firstAttribute="centerX" secondItem="f8j-JE-LHi" secondAttribute="centerX" id="P8v-PR-mMk"/>
                             <constraint firstAttribute="trailingMargin" secondItem="yQL-KM-CDt" secondAttribute="trailing" id="Rca-xx-KyD"/>
                             <constraint firstItem="GAO-Cl-Wes" firstAttribute="top" secondItem="yQL-KM-CDt" secondAttribute="bottom" id="YWE-5M-cZs"/>
+                            <constraint firstItem="U8s-Fg-9Wb" firstAttribute="width" secondItem="f8j-JE-LHi" secondAttribute="width" id="h5B-7p-UyQ"/>
                             <constraint firstItem="yQL-KM-CDt" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leadingMargin" id="iUa-j0-Wfd"/>
+                            <constraint firstItem="U8s-Fg-9Wb" firstAttribute="height" secondItem="f8j-JE-LHi" secondAttribute="height" id="uY0-7p-zLS"/>
                             <constraint firstAttribute="centerX" secondItem="U8s-Fg-9Wb" secondAttribute="centerX" id="yCJ-BY-QCS"/>
+                            <constraint firstItem="U8s-Fg-9Wb" firstAttribute="width" secondItem="f8j-JE-LHi" secondAttribute="width" id="zCS-u6-XPf"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -344,11 +362,15 @@
                                 <exclude reference="9GO-89-Rh2"/>
                             </mask>
                         </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="constraints">
+                                <exclude reference="zCS-u6-XPf"/>
+                            </mask>
+                        </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="Jn6-4O-Ybi"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="mOI-FS-AaM">
-                        <barButtonItem key="backBarButtonItem" title="Menu" style="plain" id="5eS-wQ-J0T"/>
                         <barButtonItem key="leftBarButtonItem" title="Services" id="i4K-3A-1iz">
                             <connections>
                                 <segue destination="bSI-9S-jFO" kind="presentation" identifier="HddServiceListFromSummaryChartSegue" id="n52-Wc-6v2"/>
@@ -510,7 +532,6 @@
                     <tabBarItem key="tabBarItem" title="Item" id="KN7-q5-prT"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Daily" id="5JV-3C-KTV">
-                        <barButtonItem key="backBarButtonItem" title="Menu" id="p7R-AI-hV8"/>
                         <barButtonItem key="rightBarButtonItem" title="Services" id="Kio-Qj-0In">
                             <connections>
                                 <segue destination="jMB-ZZ-dEg" kind="presentation" identifier="HddServiceListFromDailyChartSegue" id="BbI-6S-uV9"/>
@@ -712,7 +733,7 @@
             <objects>
                 <tabBarController title="InitialViewController" id="T6D-GE-Lnu" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" translucent="NO" id="ZFV-yj-YQR">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="ZFV-yj-YQR">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
