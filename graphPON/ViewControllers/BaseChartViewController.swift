@@ -6,14 +6,12 @@ class BaseChartViewController: UIViewController {
         case Daily, Summary
 
         func backgroundColor() -> UIColor {
-            var hex: String
             switch self {
             case .Daily:
-                hex = "ca9asc"
+                return UIColor(hex: "ca9asc")
             case .Summary:
-                hex = "4fa9fa"
+                return UIColor(red: 0.369, green: 0.408, blue: 0.686, alpha: 1.0)
             }
-            return UIColor(hex: hex)
         }
 
         func titleText() -> String {
@@ -33,6 +31,13 @@ class BaseChartViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        
+
+//        self.tabBarItem.setTitleTextAttributes(
+//            [NSForegroundColorAttributeName: UIColor.whiteColor()],
+//            forState: UIControlState.Normal
+//        )
 
         self.tooltipView.alpha = 0.0
         self.chartViewContainerView.addSubview(self.tooltipView)

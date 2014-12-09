@@ -169,7 +169,7 @@
                                             <constraint firstAttribute="centerX" secondItem="dGs-Or-dAF" secondAttribute="centerX" id="3s2-1A-iID"/>
                                             <constraint firstItem="ijf-0g-1O4" firstAttribute="leading" secondItem="bNI-Ht-YV3" secondAttribute="leading" id="4FF-uQ-pRp"/>
                                             <constraint firstAttribute="centerY" secondItem="dGs-Or-dAF" secondAttribute="centerY" id="5NN-lh-ghP"/>
-                                            <constraint firstItem="ijf-0g-1O4" firstAttribute="top" secondItem="bNI-Ht-YV3" secondAttribute="top" constant="12" id="8Mo-t5-VDA"/>
+                                            <constraint firstItem="ijf-0g-1O4" firstAttribute="top" secondItem="bNI-Ht-YV3" secondAttribute="top" id="8Mo-t5-VDA"/>
                                             <constraint firstAttribute="centerX" secondItem="jES-Jp-I3I" secondAttribute="centerX" id="8Yq-by-7eO"/>
                                             <constraint firstItem="dGs-Or-dAF" firstAttribute="leading" secondItem="bNI-Ht-YV3" secondAttribute="leading" id="BcT-YW-o3M"/>
                                             <constraint firstAttribute="centerY" secondItem="dGs-Or-dAF" secondAttribute="centerY" constant="14" id="CQH-kf-O1h"/>
@@ -213,6 +213,7 @@
                                                 <include reference="dVa-WF-aB7"/>
                                             </mask>
                                         </variation>
+                                        <variation key="heightClass=regular-widthClass=compact"/>
                                         <variation key="heightClass=regular-widthClass=regular">
                                             <mask key="constraints">
                                                 <include reference="Fdu-Rv-X3t"/>
@@ -245,10 +246,14 @@
                                     <constraint firstAttribute="trailing" secondItem="OYq-J2-cFd" secondAttribute="trailing" id="KmX-C5-n6l"/>
                                     <constraint firstItem="OYq-J2-cFd" firstAttribute="width" secondItem="yQL-KM-CDt" secondAttribute="width" id="OMg-fj-XUv"/>
                                     <constraint firstAttribute="bottom" secondItem="bNI-Ht-YV3" secondAttribute="bottom" id="RJg-yD-ii1"/>
-                                    <constraint firstItem="OYq-J2-cFd" firstAttribute="bottom" secondItem="bNI-Ht-YV3" secondAttribute="top" constant="8" id="SvV-Sx-ogO"/>
+                                    <constraint firstItem="OYq-J2-cFd" firstAttribute="bottomMargin" secondItem="bNI-Ht-YV3" secondAttribute="topMargin" id="SvV-Sx-ogO">
+                                        <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
+                                    </constraint>
                                     <constraint firstItem="bNI-Ht-YV3" firstAttribute="top" secondItem="yQL-KM-CDt" secondAttribute="top" id="ZMC-aw-Qeo"/>
                                     <constraint firstAttribute="height" secondItem="bNI-Ht-YV3" secondAttribute="height" multiplier="10:3" id="aBK-jb-FN3"/>
-                                    <constraint firstItem="OYq-J2-cFd" firstAttribute="height" secondItem="yQL-KM-CDt" secondAttribute="height" multiplier="7:10" id="euo-kV-gmi"/>
+                                    <constraint firstItem="OYq-J2-cFd" firstAttribute="height" secondItem="yQL-KM-CDt" secondAttribute="height" multiplier="7:10" id="euo-kV-gmi">
+                                        <variation key="heightClass=regular-widthClass=compact" constant="10"/>
+                                    </constraint>
                                     <constraint firstAttribute="height" secondItem="bNI-Ht-YV3" secondAttribute="height" multiplier="4:3" id="ezi-PG-0Jy"/>
                                     <constraint firstAttribute="width" secondItem="bNI-Ht-YV3" secondAttribute="width" id="fCg-fh-ORF"/>
                                     <constraint firstItem="bNI-Ht-YV3" firstAttribute="leading" secondItem="yQL-KM-CDt" secondAttribute="leading" id="i4H-6D-BJq">
@@ -742,4 +747,5 @@
         <image name="bar_chart" width="25" height="25"/>
         <image name="doughnut_chart" width="25" height="25"/>
     </resources>
+    <color key="tintColor" red="0.36862745098039218" green="0.40784313725490196" blue="0.68627450980392157" alpha="1" colorSpace="calibratedRGB"/>
 </document>
