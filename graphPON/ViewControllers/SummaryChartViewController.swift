@@ -1,6 +1,6 @@
 import UIKit
 
-class AreaChartViewController: BaseChartViewController, JBLineChartViewDelegate, JBLineChartViewDataSource, HddServiceListTableViewControllerDelegate {
+class SummaryChartViewController: BaseChartViewController, JBLineChartViewDelegate, JBLineChartViewDataSource, HddServiceListTableViewControllerDelegate {
 
     enum ChartDataSegment: Int {
         case All = 0, WithCoupon = 1, WithoutCoupon = 2

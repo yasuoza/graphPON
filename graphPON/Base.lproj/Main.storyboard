@@ -10,7 +10,7 @@
         <!--Summary-->
         <scene sceneID="yUG-lL-AsK">
             <objects>
-                <viewController title="Summary" id="JEX-9P-axG" customClass="AreaChartViewController" customModule="graphPON" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Summary" id="JEX-9P-axG" customClass="SummaryChartViewController" customModule="graphPON" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="SYR-Wa-9uf"/>
                         <viewControllerLayoutGuide type="bottom" id="GAO-Cl-Wes"/>
@@ -19,7 +19,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view alpha="0.90000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U8s-Fg-9Wb" customClass="ExtendedNavBarView" customModule="graphPON" customModuleProvider="target">
+                            <view alpha="0.90000000000000002" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U8s-Fg-9Wb" customClass="ExtendedNavBarView" customModule="graphPON" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="64" width="600" height="30"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Wva-27-qQN">
@@ -71,7 +71,7 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yQL-KM-CDt" userLabel="Container">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yQL-KM-CDt" userLabel="Container">
                                 <rect key="frame" x="16" y="94" width="568" height="457"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OYq-J2-cFd" customClass="ChartViewContainerView" customModule="graphPON" customModuleProvider="target">
