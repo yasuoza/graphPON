@@ -152,7 +152,7 @@ class SummaryChartViewController: BaseChartViewController, JBLineChartViewDelega
     func lineChartView(lineChartView: JBLineChartView!, didSelectLineAtIndex lineIndex: UInt, horizontalIndex: UInt, touchPoint: CGPoint) {
         self.setTooltipVisible(true, animated: false, touchPoint: touchPoint)
         self.tooltipView.setText(horizontalSymbols[Int(horizontalIndex)])
-        self.chartInformationView.setTitleText(self.chartLabels[Int(lineIndex)])
+        self.chartInformationView.setTitleText("\(self.chartLabels[Int(lineIndex)]) - \(horizontalSymbols[Int(horizontalIndex)])")
         self.chartInformationView.setHidden(false, animated: true)
 
         UIView.animateWithDuration(NSTimeInterval(kJBChartViewDefaultAnimationDuration) * 0.5, delay: 0.0, options: UIViewAnimationOptions.BeginFromCurrentState, animations: {
