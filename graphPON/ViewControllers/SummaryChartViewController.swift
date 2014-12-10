@@ -6,7 +6,6 @@ class SummaryChartViewController: BaseChartViewController, JBLineChartViewDelega
         case All = 0, WithCoupon = 1, WithoutCoupon = 2
     }
 
-    @IBOutlet weak var hddServiceNameLabel: UILabel!
     @IBOutlet weak var chartInformationView: ChartInformationView!
     @IBOutlet weak var informationValueLabelSeparatorView: UIView!
     @IBOutlet weak var valueLabel: UILabel!
@@ -69,7 +68,7 @@ class SummaryChartViewController: BaseChartViewController, JBLineChartViewDelega
 
         self.chartInformationView.setHidden(true)
 
-        self.hddServiceNameLabel.text = "hddservice: service00"
+        self.navigationItem.title = "hddservice: service00"
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -150,15 +149,19 @@ class SummaryChartViewController: BaseChartViewController, JBLineChartViewDelega
     }
 
     func lineChartView(lineChartView: JBLineChartView!, didSelectLineAtIndex lineIndex: UInt, horizontalIndex: UInt, touchPoint: CGPoint) {
-        self.setTooltipVisible(true, animated: false, touchPoint: touchPoint)
-        self.tooltipView.setText(horizontalSymbols[Int(horizontalIndex)])
+
+        let displayTooltip = self.traitCollection.verticalSizeClass == UIUserInterfaceSizeClass.Compact
+                                || (self.traitCollection.verticalSizeClass == UIUserInterfaceSizeClass.Regular
+                                        && self.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClass.Regular)
+        if displayTooltip {
+            self.setTooltipVisible(true, animated: false, touchPoint: touchPoint)
+            self.tooltipView.setText(horizontalSymbols[Int(horizontalIndex)])
+        }
+
         self.chartInformationView.setTitleText("\(self.chartLabels[Int(lineIndex)]) - \(horizontalSymbols[Int(horizontalIndex)])")
         self.chartInformationView.setHidden(false, animated: true)
 
         UIView.animateWithDuration(NSTimeInterval(kJBChartViewDefaultAnimationDuration) * 0.5, delay: 0.0, options: UIViewAnimationOptions.BeginFromCurrentState, animations: {
-            if let footerView = self.chartViewContainerView.chartView.footerView as? LineChartFooterView {
-                (footerView.leftLabel.alpha, footerView.rightLabel.alpha) = (0.0, 0.0)
-            }
             self.informationValueLabelSeparatorView.alpha = 1.0
             var (value, unit) = (self.chartData[Int(lineIndex)][Int(horizontalIndex)], "MB")
             if value >= 100_0.0 {
@@ -176,9 +179,6 @@ class SummaryChartViewController: BaseChartViewController, JBLineChartViewDelega
         self.chartInformationView.setHidden(true, animated: true)
 
         UIView.animateWithDuration(NSTimeInterval(kJBChartViewDefaultAnimationDuration) * 0.5, delay: 0.0, options: UIViewAnimationOptions.BeginFromCurrentState, animations: {
-            if let footerView = self.chartViewContainerView.chartView.footerView as? LineChartFooterView {
-                (footerView.leftLabel.alpha, footerView.rightLabel.alpha) = (1.0, 1.0)
-            }
             self.informationValueLabelSeparatorView.alpha = 0.0
             self.valueLabel.alpha = 0.0
         }, completion: nil)
@@ -204,7 +204,7 @@ class SummaryChartViewController: BaseChartViewController, JBLineChartViewDelega
     // MARK: - HddServiceListTableViewControllerDelegate
 
     func hddServiceDidSelected(hddServiceString: String) {
-        self.hddServiceNameLabel.text = "hddservice: \(hddServiceString)"
+        self.navigationItem.title = "hddservice: \(hddServiceString)"
 
         func randomly(a: Int, b: Int) -> Bool {
             return arc4random() % 2 == 0

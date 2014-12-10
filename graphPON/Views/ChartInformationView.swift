@@ -26,6 +26,7 @@ class ChartInformationView: UIView {
         titleLabel.textColor = UIColor.whiteColor()
         titleLabel.font = UIFont(name: "HelveticaNeue-CondensedBold", size: 20)
         titleLabel.text = "FIX TEXT LATER"
+        titleLabel.textAlignment = NSTextAlignment.Center
     }
 
     func setHidden(hidden: Bool, animated: Bool) {
