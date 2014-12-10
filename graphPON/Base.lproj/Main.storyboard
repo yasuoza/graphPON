@@ -16,71 +16,99 @@
                         <viewControllerLayoutGuide type="bottom" id="GAO-Cl-Wes"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="svH-Pt-448">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f8j-JE-LHi">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <view key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.76000000000000001" contentMode="center" id="njE-Ux-dix">
-                                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </view>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <blurEffect style="light"/>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="80" y="312" width="240" height="128"/>
-                                </variation>
-                            </visualEffectView>
-                            <view alpha="0.90000000000000002" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U8s-Fg-9Wb" customClass="ExtendedNavBarView" customModule="graphPON" customModuleProvider="target">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U8s-Fg-9Wb" customClass="ExtendedNavBarView" customModule="graphPON" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="64" width="600" height="30"/>
                                 <subviews>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Wva-27-qQN">
-                                        <rect key="frame" x="48" y="0.0" width="504" height="23"/>
+                                    <visualEffectView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="f8j-JE-LHi">
+                                        <rect key="frame" x="180" y="-49" width="240" height="128"/>
+                                        <view key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.76580000000000004" contentMode="center" id="njE-Ux-dix">
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <blurEffect style="light"/>
+                                    </visualEffectView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D20-Oc-ovo">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="32"/>
+                                        <subviews>
+                                            <segmentedControl clearsContextBeforeDrawing="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Wva-27-qQN">
+                                                <rect key="frame" x="48" y="0.0" width="504" height="33"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="22" id="S41-B5-Xd1">
+                                                        <variation key="heightClass=compact" constant="24"/>
+                                                    </constraint>
+                                                </constraints>
+                                                <segments>
+                                                    <segment title="ALL"/>
+                                                    <segment title="ON"/>
+                                                    <segment title="OFF"/>
+                                                </segments>
+                                                <variation key="heightClass=compact" misplaced="YES">
+                                                    <rect key="frame" x="48" y="4" width="504" height="33"/>
+                                                    <mask key="constraints">
+                                                        <exclude reference="S41-B5-Xd1"/>
+                                                    </mask>
+                                                </variation>
+                                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                    <rect key="frame" x="-52" y="-8" width="304" height="33"/>
+                                                    <mask key="constraints">
+                                                        <exclude reference="S41-B5-Xd1"/>
+                                                    </mask>
+                                                </variation>
+                                                <variation key="heightClass=regular-widthClass=regular">
+                                                    <mask key="constraints">
+                                                        <exclude reference="S41-B5-Xd1"/>
+                                                    </mask>
+                                                </variation>
+                                                <connections>
+                                                    <action selector="chartSegmentedControlValueDidChanged:" destination="JEX-9P-axG" eventType="valueChanged" id="hbv-FY-enM"/>
+                                                </connections>
+                                            </segmentedControl>
+                                        </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="22" id="S41-B5-Xd1">
-                                                <variation key="heightClass=compact" constant="24"/>
+                                            <constraint firstItem="Wva-27-qQN" firstAttribute="width" secondItem="D20-Oc-ovo" secondAttribute="width" multiplier="3:4" id="0ZH-hp-OBe"/>
+                                            <constraint firstItem="Wva-27-qQN" firstAttribute="height" secondItem="D20-Oc-ovo" secondAttribute="height" id="Awp-c8-KhX"/>
+                                            <constraint firstAttribute="height" constant="32" id="Sp2-p5-aQo"/>
+                                            <constraint firstAttribute="centerY" secondItem="Wva-27-qQN" secondAttribute="centerY" id="fxF-mG-NpD">
+                                                <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
                                             </constraint>
+                                            <constraint firstAttribute="centerX" secondItem="Wva-27-qQN" secondAttribute="centerX" id="oOp-Gg-ysl"/>
                                         </constraints>
-                                        <segments>
-                                            <segment title="ALL"/>
-                                            <segment title="ON"/>
-                                            <segment title="OFF"/>
-                                        </segments>
-                                        <variation key="heightClass=compact">
-                                            <mask key="constraints">
-                                                <exclude reference="S41-B5-Xd1"/>
-                                            </mask>
+                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                            <rect key="frame" x="100" y="8" width="200" height="16"/>
                                         </variation>
-                                        <variation key="heightClass=regular-widthClass=compact">
-                                            <mask key="constraints">
-                                                <exclude reference="S41-B5-Xd1"/>
-                                            </mask>
-                                        </variation>
-                                        <variation key="heightClass=regular-widthClass=regular">
-                                            <mask key="constraints">
-                                                <exclude reference="S41-B5-Xd1"/>
-                                            </mask>
-                                        </variation>
-                                        <connections>
-                                            <action selector="chartSegmentedControlValueDidChanged:" destination="JEX-9P-axG" eventType="valueChanged" id="hbv-FY-enM"/>
-                                        </connections>
-                                    </segmentedControl>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="centerX" secondItem="Wva-27-qQN" secondAttribute="centerX" id="B2f-KX-4aO"/>
-                                    <constraint firstItem="Wva-27-qQN" firstAttribute="top" secondItem="U8s-Fg-9Wb" secondAttribute="top" id="JMF-5W-JeE">
-                                        <variation key="heightClass=compact" constant="4"/>
+                                    <constraint firstAttribute="height" secondItem="f8j-JE-LHi" secondAttribute="height" id="4F0-QL-McX"/>
+                                    <constraint firstItem="D20-Oc-ovo" firstAttribute="top" secondItem="U8s-Fg-9Wb" secondAttribute="top" id="7ew-G3-1fD"/>
+                                    <constraint firstAttribute="centerX" secondItem="D20-Oc-ovo" secondAttribute="centerX" id="QLI-PL-2Hk"/>
+                                    <constraint firstAttribute="centerX" secondItem="f8j-JE-LHi" secondAttribute="centerX" id="RK3-k6-kJW"/>
+                                    <constraint firstAttribute="centerY" secondItem="f8j-JE-LHi" secondAttribute="centerY" id="Uh5-Dm-DJu"/>
+                                    <constraint firstAttribute="width" secondItem="f8j-JE-LHi" secondAttribute="width" id="fBa-QC-cmv"/>
+                                    <constraint firstAttribute="height" constant="36" id="m6F-pA-wEx">
+                                        <variation key="heightClass=regular-widthClass=compact" constant="36"/>
                                     </constraint>
-                                    <constraint firstAttribute="height" constant="36" id="m6F-pA-wEx"/>
-                                    <constraint firstAttribute="centerY" secondItem="Wva-27-qQN" secondAttribute="centerY" id="xYQ-t8-SXM"/>
-                                    <constraint firstItem="Wva-27-qQN" firstAttribute="leading" secondItem="U8s-Fg-9Wb" secondAttribute="leading" constant="48" id="zsc-n8-mlz"/>
+                                    <constraint firstAttribute="centerY" secondItem="D20-Oc-ovo" secondAttribute="centerY" constant="2" id="n62-Lb-8HR">
+                                        <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
+                                    </constraint>
+                                    <constraint firstAttribute="width" secondItem="D20-Oc-ovo" secondAttribute="width" id="pYp-dN-nCv"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="xYQ-t8-SXM"/>
+                                        <exclude reference="n62-Lb-8HR"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="constraints">
+                                        <exclude reference="n62-Lb-8HR"/>
                                     </mask>
                                 </variation>
                             </view>
@@ -345,26 +373,16 @@
                             <constraint firstAttribute="trailingMargin" secondItem="U8s-Fg-9Wb" secondAttribute="trailing" constant="-16" id="663-PI-v7d"/>
                             <constraint firstItem="U8s-Fg-9Wb" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leadingMargin" constant="-16" id="9GO-89-Rh2"/>
                             <constraint firstItem="yQL-KM-CDt" firstAttribute="top" secondItem="U8s-Fg-9Wb" secondAttribute="bottom" id="ANr-UQ-c94"/>
-                            <constraint firstItem="f8j-JE-LHi" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" id="Acq-Uh-TIw"/>
                             <constraint firstItem="U8s-Fg-9Wb" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" id="IK7-fg-GMk"/>
-                            <constraint firstAttribute="centerX" secondItem="f8j-JE-LHi" secondAttribute="centerX" id="P8v-PR-mMk"/>
                             <constraint firstAttribute="trailingMargin" secondItem="yQL-KM-CDt" secondAttribute="trailing" id="Rca-xx-KyD"/>
                             <constraint firstItem="GAO-Cl-Wes" firstAttribute="top" secondItem="yQL-KM-CDt" secondAttribute="bottom" id="YWE-5M-cZs"/>
-                            <constraint firstItem="U8s-Fg-9Wb" firstAttribute="width" secondItem="f8j-JE-LHi" secondAttribute="width" id="h5B-7p-UyQ"/>
                             <constraint firstItem="yQL-KM-CDt" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leadingMargin" id="iUa-j0-Wfd"/>
-                            <constraint firstItem="U8s-Fg-9Wb" firstAttribute="height" secondItem="f8j-JE-LHi" secondAttribute="height" id="uY0-7p-zLS"/>
                             <constraint firstAttribute="centerX" secondItem="U8s-Fg-9Wb" secondAttribute="centerX" id="yCJ-BY-QCS"/>
-                            <constraint firstItem="U8s-Fg-9Wb" firstAttribute="width" secondItem="f8j-JE-LHi" secondAttribute="width" id="zCS-u6-XPf"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="663-PI-v7d"/>
                                 <exclude reference="9GO-89-Rh2"/>
-                            </mask>
-                        </variation>
-                        <variation key="heightClass=regular-widthClass=compact">
-                            <mask key="constraints">
-                                <exclude reference="zCS-u6-XPf"/>
                             </mask>
                         </variation>
                     </view>
@@ -416,7 +434,7 @@
                         <viewControllerLayoutGuide type="bottom" id="Pca-DG-bCW"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="zk3-yc-Ign">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view alpha="0.89999997615814209" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W6a-Jv-Xrn" customClass="ExtendedNavBarView" customModule="graphPON" customModuleProvider="target">
@@ -639,7 +657,7 @@
                         <viewControllerLayoutGuide type="bottom" id="pPu-AO-dVF"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="eMa-Um-3kX">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -672,7 +690,7 @@
             <objects>
                 <tableViewController id="W2M-BP-dmq" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="C66-kv-WZC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
