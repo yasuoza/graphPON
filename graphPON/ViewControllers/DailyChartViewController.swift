@@ -186,7 +186,7 @@ class DailyChartViewController: BaseChartViewController, JBBarChartViewDelegate,
     }
 
     func barSelectionColorForBarChartView(barChartView: JBBarChartView!) -> UIColor! {
-        return UIColor(red:0.180, green:0.361, blue:0.573, alpha:1.000)
+        return UIColor(red:0.392, green:0.392, blue:0.559, alpha:1.0)
     }
 
     // MARK: - HddServiceListTableViewControllerDelegate

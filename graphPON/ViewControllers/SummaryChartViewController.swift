@@ -223,6 +223,10 @@ class SummaryChartViewController: BaseChartViewController, JBLineChartViewDelega
         return UIColor(white: 1.0, alpha: 1.0)
     }
 
+    func lineChartView(lineChartView: JBLineChartView!, verticalSelectionColorForLineAtLineIndex lineIndex: UInt) -> UIColor! {
+        return UIColor(red:0.392, green:0.392, blue:0.559, alpha:1.0)
+    }
+
     // MARK: - HddServiceListTableViewControllerDelegate
 
     func hddServiceDidSelected(hddServiceString: String) {
