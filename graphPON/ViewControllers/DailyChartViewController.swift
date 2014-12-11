@@ -3,6 +3,7 @@ import UIKit
 class DailyChartViewController: BaseChartViewController, JBBarChartViewDelegate, JBBarChartViewDataSource, HddServiceListTableViewControllerDelegate {
 
     @IBOutlet weak var chartInformationView: ChartInformationView!
+    @IBOutlet weak var informationValueLabelSeparatorView: UIView!
     @IBOutlet weak var valueLabel: UILabel!
 
     let mode: Mode = .Daily
@@ -18,10 +19,11 @@ class DailyChartViewController: BaseChartViewController, JBBarChartViewDelegate,
     private let kJBAreaChartViewControllerMaxNumChartPoints  = CGFloat(12)
     private let kJBLineChartViewControllerChartFooterHeight  = CGFloat(20)
 
+    private var chartDataSegment: ChartDataSegment = .All
     private var chartData: [CGFloat]!
     private var horizontalSymbols: [NSString]!
 
-    var amounts = [29, 15, 45, 90, 72, 70, 90, 101, 113, 75, 34, 53, 56, 111, 11, 3, 41, 72, 36, 7]
+    var amounts = [29, 15, 45, 90, 72, 70, 90, 101, 113, 75, 34, 53, 56, 111, 11, 3, 41, 72, 36, 7, 8]
 
     // MARK: - View Lifecycle
 
@@ -29,6 +31,7 @@ class DailyChartViewController: BaseChartViewController, JBBarChartViewDelegate,
         super.viewDidLoad()
 
         self.initFakeData()
+        self.chartViewContainerView.chartView.maximumValue = maxElement(self.chartData)
 
         self.view.backgroundColor = self.mode.backgroundColor()
         self.navigationItem.title = self.mode.titleText()
@@ -55,10 +58,14 @@ class DailyChartViewController: BaseChartViewController, JBBarChartViewDelegate,
         self.chartViewContainerView.chartView.footerView = footerView
 
         self.chartInformationView.setHidden(true)
+
+        self.navigationItem.title = "hddservice: service00"
     }
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+
+        self.presentTotalChartInformation()
         self.chartViewContainerView.chartView.setState(JBChartViewState.Expanded, animated: true)
     }
 
@@ -70,11 +77,37 @@ class DailyChartViewController: BaseChartViewController, JBBarChartViewDelegate,
         }
     }
 
+    // MARK: - Actions
+
+    @IBAction func chartSegmentedControlValueDidChanged(segmentedControl: UISegmentedControl) {
+        self.chartDataSegment = ChartDataSegment(rawValue: segmentedControl.selectedSegmentIndex)!
+        initFakeData()
+        presentTotalChartInformation()
+        self.chartViewContainerView.reloadChartData()
+    }
+
+    func presentTotalChartInformation() {
+        if let date = self.horizontalSymbols.last? {
+            self.chartInformationView.setTitleText("Total - \(String(date))")
+            self.chartInformationView.setHidden(false, animated: true)
+        }
+        UIView.animateWithDuration(NSTimeInterval(kJBChartViewDefaultAnimationDuration) * 0.5, delay: 0.0, options: UIViewAnimationOptions.BeginFromCurrentState, animations: {
+            self.informationValueLabelSeparatorView.alpha = 1.0
+            var (value, unit) = (self.chartData.last?, "MB")
+            if value != nil && value >= 100_0.0 {
+                (value, unit) =  (value! / 100_0.0, "GB")
+            }
+            let valueText = NSString(format: "%.01f", Float(value!))
+            self.valueLabel.text = "\(valueText)\(unit)"
+            self.valueLabel.alpha = 1.0
+            }, completion: nil)
+    }
+
     // MARK: - Private methods
 
     func initFakeData() {
-        var sum = CGFloat(0.0)
-        chartData = amounts.map { CGFloat($0) }
+        let multipler = self.chartDataSegment.rawValue == 0 ? 1.0 : CGFloat(2.0 / 3.0) / CGFloat(self.chartDataSegment.rawValue)
+        chartData = amounts.map { CGFloat($0) * multipler }
 
         // 今月の日付を表示
         let today = NSDate()
@@ -111,8 +144,15 @@ class DailyChartViewController: BaseChartViewController, JBBarChartViewDelegate,
     }
 
     func barChartView(barChartView: JBBarChartView!, didSelectBarAtIndex index: UInt, touchPoint: CGPoint) {
-        self.setTooltipVisible(true, animated: true, touchPoint: touchPoint)
-        self.tooltipView.setText(horizontalSymbols[Int(index)])
+        let displayTooltip = self.traitCollection.verticalSizeClass == UIUserInterfaceSizeClass.Compact
+            || (self.traitCollection.verticalSizeClass == UIUserInterfaceSizeClass.Regular
+                && self.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClass.Regular)
+        if displayTooltip {
+            self.setTooltipVisible(true, animated: false, touchPoint: touchPoint)
+            self.tooltipView.setText(horizontalSymbols[Int(index)])
+        }
+
+        self.chartInformationView.setTitleText("Total - \(horizontalSymbols[Int(index)])")
         self.chartInformationView.setHidden(false, animated: true)
 
         UIView.animateWithDuration(NSTimeInterval(kJBChartViewDefaultAnimationDuration) * 0.5, delay: 0.0, options: UIViewAnimationOptions.BeginFromCurrentState, animations: {
@@ -121,7 +161,7 @@ class DailyChartViewController: BaseChartViewController, JBBarChartViewDelegate,
             if value >= 1000.0 {
                 value /= 1000.0
                 unit = "GB"
-        }
+            }
             let valueText = NSString(format: "%.01f", Float(value))
             self.valueLabel.text = "\(valueText)\(unit)"
             self.valueLabel.alpha = 1.0
@@ -134,25 +174,31 @@ class DailyChartViewController: BaseChartViewController, JBBarChartViewDelegate,
 
         UIView.animateWithDuration(NSTimeInterval(kJBChartViewDefaultAnimationDuration) * 0.5, delay: 0.0, options: UIViewAnimationOptions.BeginFromCurrentState, animations: {
             self.valueLabel.alpha = 0.0
-        }, completion: nil)
+        }, completion: { [unowned self] finish in
+            if finish {
+                self.presentTotalChartInformation()
+            }
+        })
     }
 
     func barChartView(barChartView: JBBarChartView!, colorForBarViewAtIndex index: UInt) -> UIColor! {
-        return UIColor(hex: "08bcef")
+        return UIColor.whiteColor()
     }
 
     func barSelectionColorForBarChartView(barChartView: JBBarChartView!) -> UIColor! {
-        return UIColor.whiteColor()
+        return UIColor(red:0.180, green:0.361, blue:0.573, alpha:1.000)
     }
 
     // MARK: - HddServiceListTableViewControllerDelegate
 
     func hddServiceDidSelected(hddServiceString: String) {
+        self.navigationItem.title = "hddservice: \(hddServiceString)"
+
         func randomly(a: Int, b: Int) -> Bool {
             return arc4random() % 2 == 0
         }
 
-        self.amounts = sorted([29, 15, 45, 90, 72, 70, 90, 101, 113, 75, 34, 53, 56, 111, 11, 3, 41, 72, 36, 7], randomly)
+        self.amounts = sorted(self.amounts, randomly)
         initFakeData()
         self.chartViewContainerView.reloadChartData()
     }

@@ -2,10 +2,6 @@ import UIKit
 
 class SummaryChartViewController: BaseChartViewController, JBLineChartViewDelegate, JBLineChartViewDataSource, HddServiceListTableViewControllerDelegate {
 
-    enum ChartDataSegment: Int {
-        case All = 0, WithCoupon = 1, WithoutCoupon = 2
-    }
-
     @IBOutlet weak var chartInformationView: ChartInformationView!
     @IBOutlet weak var informationValueLabelSeparatorView: UIView!
     @IBOutlet weak var valueLabel: UILabel!
@@ -73,6 +69,8 @@ class SummaryChartViewController: BaseChartViewController, JBLineChartViewDelega
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+
+        self.presentTotalChartInformation()
         self.chartViewContainerView.chartView.setState(JBChartViewState.Expanded, animated: true)
     }
 
@@ -85,10 +83,30 @@ class SummaryChartViewController: BaseChartViewController, JBLineChartViewDelega
     }
 
     // MARK: - Actions
+    
     @IBAction func chartSegmentedControlValueDidChanged(segmentedControl: UISegmentedControl) {
         self.chartDataSegment = ChartDataSegment(rawValue: segmentedControl.selectedSegmentIndex)!
         initFakeData()
+        presentTotalChartInformation()
         self.chartViewContainerView.reloadChartData()
+    }
+
+    func presentTotalChartInformation() {
+        let (label, date) = (self.chartLabels.last?, self.horizontalSymbols.last?)
+        if label != nil && date != nil {
+            self.chartInformationView.setTitleText("\(String(label!)) - \(String(date!))")
+            self.chartInformationView.setHidden(false, animated: true)
+        }
+        UIView.animateWithDuration(NSTimeInterval(kJBChartViewDefaultAnimationDuration) * 0.5, delay: 0.0, options: UIViewAnimationOptions.BeginFromCurrentState, animations: {
+            self.informationValueLabelSeparatorView.alpha = 1.0
+            var (value, unit) = (self.chartData.last?.last, "MB")
+            if value != nil && value >= 100_0.0 {
+                (value, unit) =  (value! / 100_0.0, "GB")
+            }
+            let valueText = NSString(format: "%.01f", Float(value!))
+            self.valueLabel.text = "\(valueText)\(unit)"
+            self.valueLabel.alpha = 1.0
+        }, completion: nil)
     }
 
     // MARK: - Private methods
@@ -181,7 +199,11 @@ class SummaryChartViewController: BaseChartViewController, JBLineChartViewDelega
         UIView.animateWithDuration(NSTimeInterval(kJBChartViewDefaultAnimationDuration) * 0.5, delay: 0.0, options: UIViewAnimationOptions.BeginFromCurrentState, animations: {
             self.informationValueLabelSeparatorView.alpha = 0.0
             self.valueLabel.alpha = 0.0
-        }, completion: nil)
+        }, completion: { [unowned self] finish in
+            if finish {
+                self.presentTotalChartInformation()
+            }
+        })
 
     }
 
@@ -210,11 +232,7 @@ class SummaryChartViewController: BaseChartViewController, JBLineChartViewDelega
             return arc4random() % 2 == 0
         }
 
-        self.amounts = [
-            sorted([21, 11, 32, 14, 67, 11, 66, 45, 100, 44, 31, 38, 53, 70, 2, 1, 33, 52, 34, 11, 3], randomly),
-            sorted([7, 3, 12, 11, 4, 37, 6, 33, 1, 18, 1, 1, 1, 12, 1, 1, 1, 15, 1, 1, 1], randomly),
-            sorted([1, 1, 1, 65, 1, 22, 18, 23, 12, 13, 2, 14, 2, 29, 8, 1, 7, 5, 1, 4, 20], randomly)
-        ]
+        self.amounts = (0...2).map { sorted(self.amounts[$0], randomly) }
         initFakeData()
         self.chartViewContainerView.reloadChartData()
     }

@@ -8,7 +8,7 @@ class BaseChartViewController: UIViewController {
         func backgroundColor() -> UIColor {
             switch self {
             case .Daily:
-                return UIColor(hex: "ca9asc")
+                return UIColor(red:0.376, green:0.573, blue:0.714, alpha:1.000)
             case .Summary:
                 return UIColor(red: 0.369, green: 0.408, blue: 0.686, alpha: 1.0)
             }
@@ -22,6 +22,10 @@ class BaseChartViewController: UIViewController {
                 return "Summary"
             }
         }
+    }
+
+    enum ChartDataSegment: Int {
+        case All = 0, WithCoupon = 1, WithoutCoupon = 2
     }
 
     @IBOutlet weak var chartViewContainerView: ChartViewContainerView!
