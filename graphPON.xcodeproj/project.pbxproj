@@ -59,13 +59,14 @@
 		A8409FB81A16F4A8007573EC /* ChartViewContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChartViewContainerView.swift; path = Views/ChartViewContainerView.swift; sourceTree = "<group>"; };
 		A8549EFA1A2C6E9C000308AD /* PacketLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PacketLog.swift; path = Models/PacketLog.swift; sourceTree = "<group>"; };
 		A8549EFD1A2C6F12000308AD /* PacketInfoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PacketInfoManager.swift; path = Managers/PacketInfoManager.swift; sourceTree = "<group>"; };
+		A85906BA1A3AF18F003D6A8F /* XYDoughnutChart-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "XYDoughnutChart-Bridging-Header.h"; path = "Bridge-Headers/XYDoughnutChart-Bridging-Header.h"; sourceTree = "<group>"; };
 		A8867A041A30333C001D8578 /* ExtendedNavBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExtendedNavBarView.swift; path = Views/ExtendedNavBarView.swift; sourceTree = "<group>"; };
 		A8867A0B1A304E8B001D8578 /* HddServiceListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HddServiceListTableViewController.swift; path = ViewControllers/HddServiceListTableViewController.swift; sourceTree = "<group>"; };
 		A8867A0E1A304EB0001D8578 /* HddServiceListTableViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HddServiceListTableViewControllerDelegate.swift; path = Protocols/HddServiceListTableViewControllerDelegate.swift; sourceTree = "<group>"; };
 		A88BB36F1A2DDEA700E5AE4F /* HdoInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HdoInfo.swift; path = Models/HdoInfo.swift; sourceTree = "<group>"; };
 		A8B212B71A11ED68005988DC /* BaseChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseChartViewController.swift; path = ViewControllers/BaseChartViewController.swift; sourceTree = "<group>"; };
 		A8B212BB1A11EEDC005988DC /* SummaryChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SummaryChartViewController.swift; path = ViewControllers/SummaryChartViewController.swift; sourceTree = "<group>"; };
-		A8B212BE1A11F04B005988DC /* JBChartView-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "JBChartView-Bridging-Header.h"; path = "Bridge-Headers/JBChartView-Bridging-Header.h"; sourceTree = "<group>"; };
+		A8B212BE1A11F04B005988DC /* graphPON-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "graphPON-Bridging-Header.h"; path = "Bridge-Headers/graphPON-Bridging-Header.h"; sourceTree = "<group>"; };
 		A8B212BF1A1204B2005988DC /* LineChartFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LineChartFooterView.swift; path = Views/LineChartFooterView.swift; sourceTree = "<group>"; };
 		A8BC58B41A1DE4B2006CD44D /* DailyChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DailyChartViewController.swift; path = ViewControllers/DailyChartViewController.swift; sourceTree = "<group>"; };
 		AE40D9ABD95D339C68695ED9 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -231,7 +232,8 @@
 		A8B212BD1A11F028005988DC /* Bridge-Headers */ = {
 			isa = PBXGroup;
 			children = (
-				A8B212BE1A11F04B005988DC /* JBChartView-Bridging-Header.h */,
+				A8B212BE1A11F04B005988DC /* graphPON-Bridging-Header.h */,
+				A85906BA1A3AF18F003D6A8F /* XYDoughnutChart-Bridging-Header.h */,
 			);
 			name = "Bridge-Headers";
 			sourceTree = "<group>";
@@ -523,7 +525,7 @@
 				INFOPLIST_FILE = graphPON/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "${SRCROOT}/graphPON/Bridge-Headers/JBChartView-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "${SRCROOT}/graphPON/Bridge-Headers/graphPON-Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -535,7 +537,7 @@
 				INFOPLIST_FILE = graphPON/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "${SRCROOT}/graphPON/Bridge-Headers/JBChartView-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "${SRCROOT}/graphPON/Bridge-Headers/graphPON-Bridging-Header.h";
 			};
 			name = Release;
 		};
