@@ -1,6 +1,6 @@
 import UIKit
 
-class SummaryChartViewController: BaseChartViewController, JBLineChartViewDelegate, JBLineChartViewDataSource, HddServiceListTableViewControllerDelegate {
+class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDelegate, JBLineChartViewDataSource, HddServiceListTableViewControllerDelegate {
 
     @IBOutlet weak var chartInformationView: ChartInformationView!
     @IBOutlet weak var informationValueLabelSeparatorView: UIView!
