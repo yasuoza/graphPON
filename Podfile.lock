@@ -12,7 +12,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   XYDoughnutChart:
-    :commit: 5fe7b70f2c9eaee96f8db613173d836f5739591b
+    :commit: 4ae5779fb6e7550c6eec455d6c3f14a3f0ff71f2
     :git: https://github.com/yasuoza/XYDoughnutChart.git
 
 SPEC CHECKSUMS:
