@@ -16,6 +16,8 @@
 		A80D19DE1A11CEDA0067A055 /* graphPONTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80D19DD1A11CEDA0067A055 /* graphPONTests.swift */; };
 		A8341F951A147C6800B67594 /* ChartTooltipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8341F941A147C6800B67594 /* ChartTooltipView.swift */; };
 		A8341F971A14836500B67594 /* ChartTooltipTipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8341F961A14836500B67594 /* ChartTooltipTipView.swift */; };
+		A83612821A3EB7E300BB1B3F /* RatioChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83612811A3EB7E300BB1B3F /* RatioChartViewController.swift */; };
+		A83612841A3EB9E100BB1B3F /* RatioChartContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83612831A3EB9E100BB1B3F /* RatioChartContainerView.swift */; };
 		A83F30EC1A2EF4AF00FE2D86 /* ChartInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83F30EB1A2EF4AF00FE2D86 /* ChartInformationView.swift */; };
 		A8409FB91A16F4A8007573EC /* ChartViewContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8409FB81A16F4A8007573EC /* ChartViewContainerView.swift */; };
 		A8549EFB1A2C6E9C000308AD /* PacketLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8549EFA1A2C6E9C000308AD /* PacketLog.swift */; };
@@ -24,9 +26,10 @@
 		A8867A0C1A304E8B001D8578 /* HddServiceListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8867A0B1A304E8B001D8578 /* HddServiceListTableViewController.swift */; };
 		A8867A0F1A304EB0001D8578 /* HddServiceListTableViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8867A0E1A304EB0001D8578 /* HddServiceListTableViewControllerDelegate.swift */; };
 		A88BB3701A2DDEA700E5AE4F /* HdoInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88BB36F1A2DDEA700E5AE4F /* HdoInfo.swift */; };
-		A8B212B81A11ED68005988DC /* BaseChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B212B71A11ED68005988DC /* BaseChartViewController.swift */; };
+		A8B212B81A11ED68005988DC /* BaseLineChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B212B71A11ED68005988DC /* BaseLineChartViewController.swift */; };
 		A8B212BC1A11EEDC005988DC /* SummaryChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B212BB1A11EEDC005988DC /* SummaryChartViewController.swift */; };
 		A8B212C01A1204B2005988DC /* LineChartFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B212BF1A1204B2005988DC /* LineChartFooterView.swift */; };
+		A8B39C391A41713E009F519E /* BaseChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B39C381A41713E009F519E /* BaseChartViewController.swift */; };
 		A8BC58B51A1DE4B2006CD44D /* DailyChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BC58B41A1DE4B2006CD44D /* DailyChartViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +58,8 @@
 		A80D19DD1A11CEDA0067A055 /* graphPONTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = graphPONTests.swift; sourceTree = "<group>"; };
 		A8341F941A147C6800B67594 /* ChartTooltipView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChartTooltipView.swift; path = Views/ChartTooltipView.swift; sourceTree = "<group>"; };
 		A8341F961A14836500B67594 /* ChartTooltipTipView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChartTooltipTipView.swift; path = Views/ChartTooltipTipView.swift; sourceTree = "<group>"; };
+		A83612811A3EB7E300BB1B3F /* RatioChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RatioChartViewController.swift; path = ViewControllers/RatioChartViewController.swift; sourceTree = "<group>"; };
+		A83612831A3EB9E100BB1B3F /* RatioChartContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RatioChartContainerView.swift; path = Views/RatioChartContainerView.swift; sourceTree = "<group>"; };
 		A83F30EB1A2EF4AF00FE2D86 /* ChartInformationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChartInformationView.swift; path = Views/ChartInformationView.swift; sourceTree = "<group>"; };
 		A8409FB81A16F4A8007573EC /* ChartViewContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChartViewContainerView.swift; path = Views/ChartViewContainerView.swift; sourceTree = "<group>"; };
 		A8549EFA1A2C6E9C000308AD /* PacketLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PacketLog.swift; path = Models/PacketLog.swift; sourceTree = "<group>"; };
@@ -63,10 +68,11 @@
 		A8867A0B1A304E8B001D8578 /* HddServiceListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HddServiceListTableViewController.swift; path = ViewControllers/HddServiceListTableViewController.swift; sourceTree = "<group>"; };
 		A8867A0E1A304EB0001D8578 /* HddServiceListTableViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HddServiceListTableViewControllerDelegate.swift; path = Protocols/HddServiceListTableViewControllerDelegate.swift; sourceTree = "<group>"; };
 		A88BB36F1A2DDEA700E5AE4F /* HdoInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HdoInfo.swift; path = Models/HdoInfo.swift; sourceTree = "<group>"; };
-		A8B212B71A11ED68005988DC /* BaseChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseChartViewController.swift; path = ViewControllers/BaseChartViewController.swift; sourceTree = "<group>"; };
+		A8B212B71A11ED68005988DC /* BaseLineChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseLineChartViewController.swift; path = ViewControllers/BaseLineChartViewController.swift; sourceTree = "<group>"; };
 		A8B212BB1A11EEDC005988DC /* SummaryChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SummaryChartViewController.swift; path = ViewControllers/SummaryChartViewController.swift; sourceTree = "<group>"; };
 		A8B212BE1A11F04B005988DC /* graphPON-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "graphPON-Bridging-Header.h"; path = "Bridge-Headers/graphPON-Bridging-Header.h"; sourceTree = "<group>"; };
 		A8B212BF1A1204B2005988DC /* LineChartFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LineChartFooterView.swift; path = Views/LineChartFooterView.swift; sourceTree = "<group>"; };
+		A8B39C381A41713E009F519E /* BaseChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseChartViewController.swift; path = ViewControllers/BaseChartViewController.swift; sourceTree = "<group>"; };
 		A8BC58B41A1DE4B2006CD44D /* DailyChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DailyChartViewController.swift; path = ViewControllers/DailyChartViewController.swift; sourceTree = "<group>"; };
 		AE40D9ABD95D339C68695ED9 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -178,6 +184,7 @@
 				A8341F941A147C6800B67594 /* ChartTooltipView.swift */,
 				A8341F961A14836500B67594 /* ChartTooltipTipView.swift */,
 				A8409FB81A16F4A8007573EC /* ChartViewContainerView.swift */,
+				A83612831A3EB9E100BB1B3F /* RatioChartContainerView.swift */,
 				A83F30EB1A2EF4AF00FE2D86 /* ChartInformationView.swift */,
 				A8867A041A30333C001D8578 /* ExtendedNavBarView.swift */,
 			);
@@ -212,9 +219,11 @@
 		A8B212B91A11EEAB005988DC /* CharViewController */ = {
 			isa = PBXGroup;
 			children = (
-				A8B212B71A11ED68005988DC /* BaseChartViewController.swift */,
+				A8B39C381A41713E009F519E /* BaseChartViewController.swift */,
+				A8B212B71A11ED68005988DC /* BaseLineChartViewController.swift */,
 				A8B212BB1A11EEDC005988DC /* SummaryChartViewController.swift */,
 				A8BC58B41A1DE4B2006CD44D /* DailyChartViewController.swift */,
+				A83612811A3EB7E300BB1B3F /* RatioChartViewController.swift */,
 			);
 			name = CharViewController;
 			sourceTree = "<group>";
@@ -383,6 +392,7 @@
 				A83F30EC1A2EF4AF00FE2D86 /* ChartInformationView.swift in Sources */,
 				A8341F951A147C6800B67594 /* ChartTooltipView.swift in Sources */,
 				A8867A0C1A304E8B001D8578 /* HddServiceListTableViewController.swift in Sources */,
+				A83612821A3EB7E300BB1B3F /* RatioChartViewController.swift in Sources */,
 				A8BC58B51A1DE4B2006CD44D /* DailyChartViewController.swift in Sources */,
 				A8549EFE1A2C6F12000308AD /* PacketInfoManager.swift in Sources */,
 				A80748621A134417008ADC0A /* UIColor.swift in Sources */,
@@ -391,8 +401,10 @@
 				A8867A0F1A304EB0001D8578 /* HddServiceListTableViewControllerDelegate.swift in Sources */,
 				A8341F971A14836500B67594 /* ChartTooltipTipView.swift in Sources */,
 				A8409FB91A16F4A8007573EC /* ChartViewContainerView.swift in Sources */,
+				A83612841A3EB9E100BB1B3F /* RatioChartContainerView.swift in Sources */,
 				A8B212BC1A11EEDC005988DC /* SummaryChartViewController.swift in Sources */,
-				A8B212B81A11ED68005988DC /* BaseChartViewController.swift in Sources */,
+				A8B39C391A41713E009F519E /* BaseChartViewController.swift in Sources */,
+				A8B212B81A11ED68005988DC /* BaseLineChartViewController.swift in Sources */,
 				A88BB3701A2DDEA700E5AE4F /* HdoInfo.swift in Sources */,
 				A8867A051A30333C001D8578 /* ExtendedNavBarView.swift in Sources */,
 			);
