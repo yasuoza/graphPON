@@ -2,10 +2,6 @@ import UIKit
 
 class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDelegate, JBLineChartViewDataSource, HddServiceListTableViewControllerDelegate {
 
-    @IBOutlet weak var chartInformationView: ChartInformationView!
-    @IBOutlet weak var informationValueLabelSeparatorView: UIView!
-    @IBOutlet weak var valueLabel: UILabel!
-
     private let kJBLineChartViewControllerChartPadding       = CGFloat(10.0)
     private let kJBAreaChartViewControllerChartHeight        = CGFloat(250.0)
     private let kJBAreaChartViewControllerChartPadding       = CGFloat(10.0)
@@ -70,7 +66,7 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
 
-        self.presentTotalChartInformation()
+        self.displayLatestTotalChartInformation()
         self.chartViewContainerView.chartView.setState(JBChartViewState.Expanded, animated: true)
     }
 
@@ -87,11 +83,11 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
     @IBAction func chartSegmentedControlValueDidChanged(segmentedControl: UISegmentedControl) {
         self.chartDataSegment = ChartDataSegment(rawValue: segmentedControl.selectedSegmentIndex)!
         initFakeData()
-        presentTotalChartInformation()
+        displayLatestTotalChartInformation()
         self.chartViewContainerView.reloadChartData()
     }
 
-    func presentTotalChartInformation() {
+    func displayLatestTotalChartInformation() {
         let (label, date) = (self.chartLabels.last?, self.horizontalSymbols.last?)
         if label != nil && date != nil {
             self.chartInformationView.setTitleText("\(String(label!)) - \(String(date!))")
@@ -201,7 +197,7 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
             self.valueLabel.alpha = 0.0
         }, completion: { [unowned self] finish in
             if finish {
-                self.presentTotalChartInformation()
+                self.displayLatestTotalChartInformation()
             }
         })
 

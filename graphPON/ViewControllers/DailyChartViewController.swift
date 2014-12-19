@@ -2,10 +2,6 @@ import UIKit
 
 class DailyChartViewController: BaseLineChartViewController, JBBarChartViewDelegate, JBBarChartViewDataSource, HddServiceListTableViewControllerDelegate {
 
-    @IBOutlet weak var chartInformationView: ChartInformationView!
-    @IBOutlet weak var informationValueLabelSeparatorView: UIView!
-    @IBOutlet weak var valueLabel: UILabel!
-
     let mode: Mode = .Daily
 
     private let kJBLineChartViewControllerChartPadding       = CGFloat(10.0)
@@ -65,7 +61,7 @@ class DailyChartViewController: BaseLineChartViewController, JBBarChartViewDeleg
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
 
-        self.presentTotalChartInformation()
+        self.displayLatestTotalChartInformation()
         self.chartViewContainerView.chartView.setState(JBChartViewState.Expanded, animated: true)
     }
 
@@ -82,11 +78,11 @@ class DailyChartViewController: BaseLineChartViewController, JBBarChartViewDeleg
     @IBAction func chartSegmentedControlValueDidChanged(segmentedControl: UISegmentedControl) {
         self.chartDataSegment = ChartDataSegment(rawValue: segmentedControl.selectedSegmentIndex)!
         initFakeData()
-        presentTotalChartInformation()
+        displayLatestTotalChartInformation()
         self.chartViewContainerView.reloadChartData()
     }
 
-    func presentTotalChartInformation() {
+    func displayLatestTotalChartInformation() {
         if let date = self.horizontalSymbols.last? {
             self.chartInformationView.setTitleText("Total - \(String(date))")
             self.chartInformationView.setHidden(false, animated: true)
@@ -176,7 +172,7 @@ class DailyChartViewController: BaseLineChartViewController, JBBarChartViewDeleg
             self.valueLabel.alpha = 0.0
         }, completion: { [unowned self] finish in
             if finish {
-                self.presentTotalChartInformation()
+                self.displayLatestTotalChartInformation()
             }
         })
     }

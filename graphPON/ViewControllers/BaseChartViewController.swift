@@ -2,6 +2,10 @@ import UIKit
 
 class BaseChartViewController: UIViewController {
 
+    @IBOutlet weak var chartInformationView: ChartInformationView!
+    @IBOutlet weak var informationValueLabelSeparatorView: UIView!
+    @IBOutlet weak var valueLabel: UILabel!
+
     private var navBarHairlineImageView: UIImageView?
 
     override func viewDidLoad() {
