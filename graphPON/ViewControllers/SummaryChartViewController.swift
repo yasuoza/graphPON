@@ -93,16 +93,22 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
             self.chartInformationView.setTitleText("\(String(label!)) - \(String(date!))")
             self.chartInformationView.setHidden(false, animated: true)
         }
-        UIView.animateWithDuration(NSTimeInterval(kJBChartViewDefaultAnimationDuration) * 0.5, delay: 0.0, options: UIViewAnimationOptions.BeginFromCurrentState, animations: {
-            self.informationValueLabelSeparatorView.alpha = 1.0
-            var (value, unit) = (self.chartData.last?.last, "MB")
-            if value != nil && value >= 100_0.0 {
-                (value, unit) =  (value! / 100_0.0, "GB")
-            }
-            let valueText = NSString(format: "%.01f", Float(value!))
-            self.valueLabel.text = "\(valueText)\(unit)"
-            self.valueLabel.alpha = 1.0
-        }, completion: nil)
+        UIView.animateWithDuration(
+            NSTimeInterval(kJBChartViewDefaultAnimationDuration) * 0.5,
+            delay: 0.0,
+            options: UIViewAnimationOptions.BeginFromCurrentState,
+            animations: {
+                self.informationValueLabelSeparatorView.alpha = 1.0
+                var (value, unit) = (self.chartData.last?.last, "MB")
+                if value != nil && value >= 100_0.0 {
+                    (value, unit) =  (value! / 100_0.0, "GB")
+                }
+                let valueText = NSString(format: "%.01f", Float(value!))
+                self.valueLabel.text = "\(valueText)\(unit)"
+                self.valueLabel.alpha = 1.0
+            },
+            completion: nil
+        )
     }
 
     // MARK: - Private methods
@@ -175,16 +181,22 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
         self.chartInformationView.setTitleText("\(self.chartLabels[Int(lineIndex)]) - \(horizontalSymbols[Int(horizontalIndex)])")
         self.chartInformationView.setHidden(false, animated: true)
 
-        UIView.animateWithDuration(NSTimeInterval(kJBChartViewDefaultAnimationDuration) * 0.5, delay: 0.0, options: UIViewAnimationOptions.BeginFromCurrentState, animations: {
-            self.informationValueLabelSeparatorView.alpha = 1.0
-            var (value, unit) = (self.chartData[Int(lineIndex)][Int(horizontalIndex)], "MB")
-            if value >= 100_0.0 {
-                (value, unit) =  (value / 100_0.0, "GB")
-            }
-            let valueText = NSString(format: "%.01f", Float(value))
-            self.valueLabel.text = "\(valueText)\(unit)"
-            self.valueLabel.alpha = 1.0
-        }, completion: nil)
+        UIView.animateWithDuration(
+            NSTimeInterval(kJBChartViewDefaultAnimationDuration) * 0.5,
+            delay: 0.0,
+            options: UIViewAnimationOptions.BeginFromCurrentState,
+            animations: {
+                self.informationValueLabelSeparatorView.alpha = 1.0
+                var (value, unit) = (self.chartData[Int(lineIndex)][Int(horizontalIndex)], "MB")
+                if value >= 100_0.0 {
+                    (value, unit) =  (value / 100_0.0, "GB")
+                }
+                let valueText = NSString(format: "%.01f", Float(value))
+                self.valueLabel.text = "\(valueText)\(unit)"
+                self.valueLabel.alpha = 1.0
+            },
+            completion: nil
+        )
     }
 
     func didDeselectLineInLineChartView(lineChartView: JBLineChartView!) {
@@ -192,14 +204,20 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
 
         self.chartInformationView.setHidden(true, animated: true)
 
-        UIView.animateWithDuration(NSTimeInterval(kJBChartViewDefaultAnimationDuration) * 0.5, delay: 0.0, options: UIViewAnimationOptions.BeginFromCurrentState, animations: {
-            self.informationValueLabelSeparatorView.alpha = 0.0
-            self.valueLabel.alpha = 0.0
-        }, completion: { [unowned self] finish in
-            if finish {
-                self.displayLatestTotalChartInformation()
+        UIView.animateWithDuration(
+            NSTimeInterval(kJBChartViewDefaultAnimationDuration) * 0.5,
+            delay: 0.0,
+            options: UIViewAnimationOptions.BeginFromCurrentState,
+            animations: {
+                self.informationValueLabelSeparatorView.alpha = 0.0
+                self.valueLabel.alpha = 0.0
+            },
+            completion: { [unowned self] finish in
+                if finish {
+                    self.displayLatestTotalChartInformation()
+                }
             }
-        })
+        )
 
     }
 

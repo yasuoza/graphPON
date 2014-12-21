@@ -87,16 +87,21 @@ class DailyChartViewController: BaseLineChartViewController, JBBarChartViewDeleg
             self.chartInformationView.setTitleText("Total - \(String(date))")
             self.chartInformationView.setHidden(false, animated: true)
         }
-        UIView.animateWithDuration(NSTimeInterval(kJBChartViewDefaultAnimationDuration) * 0.5, delay: 0.0, options: UIViewAnimationOptions.BeginFromCurrentState, animations: {
-            self.informationValueLabelSeparatorView.alpha = 1.0
-            var (value, unit) = (self.chartData.last?, "MB")
-            if value != nil && value >= 100_0.0 {
-                (value, unit) =  (value! / 100_0.0, "GB")
-            }
-            let valueText = NSString(format: "%.01f", Float(value!))
-            self.valueLabel.text = "\(valueText)\(unit)"
-            self.valueLabel.alpha = 1.0
-            }, completion: nil)
+        UIView.animateWithDuration(NSTimeInterval(kJBChartViewDefaultAnimationDuration) * 0.5,
+            delay: 0.0,
+            options: UIViewAnimationOptions.BeginFromCurrentState,
+            animations: {
+                self.informationValueLabelSeparatorView.alpha = 1.0
+                var (value, unit) = (self.chartData.last?, "MB")
+                if value != nil && value >= 100_0.0 {
+                    (value, unit) =  (value! / 100_0.0, "GB")
+                }
+                let valueText = NSString(format: "%.01f", Float(value!))
+                self.valueLabel.text = "\(valueText)\(unit)"
+                self.valueLabel.alpha = 1.0
+            },
+            completion: nil
+        )
     }
 
     // MARK: - Private methods
@@ -151,30 +156,42 @@ class DailyChartViewController: BaseLineChartViewController, JBBarChartViewDeleg
         self.chartInformationView.setTitleText("Total - \(horizontalSymbols[Int(index)])")
         self.chartInformationView.setHidden(false, animated: true)
 
-        UIView.animateWithDuration(NSTimeInterval(kJBChartViewDefaultAnimationDuration) * 0.5, delay: 0.0, options: UIViewAnimationOptions.BeginFromCurrentState, animations: {
-            var value = self.chartData[Int(index)]
-            var unit = "MB"
-            if value >= 1000.0 {
-                value /= 1000.0
-                unit = "GB"
-            }
-            let valueText = NSString(format: "%.01f", Float(value))
-            self.valueLabel.text = "\(valueText)\(unit)"
-            self.valueLabel.alpha = 1.0
-        }, completion: nil)
+        UIView.animateWithDuration(
+            NSTimeInterval(kJBChartViewDefaultAnimationDuration) * 0.5,
+            delay: 0.0,
+            options: UIViewAnimationOptions.BeginFromCurrentState,
+            animations: {
+                var value = self.chartData[Int(index)]
+                var unit = "MB"
+                if value >= 1000.0 {
+                    value /= 1000.0
+                    unit = "GB"
+                }
+                let valueText = NSString(format: "%.01f", Float(value))
+                self.valueLabel.text = "\(valueText)\(unit)"
+                self.valueLabel.alpha = 1.0
+            },
+            completion: nil
+        )
     }
 
     func didDeselectBarChartView(barChartView: JBBarChartView!) {
         self.setTooltipVisible(false, animated: true)
         self.chartInformationView.setHidden(true, animated: true)
 
-        UIView.animateWithDuration(NSTimeInterval(kJBChartViewDefaultAnimationDuration) * 0.5, delay: 0.0, options: UIViewAnimationOptions.BeginFromCurrentState, animations: {
-            self.valueLabel.alpha = 0.0
-        }, completion: { [unowned self] finish in
-            if finish {
-                self.displayLatestTotalChartInformation()
+        UIView.animateWithDuration(
+            NSTimeInterval(kJBChartViewDefaultAnimationDuration) * 0.5,
+            delay: 0.0,
+            options: UIViewAnimationOptions.BeginFromCurrentState,
+            animations: {
+                self.valueLabel.alpha = 0.0
+            },
+            completion: { [unowned self] finish in
+                if finish {
+                    self.displayLatestTotalChartInformation()
+                }
             }
-        })
+        )
     }
 
     func barChartView(barChartView: JBBarChartView!, colorForBarViewAtIndex index: UInt) -> UIColor! {
