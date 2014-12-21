@@ -43,6 +43,7 @@ class RatioChartViewController: BaseChartViewController, XYDoughnutChartDelegate
                 self.informationValueLabelSeparatorView.alpha = 1.0
                 let valueText = NSString(format: "%.01f", self.slices.last!)
                 self.valueLabel.text = "\(valueText)%"
+                self.valueLabel.alpha = 1.0
             },
             completion: nil
         )
@@ -76,7 +77,7 @@ class RatioChartViewController: BaseChartViewController, XYDoughnutChartDelegate
             delay: 0.0,
             options: UIViewAnimationOptions.BeginFromCurrentState,
             animations: {
-                self.informationValueLabelSeparatorView.alpha = 0.0
+                self.valueLabel.alpha = 0.0
             },
             completion: { [unowned self] finish in
                 if finish {
