@@ -18,13 +18,44 @@ class RatioChartViewController: BaseChartViewController, XYDoughnutChartDelegate
         self.chartInformationView.setHidden(true, animated: true)
     }
 
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+
+        self.displayLatestTotalChartInformation()
+    }
+
+    // MARK: - Actions
+
+    func displayLatestTotalChartInformation() {
+        if (self.slices.last? == nil) {
+            return
+        }
+
+        if let chartLabel = self.chartLabels.last? {
+            self.chartInformationView.setTitleText("\(chartLabel)")
+            self.chartInformationView.setHidden(false, animated: true)
+        }
+        UIView.animateWithDuration(
+            NSTimeInterval(kJBChartViewDefaultAnimationDuration) * 0.5,
+            delay: 0.0,
+            options: UIViewAnimationOptions.BeginFromCurrentState,
+            animations: {
+                self.informationValueLabelSeparatorView.alpha = 1.0
+                let valueText = NSString(format: "%.01f", self.slices.last!)
+                self.valueLabel.text = "\(valueText)%"
+            },
+            completion: nil
+        )
+    }
+
     // MARK: - XYDoughnutChartDelegate
 
     func doughnutChart(doughnutChart: XYDoughnutChart!, didSelectSliceAtIndex index: UInt) {
         self.chartInformationView.setTitleText("\(self.chartLabels[Int(index)])")
         self.chartInformationView.setHidden(false, animated: true)
 
-        UIView.animateWithDuration(NSTimeInterval(kJBChartViewDefaultAnimationDuration) * 0.5,
+        UIView.animateWithDuration(
+            NSTimeInterval(kJBChartViewDefaultAnimationDuration) * 0.5,
             delay: 0.0,
             options: UIViewAnimationOptions.BeginFromCurrentState,
             animations: {
@@ -32,23 +63,27 @@ class RatioChartViewController: BaseChartViewController, XYDoughnutChartDelegate
                 let valueText = NSString(format: "%.01f", self.slices[Int(index)])
                 self.valueLabel.text = "\(valueText)%"
                 self.valueLabel.alpha = 1.0
-            }, completion: nil)
+            },
+            completion: nil
+        )
     }
 
     func doughnutChart(doughnutChart: XYDoughnutChart!, didDeselectSliceAtIndex index: UInt) {
         self.chartInformationView.setHidden(true, animated: true)
 
-        UIView.animateWithDuration(NSTimeInterval(kJBChartViewDefaultAnimationDuration) * 0.5,
+        UIView.animateWithDuration(
+            NSTimeInterval(kJBChartViewDefaultAnimationDuration) * 0.5,
             delay: 0.0,
             options: UIViewAnimationOptions.BeginFromCurrentState,
             animations: {
-                self.valueLabel.alpha = 0.0
                 self.informationValueLabelSeparatorView.alpha = 0.0
-            }, completion: { [unowned self] finish in
+            },
+            completion: { [unowned self] finish in
                 if finish {
-//                    self.displayLatestTotalChartInformation()
+                    self.displayLatestTotalChartInformation()
                 }
-        })
+            }
+        )
     }
 
     // MARK: - XYDoughnutChartDataSource
