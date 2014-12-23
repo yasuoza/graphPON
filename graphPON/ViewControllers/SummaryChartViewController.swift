@@ -1,4 +1,5 @@
 import UIKit
+import JBChartFramework
 
 class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDelegate, JBLineChartViewDataSource, HddServiceListTableViewControllerDelegate {
 

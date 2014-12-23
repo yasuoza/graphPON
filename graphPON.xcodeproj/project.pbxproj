@@ -520,7 +520,6 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage.build/iOS",
 					"$(PROJECT_DIR)",
-					/Users/ozaki/Downloads/JBChartFramework/Carthage.build/iOS,
 				);
 				INFOPLIST_FILE = graphPON/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -537,7 +536,6 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage.build/iOS",
 					"$(PROJECT_DIR)",
-					/Users/ozaki/Downloads/JBChartFramework/Carthage.build/iOS,
 				);
 				INFOPLIST_FILE = graphPON/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

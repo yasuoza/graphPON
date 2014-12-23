@@ -1,4 +1,6 @@
 import UIKit
+import JBChartFramework
+import XYDoughnutChart
 
 class RatioChartViewController: BaseChartViewController, XYDoughnutChartDelegate, XYDoughnutChartDataSource {
 
