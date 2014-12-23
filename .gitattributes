@@ -1,4 +1,4 @@
-*.pbxproj binary merge=mergepbx
+*.pbxproj merge=mergepbx
 *.xib binary merge=union
 *.storyboard binary merge=union
 *.h diff=objc
