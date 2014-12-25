@@ -1,3 +1,5 @@
 github "yasuoza/XYDoughnutChart" >= 0.1
 
-github "yasuoza/JBChartView" ~> 2.8.11
+github "yasuoza/JBChartView" "carthage"
+
+github "yasuoza/Alamofire" "carthage"

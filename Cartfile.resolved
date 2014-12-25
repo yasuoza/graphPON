@@ -1,2 +1,3 @@
-github "yasuoza/JBChartView" "2.8.11"
+github "yasuoza/Alamofire" "410fc56af03022cbdccfb82990da295f5bf28cc4"
+github "yasuoza/JBChartView" "032635f1dadf7fc7a06f34f1a2a69b0b94e82272"
 github "yasuoza/XYDoughnutChart" "0.1.0"
