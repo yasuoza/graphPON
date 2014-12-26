@@ -73,3 +73,6 @@ Pods/
 Carthage.build/
 Carthage.checkout/
 Carthage/
+
+# Development
+graphPON/configuration.plist
