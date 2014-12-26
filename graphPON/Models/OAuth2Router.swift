@@ -39,7 +39,7 @@ enum OAuth2Router: URLRequestConvertible {
         }
     }
 
-    // MARK: URLStringConvertible
+    // MARK: - URLStringConvertible
 
     var URLRequest: NSURLRequest {
         let URL = NSURL(string: OAuth2Router.baseURLString)!
@@ -55,6 +55,12 @@ enum OAuth2Router: URLRequestConvertible {
         }
 
         return Alamofire.ParameterEncoding.URL.encode(request, parameters: parameters).0
+    }
+
+    // MARK: - Singleton methods
+
+    static func validateOAuthCallbackURL(url: NSURL) -> Bool {
+        return url.host? == OAuth2Client.sharedClient.iijOAuthCallbackURI.host?
     }
 
 }
