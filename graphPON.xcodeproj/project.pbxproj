@@ -22,11 +22,16 @@
 		A83612821A3EB7E300BB1B3F /* RatioChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83612811A3EB7E300BB1B3F /* RatioChartViewController.swift */; };
 		A83612841A3EB9E100BB1B3F /* RatioChartContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83612831A3EB9E100BB1B3F /* RatioChartContainerView.swift */; };
 		A83F30EC1A2EF4AF00FE2D86 /* ChartInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83F30EB1A2EF4AF00FE2D86 /* ChartInformationView.swift */; };
+		A83F8ACF1A4C4BC1003A9318 /* configuration.plist in Resources */ = {isa = PBXBuildFile; fileRef = A83F8ACE1A4C4BC1003A9318 /* configuration.plist */; };
 		A8409FB91A16F4A8007573EC /* ChartViewContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8409FB81A16F4A8007573EC /* ChartViewContainerView.swift */; };
 		A8549EFB1A2C6E9C000308AD /* PacketLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8549EFA1A2C6E9C000308AD /* PacketLog.swift */; };
 		A8549EFE1A2C6F12000308AD /* PacketInfoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8549EFD1A2C6F12000308AD /* PacketInfoManager.swift */; };
 		A874C0AC1A4BDE7200887932 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A874C0AB1A4BDE7200887932 /* Alamofire.framework */; };
 		A874C0AD1A4BDE7200887932 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A874C0AB1A4BDE7200887932 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A874C0B91A4BF6EB00887932 /* OAuth2Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = A874C0B71A4BF6EB00887932 /* OAuth2Client.swift */; };
+		A874C0BA1A4BF6EB00887932 /* OAuth2Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = A874C0B81A4BF6EB00887932 /* OAuth2Router.swift */; };
+		A874C0BC1A4C01E900887932 /* OAuth2AccountStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A874C0BB1A4C01E900887932 /* OAuth2AccountStore.swift */; };
+		A874C0BE1A4C04A800887932 /* OAuth2Credential.swift in Sources */ = {isa = PBXBuildFile; fileRef = A874C0BD1A4C04A800887932 /* OAuth2Credential.swift */; };
 		A8867A051A30333C001D8578 /* ExtendedNavBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8867A041A30333C001D8578 /* ExtendedNavBarView.swift */; };
 		A8867A0C1A304E8B001D8578 /* HddServiceListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8867A0B1A304E8B001D8578 /* HddServiceListTableViewController.swift */; };
 		A8867A0F1A304EB0001D8578 /* HddServiceListTableViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8867A0E1A304EB0001D8578 /* HddServiceListTableViewControllerDelegate.swift */; };
@@ -82,10 +87,15 @@
 		A83612811A3EB7E300BB1B3F /* RatioChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RatioChartViewController.swift; path = ViewControllers/RatioChartViewController.swift; sourceTree = "<group>"; };
 		A83612831A3EB9E100BB1B3F /* RatioChartContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RatioChartContainerView.swift; path = Views/RatioChartContainerView.swift; sourceTree = "<group>"; };
 		A83F30EB1A2EF4AF00FE2D86 /* ChartInformationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChartInformationView.swift; path = Views/ChartInformationView.swift; sourceTree = "<group>"; };
+		A83F8ACE1A4C4BC1003A9318 /* configuration.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = configuration.plist; sourceTree = "<group>"; };
 		A8409FB81A16F4A8007573EC /* ChartViewContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChartViewContainerView.swift; path = Views/ChartViewContainerView.swift; sourceTree = "<group>"; };
 		A8549EFA1A2C6E9C000308AD /* PacketLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PacketLog.swift; path = Models/PacketLog.swift; sourceTree = "<group>"; };
 		A8549EFD1A2C6F12000308AD /* PacketInfoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PacketInfoManager.swift; path = Managers/PacketInfoManager.swift; sourceTree = "<group>"; };
 		A874C0AB1A4BDE7200887932 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		A874C0B71A4BF6EB00887932 /* OAuth2Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OAuth2Client.swift; path = Models/OAuth2Client.swift; sourceTree = "<group>"; };
+		A874C0B81A4BF6EB00887932 /* OAuth2Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OAuth2Router.swift; path = Models/OAuth2Router.swift; sourceTree = "<group>"; };
+		A874C0BB1A4C01E900887932 /* OAuth2AccountStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OAuth2AccountStore.swift; path = Models/OAuth2AccountStore.swift; sourceTree = "<group>"; };
+		A874C0BD1A4C04A800887932 /* OAuth2Credential.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OAuth2Credential.swift; path = Models/OAuth2Credential.swift; sourceTree = "<group>"; };
 		A8867A041A30333C001D8578 /* ExtendedNavBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExtendedNavBarView.swift; path = Views/ExtendedNavBarView.swift; sourceTree = "<group>"; };
 		A8867A0B1A304E8B001D8578 /* HddServiceListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HddServiceListTableViewController.swift; path = ViewControllers/HddServiceListTableViewController.swift; sourceTree = "<group>"; };
 		A8867A0E1A304EB0001D8578 /* HddServiceListTableViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HddServiceListTableViewControllerDelegate.swift; path = Protocols/HddServiceListTableViewControllerDelegate.swift; sourceTree = "<group>"; };
@@ -153,6 +163,7 @@
 				A80D19C51A11CEDA0067A055 /* AppDelegate.swift */,
 				A8867A0D1A304EA0001D8578 /* Protocols */,
 				A8549EFC1A2C6EFC000308AD /* Managers */,
+				A874C0B01A4BF45C00887932 /* OAuth2 */,
 				A8549EF71A2C6E47000308AD /* Models */,
 				A8B212BA1A11EEB6005988DC /* ViewControllers */,
 				A80D19E71A11D0BF0067A055 /* Views */,
@@ -167,6 +178,7 @@
 				A80748631A135617008ADC0A /* Extensions */,
 				A8B212BD1A11F028005988DC /* Bridge-Headers */,
 				A80D19C41A11CEDA0067A055 /* Info.plist */,
+				A83F8ACE1A4C4BC1003A9318 /* configuration.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -219,6 +231,17 @@
 				A8549EFD1A2C6F12000308AD /* PacketInfoManager.swift */,
 			);
 			name = Managers;
+			sourceTree = "<group>";
+		};
+		A874C0B01A4BF45C00887932 /* OAuth2 */ = {
+			isa = PBXGroup;
+			children = (
+				A874C0B71A4BF6EB00887932 /* OAuth2Client.swift */,
+				A874C0B81A4BF6EB00887932 /* OAuth2Router.swift */,
+				A874C0BB1A4C01E900887932 /* OAuth2AccountStore.swift */,
+				A874C0BD1A4C04A800887932 /* OAuth2Credential.swift */,
+			);
+			name = OAuth2;
 			sourceTree = "<group>";
 		};
 		A8867A0D1A304EA0001D8578 /* Protocols */ = {
@@ -350,6 +373,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A80D19CD1A11CEDA0067A055 /* Main.storyboard in Resources */,
+				A83F8ACF1A4C4BC1003A9318 /* configuration.plist in Resources */,
 				A80D19D21A11CEDA0067A055 /* LaunchScreen.xib in Resources */,
 				A80D19CF1A11CEDA0067A055 /* Images.xcassets in Resources */,
 			);
@@ -375,10 +399,12 @@
 				A8867A0C1A304E8B001D8578 /* HddServiceListTableViewController.swift in Sources */,
 				A83612821A3EB7E300BB1B3F /* RatioChartViewController.swift in Sources */,
 				A8BC58B51A1DE4B2006CD44D /* DailyChartViewController.swift in Sources */,
+				A874C0BE1A4C04A800887932 /* OAuth2Credential.swift in Sources */,
 				A8549EFE1A2C6F12000308AD /* PacketInfoManager.swift in Sources */,
 				A80748621A134417008ADC0A /* UIColor.swift in Sources */,
 				A8549EFB1A2C6E9C000308AD /* PacketLog.swift in Sources */,
 				A80D19C61A11CEDA0067A055 /* AppDelegate.swift in Sources */,
+				A874C0BC1A4C01E900887932 /* OAuth2AccountStore.swift in Sources */,
 				A8867A0F1A304EB0001D8578 /* HddServiceListTableViewControllerDelegate.swift in Sources */,
 				A8341F971A14836500B67594 /* ChartTooltipTipView.swift in Sources */,
 				A8409FB91A16F4A8007573EC /* ChartViewContainerView.swift in Sources */,
@@ -386,6 +412,8 @@
 				A8B212BC1A11EEDC005988DC /* SummaryChartViewController.swift in Sources */,
 				A8B39C391A41713E009F519E /* BaseChartViewController.swift in Sources */,
 				A8B212B81A11ED68005988DC /* BaseLineChartViewController.swift in Sources */,
+				A874C0B91A4BF6EB00887932 /* OAuth2Client.swift in Sources */,
+				A874C0BA1A4BF6EB00887932 /* OAuth2Router.swift in Sources */,
 				A88BB3701A2DDEA700E5AE4F /* HdoInfo.swift in Sources */,
 				A8867A051A30333C001D8578 /* ExtendedNavBarView.swift in Sources */,
 			);
