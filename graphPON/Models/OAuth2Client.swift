@@ -18,7 +18,7 @@ class OAuth2Client: NSObject {
                 if elem.first? == nil || elem.last? == nil {
                     return dict
                 }
-                dict[elem.first!] = String(elem.last!)
+                dict[elem.first!] = String(elem.last!).stringByRemovingPercentEncoding
                 return dict
         }
     }
@@ -28,7 +28,8 @@ class OAuth2Client: NSObject {
     override init() {
         super.init()
 
-        let configurationPlistPath = NSBundle.mainBundle().pathForResource("configuration", ofType: "plist")!
+        let configurationPlistPath = NSBundle(forClass: OAuth2Client.self)
+                                        .pathForResource("configuration", ofType: "plist")!
         let configuration = NSDictionary(contentsOfFile: configurationPlistPath)!
         let iijConfiguration = (configuration["IIJ_API"] as Dictionary<String, String>)
         self.iijDeveloperID = iijConfiguration["CLIENT_KEY"]

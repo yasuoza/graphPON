@@ -39,6 +39,13 @@
 		A8B212C01A1204B2005988DC /* LineChartFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B212BF1A1204B2005988DC /* LineChartFooterView.swift */; };
 		A8B39C391A41713E009F519E /* BaseChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B39C381A41713E009F519E /* BaseChartViewController.swift */; };
 		A8BC58B51A1DE4B2006CD44D /* DailyChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BC58B41A1DE4B2006CD44D /* DailyChartViewController.swift */; };
+		A8DCA1531A4E7B3E00CE73D3 /* OAuth2ClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DCA1521A4E7B3E00CE73D3 /* OAuth2ClientTests.swift */; };
+		A8DCA1541A4E7B7000CE73D3 /* OAuth2Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = A874C0B71A4BF6EB00887932 /* OAuth2Client.swift */; };
+		A8DCA1551A4E7C3900CE73D3 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A874C0AB1A4BDE7200887932 /* Alamofire.framework */; };
+		A8DCA1561A4E7C3900CE73D3 /* JBChartFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A804D4CC1A4AD62D00F22CFE /* JBChartFramework.framework */; };
+		A8DCA1571A4E7C3900CE73D3 /* XYDoughnutChart.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A804D4CD1A4AD62D00F22CFE /* XYDoughnutChart.framework */; };
+		A8DCA1581A4E7C5500CE73D3 /* OAuth2Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = A874C0B81A4BF6EB00887932 /* OAuth2Router.swift */; };
+		A8DCA15A1A4E810200CE73D3 /* configuration.plist in Resources */ = {isa = PBXBuildFile; fileRef = A8DCA1591A4E810200CE73D3 /* configuration.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,7 +87,6 @@
 		A80D19D11A11CEDA0067A055 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		A80D19D71A11CEDA0067A055 /* graphPONTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = graphPONTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A80D19DC1A11CEDA0067A055 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A80D19DD1A11CEDA0067A055 /* graphPONTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = graphPONTests.swift; sourceTree = "<group>"; };
 		A8341F941A147C6800B67594 /* ChartTooltipView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChartTooltipView.swift; path = Views/ChartTooltipView.swift; sourceTree = "<group>"; };
 		A8341F961A14836500B67594 /* ChartTooltipTipView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChartTooltipTipView.swift; path = Views/ChartTooltipTipView.swift; sourceTree = "<group>"; };
 		A83612811A3EB7E300BB1B3F /* RatioChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RatioChartViewController.swift; path = ViewControllers/RatioChartViewController.swift; sourceTree = "<group>"; };
@@ -103,6 +109,8 @@
 		A8B212BF1A1204B2005988DC /* LineChartFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LineChartFooterView.swift; path = Views/LineChartFooterView.swift; sourceTree = "<group>"; };
 		A8B39C381A41713E009F519E /* BaseChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseChartViewController.swift; path = ViewControllers/BaseChartViewController.swift; sourceTree = "<group>"; };
 		A8BC58B41A1DE4B2006CD44D /* DailyChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DailyChartViewController.swift; path = ViewControllers/DailyChartViewController.swift; sourceTree = "<group>"; };
+		A8DCA1521A4E7B3E00CE73D3 /* OAuth2ClientTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuth2ClientTests.swift; sourceTree = "<group>"; };
+		A8DCA1591A4E810200CE73D3 /* configuration.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = configuration.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +128,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8DCA1551A4E7C3900CE73D3 /* Alamofire.framework in Frameworks */,
+				A8DCA1561A4E7C3900CE73D3 /* JBChartFramework.framework in Frameworks */,
+				A8DCA1571A4E7C3900CE73D3 /* XYDoughnutChart.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -162,6 +173,7 @@
 				A8549EF71A2C6E47000308AD /* Models */,
 				A8B212BA1A11EEB6005988DC /* ViewControllers */,
 				A80D19E71A11D0BF0067A055 /* Views */,
+				A80748631A135617008ADC0A /* Extensions */,
 				A80D19C31A11CEDA0067A055 /* Supporting Files */,
 			);
 			path = graphPON;
@@ -170,7 +182,6 @@
 		A80D19C31A11CEDA0067A055 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				A80748631A135617008ADC0A /* Extensions */,
 				A8B212BD1A11F028005988DC /* Bridge-Headers */,
 				A80D19C41A11CEDA0067A055 /* Info.plist */,
 				A83F8ACE1A4C4BC1003A9318 /* configuration.plist */,
@@ -181,7 +192,7 @@
 		A80D19DA1A11CEDA0067A055 /* graphPONTests */ = {
 			isa = PBXGroup;
 			children = (
-				A80D19DD1A11CEDA0067A055 /* graphPONTests.swift */,
+				A8DCA1521A4E7B3E00CE73D3 /* OAuth2ClientTests.swift */,
 				A80D19DB1A11CEDA0067A055 /* Supporting Files */,
 			);
 			path = graphPONTests;
@@ -191,6 +202,7 @@
 			isa = PBXGroup;
 			children = (
 				A80D19DC1A11CEDA0067A055 /* Info.plist */,
+				A8DCA1591A4E810200CE73D3 /* configuration.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -255,8 +267,8 @@
 		A8B212BA1A11EEB6005988DC /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				A8867A0B1A304E8B001D8578 /* HddServiceListTableViewController.swift */,
 				A8B212B91A11EEAB005988DC /* CharViewController */,
+				A8867A0B1A304E8B001D8578 /* HddServiceListTableViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -371,6 +383,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8DCA15A1A4E810200CE73D3 /* configuration.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -410,7 +423,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A80D19DE1A11CEDA0067A055 /* graphPONTests.swift in Sources */,
+				A8DCA1541A4E7B7000CE73D3 /* OAuth2Client.swift in Sources */,
+				A8DCA1531A4E7B3E00CE73D3 /* OAuth2ClientTests.swift in Sources */,
+				A8DCA1581A4E7C5500CE73D3 /* OAuth2Router.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -572,6 +587,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -579,6 +595,7 @@
 				);
 				INFOPLIST_FILE = graphPONTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/graphPON.app/graphPON";
 			};
@@ -591,6 +608,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = graphPONTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
