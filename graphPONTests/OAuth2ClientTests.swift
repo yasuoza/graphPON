@@ -11,6 +11,7 @@ class OAuth2ClientTests: XCTestCase {
     func testInit() {
         let client = OAuth2Client()
         XCTAssertEqual(client.iijDeveloperID, "YOUR DEVLOPER ID HERE")
+        XCTAssertEqual(client.iijOAuthCallbackURI, NSURL(string: "app://your_callback_uri_here")!)
     }
     
 }

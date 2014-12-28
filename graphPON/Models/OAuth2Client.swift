@@ -31,7 +31,7 @@ class OAuth2Client: NSObject {
         let configurationPlistPath = NSBundle(forClass: OAuth2Client.self)
                                         .pathForResource("configuration", ofType: "plist")!
         let configuration = NSDictionary(contentsOfFile: configurationPlistPath)!
-        let iijConfiguration = (configuration["IIJ_API"] as Dictionary<String, String>)
+        let iijConfiguration = configuration["IIJ_API"] as Dictionary<String, String>
         self.iijDeveloperID = iijConfiguration["CLIENT_KEY"]
         self.iijOAuthCallbackURI = NSURL(string: iijConfiguration["OAUTH_CALLBACK_URI"]!)
     }
