@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if OAuth2Router.validateOAuthCallbackURL(url) {
             let parsedQuery = OAuth2Client.parseQuery(url.fragment)
             if let dict = parsedQuery {
-                let credential = OAuth2Credential(dictionary: dict, error: nil)
+                let credential = OAuth2Credential(dictionary: dict)
                 return credential.save()
             }
         }

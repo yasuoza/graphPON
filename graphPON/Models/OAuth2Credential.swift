@@ -35,7 +35,7 @@ class OAuth2Credential: NSObject, NSCoding {
 
     // MARK: - Instance methods
 
-    init(dictionary dictionaryValue: [NSObject : AnyObject], error: NSErrorPointer) {
+    init(dictionary dictionaryValue: [String: AnyObject]) {
         for (k, v) in dictionaryValue {
             switch k {
             case "access_token":
