@@ -3,10 +3,25 @@ import Alamofire
 
 class OAuth2Client: NSObject {
 
+    enum AuthorizationState {
+        case UnAuthorized
+        case Authorized(OAuth2Credential)
+    }
+
     let iijDeveloperID: String!
     let iijOAuthCallbackURI: NSURL!
 
-    var accessToken: String?
+    private(set) var credential: OAuth2Credential?
+    private(set) var state: AuthorizationState = AuthorizationState.UnAuthorized {
+        didSet {
+            switch self.state {
+            case .Authorized(let credential):
+                self.credential = credential
+            default:
+                self.credential = nil
+            }
+        }
+    }
 
     // MARK: - Singleton methods
 
@@ -23,6 +38,14 @@ class OAuth2Client: NSObject {
         }
     }
 
+    class var sharedClient: OAuth2Client {
+        struct Singleton {
+            static let instance = OAuth2Client()
+        }
+
+        return Singleton.instance
+    }
+
     // MARK: - Instance methods
 
     override init() {
@@ -34,22 +57,18 @@ class OAuth2Client: NSObject {
         let iijConfiguration = configuration["IIJ_API"] as [String: String]
         self.iijDeveloperID = iijConfiguration["CLIENT_KEY"]
         self.iijOAuthCallbackURI = NSURL(string: iijConfiguration["OAUTH_CALLBACK_URI"]!)
-    }
 
-    class var sharedClient: OAuth2Client {
-        struct Singleton {
-            static let instance = OAuth2Client()
+        if let credential = OAuth2Credential.restoreCredential() {
+            self.state = .Authorized(credential)
         }
-
-        return Singleton.instance
     }
 
-    func request(URLRequest: URLRequestConvertible) -> Alamofire.Request {
-        return Alamofire.request(URLRequest)
-    }
-
-    func authorize() {
+    func openOAuthAuthorizeURL() {
         UIApplication.sharedApplication().openURL(OAuth2Router.Authorize.URLRequest.URL)
+    }
+
+    func authorize(credential: OAuth2Credential) {
+        self.state = .Authorized(credential)
     }
 
 }
