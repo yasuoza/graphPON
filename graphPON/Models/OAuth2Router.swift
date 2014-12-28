@@ -49,7 +49,9 @@ enum OAuth2Router: URLRequestConvertible {
         switch self {
         case .LogPacket:
             request.setValue(OAuth2Client.sharedClient.iijDeveloperID, forHTTPHeaderField: "X-IIJmio-Developer")
-            request.setValue(OAuth2Client.sharedClient.accessToken, forHTTPHeaderField: "X-IIJmio-Authorization")
+            if let accessToken = OAuth2Client.sharedClient.credential?.accessToken {
+                request.setValue(accessToken, forHTTPHeaderField: "X-IIJmio-Authorization")
+            }
         default:
             () // noop
         }
