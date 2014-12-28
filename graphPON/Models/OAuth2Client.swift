@@ -10,11 +10,11 @@ class OAuth2Client: NSObject {
 
     // MARK: - Singleton methods
 
-    class func parseQuery(query: String?) -> Dictionary<String, String>? {
+    class func parseQuery(query: String?) -> [String: String]? {
         return query?.componentsSeparatedByString("&")
             .map { keyValue in
                 keyValue.componentsSeparatedByString("=")
-            }.reduce([:] as Dictionary<String, String>) { (var dict, elem) in
+            }.reduce([:] as [String: String]) { (var dict, elem) in
                 if elem.first? == nil || elem.last? == nil {
                     return dict
                 }
@@ -31,7 +31,7 @@ class OAuth2Client: NSObject {
         let configurationPlistPath = NSBundle(forClass: OAuth2Client.self)
                                         .pathForResource("configuration", ofType: "plist")!
         let configuration = NSDictionary(contentsOfFile: configurationPlistPath)!
-        let iijConfiguration = configuration["IIJ_API"] as Dictionary<String, String>
+        let iijConfiguration = configuration["IIJ_API"] as [String: String]
         self.iijDeveloperID = iijConfiguration["CLIENT_KEY"]
         self.iijOAuthCallbackURI = NSURL(string: iijConfiguration["OAUTH_CALLBACK_URI"]!)
     }
