@@ -61,7 +61,7 @@ enum OAuth2Router: URLRequestConvertible {
 
     // MARK: - Singleton methods
 
-    static func validateOAuthCallbackURL(url: NSURL) -> Bool {
+    static func validOAuthCallbackURL(url: NSURL) -> Bool {
         return url.host? == OAuth2Client.sharedClient.iijOAuthCallbackURI.host?
     }
 

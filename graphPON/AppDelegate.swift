@@ -13,7 +13,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
-        if OAuth2Router.validateOAuthCallbackURL(url) {
+        if OAuth2Router.validOAuthCallbackURL(url) {
             let parsedQuery = OAuth2Client.parseQuery(url.fragment)
             if let dict = parsedQuery {
                 let credential = OAuth2Credential(dictionary: dict)
