@@ -61,5 +61,21 @@ class OAuth2ClientTests: XCTestCase {
             XCTFail("client state should be Authorized")
         }
     }
-    
+
+    func testDeauthorized() {
+        let client = OAuth2Client()
+        XCTAssertNil(client.credential)
+        let cred = OAuth2Credential(dictionary: ["access_token": "at"])
+        client.authorized(credential: cred)
+        XCTAssertEqual(client.credential!, cred)
+        client.deauthorize()
+        XCTAssertNil(client.credential)
+        switch client.state {
+        case OAuth2Client.AuthorizationState.UnAuthorized:
+            break
+        default:
+            XCTFail("client state should be UnAuthorized")
+        }
+    }
+
 }

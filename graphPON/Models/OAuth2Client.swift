@@ -76,4 +76,8 @@ class OAuth2Client: NSObject {
         self.state = .Authorized(cred)
     }
 
+    func deauthorize() {
+        self.state = .UnAuthorized
+    }
+
 }
