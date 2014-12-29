@@ -27,7 +27,8 @@ class OAuth2ClientTests: XCTestCase {
         XCTAssertEqual(client.iijDeveloperID, "YOUR DEVLOPER ID HERE")
         XCTAssertEqual(client.iijOAuthCallbackURI, NSURL(string: "app://your_callback_uri_here")!)
         switch client.state {
-        case OAuth2Client.AuthorizationState.UnAuthorized: ()
+        case OAuth2Client.AuthorizationState.UnAuthorized:
+            break
         default:
             XCTFail("client state should be UnAuthorized")
         }

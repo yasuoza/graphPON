@@ -58,8 +58,13 @@ class OAuth2Client: NSObject {
         self.iijDeveloperID = iijConfiguration["CLIENT_KEY"]
         self.iijOAuthCallbackURI = NSURL(string: iijConfiguration["OAUTH_CALLBACK_URI"]!)
 
-        if let credential = OAuth2Credential.restoreCredential() {
+        if let credential = OAuth2Credential.restoreCredential()? {
             self.state = .Authorized(credential)
+
+            // willSet and didSet observers are not called when a property
+            // is set in an initializer before delegation takes place.
+            // https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Properties.html#//apple_ref/doc/uid/TP40014097-CH14-XID_390
+            self.credential = credential
         }
     }
 
