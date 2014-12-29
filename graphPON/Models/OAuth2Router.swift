@@ -53,7 +53,7 @@ enum OAuth2Router: URLRequestConvertible {
                 request.setValue(accessToken, forHTTPHeaderField: "X-IIJmio-Authorization")
             }
         default:
-            () // noop
+            break
         }
 
         return Alamofire.ParameterEncoding.URL.encode(request, parameters: parameters).0

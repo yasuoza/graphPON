@@ -47,7 +47,7 @@ class OAuth2Credential: NSObject, NSCoding {
                     self.expiryDate = NSDate(timeIntervalSinceNow: NSTimeInterval(interval))
                 }
             default:
-                () // noop
+                break
             }
         }
     }
@@ -59,7 +59,7 @@ class OAuth2Credential: NSObject, NSCoding {
 
         let status = SecItemAdd(attrs, nil)
         if status == OSStatus(errSecDuplicateItem) {
-            if destroy() {
+            if OAuth2Credential.restoreCredential()?.destroy() == true {
                 return SecItemAdd(attrs, nil) == OSStatus(errSecSuccess)
             }
         }

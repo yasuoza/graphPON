@@ -35,6 +35,13 @@ class OAuth2CredentialTests: XCTestCase {
         XCTAssert(credential.save())
     }
 
+    func testOverrideSave() {
+        let anotherCredential = OAuth2Credential(dictionary: credentialDict)
+        XCTAssert(anotherCredential.save())
+        XCTAssertEqual(anotherCredential.accessToken!, credentialDict["access_token"]!)
+        XCTAssertEqual(anotherCredential.tokenType!, credentialDict["token_type"]!)
+    }
+
     func testRestoreCredential() {
         credential.save()
         let restoredCrdtl = OAuth2Credential.restoreCredential()!
