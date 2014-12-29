@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if let dict = parsedQuery {
                 let credential = OAuth2Credential(dictionary: dict)
                 if credential.save() {
-                    OAuth2Client.sharedClient.authorize(credential)
+                    OAuth2Client.sharedClient.authorized(credential: credential)
                     return true
                 }
             }

@@ -51,7 +51,7 @@ class OAuth2ClientTests: XCTestCase {
         let client = OAuth2Client()
         XCTAssertNil(client.credential)
         let cred = OAuth2Credential(dictionary: ["access_token": "at"])
-        client.authorize(cred)
+        client.authorized(credential: cred)
         XCTAssertEqual(client.credential!, cred)
         switch client.state {
         case OAuth2Client.AuthorizationState.Authorized(let credential):
