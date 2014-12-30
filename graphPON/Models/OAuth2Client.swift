@@ -8,6 +8,13 @@ class OAuth2Client: NSObject {
         case Authorized(OAuth2Credential)
     }
 
+    class var OAuthDidAuthorizeNotification: String {
+        struct Notification {
+            static let name = "graphPON.OAuthDidAuthorizeNotification"
+        }
+        return Notification.name
+    }
+
     let iijDeveloperID: String!
     let iijOAuthCallbackURI: NSURL!
 
@@ -17,6 +24,10 @@ class OAuth2Client: NSObject {
             switch self.state {
             case .Authorized(let credential):
                 self.credential = credential
+                NSNotificationCenter.defaultCenter().postNotificationName(
+                    OAuth2Client.OAuthDidAuthorizeNotification,
+                    object: nil
+                )
             default:
                 self.credential = nil
             }
