@@ -41,7 +41,7 @@ class OAuth2ClientTests: XCTestCase {
         XCTAssertEqual(client.iijDeveloperID, "YOUR DEVLOPER ID HERE")
         XCTAssertEqual(client.iijOAuthCallbackURI, NSURL(string: "app://your_callback_uri_here")!)
         switch client.state {
-        case OAuth2Client.AuthorizationState.Authorized(let credential):
+        case let OAuth2Client.AuthorizationState.Authorized(credential):
             XCTAssertEqual(credential.accessToken!, "at")
         default:
             XCTFail("client state should be Authorized")
@@ -55,7 +55,7 @@ class OAuth2ClientTests: XCTestCase {
         client.authorized(credential: cred)
         XCTAssertEqual(client.credential!, cred)
         switch client.state {
-        case OAuth2Client.AuthorizationState.Authorized(let credential):
+        case let OAuth2Client.AuthorizationState.Authorized(credential):
             XCTAssertEqual(credential.accessToken!, "at")
         default:
             XCTFail("client state should be Authorized")

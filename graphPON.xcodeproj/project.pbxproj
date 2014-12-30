@@ -256,7 +256,7 @@
 			name = Protocols;
 			sourceTree = "<group>";
 		};
-		A8B212B91A11EEAB005988DC /* CharViewController */ = {
+		A8B212B91A11EEAB005988DC /* CharViewControllers */ = {
 			isa = PBXGroup;
 			children = (
 				A8B39C381A41713E009F519E /* BaseChartViewController.swift */,
@@ -265,13 +265,13 @@
 				A8BC58B41A1DE4B2006CD44D /* DailyChartViewController.swift */,
 				A83612811A3EB7E300BB1B3F /* RatioChartViewController.swift */,
 			);
-			name = CharViewController;
+			name = CharViewControllers;
 			sourceTree = "<group>";
 		};
 		A8B212BA1A11EEB6005988DC /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				A8B212B91A11EEAB005988DC /* CharViewController */,
+				A8B212B91A11EEAB005988DC /* CharViewControllers */,
 				A8867A0B1A304E8B001D8578 /* HddServiceListTableViewController.swift */,
 			);
 			name = ViewControllers;
