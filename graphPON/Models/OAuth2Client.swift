@@ -76,6 +76,11 @@ class OAuth2Client: NSObject {
             // is set in an initializer before delegation takes place.
             // https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Properties.html#//apple_ref/doc/uid/TP40014097-CH14-XID_390
             self.credential = credential
+
+            NSNotificationCenter.defaultCenter().postNotificationName(
+                OAuth2Client.OAuthDidAuthorizeNotification,
+                object: nil
+            )
         }
     }
 
