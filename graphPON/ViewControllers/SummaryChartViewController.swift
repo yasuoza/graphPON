@@ -1,5 +1,6 @@
 import UIKit
 import JBChartFramework
+import Alamofire
 
 class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDelegate, JBLineChartViewDataSource, HddServiceListTableViewControllerDelegate {
 
@@ -18,7 +19,7 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
     private let chartLabels = ["00000000000", "11111111111", "22222222222", "Total"]
 
     private var chartDataSegment: ChartDataSegment = .All
-    private var chartData: Array<Array<CGFloat>>!
+    private var chartData: [[CGFloat]]! = []
     private var horizontalSymbols: [NSString]!
 
     var amounts = [
@@ -31,9 +32,6 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.initFakeData()
-        self.chartViewContainerView.chartView.maximumValue = self.chartData.last!.last!
 
         self.view.backgroundColor = self.mode.backgroundColor()
         self.navigationItem.title = self.mode.titleText()
@@ -52,16 +50,14 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
             kJBLineChartViewControllerChartFooterHeight + kJBLineChartViewControllerChartPadding
             ))
         footerView.backgroundColor = UIColor.clearColor()
-        footerView.leftLabel.text = self.horizontalSymbols.first
         footerView.leftLabel.textColor = UIColor.whiteColor()
-        footerView.rightLabel.text = self.horizontalSymbols.last
         footerView.rightLabel.textColor = UIColor.whiteColor()
-        footerView.sectionCount = self.largestLineData().count
+        footerView.hidden = true
         self.chartViewContainerView.chartView.footerView = footerView
 
-        self.chartInformationView.setHidden(true)
+        self.chartInformationView.hidden = true
 
-        self.navigationItem.title = "hddservice: service00"
+        self.navigationItem.title = "Summary data"
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -72,15 +68,19 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
             object: nil,
             queue: nil,
             usingBlock: { [unowned self] notification in
-                self.reloadView()
+                self.fetchAndReloadLatestData()
         })
     }
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
 
-        self.displayLatestTotalChartInformation()
-        self.chartViewContainerView.chartView.setState(JBChartViewState.Expanded, animated: true)
+        switch OAuth2Client.sharedClient.state {
+        case OAuth2Client.AuthorizationState.UnAuthorized:
+            PromptLoginAlertView.initWithPreset(delegate: self).show()
+        case OAuth2Client.AuthorizationState.Authorized:
+            self.fetchAndReloadLatestData()
+        }
     }
 
     deinit {
@@ -97,8 +97,44 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
         }
     }
 
-    // MARK: - Actions
-    
+    func fetchAndReloadLatestData() {
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+        Alamofire.request(OAuth2Router.LogPacket)
+            .validate(statusCode: 200..<300)
+            .responseJSON { [unowned self] (_, _, JSON, error) in
+                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                self.loadingIndicatorView.stopAnimating()
+
+                if error != nil {
+                    PromptLoginAlertView.initWithPreset(delegate: self).show()
+                    return
+                }
+
+                if let json = JSON as? [String: AnyObject] {
+                    let returnCode = json["returnCode"] as? String
+                    if returnCode != "OK" {
+                        PromptLoginAlertView.initWithPreset(delegate: self).show()
+                    }
+                    self.reloadChartView()
+                }
+        }
+    }
+
+    func reloadChartView() {
+        self.initFakeData()
+        self.navigationItem.title = "hddservice: service00"
+        self.chartViewContainerView.chartView.maximumValue = self.chartData.last!.last!
+        if let footerView = self.chartViewContainerView.chartView.footerView as? LineChartFooterView {
+            footerView.leftLabel.text = self.horizontalSymbols.first
+            footerView.rightLabel.text = self.horizontalSymbols.last
+            footerView.sectionCount = self.largestLineData().count
+            footerView.hidden = false
+        }
+        self.displayLatestTotalChartInformation()
+        self.chartViewContainerView.reloadChartData()
+        self.chartViewContainerView.chartView.setState(JBChartViewState.Expanded, animated: true)
+    }
+
     @IBAction func chartSegmentedControlValueDidChanged(segmentedControl: UISegmentedControl) {
         self.chartDataSegment = ChartDataSegment(rawValue: segmentedControl.selectedSegmentIndex)!
         initFakeData()
