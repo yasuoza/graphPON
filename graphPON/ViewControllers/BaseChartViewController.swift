@@ -1,7 +1,8 @@
 import UIKit
 
-class BaseChartViewController: UIViewController {
+class BaseChartViewController: UIViewController, UIAlertViewDelegate {
 
+    @IBOutlet weak var loadingIndicatorView: UIActivityIndicatorView!
     @IBOutlet weak var chartInformationView: ChartInformationView!
     @IBOutlet weak var informationValueLabelSeparatorView: UIView!
     @IBOutlet weak var valueLabel: UILabel!
@@ -28,6 +29,18 @@ class BaseChartViewController: UIViewController {
             }
         }
         return nil
+    }
+
+    // MARK: - UIAlertViewDelegate
+
+    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
+        switch buttonIndex {
+        case 0:
+            OAuth2Client.sharedClient.openOAuthAuthorizeURL()
+        default:
+            // Close alertView
+            break
+        }
     }
 
 }

@@ -342,6 +342,9 @@
                                     </mask>
                                 </variation>
                             </view>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="203-70-Mle">
+                                <rect key="frame" x="290" y="290" width="37" height="37"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -350,8 +353,10 @@
                             <constraint firstItem="U8s-Fg-9Wb" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leadingMargin" constant="-16" id="9GO-89-Rh2"/>
                             <constraint firstItem="yQL-KM-CDt" firstAttribute="top" secondItem="U8s-Fg-9Wb" secondAttribute="bottom" id="ANr-UQ-c94"/>
                             <constraint firstItem="U8s-Fg-9Wb" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" id="IK7-fg-GMk"/>
+                            <constraint firstAttribute="centerX" secondItem="203-70-Mle" secondAttribute="centerX" constant="-8.5" id="KPr-yP-Ne8"/>
                             <constraint firstAttribute="trailingMargin" secondItem="yQL-KM-CDt" secondAttribute="trailing" id="Rca-xx-KyD"/>
                             <constraint firstItem="GAO-Cl-Wes" firstAttribute="top" secondItem="yQL-KM-CDt" secondAttribute="bottom" id="YWE-5M-cZs"/>
+                            <constraint firstAttribute="centerY" secondItem="203-70-Mle" secondAttribute="centerY" constant="-8.5" id="dSC-JQ-1zJ"/>
                             <constraint firstItem="yQL-KM-CDt" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leadingMargin" id="iUa-j0-Wfd"/>
                             <constraint firstAttribute="centerX" secondItem="U8s-Fg-9Wb" secondAttribute="centerX" id="yCJ-BY-QCS"/>
                         </constraints>
@@ -376,6 +381,7 @@
                         <outlet property="chartInformationView" destination="ijf-0g-1O4" id="dBg-OM-o6Z"/>
                         <outlet property="chartViewContainerView" destination="OYq-J2-cFd" id="a3Z-FA-vhX"/>
                         <outlet property="informationValueLabelSeparatorView" destination="dGs-Or-dAF" id="A9i-kn-473"/>
+                        <outlet property="loadingIndicatorView" destination="203-70-Mle" id="Qa7-Jk-aJT"/>
                         <outlet property="valueLabel" destination="jES-Jp-I3I" id="ma7-Oh-2LJ"/>
                     </connections>
                 </viewController>

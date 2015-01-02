@@ -64,12 +64,30 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
         self.navigationItem.title = "hddservice: service00"
     }
 
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+
+        NSNotificationCenter.defaultCenter().addObserverForName(
+            OAuth2Client.OAuthDidAuthorizeNotification,
+            object: nil,
+            queue: nil,
+            usingBlock: { [unowned self] notification in
+                self.reloadView()
+        })
+    }
+
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
 
         self.displayLatestTotalChartInformation()
         self.chartViewContainerView.chartView.setState(JBChartViewState.Expanded, animated: true)
     }
+
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+
+    // MARK: - Actions
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "HddServiceListFromSummaryChartSegue" {
