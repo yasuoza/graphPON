@@ -1,6 +1,7 @@
 import UIKit
 import JBChartFramework
 import Alamofire
+import SwiftyJSON
 
 class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDelegate, JBLineChartViewDataSource, HddServiceListTableViewControllerDelegate {
 
@@ -16,17 +17,13 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
     private let kJBLineChartViewControllerChartFooterHeight  = CGFloat(20)
 
     private let mode: Mode = .Summary
-    private let chartLabels = ["00000000000", "11111111111", "22222222222", "Total"]
 
     private var chartDataSegment: ChartDataSegment = .All
+    private var hddServiceCodes: [String] = []
+    private var packetLogs: [[PacketLog]] = []
+    private var chartLabels: [String] = []
     private var chartData: [[CGFloat]]! = []
-    private var horizontalSymbols: [NSString]!
-
-    var amounts = [
-        [21, 11, 32, 14, 67, 11, 66, 45, 100, 44, 31, 38, 53, 70, 2, 1, 33, 52, 34, 11, 3],
-        [7, 3, 12, 11, 4, 37, 6, 33, 1, 18, 1, 1, 1, 12, 1, 1, 1, 15, 1, 1, 1],
-        [1, 1, 1, 65, 1, 22, 18, 23, 12, 13, 2, 14, 2, 29, 8, 1, 7, 5, 1, 4, 20]
-    ]
+    private var horizontalSymbols: [String] = []
 
     // MARK: - View Lifecycle
 
@@ -43,12 +40,14 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
         self.chartViewContainerView.chartView.footerPadding = kJBAreaChartViewControllerChartFooterPadding
         self.chartViewContainerView.chartView.backgroundColor = self.mode.backgroundColor()
 
-        let footerView = LineChartFooterView(frame: CGRectMake(
-            self.chartViewContainerView.chartView.frame.origin.x,
-            ceil(self.view.bounds.size.height * 0.5) - ceil(kJBLineChartViewControllerChartFooterHeight * 0.5),
-            self.chartViewContainerView.chartView.bounds.width,
-            kJBLineChartViewControllerChartFooterHeight + kJBLineChartViewControllerChartPadding
-            ))
+        let footerView = LineChartFooterView(
+            frame: CGRectMake(
+                self.chartViewContainerView.chartView.frame.origin.x,
+                ceil(self.view.bounds.size.height * 0.5) - ceil(kJBLineChartViewControllerChartFooterHeight * 0.5),
+                self.chartViewContainerView.chartView.bounds.width,
+                kJBLineChartViewControllerChartFooterHeight + kJBLineChartViewControllerChartPadding
+            )
+        )
         footerView.backgroundColor = UIColor.clearColor()
         footerView.leftLabel.textColor = UIColor.whiteColor()
         footerView.rightLabel.textColor = UIColor.whiteColor()
@@ -94,14 +93,16 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
             let navigationController = segue.destinationViewController as UINavigationController
             let hddServiceListViewController = navigationController.topViewController as HddServiceListTableViewController
             hddServiceListViewController.delegate = self
+            hddServiceListViewController.hddServices = hddServiceCodes
         }
     }
 
     func fetchAndReloadLatestData() {
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+
         Alamofire.request(OAuth2Router.LogPacket)
             .validate(statusCode: 200..<300)
-            .responseJSON { [unowned self] (_, _, JSON, error) in
+            .responseJSON { [unowned self] (_, _, json, error) in
                 UIApplication.sharedApplication().networkActivityIndicatorVisible = false
                 self.loadingIndicatorView.stopAnimating()
 
@@ -110,11 +111,33 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
                     return
                 }
 
-                if let json = JSON as? [String: AnyObject] {
-                    let returnCode = json["returnCode"] as? String
-                    if returnCode != "OK" {
-                        PromptLoginAlertView.initWithPreset(delegate: self).show()
+                let json = JSON(json!)
+
+                let dateFormatter = NSDateFormatter()
+                dateFormatter.dateFormat = "yyyyMMdd"
+                dateFormatter.locale = NSLocale(localeIdentifier: "en_US")
+
+                if json["returnCode"].string != "OK" {
+                    PromptLoginAlertView.initWithPreset(delegate: self).show()
+                    return
+                }
+
+                for (hddArrayIndexStr: String, hddServiceJSON: JSON) in json["packetLogInfo"] {
+                    self.hddServiceCodes.append(hddServiceJSON["hddServiceCode"].stringValue)
+
+                    for (hdoArrayIndexStr: String, hdoServiceJson: JSON) in hddServiceJSON["hdoInfo"] {
+                        self.chartLabels.append(hdoServiceJson["hdoServiceCode"].stringValue)
+
+                        let hdoPacketLogAmounts = hdoServiceJson["packetLog"].arrayValue.map { packetLogJson -> PacketLog in
+                            return PacketLog(
+                                date: dateFormatter.dateFromString(packetLogJson["date"].stringValue)!,
+                                withCoupon: packetLogJson["withCoupon"].intValue,
+                                withoutCoupon: packetLogJson["withoutCoupon"].intValue
+                            )
+                        }
+                        self.packetLogs.append(hdoPacketLogAmounts)
                     }
+                    self.chartLabels.append("Total")
                     self.reloadChartView()
                 }
         }
@@ -122,12 +145,12 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
 
     func reloadChartView() {
         self.initFakeData()
-        self.navigationItem.title = "hddservice: service00"
+        self.navigationItem.title = self.hddServiceCodes.first
         self.chartViewContainerView.chartView.maximumValue = self.chartData.last!.last!
         if let footerView = self.chartViewContainerView.chartView.footerView as? LineChartFooterView {
             footerView.leftLabel.text = self.horizontalSymbols.first
             footerView.rightLabel.text = self.horizontalSymbols.last
-            footerView.sectionCount = self.largestLineData().count
+            footerView.sectionCount = self.chartData.first?.count ?? 0
             footerView.hidden = false
         }
         self.displayLatestTotalChartInformation()
@@ -169,38 +192,31 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
     // MARK: - Private methods
 
     func initFakeData() {
-        var amountSummation = [CGFloat](count: amounts.first!.count, repeatedValue: 0.0)
-        let multipler = self.chartDataSegment.rawValue == 0 ? 1.0 : CGFloat(2.0 / 3.0) / CGFloat(self.chartDataSegment.rawValue)
-        self.chartData = self.amounts.map { packets -> [CGFloat] in
-            var sum = CGFloat(0.0)
-            var index = 0
-            return packets.map { packet -> CGFloat in
-                sum += CGFloat(packet) * multipler
-                amountSummation[index++] += sum
-                return sum
-            }
-        }
-        self.chartData.append(amountSummation)
-
-        // 今月の日付を表示
-        let today = NSDate()
-        let calendar = NSCalendar(calendarIdentifier: NSGregorianCalendar)!
-        var comps = calendar.components(
-            (NSCalendarUnit.CalendarUnitYear|NSCalendarUnit.CalendarUnitMonth|NSCalendarUnit.CalendarUnitDay), fromDate: today
-        )
+        var amountSummation = [CGFloat](count: packetLogs.first!.count, repeatedValue: 0.0)
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "MM/dd"
         dateFormatter.locale = NSLocale(localeIdentifier: "en_US")
 
-        horizontalSymbols = (1...largestLineData().count).map {
-            comps.day = $0
-            let date = calendar.dateFromComponents(comps)!
-            return dateFormatter.stringFromDate(date)
+        self.chartData = self.packetLogs.map { packets -> [CGFloat] in
+            var sum = CGFloat(0.0)
+            var index = 0
+            return packets.map { packet -> CGFloat in
+                switch self.chartDataSegment.rawValue {
+                case 0:
+                    sum += CGFloat(packet.withCoupon + packet.withoutCoupon)
+                case 1:
+                    sum += CGFloat(packet.withCoupon)
+                case 2:
+                    sum += CGFloat(packet.withoutCoupon)
+                default:
+                    break
+                }
+                amountSummation[index++] += sum
+                self.horizontalSymbols.append(dateFormatter.stringFromDate(packet.date))
+                return sum
+            }
         }
-    }
-
-    func largestLineData() -> NSArray {
-        return self.chartData[0]
+        self.chartData.append(amountSummation)
     }
 
     // MARK: - JBLineChartViewDataSource
@@ -210,7 +226,7 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
     }
 
     func lineChartView(lineChartView: JBLineChartView!, numberOfVerticalValuesAtLineIndex lineIndex: UInt) -> UInt {
-        return UInt(largestLineData().count)
+        return UInt(self.chartData.first?.count ?? 0)
     }
 
     func lineChartView(lineChartView: JBLineChartView!, smoothLineAtLineIndex lineIndex: UInt) -> Bool {
@@ -298,14 +314,14 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
 
     // MARK: - HddServiceListTableViewControllerDelegate
 
-    func hddServiceDidSelected(hddServiceString: String) {
-        self.navigationItem.title = "hddservice: \(hddServiceString)"
+    func hddServiceDidSelected(hddServiceIndex: Int) {
+        self.navigationItem.title = self.hddServiceCodes[hddServiceIndex]
 
-        func randomly(a: Int, b: Int) -> Bool {
+        func randomly(a: PacketLog, b: PacketLog) -> Bool {
             return arc4random() % 2 == 0
         }
 
-        self.amounts = (0...2).map { sorted(self.amounts[$0], randomly) }
+        self.packetLogs = (0...2).map { sorted(self.packetLogs[$0], randomly) }
         initFakeData()
         self.chartViewContainerView.reloadChartData()
     }

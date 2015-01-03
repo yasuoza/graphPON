@@ -2,9 +2,9 @@ import UIKit
 
 class HddServiceListTableViewController: UITableViewController {
 
-    let services = ["service00", "service01", "service02"]
+    var hddServices: [String] = []
 
-    var delegate: HddServiceListTableViewControllerDelegate?
+    weak var delegate: HddServiceListTableViewControllerDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,21 +34,21 @@ class HddServiceListTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.services.count
+        return self.hddServices.count
     }
 
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("HddServiceCell", forIndexPath: indexPath) as UITableViewCell
 
-        cell.textLabel?.text = self.services[indexPath.row]
+        cell.textLabel?.text = self.hddServices[indexPath.row]
 
         return cell
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         dismissViewControllerAnimated(true, completion: nil)
-        delegate?.hddServiceDidSelected(self.services[indexPath.row])
+        delegate?.hddServiceDidSelected(indexPath.row)
     }
 
     /*

@@ -1,3 +1,3 @@
-protocol HddServiceListTableViewControllerDelegate {
-    func hddServiceDidSelected(hddServiceString: String) -> ()
+protocol HddServiceListTableViewControllerDelegate: class {
+    func hddServiceDidSelected(hddServiceIndex: Int) -> ()
 }

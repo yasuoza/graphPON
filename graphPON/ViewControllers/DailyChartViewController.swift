@@ -205,8 +205,8 @@ class DailyChartViewController: BaseLineChartViewController, JBBarChartViewDeleg
 
     // MARK: - HddServiceListTableViewControllerDelegate
 
-    func hddServiceDidSelected(hddServiceString: String) {
-        self.navigationItem.title = "hddservice: \(hddServiceString)"
+    func hddServiceDidSelected(hddServiceIndex: Int) {
+        self.navigationItem.title = "hddservice: \(hddServiceIndex)"
 
         func randomly(a: Int, b: Int) -> Bool {
             return arc4random() % 2 == 0
