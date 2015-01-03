@@ -25,6 +25,8 @@
 		A83F8ACF1A4C4BC1003A9318 /* configuration.plist in Resources */ = {isa = PBXBuildFile; fileRef = A83F8ACE1A4C4BC1003A9318 /* configuration.plist */; };
 		A8409FB91A16F4A8007573EC /* ChartViewContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8409FB81A16F4A8007573EC /* ChartViewContainerView.swift */; };
 		A8549EFB1A2C6E9C000308AD /* PacketLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8549EFA1A2C6E9C000308AD /* PacketLog.swift */; };
+		A85FA8A71A5798FC00992948 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A85FA8A61A5798FC00992948 /* SwiftyJSON.framework */; };
+		A85FA8A81A5798FC00992948 /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A85FA8A61A5798FC00992948 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A874C0AC1A4BDE7200887932 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A874C0AB1A4BDE7200887932 /* Alamofire.framework */; };
 		A874C0AD1A4BDE7200887932 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A874C0AB1A4BDE7200887932 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A874C0B91A4BF6EB00887932 /* OAuth2Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = A874C0B71A4BF6EB00887932 /* OAuth2Client.swift */; };
@@ -68,6 +70,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				A85FA8A81A5798FC00992948 /* SwiftyJSON.framework in Embed Frameworks */,
 				A804D4D31A4AD63C00F22CFE /* XYDoughnutChart.framework in Embed Frameworks */,
 				A874C0AD1A4BDE7200887932 /* Alamofire.framework in Embed Frameworks */,
 				A804D4D11A4AD63C00F22CFE /* JBChartFramework.framework in Embed Frameworks */,
@@ -98,6 +101,7 @@
 		A83F8ACE1A4C4BC1003A9318 /* configuration.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = configuration.plist; sourceTree = "<group>"; };
 		A8409FB81A16F4A8007573EC /* ChartViewContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChartViewContainerView.swift; path = Views/ChartViewContainerView.swift; sourceTree = "<group>"; };
 		A8549EFA1A2C6E9C000308AD /* PacketLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PacketLog.swift; path = Models/PacketLog.swift; sourceTree = "<group>"; };
+		A85FA8A61A5798FC00992948 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 		A874C0AB1A4BDE7200887932 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		A874C0B71A4BF6EB00887932 /* OAuth2Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OAuth2Client.swift; path = Models/OAuth2Client.swift; sourceTree = "<group>"; };
 		A874C0B81A4BF6EB00887932 /* OAuth2Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OAuth2Router.swift; path = Models/OAuth2Router.swift; sourceTree = "<group>"; };
@@ -123,6 +127,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A85FA8A71A5798FC00992948 /* SwiftyJSON.framework in Frameworks */,
 				A804D4D21A4AD63C00F22CFE /* XYDoughnutChart.framework in Frameworks */,
 				A874C0AC1A4BDE7200887932 /* Alamofire.framework in Frameworks */,
 				A804D4D01A4AD63C00F22CFE /* JBChartFramework.framework in Frameworks */,
@@ -291,6 +296,7 @@
 		F46B956D86CB6147453819A7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A85FA8A61A5798FC00992948 /* SwiftyJSON.framework */,
 				A874C0AB1A4BDE7200887932 /* Alamofire.framework */,
 				A804D4CC1A4AD62D00F22CFE /* JBChartFramework.framework */,
 				A804D4CD1A4AD62D00F22CFE /* XYDoughnutChart.framework */,
