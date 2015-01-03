@@ -31,7 +31,7 @@ class PacketInfoManager: NSObject {
         arr0.map { (var val: Int) -> () in
             comps.day = ++dateCounter
             let date = calendar.dateFromComponents(comps)!
-            let packetLog = PacketLog(date: date, withCoupon: UInt(val), withoutCoupon: 0)
+            let packetLog = PacketLog(date: date, withCoupon: val, withoutCoupon: 0)
             hdoInfo0.addPacketLog(packetLog)
         }
         self.logInfo[serviceCode]?.append(hdoInfo0)
@@ -44,7 +44,7 @@ class PacketInfoManager: NSObject {
         arr1.map { (var val: Int) -> () in
             comps.day = ++dateCounter
             let date = calendar.dateFromComponents(comps)!
-            let packetLog = PacketLog(date: date, withCoupon: UInt(val), withoutCoupon: 0)
+            let packetLog = PacketLog(date: date, withCoupon: val, withoutCoupon: 0)
             hdoInfo1.addPacketLog(packetLog)
         }
         self.logInfo[serviceCode]?.append(hdoInfo1)
@@ -57,7 +57,7 @@ class PacketInfoManager: NSObject {
         arr2.map { (var val: Int) -> () in
             comps.day = ++dateCounter
             let date = calendar.dateFromComponents(comps)!
-            let packetLog = PacketLog(date: date, withCoupon: UInt(val), withoutCoupon: 0)
+            let packetLog = PacketLog(date: date, withCoupon: val, withoutCoupon: 0)
             hdoInfo2.addPacketLog(packetLog)
         }
         self.logInfo[serviceCode]?.append(hdoInfo2)
