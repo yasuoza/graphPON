@@ -90,24 +90,5 @@ class OAuth2ClientTests: XCTestCase {
         client.authorized(credential: cred)
         self.waitForExpectationsWithTimeout(1, handler: nil)
     }
-
-    func testPostOAuthDidAuthorizeNotificationWhenInitWithCredential() {
-        self.expectationForNotification(
-            OAuth2Client.OAuthDidAuthorizeNotification,
-            object: nil,
-            handler: { notification  in
-                return true
-        })
-        let cred = OAuth2Credential(dictionary: ["access_token": "at"])
-        cred.save()
-        let client = OAuth2Client()
-        switch client.state {
-        case let OAuth2Client.AuthorizationState.Authorized(credential):
-            XCTAssertEqual(credential.accessToken!, "at")
-        default:
-            XCTFail("client state should be Authorized")
-        }
-        self.waitForExpectationsWithTimeout(1, handler: nil)
-    }
-
+    
 }
