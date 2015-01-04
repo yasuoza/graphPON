@@ -6,14 +6,7 @@ import SwiftyJSON
 class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDelegate, JBLineChartViewDataSource, HddServiceListTableViewControllerDelegate {
 
     private let kJBLineChartViewControllerChartPadding       = CGFloat(10.0)
-    private let kJBAreaChartViewControllerChartHeight        = CGFloat(250.0)
-    private let kJBAreaChartViewControllerChartPadding       = CGFloat(10.0)
-    private let kJBAreaChartViewControllerChartHeaderHeight  = CGFloat(75.0)
-    private let kJBAreaChartViewControllerChartHeaderPadding = CGFloat(20.0)
-    private let kJBAreaChartViewControllerChartFooterHeight  = CGFloat(20.0)
     private let kJBAreaChartViewControllerChartFooterPadding = CGFloat(5.0)
-    private let kJBAreaChartViewControllerChartLineWidth     = CGFloat(2.0)
-    private let kJBAreaChartViewControllerMaxNumChartPoints  = CGFloat(12)
     private let kJBLineChartViewControllerChartFooterHeight  = CGFloat(20)
 
     private let mode: Mode = .Summary
@@ -23,7 +16,6 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
     private var packetLogs: [[PacketLog]] = []
     private var chartLabels: [String] = []
     private var chartData: [[CGFloat]]! = []
-    private var horizontalSymbols: [String] = []
 
     // MARK: - View Lifecycle
 
@@ -36,7 +28,6 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
         self.chartViewContainerView.chartView.delegate = self
         self.chartViewContainerView.chartView.dataSource = self
 
-        self.chartViewContainerView.chartView.headerPadding = kJBAreaChartViewControllerChartHeaderPadding
         self.chartViewContainerView.chartView.footerPadding = kJBAreaChartViewControllerChartFooterPadding
         self.chartViewContainerView.chartView.backgroundColor = self.mode.backgroundColor()
 
@@ -59,19 +50,6 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
         self.navigationItem.title = "Summary data"
     }
 
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-
-        NSNotificationCenter.defaultCenter().addObserverForName(
-            OAuth2Client.OAuthDidAuthorizeNotification,
-            object: nil,
-            queue: nil,
-            usingBlock: { _ in
-                self.fetchAndReloadLatestData()
-        })
-
-    }
-
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
 
@@ -80,22 +58,12 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
             object: nil,
             queue: NSOperationQueue.mainQueue(),
             usingBlock: { _ in
-                switch OAuth2Client.sharedClient.state {
-                case OAuth2Client.AuthorizationState.UnAuthorized:
-                    if let _ = self.presentedViewController as? PromptLoginController {
-                        break
-                    }
-                    let alert = PromptLoginController.alertController()
-                    return self.presentViewController(alert, animated: true, completion: nil)
-                default:
-                    break
-                }
+                self.promptLogin()
         })
 
         switch OAuth2Client.sharedClient.state {
         case OAuth2Client.AuthorizationState.UnAuthorized:
-            let alert = PromptLoginController.alertController()
-            return self.presentViewController(alert, animated: true, completion: nil)
+            self.promptLogin()
         case OAuth2Client.AuthorizationState.Authorized:
             self.fetchAndReloadLatestData()
         }
@@ -117,8 +85,8 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
     }
 
     func fetchAndReloadLatestData() {
+        (self.packetLogs, self.chartLabels) = ([], [])
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-
         Alamofire.request(OAuth2Router.LogPacket)
             .validate(statusCode: 200..<300)
             .responseJSON { (_, _, json, error) in
@@ -167,8 +135,8 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
         self.navigationItem.title = self.hddServiceCodes.first
         self.chartViewContainerView.chartView.maximumValue = self.chartData.last!.last!
         if let footerView = self.chartViewContainerView.chartView.footerView as? LineChartFooterView {
-            footerView.leftLabel.text = self.horizontalSymbols.first
-            footerView.rightLabel.text = self.horizontalSymbols.last
+            footerView.leftLabel.text = self.packetLogs.first?.first?.dateText()
+            footerView.rightLabel.text = self.packetLogs.last?.last?.dateText()
             footerView.sectionCount = self.chartData.first?.count ?? 0
             footerView.hidden = false
         }
@@ -185,7 +153,7 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
     }
 
     func displayLatestTotalChartInformation() {
-        let (label, date) = (self.chartLabels.last?, self.horizontalSymbols.last?)
+        let (label, date) = (self.chartLabels.last?, self.packetLogs.last?.last?.dateText())
         if label != nil && date != nil {
             self.chartInformationView.setTitleText("\(String(label!)) - \(String(date!))")
             self.chartInformationView.setHidden(false, animated: true)
@@ -208,13 +176,26 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
         )
     }
 
+    func promptLogin() {
+        switch OAuth2Client.sharedClient.state {
+        case OAuth2Client.AuthorizationState.UnAuthorized:
+            if let _ = self.presentedViewController as? PromptLoginController {
+                break
+            }
+            return self.presentViewController(
+                PromptLoginController.alertController(),
+                animated: true,
+                completion: nil
+            )
+        default:
+            break
+        }
+    }
+
     // MARK: - Private methods
 
     func initFakeData() {
         var amountSummation = [CGFloat](count: packetLogs.first!.count, repeatedValue: 0.0)
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "MM/dd"
-        dateFormatter.locale = NSLocale(localeIdentifier: "en_US")
 
         self.chartData = self.packetLogs.map { packets -> [CGFloat] in
             var sum = CGFloat(0.0)
@@ -231,7 +212,6 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
                     break
                 }
                 amountSummation[index++] += sum
-                self.horizontalSymbols.append(dateFormatter.stringFromDate(packet.date))
                 return sum
             }
         }
@@ -260,15 +240,16 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
 
     func lineChartView(lineChartView: JBLineChartView!, didSelectLineAtIndex lineIndex: UInt, horizontalIndex: UInt, touchPoint: CGPoint) {
 
-        let displayTooltip = self.traitCollection.verticalSizeClass == UIUserInterfaceSizeClass.Compact
-                                || (self.traitCollection.verticalSizeClass == UIUserInterfaceSizeClass.Regular
-                                        && self.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClass.Regular)
+        let tcol = self.traitCollection.verticalSizeClass
+        let displayTooltip = tcol == .Compact || (tcol == .Regular && tcol == .Regular)
+
+        let dateText = self.packetLogs.first?[Int(horizontalIndex)].dateText() ?? ""
         if displayTooltip {
             self.setTooltipVisible(true, animated: false, touchPoint: touchPoint)
-            self.tooltipView.setText(horizontalSymbols[Int(horizontalIndex)])
+            self.tooltipView.setText(dateText)
         }
 
-        self.chartInformationView.setTitleText("\(self.chartLabels[Int(lineIndex)]) - \(horizontalSymbols[Int(horizontalIndex)])")
+        self.chartInformationView.setTitleText("\(self.chartLabels[Int(lineIndex)]) - \(dateText)")
         self.chartInformationView.setHidden(false, animated: true)
 
         UIView.animateWithDuration(
@@ -335,14 +316,6 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
 
     func hddServiceDidSelected(hddServiceIndex: Int) {
         self.navigationItem.title = self.hddServiceCodes[hddServiceIndex]
-
-        func randomly(a: PacketLog, b: PacketLog) -> Bool {
-            return arc4random() % 2 == 0
-        }
-
-        self.packetLogs = (0...2).map { sorted(self.packetLogs[$0], randomly) }
-        initFakeData()
-        self.chartViewContainerView.reloadChartData()
     }
 
 }
