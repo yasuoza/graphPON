@@ -66,17 +66,36 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
             OAuth2Client.OAuthDidAuthorizeNotification,
             object: nil,
             queue: nil,
-            usingBlock: { [unowned self] notification in
+            usingBlock: { _ in
                 self.fetchAndReloadLatestData()
         })
+
     }
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
 
+        NSNotificationCenter.defaultCenter().addObserverForName(
+            UIApplicationDidBecomeActiveNotification,
+            object: nil,
+            queue: NSOperationQueue.mainQueue(),
+            usingBlock: { _ in
+                switch OAuth2Client.sharedClient.state {
+                case OAuth2Client.AuthorizationState.UnAuthorized:
+                    if let _ = self.presentedViewController as? PromptLoginController {
+                        break
+                    }
+                    let alert = PromptLoginController.alertController()
+                    return self.presentViewController(alert, animated: true, completion: nil)
+                default:
+                    break
+                }
+        })
+
         switch OAuth2Client.sharedClient.state {
         case OAuth2Client.AuthorizationState.UnAuthorized:
-            PromptLoginAlertView.initWithPreset(delegate: self).show()
+            let alert = PromptLoginController.alertController()
+            return self.presentViewController(alert, animated: true, completion: nil)
         case OAuth2Client.AuthorizationState.Authorized:
             self.fetchAndReloadLatestData()
         }
@@ -102,13 +121,13 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
 
         Alamofire.request(OAuth2Router.LogPacket)
             .validate(statusCode: 200..<300)
-            .responseJSON { [unowned self] (_, _, json, error) in
+            .responseJSON { (_, _, json, error) in
                 UIApplication.sharedApplication().networkActivityIndicatorVisible = false
                 self.loadingIndicatorView.stopAnimating()
 
                 if error != nil {
-                    PromptLoginAlertView.initWithPreset(delegate: self).show()
-                    return
+                    let alert = PromptLoginController.alertController()
+                    return self.presentViewController(alert, animated: true, completion: nil)
                 }
 
                 let json = JSON(json!)
@@ -118,8 +137,8 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
                 dateFormatter.locale = NSLocale(localeIdentifier: "en_US")
 
                 if json["returnCode"].string != "OK" {
-                    PromptLoginAlertView.initWithPreset(delegate: self).show()
-                    return
+                    let alert = PromptLoginController.alertController()
+                    return self.presentViewController(alert, animated: true, completion: nil)
                 }
 
                 for (hddArrayIndexStr: String, hddServiceJSON: JSON) in json["packetLogInfo"] {
@@ -283,7 +302,7 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
                 self.informationValueLabelSeparatorView.alpha = 0.0
                 self.valueLabel.alpha = 0.0
             },
-            completion: { [unowned self] finish in
+            completion: { finish in
                 if finish {
                     self.displayLatestTotalChartInformation()
                 }
