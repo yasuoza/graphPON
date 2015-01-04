@@ -195,27 +195,28 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
     // MARK: - Private methods
 
     func initFakeData() {
-        var amountSummation = [CGFloat](count: packetLogs.first!.count, repeatedValue: 0.0)
-
-        self.chartData = self.packetLogs.map { packets -> [CGFloat] in
-            var sum = CGFloat(0.0)
-            var index = 0
-            return packets.map { packet -> CGFloat in
+        var totalSum = [CGFloat](count: packetLogs.first!.count, repeatedValue: 0.0)
+        self.chartData = self.packetLogs.reduce([], combine: { (var _chartData, packets) -> [[CGFloat]] in
+            var hdoServiceindex = 0
+            let hdoSum = packets.reduce([], combine: { (var _hdoSum, packet) -> [CGFloat] in
+                var last = _hdoSum.last ?? 0.0
                 switch self.chartDataSegment.rawValue {
                 case 0:
-                    sum += CGFloat(packet.withCoupon + packet.withoutCoupon)
+                    last += CGFloat(packet.withCoupon + packet.withoutCoupon)
                 case 1:
-                    sum += CGFloat(packet.withCoupon)
+                    last += CGFloat(packet.withCoupon)
                 case 2:
-                    sum += CGFloat(packet.withoutCoupon)
+                    last += CGFloat(packet.withoutCoupon)
                 default:
                     break
                 }
-                amountSummation[index++] += sum
-                return sum
-            }
-        }
-        self.chartData.append(amountSummation)
+                totalSum[hdoServiceindex++] += last
+                _hdoSum.append(last)
+                return _hdoSum
+            })
+            _chartData.append(hdoSum)
+            return _chartData
+        })
     }
 
     // MARK: - JBLineChartViewDataSource
@@ -240,8 +241,9 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
 
     func lineChartView(lineChartView: JBLineChartView!, didSelectLineAtIndex lineIndex: UInt, horizontalIndex: UInt, touchPoint: CGPoint) {
 
-        let tcol = self.traitCollection.verticalSizeClass
-        let displayTooltip = tcol == .Compact || (tcol == .Regular && tcol == .Regular)
+        let tcolVert = self.traitCollection.verticalSizeClass
+        let tcolHorz = self.traitCollection.horizontalSizeClass
+        let displayTooltip = tcolVert == .Compact || (tcolVert == .Regular && tcolHorz == .Regular)
 
         let dateText = self.packetLogs.first?[Int(horizontalIndex)].dateText() ?? ""
         if displayTooltip {
