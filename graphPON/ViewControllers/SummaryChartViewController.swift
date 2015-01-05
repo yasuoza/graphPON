@@ -12,10 +12,9 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
     private let mode: Mode = .Summary
 
     private var chartDataSegment: ChartDataSegment = .All
-    private var hddServiceCodes: [String] = []
-    private var packetLogs: [[PacketLog]] = []
+    private var hdoInfos: [HdoInfo] = []
     private var chartLabels: [String] = []
-    private var chartData: [[CGFloat]]! = []
+    private var chartData: [[CGFloat]] = []
 
     // MARK: - View Lifecycle
 
@@ -80,63 +79,52 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
             let navigationController = segue.destinationViewController as UINavigationController
             let hddServiceListViewController = navigationController.topViewController as HddServiceListTableViewController
             hddServiceListViewController.delegate = self
-            hddServiceListViewController.hddServices = hddServiceCodes
+            if let hddServices = PacketInfoManager.sharedManager.hddServiceCodes() {
+                hddServiceListViewController.hddServices = hddServices
+            }
         }
     }
 
     func fetchAndReloadLatestData() {
-        (self.packetLogs, self.chartLabels) = ([], [])
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-        Alamofire.request(OAuth2Router.LogPacket)
-            .validate(statusCode: 200..<300)
-            .responseJSON { (_, _, json, error) in
-                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-                self.loadingIndicatorView.stopAnimating()
+        PacketInfoManager.sharedManager.fetchLatestPacketLog(completion: { error in
+            self.loadingIndicatorView.stopAnimating()
 
-                if error != nil {
-                    let alert = PromptLoginController.alertController()
-                    return self.presentViewController(alert, animated: true, completion: nil)
+            if error?.domain == AlamofireErrorDomain {
+                // Network error?
+            }
+
+            if error?.domain == OAuth2Router.APIErrorDomain {
+                switch error!.code {
+                case Int(OAuth2Router.AuthorizationFailureErrorCode):
+                    self.promptLogin()
+                    return
+                case Int(OAuth2Router.TooManyRequestErrorCode):
+                    // Too many requests error
+                    break
+                case Int(OAuth2Router.UnknownErrorCode):
+                    // Unknown error
+                    break
+                default:
+                    break
                 }
+            }
 
-                let json = JSON(json!)
-
-                let dateFormatter = NSDateFormatter()
-                dateFormatter.dateFormat = "yyyyMMdd"
-                dateFormatter.locale = NSLocale(localeIdentifier: "en_US")
-
-                if json["returnCode"].string != "OK" {
-                    let alert = PromptLoginController.alertController()
-                    return self.presentViewController(alert, animated: true, completion: nil)
-                }
-
-                for (hddArrayIndexStr: String, hddServiceJSON: JSON) in json["packetLogInfo"] {
-                    self.hddServiceCodes.append(hddServiceJSON["hddServiceCode"].stringValue)
-
-                    for (hdoArrayIndexStr: String, hdoServiceJson: JSON) in hddServiceJSON["hdoInfo"] {
-                        self.chartLabels.append(hdoServiceJson["hdoServiceCode"].stringValue)
-
-                        let hdoPacketLogAmounts = hdoServiceJson["packetLog"].arrayValue.map { packetLogJson -> PacketLog in
-                            return PacketLog(
-                                date: dateFormatter.dateFromString(packetLogJson["date"].stringValue)!,
-                                withCoupon: packetLogJson["withCoupon"].intValue,
-                                withoutCoupon: packetLogJson["withoutCoupon"].intValue
-                            )
-                        }
-                        self.packetLogs.append(hdoPacketLogAmounts)
-                    }
-                    self.chartLabels.append("Total")
-                    self.reloadChartView()
-                }
-        }
+            self.reloadChartView()
+        })
     }
 
     func reloadChartView() {
         self.initFakeData()
-        self.navigationItem.title = self.hddServiceCodes.first
+
+        if let hddServiceCode = PacketInfoManager.sharedManager.hddServiceCodes()?.first {
+            self.navigationItem.title = hddServiceCode
+        }
+
         self.chartViewContainerView.chartView.maximumValue = self.chartData.last!.last!
+
         if let footerView = self.chartViewContainerView.chartView.footerView as? LineChartFooterView {
-            footerView.leftLabel.text = self.packetLogs.first?.first?.dateText()
-            footerView.rightLabel.text = self.packetLogs.last?.last?.dateText()
+            footerView.leftLabel.text = self.hdoInfos.first?.packetLogs.first?.dateText()
+            footerView.rightLabel.text = self.hdoInfos.first?.packetLogs.last?.dateText()
             footerView.sectionCount = self.chartData.first?.count ?? 0
             footerView.hidden = false
         }
@@ -153,7 +141,7 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
     }
 
     func displayLatestTotalChartInformation() {
-        let (label, date) = (self.chartLabels.last?, self.packetLogs.last?.last?.dateText())
+        let (label, date) = (self.chartLabels.last?, self.hdoInfos.first?.packetLogs.last?.dateText())
         if label != nil && date != nil {
             self.chartInformationView.setTitleText("\(String(label!)) - \(String(date!))")
             self.chartInformationView.setHidden(false, animated: true)
@@ -190,28 +178,36 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
     // MARK: - Private methods
 
     func initFakeData() {
-        var totalSum = [CGFloat](count: packetLogs.first!.count, repeatedValue: 0.0)
-        self.chartData = self.packetLogs.reduce([], combine: { (var _chartData, packets) -> [[CGFloat]] in
+        let logManager = PacketInfoManager.sharedManager
+        let hddServiceCode = logManager.hddServiceCodes()!.first!
+
+        self.hdoInfos = logManager.hddServiceInfoForServiceCode[hddServiceCode]!
+        self.chartLabels = []
+
+        var totalSum = [CGFloat](count: self.hdoInfos.first!.packetLogs.count, repeatedValue: 0.0)
+        self.chartData = self.hdoInfos.reduce([], combine: { (var _chartData, hdoInfo) -> [[CGFloat]] in
+            self.chartLabels.append(hdoInfo.hdoServiceCode)
             var hdoServiceindex = 0
-            let hdoSum = packets.reduce([], combine: { (var _hdoSum, packet) -> [CGFloat] in
-                var lastPacketAmount = _hdoSum.last ?? 0.0
+            let hdoPacketSum = hdoInfo.packetLogs.reduce([], combine: { (var _hdoPacketSum, packetLog) -> [CGFloat] in
+                var lastPacketAmount = _hdoPacketSum.last ?? 0.0
                 switch self.chartDataSegment.rawValue {
                 case 0:
-                    lastPacketAmount += CGFloat(packet.withCoupon + packet.withoutCoupon)
+                    lastPacketAmount += CGFloat(packetLog.withCoupon + packetLog.withoutCoupon)
                 case 1:
-                    lastPacketAmount += CGFloat(packet.withCoupon)
+                    lastPacketAmount += CGFloat(packetLog.withCoupon)
                 case 2:
-                    lastPacketAmount += CGFloat(packet.withoutCoupon)
+                    lastPacketAmount += CGFloat(packetLog.withoutCoupon)
                 default:
                     break
                 }
                 totalSum[hdoServiceindex++] += lastPacketAmount
-                _hdoSum.append(lastPacketAmount)
-                return _hdoSum
+                _hdoPacketSum.append(lastPacketAmount)
+                return _hdoPacketSum
             })
-            _chartData.append(hdoSum)
+            _chartData.append(hdoPacketSum)
             return _chartData
         })
+        self.chartLabels.append("Total")
         self.chartData.append(totalSum)
     }
 
@@ -241,7 +237,7 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
         let tcolHorz = self.traitCollection.horizontalSizeClass
         let displayTooltip = tcolVert == .Compact || (tcolVert == .Regular && tcolHorz == .Regular)
 
-        let dateText = self.packetLogs.first?[Int(horizontalIndex)].dateText() ?? ""
+        let dateText = self.hdoInfos.first?.packetLogs[Int(horizontalIndex)].dateText() ?? ""
         if displayTooltip {
             self.setTooltipVisible(true, animated: false, touchPoint: touchPoint)
             self.tooltipView.setText(dateText)
@@ -308,7 +304,7 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
     // MARK: - HddServiceListTableViewControllerDelegate
 
     func hddServiceDidSelected(hddServiceIndex: Int) {
-        self.navigationItem.title = self.hddServiceCodes[hddServiceIndex]
+        self.navigationItem.title = PacketInfoManager.sharedManager.hddServiceCodes()?[hddServiceIndex]
     }
 
 }
