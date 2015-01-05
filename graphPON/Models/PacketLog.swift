@@ -6,6 +6,21 @@ class PacketLog: NSObject {
 
     private let dateFormatter = NSDateFormatter()
 
+    // MARK: - Singleton methods
+
+    class func stringForValue(var packetValue: CGFloat!) -> String {
+        let unit: String = { _ -> String in
+            if packetValue >= 1_000.0 {
+                packetValue = packetValue / 1_000.0
+                return "GB"
+            }
+            return "MB"
+        }()
+        return NSString(format: "%.01f", Float(packetValue)) + unit
+    }
+
+    // MARK: - Instance methods
+
     init(date: NSDate, withCoupon: Int, withoutCoupon: Int) {
         self.date = date
         self.withCoupon = withCoupon

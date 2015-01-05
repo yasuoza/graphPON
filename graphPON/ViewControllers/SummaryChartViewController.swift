@@ -164,12 +164,7 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
             options: UIViewAnimationOptions.BeginFromCurrentState,
             animations: {
                 self.informationValueLabelSeparatorView.alpha = 1.0
-                var (value, unit) = (self.chartData.last?.last, "MB")
-                if value != nil && value >= 100_0.0 {
-                    (value, unit) =  (value! / 100_0.0, "GB")
-                }
-                let valueText = NSString(format: "%.01f", Float(value!))
-                self.valueLabel.text = "\(valueText)\(unit)"
+                self.valueLabel.text = PacketLog.stringForValue(self.chartData.last?.last!)
                 self.valueLabel.alpha = 1.0
             },
             completion: nil
@@ -199,24 +194,25 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
         self.chartData = self.packetLogs.reduce([], combine: { (var _chartData, packets) -> [[CGFloat]] in
             var hdoServiceindex = 0
             let hdoSum = packets.reduce([], combine: { (var _hdoSum, packet) -> [CGFloat] in
-                var last = _hdoSum.last ?? 0.0
+                var lastPacketAmount = _hdoSum.last ?? 0.0
                 switch self.chartDataSegment.rawValue {
                 case 0:
-                    last += CGFloat(packet.withCoupon + packet.withoutCoupon)
+                    lastPacketAmount += CGFloat(packet.withCoupon + packet.withoutCoupon)
                 case 1:
-                    last += CGFloat(packet.withCoupon)
+                    lastPacketAmount += CGFloat(packet.withCoupon)
                 case 2:
-                    last += CGFloat(packet.withoutCoupon)
+                    lastPacketAmount += CGFloat(packet.withoutCoupon)
                 default:
                     break
                 }
-                totalSum[hdoServiceindex++] += last
-                _hdoSum.append(last)
+                totalSum[hdoServiceindex++] += lastPacketAmount
+                _hdoSum.append(lastPacketAmount)
                 return _hdoSum
             })
             _chartData.append(hdoSum)
             return _chartData
         })
+        self.chartData.append(totalSum)
     }
 
     // MARK: - JBLineChartViewDataSource
@@ -260,12 +256,7 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
             options: UIViewAnimationOptions.BeginFromCurrentState,
             animations: {
                 self.informationValueLabelSeparatorView.alpha = 1.0
-                var (value, unit) = (self.chartData[Int(lineIndex)][Int(horizontalIndex)], "MB")
-                if value >= 100_0.0 {
-                    (value, unit) =  (value / 100_0.0, "GB")
-                }
-                let valueText = NSString(format: "%.01f", Float(value))
-                self.valueLabel.text = "\(valueText)\(unit)"
+                self.valueLabel.text = PacketLog.stringForValue(self.chartData[Int(lineIndex)][Int(horizontalIndex)])
                 self.valueLabel.alpha = 1.0
             },
             completion: nil
