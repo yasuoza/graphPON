@@ -1,18 +1,18 @@
 class HdoInfo: NSObject {
 
     var hdoServiceCode: String! = ""
-    var packetLogs: Array<PacketLog>! = []
+    var packetLogs: [PacketLog] = []
 
     init(hdoServiceCode: String) {
         self.hdoServiceCode = hdoServiceCode
     }
 
-    init(hdoServiceCode: String, packetLogs: Array<PacketLog>) {
+    init(hdoServiceCode: String, packetLogs: [PacketLog]) {
         self.hdoServiceCode = hdoServiceCode
         self.packetLogs = packetLogs
     }
 
-    func addPacketLog(packetLog: PacketLog) {
+    func appendPacketLog(packetLog: PacketLog) {
         self.packetLogs.append(packetLog)
     }
    
