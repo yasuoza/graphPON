@@ -1,4 +1,4 @@
-github "yasuoza/Alamofire" "410fc56af03022cbdccfb82990da295f5bf28cc4"
+github "Alamofire/Alamofire" "488769c643c91275f9420b2b39806af1a0e668d6"
 github "yasuoza/JBChartView" "032635f1dadf7fc7a06f34f1a2a69b0b94e82272"
 github "yasuoza/SwiftyJSON" "bbe0cc8c3e7d67ac2529acdd067982f25bf8ce81"
 github "yasuoza/XYDoughnutChart" "0.1.0"

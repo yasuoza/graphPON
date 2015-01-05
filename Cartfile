@@ -2,6 +2,6 @@ github "yasuoza/XYDoughnutChart" >= 0.1
 
 github "yasuoza/JBChartView" "carthage"
 
-github "yasuoza/Alamofire" "carthage"
+github "Alamofire/Alamofire" "master"
 
 github "yasuoza/SwiftyJSON" "carthage_buildable"
