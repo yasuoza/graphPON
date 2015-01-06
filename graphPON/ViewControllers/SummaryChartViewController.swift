@@ -12,6 +12,7 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
     private let mode: Mode = .Summary
 
     private var chartDataSegment: ChartDataSegment = .All
+    private var chartDurationSegment: HdoInfo.Duration = .InThisMonth
     private var hdoInfos: [HdoInfo] = []
     private var chartLabels: [String] = []
     private var chartData: [[CGFloat]] = []
@@ -46,7 +47,7 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
 
         self.chartInformationView.hidden = true
 
-        self.navigationItem.title = "Summary data"
+        self.navigationItem.title = ""
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -114,10 +115,10 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
     }
 
     func reloadChartView() {
-        self.initFakeData()
+        self.reBuildChartData()
 
         if let hddServiceCode = PacketInfoManager.sharedManager.hddServiceCodes()?.first {
-            self.navigationItem.title = hddServiceCode
+            self.navigationItem.title = "\(hddServiceCode) (\(self.chartDataSegment.text()))"
         }
 
         self.chartViewContainerView.chartView.maximumValue = self.chartData.last!.last!
@@ -134,8 +135,13 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
     }
 
     @IBAction func chartSegmentedControlValueDidChanged(segmentedControl: UISegmentedControl) {
-        self.chartDataSegment = ChartDataSegment(rawValue: segmentedControl.selectedSegmentIndex)!
-        initFakeData()
+        switch segmentedControl.selectedSegmentIndex {
+        case 0:
+            self.chartDurationSegment = .InThisMonth
+        default:
+            self.chartDurationSegment = .InLast30Days
+        }
+        reBuildChartData()
         displayLatestTotalChartInformation()
         self.chartViewContainerView.reloadChartData()
     }
@@ -177,23 +183,15 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
 
     // MARK: - Private methods
 
-    func initFakeData() {
+    func reBuildChartData() {
         let logManager = PacketInfoManager.sharedManager
         let hddServiceCode = logManager.hddServiceCodes()!.first!
 
         self.hdoInfos = logManager.hddServiceInfoForServiceCode[hddServiceCode]!
         self.chartLabels = []
 
-        var displayDuration = HdoInfo.Duration.InThisMonth
-        switch self.chartDataSegment {
-        case .WithCoupon:
-            displayDuration = .InLast30Days
-        default:
-            break
-        }
-
         for (hdoInfo) in self.hdoInfos {
-            hdoInfo.duration = displayDuration
+            hdoInfo.duration = self.chartDurationSegment
         }
 
         var totalSum = [CGFloat](count: self.hdoInfos.first!.packetLogs.count, repeatedValue: 0.0)
