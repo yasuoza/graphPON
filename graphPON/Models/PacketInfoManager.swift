@@ -70,24 +70,25 @@ class PacketInfoManager: NSObject {
                     break
                 }
 
-                for (hddArrayIndexStr: String, hddServiceJSON: JSON) in json["packetLogInfo"] {
+                for (_, hddServiceJSON) in json["packetLogInfo"] {
                     let serviceCode = hddServiceJSON["hddServiceCode"].stringValue
                     tmpHddServiceInfoForServiceCode[serviceCode] = tmpHddServiceInfoForServiceCode[serviceCode] ?? []
-                    for (hdoArrayIndexStr: String, hdoServiceJson: JSON) in hddServiceJSON["hdoInfo"] {
-                        if let packetLogJsons = hdoServiceJson["packetLog"].array {
-                            let hdoPacketLogs = packetLogJsons.map { packetLogJson -> PacketLog in
-                                return PacketLog(
-                                    date: self.dateFormatter.dateFromString(packetLogJson["date"].stringValue)!,
-                                    withCoupon: packetLogJson["withCoupon"].intValue,
-                                    withoutCoupon: packetLogJson["withoutCoupon"].intValue
-                                )
-                            }
-                            let hdoInfo = HdoInfo(
-                                hdoServiceCode: hdoServiceJson["hdoServiceCode"].stringValue,
-                                packetLogs: hdoPacketLogs
+                    for (_, hdoServiceJson) in hddServiceJSON["hdoInfo"] {
+                        var hdoPacketLogs: [PacketLog] = []
+                        for (_, packetLogJson) in hdoServiceJson["packetLog"] {
+                            let date = self.dateFormatter.dateFromString(packetLogJson["date"].stringValue)!
+                            let packetLog = PacketLog(
+                                date: date,
+                                withCoupon: packetLogJson["withCoupon"].intValue,
+                                withoutCoupon: packetLogJson["withoutCoupon"].intValue
                             )
-                            tmpHddServiceInfoForServiceCode[serviceCode]!.append(hdoInfo)
+                            hdoPacketLogs.append(packetLog)
                         }
+                        let hdoInfo = HdoInfo(
+                            hdoServiceCode: hdoServiceJson["hdoServiceCode"].stringValue,
+                            packetLogs: hdoPacketLogs
+                        )
+                        tmpHddServiceInfoForServiceCode[serviceCode]!.append(hdoInfo)
                     }
                 }
                 self.hddServiceInfoForServiceCode = tmpHddServiceInfoForServiceCode
