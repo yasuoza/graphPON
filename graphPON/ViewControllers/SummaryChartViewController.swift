@@ -184,22 +184,24 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
         self.hdoInfos = logManager.hddServiceInfoForServiceCode[hddServiceCode]!
         self.chartLabels = []
 
+        var displayDuration = HdoInfo.Duration.InThisMonth
+        switch self.chartDataSegment {
+        case .WithCoupon:
+            displayDuration = .InLast30Days
+        default:
+            break
+        }
+
+        for (hdoInfo) in self.hdoInfos {
+            hdoInfo.duration = displayDuration
+        }
+
         var totalSum = [CGFloat](count: self.hdoInfos.first!.packetLogs.count, repeatedValue: 0.0)
         self.chartData = self.hdoInfos.reduce([], combine: { (var _chartData, hdoInfo) -> [[CGFloat]] in
             self.chartLabels.append(hdoInfo.hdoServiceCode)
             var hdoServiceindex = 0
             let hdoPacketSum = hdoInfo.packetLogs.reduce([], combine: { (var _hdoPacketSum, packetLog) -> [CGFloat] in
-                var lastPacketAmount = _hdoPacketSum.last ?? 0.0
-                switch self.chartDataSegment.rawValue {
-                case 0:
-                    lastPacketAmount += CGFloat(packetLog.withCoupon + packetLog.withoutCoupon)
-                case 1:
-                    lastPacketAmount += CGFloat(packetLog.withCoupon)
-                case 2:
-                    lastPacketAmount += CGFloat(packetLog.withoutCoupon)
-                default:
-                    break
-                }
+                let lastPacketAmount = (_hdoPacketSum.last ?? 0.0) + CGFloat(packetLog.withCoupon)
                 totalSum[hdoServiceindex++] += lastPacketAmount
                 _hdoPacketSum.append(lastPacketAmount)
                 return _hdoPacketSum
@@ -232,7 +234,6 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
     }
 
     func lineChartView(lineChartView: JBLineChartView!, didSelectLineAtIndex lineIndex: UInt, horizontalIndex: UInt, touchPoint: CGPoint) {
-
         let tcolVert = self.traitCollection.verticalSizeClass
         let tcolHorz = self.traitCollection.horizontalSizeClass
         let displayTooltip = tcolVert == .Compact || (tcolVert == .Regular && tcolHorz == .Regular)

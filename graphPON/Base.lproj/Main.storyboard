@@ -39,12 +39,14 @@
                                                 <rect key="frame" x="48" y="0.0" width="504" height="33"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <segments>
-                                                    <segment title="ALL"/>
-                                                    <segment title="ON"/>
-                                                    <segment title="OFF"/>
+                                                    <segment title="This month"/>
+                                                    <segment title="Last 30 days"/>
                                                 </segments>
                                                 <variation key="heightClass=compact" misplaced="YES">
                                                     <rect key="frame" x="48" y="4" width="504" height="33"/>
+                                                </variation>
+                                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                    <rect key="frame" x="50" y="2" width="300" height="29"/>
                                                 </variation>
                                                 <connections>
                                                     <action selector="chartSegmentedControlValueDidChanged:" destination="JEX-9P-axG" eventType="valueChanged" id="hbv-FY-enM"/>

@@ -1,8 +1,24 @@
 class HdoInfo: NSObject {
 
-    private(set) var hdoServiceCode: String     = ""
-    private(set) var packetLogs: [PacketLog]    = []
-    lazy var packetLogsInThisMonth: [PacketLog] = { [unowned self] in
+    enum Duration {
+        case InThisMonth, InLast30Days
+    }
+
+    private(set) var hdoServiceCode: String  = ""
+    private(set) var packetLogs: [PacketLog] = []
+    var duration: Duration = .InThisMonth {
+        didSet {
+            switch self.duration {
+            case .InThisMonth:
+                self.packetLogs = self.packetLogsInThisMonth
+            case .InLast30Days:
+                self.packetLogs = self.allPacketLogs
+            }
+        }
+    }
+
+    private var allPacketLogs: [PacketLog] = []
+    private lazy var packetLogsInThisMonth: [PacketLog] = { [unowned self] in
         return self.collectInThisMonthPacketLogs()
     }()
 
@@ -10,7 +26,8 @@ class HdoInfo: NSObject {
         super.init()
 
         self.hdoServiceCode = hdoServiceCode
-        self.packetLogs = packetLogs
+        self.allPacketLogs = packetLogs
+        self.packetLogs = packetLogsInThisMonth
     }
 
     // MARK: - Private
@@ -20,7 +37,7 @@ class HdoInfo: NSObject {
             NSCalendarUnit.DayCalendarUnit|NSCalendarUnit.MonthCalendarUnit|NSCalendarUnit.YearCalendarUnit,
             fromDate: NSDate()
         )
-        return self.packetLogs.filter { (packetLog) in
+        return self.allPacketLogs.filter { (packetLog) in
             let component = NSCalendar.currentCalendar().components(
                 NSCalendarUnit.DayCalendarUnit|NSCalendarUnit.MonthCalendarUnit|NSCalendarUnit.YearCalendarUnit,
                 fromDate: packetLog.date
