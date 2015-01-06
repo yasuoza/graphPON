@@ -46,7 +46,7 @@
                                                     <rect key="frame" x="48" y="4" width="504" height="33"/>
                                                 </variation>
                                                 <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="50" y="2" width="300" height="29"/>
+                                                    <rect key="frame" x="50" y="2" width="300" height="33"/>
                                                 </variation>
                                                 <connections>
                                                     <action selector="chartSegmentedControlValueDidChanged:" destination="JEX-9P-axG" eventType="valueChanged" id="hbv-FY-enM"/>
@@ -377,7 +377,7 @@
                                 <segue destination="bSI-9S-jFO" kind="presentation" identifier="HddServiceListFromSummaryChartSegue" id="n52-Wc-6v2"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="T6p-37-1eI"/>
+                        <barButtonItem key="rightBarButtonItem" image="list" id="T6p-37-1eI"/>
                     </navigationItem>
                     <connections>
                         <outlet property="chartInformationView" destination="ijf-0g-1O4" id="dBg-OM-o6Z"/>
@@ -1384,6 +1384,7 @@
         <image name="area_chart" width="25" height="25"/>
         <image name="bar_chart" width="25" height="25"/>
         <image name="doughnut_chart" width="25" height="25"/>
+        <image name="list" width="25" height="25"/>
     </resources>
     <color key="tintColor" red="0.36862745098039218" green="0.40784313725490196" blue="0.68627450980392157" alpha="1" colorSpace="calibratedRGB"/>
 </document>
