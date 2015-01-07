@@ -32,6 +32,8 @@
 		A874C0B91A4BF6EB00887932 /* OAuth2Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = A874C0B71A4BF6EB00887932 /* OAuth2Client.swift */; };
 		A874C0BA1A4BF6EB00887932 /* OAuth2Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = A874C0B81A4BF6EB00887932 /* OAuth2Router.swift */; };
 		A874C0BE1A4C04A800887932 /* OAuth2Credential.swift in Sources */ = {isa = PBXBuildFile; fileRef = A874C0BD1A4C04A800887932 /* OAuth2Credential.swift */; };
+		A88398C01A5CF40700B3DE5B /* DisplayPacketLogsSelectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88398BF1A5CF40700B3DE5B /* DisplayPacketLogsSelectTableViewController.swift */; };
+		A88398C21A5CF67700B3DE5B /* DisplayPacketLogsSelectTableViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88398C11A5CF67700B3DE5B /* DisplayPacketLogsSelectTableViewControllerDelegate.swift */; };
 		A8867A051A30333C001D8578 /* ExtendedNavBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8867A041A30333C001D8578 /* ExtendedNavBarView.swift */; };
 		A8867A0C1A304E8B001D8578 /* HddServiceListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8867A0B1A304E8B001D8578 /* HddServiceListTableViewController.swift */; };
 		A8867A0F1A304EB0001D8578 /* HddServiceListTableViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8867A0E1A304EB0001D8578 /* HddServiceListTableViewControllerDelegate.swift */; };
@@ -106,6 +108,8 @@
 		A874C0B71A4BF6EB00887932 /* OAuth2Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OAuth2Client.swift; path = Models/OAuth2Client.swift; sourceTree = "<group>"; };
 		A874C0B81A4BF6EB00887932 /* OAuth2Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OAuth2Router.swift; path = Models/OAuth2Router.swift; sourceTree = "<group>"; };
 		A874C0BD1A4C04A800887932 /* OAuth2Credential.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OAuth2Credential.swift; path = Models/OAuth2Credential.swift; sourceTree = "<group>"; };
+		A88398BF1A5CF40700B3DE5B /* DisplayPacketLogsSelectTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DisplayPacketLogsSelectTableViewController.swift; path = ViewControllers/DisplayPacketLogsSelectTableViewController.swift; sourceTree = "<group>"; };
+		A88398C11A5CF67700B3DE5B /* DisplayPacketLogsSelectTableViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DisplayPacketLogsSelectTableViewControllerDelegate.swift; path = Protocols/DisplayPacketLogsSelectTableViewControllerDelegate.swift; sourceTree = "<group>"; };
 		A8867A041A30333C001D8578 /* ExtendedNavBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExtendedNavBarView.swift; path = Views/ExtendedNavBarView.swift; sourceTree = "<group>"; };
 		A8867A0B1A304E8B001D8578 /* HddServiceListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HddServiceListTableViewController.swift; path = ViewControllers/HddServiceListTableViewController.swift; sourceTree = "<group>"; };
 		A8867A0E1A304EB0001D8578 /* HddServiceListTableViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HddServiceListTableViewControllerDelegate.swift; path = Protocols/HddServiceListTableViewControllerDelegate.swift; sourceTree = "<group>"; };
@@ -260,6 +264,7 @@
 			isa = PBXGroup;
 			children = (
 				A8867A0E1A304EB0001D8578 /* HddServiceListTableViewControllerDelegate.swift */,
+				A88398C11A5CF67700B3DE5B /* DisplayPacketLogsSelectTableViewControllerDelegate.swift */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -281,6 +286,7 @@
 			children = (
 				A8B212B91A11EEAB005988DC /* CharViewControllers */,
 				A8867A0B1A304E8B001D8578 /* HddServiceListTableViewController.swift */,
+				A88398BF1A5CF40700B3DE5B /* DisplayPacketLogsSelectTableViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -419,6 +425,7 @@
 				A80D19C61A11CEDA0067A055 /* AppDelegate.swift in Sources */,
 				A8867A0F1A304EB0001D8578 /* HddServiceListTableViewControllerDelegate.swift in Sources */,
 				A8341F971A14836500B67594 /* ChartTooltipTipView.swift in Sources */,
+				A88398C01A5CF40700B3DE5B /* DisplayPacketLogsSelectTableViewController.swift in Sources */,
 				A8409FB91A16F4A8007573EC /* ChartViewContainerView.swift in Sources */,
 				A83612841A3EB9E100BB1B3F /* RatioChartContainerView.swift in Sources */,
 				A8B212BC1A11EEDC005988DC /* SummaryChartViewController.swift in Sources */,
@@ -430,6 +437,7 @@
 				A874C0BA1A4BF6EB00887932 /* OAuth2Router.swift in Sources */,
 				A88BB3701A2DDEA700E5AE4F /* HdoInfo.swift in Sources */,
 				A8867A051A30333C001D8578 /* ExtendedNavBarView.swift in Sources */,
+				A88398C21A5CF67700B3DE5B /* DisplayPacketLogsSelectTableViewControllerDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

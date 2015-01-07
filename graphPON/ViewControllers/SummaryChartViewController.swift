@@ -3,7 +3,7 @@ import JBChartFramework
 import Alamofire
 import SwiftyJSON
 
-class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDelegate, JBLineChartViewDataSource, HddServiceListTableViewControllerDelegate {
+class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDelegate, JBLineChartViewDataSource, HddServiceListTableViewControllerDelegate, DisplayPacketLogsSelectTableViewControllerDelegate {
 
     private let kJBLineChartViewControllerChartPadding       = CGFloat(10.0)
     private let kJBAreaChartViewControllerChartFooterPadding = CGFloat(5.0)
@@ -83,7 +83,23 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
             if let hddServices = PacketInfoManager.sharedManager.hddServiceCodes() {
                 hddServiceListViewController.hddServices = hddServices
             }
+        } else if segue.identifier == "DisplayPacketLogsSelectFromSummaryChartSegue" {
+            let navigationController = segue.destinationViewController as UINavigationController
+            let displayPacketLogSelectViewController = navigationController.topViewController as DisplayPacketLogsSelectTableViewController
+            displayPacketLogSelectViewController.delegate = self
         }
+    }
+
+    @IBAction func chartSegmentedControlValueDidChanged(segmentedControl: UISegmentedControl) {
+        switch segmentedControl.selectedSegmentIndex {
+        case 0:
+            self.chartDurationSegment = .InThisMonth
+        default:
+            self.chartDurationSegment = .InLast30Days
+        }
+        reBuildChartData()
+        displayLatestTotalChartInformation()
+        self.chartViewContainerView.reloadChartData()
     }
 
     func fetchAndReloadLatestData() {
@@ -132,18 +148,6 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
         self.displayLatestTotalChartInformation()
         self.chartViewContainerView.reloadChartData()
         self.chartViewContainerView.chartView.setState(JBChartViewState.Expanded, animated: true)
-    }
-
-    @IBAction func chartSegmentedControlValueDidChanged(segmentedControl: UISegmentedControl) {
-        switch segmentedControl.selectedSegmentIndex {
-        case 0:
-            self.chartDurationSegment = .InThisMonth
-        default:
-            self.chartDurationSegment = .InLast30Days
-        }
-        reBuildChartData()
-        displayLatestTotalChartInformation()
-        self.chartViewContainerView.reloadChartData()
     }
 
     func displayLatestTotalChartInformation() {
@@ -199,7 +203,17 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
             self.chartLabels.append(hdoInfo.hdoServiceCode)
             var hdoServiceindex = 0
             let hdoPacketSum = hdoInfo.packetLogs.reduce([], combine: { (var _hdoPacketSum, packetLog) -> [CGFloat] in
-                let lastPacketAmount = (_hdoPacketSum.last ?? 0.0) + CGFloat(packetLog.withCoupon)
+                var lastPacketAmount = _hdoPacketSum.last ?? 0.0
+                switch self.chartDataSegment.rawValue {
+                case 0:
+                    lastPacketAmount += CGFloat(packetLog.withCoupon + packetLog.withoutCoupon)
+                case 1:
+                    lastPacketAmount += CGFloat(packetLog.withCoupon)
+                case 2:
+                    lastPacketAmount += CGFloat(packetLog.withoutCoupon)
+                default:
+                    break
+                }
                 totalSum[hdoServiceindex++] += lastPacketAmount
                 _hdoPacketSum.append(lastPacketAmount)
                 return _hdoPacketSum
@@ -304,6 +318,13 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
 
     func hddServiceDidSelected(hddServiceIndex: Int) {
         self.navigationItem.title = PacketInfoManager.sharedManager.hddServiceCodes()?[hddServiceIndex]
+    }
+
+    // MARK: - DisplayPacketLogsSelectTableViewControllerDelegate
+
+    func displayPacketLogSegmentDidSelected(segment: Int) {
+        self.chartDataSegment = ChartDataSegment(rawValue: segment)!
+        self.reloadChartView()
     }
 
 }
