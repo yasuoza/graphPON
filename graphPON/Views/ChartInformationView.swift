@@ -11,22 +11,17 @@ class ChartInformationView: UIView {
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
 
-        self.addSubview(titleLabel)
-    }
-
-    override func drawRect(rect: CGRect) {
-        super.drawRect(rect)
-
         self.titleLabel.frame = CGRectMake(
             ceil(kJBChartValueViewPadding / 2),
             0,
             self.frame.width - ceil(kJBChartValueViewPadding * 2),
             self.frame.height - kJBChartValueViewPadding * 2
         )
-        titleLabel.textColor = UIColor.whiteColor()
-        titleLabel.font = UIFont(name: "HelveticaNeue-CondensedBold", size: 20)
-        titleLabel.text = "FIX TEXT LATER"
-        titleLabel.textAlignment = NSTextAlignment.Center
+        self.titleLabel.textColor = UIColor.whiteColor()
+        self.titleLabel.font = UIFont(name: "HelveticaNeue-CondensedBold", size: 20)
+        self.titleLabel.textAlignment = NSTextAlignment.Center
+        self.addSubview(titleLabel)
+
     }
 
     func setHidden(hidden: Bool, animated: Bool) {
