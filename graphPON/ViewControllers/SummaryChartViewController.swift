@@ -61,11 +61,19 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
                 self.promptLogin()
         })
 
+        NSNotificationCenter.defaultCenter().addObserverForName(
+            PacketInfoManager.LatestPacketLogsDidFetchNotification,
+            object: nil,
+            queue: NSOperationQueue.mainQueue(),
+            usingBlock: { _ in
+                self.reloadChartView(true)
+        })
+
         switch OAuth2Client.sharedClient.state {
-        case OAuth2Client.AuthorizationState.UnAuthorized:
+        case .UnAuthorized:
             self.promptLogin()
-        case OAuth2Client.AuthorizationState.Authorized:
-            self.fetchAndReloadLatestData()
+        default:
+            break
         }
     }
 
@@ -102,36 +110,12 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
         self.chartViewContainerView.reloadChartData()
     }
 
-    func fetchAndReloadLatestData() {
-        PacketInfoManager.sharedManager.fetchLatestPacketLog(completion: { error in
-            self.loadingIndicatorView.stopAnimating()
-
-            if error?.domain == AlamofireErrorDomain {
-                // Network error?
-            }
-
-            if error?.domain == OAuth2Router.APIErrorDomain {
-                switch error!.code {
-                case Int(OAuth2Router.AuthorizationFailureErrorCode):
-                    self.promptLogin()
-                    return
-                case Int(OAuth2Router.TooManyRequestErrorCode):
-                    // Too many requests error
-                    break
-                case Int(OAuth2Router.UnknownErrorCode):
-                    // Unknown error
-                    break
-                default:
-                    break
-                }
-            }
-
-            self.reloadChartView()
-        })
-    }
-
-    func reloadChartView() {
+    func reloadChartView(animated: Bool) {
         self.reBuildChartData()
+
+        if !self.loadingIndicatorView.hidden {
+            self.loadingIndicatorView.stopAnimating()
+        }
 
         if let hddServiceCode = PacketInfoManager.sharedManager.hddServiceCodes()?.first {
             self.navigationItem.title = "\(hddServiceCode) (\(self.chartDataSegment.text()))"
@@ -147,7 +131,7 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
         }
         self.displayLatestTotalChartInformation()
         self.chartViewContainerView.reloadChartData()
-        self.chartViewContainerView.chartView.setState(JBChartViewState.Expanded, animated: true)
+        self.chartViewContainerView.chartView.setState(JBChartViewState.Expanded, animated: animated)
     }
 
     func displayLatestTotalChartInformation() {
@@ -324,7 +308,7 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
 
     func displayPacketLogSegmentDidSelected(segment: Int) {
         self.chartDataSegment = ChartDataSegment(rawValue: segment)!
-        self.reloadChartView()
+        self.reloadChartView(true)
     }
 
 }

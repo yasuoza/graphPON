@@ -3,6 +3,13 @@ import SwiftyJSON
 
 class PacketInfoManager: NSObject {
 
+    class var LatestPacketLogsDidFetchNotification: String {
+        struct Notification {
+            static let name = "graphPON.LatestPacketLogsDidFetchNotification"
+        }
+        return Notification.name
+    }
+
     private let dateFormatter = NSDateFormatter()
 
     private(set) var hddServiceInfoForServiceCode: [String: [HdoInfo]]! = [String: [HdoInfo]]()
@@ -29,7 +36,7 @@ class PacketInfoManager: NSObject {
         self.dateFormatter.locale = NSLocale(localeIdentifier: "en_US")
     }
 
-    func fetchLatestPacketLog(completion _completion: (error: NSError?)->()) {
+    func fetchLatestPacketLog(completion _completion: ((error: NSError?)->())?) {
         var tmpHddServiceInfoForServiceCode = [String: [HdoInfo]]()
 
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
@@ -38,7 +45,8 @@ class PacketInfoManager: NSObject {
                 UIApplication.sharedApplication().networkActivityIndicatorVisible = false
 
                 if error != nil {
-                    _completion(error: error)
+                    _completion?(error: error)
+                    return
                 }
 
                 let json = JSON(json!)
@@ -51,21 +59,24 @@ class PacketInfoManager: NSObject {
                         code: OAuth2Router.AuthorizationFailureErrorCode,
                         userInfo: ["resultCode": json["resultCode"].stringValue]
                     )
-                    return _completion(error: apiError)
+                    _completion?(error: apiError)
+                    return
                 case 429:
                     let apiError = NSError(
                         domain: OAuth2Router.APIErrorDomain,
                         code: OAuth2Router.TooManyRequestErrorCode,
                         userInfo: ["resultCode": json["resultCode"].stringValue]
                     )
-                    return _completion(error: apiError)
+                    _completion?(error: apiError)
+                    return
                 case 400...503:
                     let apiError = NSError(
                         domain: OAuth2Router.APIErrorDomain,
                         code: OAuth2Router.UnknownErrorCode,
                         userInfo: ["resultCode": json["resultCode"].stringValue]
                     )
-                    return _completion(error: apiError)
+                    _completion?(error: apiError)
+                    return
                 default:
                     break
                 }
@@ -92,7 +103,11 @@ class PacketInfoManager: NSObject {
                     }
                 }
                 self.hddServiceInfoForServiceCode = tmpHddServiceInfoForServiceCode
-                _completion(error: nil)
+                NSNotificationCenter.defaultCenter().postNotificationName(
+                    PacketInfoManager.LatestPacketLogsDidFetchNotification,
+                    object: nil
+                )
+                _completion?(error: nil)
         }
     }
 
