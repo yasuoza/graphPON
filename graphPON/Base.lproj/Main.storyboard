@@ -45,9 +45,6 @@
                                                 <variation key="heightClass=compact" misplaced="YES">
                                                     <rect key="frame" x="48" y="4" width="504" height="33"/>
                                                 </variation>
-                                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="50" y="2" width="300" height="33"/>
-                                                </variation>
                                                 <connections>
                                                     <action selector="chartSegmentedControlValueDidChanged:" destination="JEX-9P-axG" eventType="valueChanged" id="hbv-FY-enM"/>
                                                 </connections>
@@ -117,9 +114,6 @@
                                             </constraint>
                                             <constraint firstAttribute="trailing" secondItem="sSd-lo-9Sb" secondAttribute="trailing" id="pv2-Cc-cGY"/>
                                         </constraints>
-                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="235" width="368" height="458"/>
-                                        </variation>
                                         <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
                                             <rect key="frame" x="307" y="0.0" width="461" height="456"/>
                                         </variation>
@@ -235,8 +229,7 @@
                                                 <include reference="dVa-WF-aB7"/>
                                             </mask>
                                         </variation>
-                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="40" width="368" height="195"/>
+                                        <variation key="heightClass=regular-widthClass=compact">
                                             <mask key="constraints">
                                                 <exclude reference="4FF-uQ-pRp"/>
                                             </mask>
@@ -504,9 +497,6 @@
                                             <constraint firstAttribute="bottom" secondItem="wEB-xR-9hZ" secondAttribute="bottom" id="SHZ-29-Vs5"/>
                                             <constraint firstAttribute="trailing" secondItem="wEB-xR-9hZ" secondAttribute="trailing" id="iNO-pq-lT8"/>
                                         </constraints>
-                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="235" width="368" height="458"/>
-                                        </variation>
                                         <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
                                             <rect key="frame" x="307" y="0.0" width="461" height="456"/>
                                         </variation>
@@ -622,8 +612,7 @@
                                                 <include reference="YWT-4i-Onp"/>
                                             </mask>
                                         </variation>
-                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="40" width="368" height="195"/>
+                                        <variation key="heightClass=regular-widthClass=compact">
                                             <mask key="constraints">
                                                 <exclude reference="HJw-Qa-Ndk"/>
                                             </mask>
@@ -1128,7 +1117,7 @@
                                                 <variation key="heightClass=compact" misplaced="YES">
                                                     <rect key="frame" x="0.0" y="16" width="341" height="235"/>
                                                 </variation>
-                                                <variation key="heightClass=regular-widthClass=compact" ambiguous="YES" misplaced="YES">
+                                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
                                                     <rect key="frame" x="0.0" y="8" width="368" height="360"/>
                                                 </variation>
                                                 <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
@@ -1139,7 +1128,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="SJF-Wo-xgB" secondAttribute="bottom" id="Ep1-pv-mUx"/>
-                                            <constraint firstAttribute="width" secondItem="VAQ-0c-6HB" secondAttribute="height" multiplier="1:1" priority="750" id="YyH-Rm-gdE"/>
+                                            <constraint firstAttribute="width" secondItem="VAQ-0c-6HB" secondAttribute="height" multiplier="1:1" priority="500" id="YyH-Rm-gdE"/>
                                             <constraint firstItem="SJF-Wo-xgB" firstAttribute="top" secondItem="VAQ-0c-6HB" secondAttribute="top" constant="36" id="dwk-qN-SRl">
                                                 <variation key="heightClass=compact" constant="16"/>
                                                 <variation key="heightClass=regular-widthClass=compact" constant="8"/>
@@ -1161,8 +1150,8 @@
                                                 <include reference="e7F-kI-Zaj"/>
                                             </mask>
                                         </variation>
-                                        <variation key="heightClass=regular-widthClass=compact" ambiguous="YES" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="235" width="368" height="458"/>
+                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                            <rect key="frame" x="0.0" y="283" width="368" height="368"/>
                                             <mask key="constraints">
                                                 <include reference="YyH-Rm-gdE"/>
                                             </mask>
@@ -1282,8 +1271,8 @@
                                                 <include reference="DM2-PP-8PT"/>
                                             </mask>
                                         </variation>
-                                        <variation key="heightClass=regular-widthClass=compact" ambiguous="YES" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="40" width="368" height="195"/>
+                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                            <rect key="frame" x="0.0" y="16" width="368" height="267"/>
                                             <mask key="constraints">
                                                 <exclude reference="yA0-AJ-UYf"/>
                                             </mask>
