@@ -105,9 +105,7 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
         default:
             self.chartDurationSegment = .InLast30Days
         }
-        reBuildChartData()
-        displayLatestTotalChartInformation()
-        self.chartViewContainerView.reloadChartData()
+        self.reloadChartView(false)
     }
 
     func reloadChartView(animated: Bool) {
