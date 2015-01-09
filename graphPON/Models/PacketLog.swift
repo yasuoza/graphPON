@@ -8,15 +8,16 @@ class PacketLog: NSObject {
 
     // MARK: - Singleton methods
 
-    class func stringForValue(var packetValue: CGFloat!) -> String {
+    class func stringForValue(var packetValue: CGFloat?) -> String {
+        packetValue = packetValue ?? 0.0
         let unit: String = { _ -> String in
             if packetValue >= 1_000.0 {
-                packetValue = packetValue / 1_000.0
+                packetValue = packetValue! / 1_000.0
                 return "GB"
             }
             return "MB"
         }()
-        return NSString(format: "%.01f", Float(packetValue)) + unit
+        return NSString(format: "%.01f", Float(packetValue!)) + unit
     }
 
     // MARK: - Instance methods

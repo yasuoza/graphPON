@@ -46,6 +46,12 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
         self.navigationItem.title = ""
     }
 
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+
+        self.reloadChartView(false)
+    }
+
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
 
@@ -107,6 +113,10 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
     func reloadChartView(animated: Bool) {
         self.reBuildChartData()
 
+        if self.hdoInfos.isEmpty {
+            return
+        }
+
         if !self.loadingIndicatorView.hidden {
             self.loadingIndicatorView.stopAnimating()
         }
@@ -115,7 +125,7 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
             self.navigationItem.title = "\(hddServiceCode) (\(self.chartDataSegment.text()))"
         }
 
-        self.chartViewContainerView.chartView.maximumValue = self.chartData.last!.last!
+        self.chartViewContainerView.chartView.maximumValue = self.chartData.last?.last ?? 0
 
         if let footerView = self.chartViewContainerView.chartView.footerView as? LineChartFooterView {
             footerView.leftLabel.text = self.hdoInfos.first?.packetLogs.first?.dateText()
@@ -167,12 +177,16 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
 
     func reBuildChartData() {
         let logManager = PacketInfoManager.sharedManager
-        let hddServiceCode = logManager.hddServiceCodes()!.first!
+        let hddServiceCode = logManager.hddServiceCodes()?.first
 
-        self.hdoInfos = logManager.hddServiceInfoForServiceCode[hddServiceCode]!
+        if hddServiceCode == nil {
+            return
+        }
+
+        self.hdoInfos = logManager.hddServiceInfoForServiceCode[hddServiceCode!]!
         self.chartLabels = []
 
-        for (hdoInfo) in self.hdoInfos {
+        for hdoInfo in self.hdoInfos {
             hdoInfo.duration = self.chartDurationSegment
         }
 
