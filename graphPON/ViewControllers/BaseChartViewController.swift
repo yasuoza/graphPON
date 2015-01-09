@@ -1,5 +1,18 @@
 import UIKit
 
+let kJBLineChartFooterViewSeparatorWidth          = CGFloat(0.5)
+let kJBLineChartFooterViewSeparatorHeight         = CGFloat(3.0)
+let kJBLineChartFooterViewSeparatorSectionPadding = CGFloat(1.0)
+let kJBLineChartViewControllerChartPadding        = CGFloat(10.0)
+let kJBLineChartViewControllerChartFooterHeight   = CGFloat(20)
+let kJBAreaChartViewControllerChartHeight         = CGFloat(250.0)
+let kJBAreaChartViewControllerChartPadding        = CGFloat(10.0)
+let kJBAreaChartViewControllerChartHeaderHeight   = CGFloat(75.0)
+let kJBAreaChartViewControllerChartHeaderPadding  = CGFloat(20.0)
+let kJBAreaChartViewControllerChartFooterHeight   = CGFloat(20.0)
+let kJBAreaChartViewControllerChartFooterPadding  = CGFloat(5.0)
+let kJBAreaChartViewControllerChartLineWidth      = CGFloat(2.0)
+
 class BaseChartViewController: UIViewController {
 
     @IBOutlet weak var loadingIndicatorView: UIActivityIndicatorView!

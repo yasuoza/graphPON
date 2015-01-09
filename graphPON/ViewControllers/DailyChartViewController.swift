@@ -5,17 +5,6 @@ class DailyChartViewController: BaseLineChartViewController, JBBarChartViewDeleg
 
     let mode: Mode = .Daily
 
-    private let kJBLineChartViewControllerChartPadding       = CGFloat(10.0)
-    private let kJBAreaChartViewControllerChartHeight        = CGFloat(250.0)
-    private let kJBAreaChartViewControllerChartPadding       = CGFloat(10.0)
-    private let kJBAreaChartViewControllerChartHeaderHeight  = CGFloat(75.0)
-    private let kJBAreaChartViewControllerChartHeaderPadding = CGFloat(20.0)
-    private let kJBAreaChartViewControllerChartFooterHeight  = CGFloat(20.0)
-    private let kJBAreaChartViewControllerChartFooterPadding = CGFloat(5.0)
-    private let kJBAreaChartViewControllerChartLineWidth     = CGFloat(2.0)
-    private let kJBAreaChartViewControllerMaxNumChartPoints  = CGFloat(12)
-    private let kJBLineChartViewControllerChartFooterHeight  = CGFloat(20)
-
     private var chartDataSegment: ChartDataSegment = .All
     private var chartData: [CGFloat]!
     private var horizontalSymbols: [NSString]!

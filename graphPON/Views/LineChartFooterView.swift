@@ -2,11 +2,6 @@ import UIKit
 
 class LineChartFooterView: UIView {
 
-    // Numerics
-    private let kJBLineChartFooterViewSeparatorWidth = CGFloat(0.5)
-    private let kJBLineChartFooterViewSeparatorHeight = CGFloat(3.0)
-    private let kJBLineChartFooterViewSeparatorSectionPadding = CGFloat(1.0)
-
     var footerSeparatorColor: UIColor! = UIColor.whiteColor()
     var sectionCount: NSInteger! = 2
     var leftLabel: UILabel! = UILabel()

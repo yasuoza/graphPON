@@ -5,10 +5,6 @@ import SwiftyJSON
 
 class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDelegate, JBLineChartViewDataSource, HddServiceListTableViewControllerDelegate, DisplayPacketLogsSelectTableViewControllerDelegate {
 
-    private let kJBLineChartViewControllerChartPadding       = CGFloat(10.0)
-    private let kJBAreaChartViewControllerChartFooterPadding = CGFloat(5.0)
-    private let kJBLineChartViewControllerChartFooterHeight  = CGFloat(20)
-
     private let mode: Mode = .Summary
 
     private var chartDataSegment: ChartDataSegment = .All
