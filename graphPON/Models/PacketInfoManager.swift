@@ -18,6 +18,15 @@ class PacketInfoManager: NSObject {
         return Array(self.hddServiceInfoForServiceCode.keys)
     }
 
+    lazy var hdoServiceCodes: () -> [String]? = { [unowned self] in
+        let values = Array(self.hddServiceInfoForServiceCode.values)
+        return values.reduce([], combine: { (var arr, hdoInfos) -> [String] in
+            return arr + hdoInfos.map { hdoInfo in
+                hdoInfo.hdoServiceCode
+            }
+        })
+    }
+
     // MARK: - Singleton methods
 
     class var sharedManager : PacketInfoManager {
