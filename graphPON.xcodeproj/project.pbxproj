@@ -37,6 +37,7 @@
 		A8867A051A30333C001D8578 /* ExtendedNavBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8867A041A30333C001D8578 /* ExtendedNavBarView.swift */; };
 		A8867A0C1A304E8B001D8578 /* HddServiceListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8867A0B1A304E8B001D8578 /* HddServiceListTableViewController.swift */; };
 		A8867A0F1A304EB0001D8578 /* HddServiceListTableViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8867A0E1A304EB0001D8578 /* HddServiceListTableViewControllerDelegate.swift */; };
+		A88925BF1A61704C0036B32B /* HddService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88925BE1A61704C0036B32B /* HddService.swift */; };
 		A88BB3701A2DDEA700E5AE4F /* HdoInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88BB36F1A2DDEA700E5AE4F /* HdoInfo.swift */; };
 		A8B212B81A11ED68005988DC /* BaseLineChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B212B71A11ED68005988DC /* BaseLineChartViewController.swift */; };
 		A8B212BC1A11EEDC005988DC /* SummaryChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B212BB1A11EEDC005988DC /* SummaryChartViewController.swift */; };
@@ -113,6 +114,7 @@
 		A8867A041A30333C001D8578 /* ExtendedNavBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExtendedNavBarView.swift; path = Views/ExtendedNavBarView.swift; sourceTree = "<group>"; };
 		A8867A0B1A304E8B001D8578 /* HddServiceListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HddServiceListTableViewController.swift; path = ViewControllers/HddServiceListTableViewController.swift; sourceTree = "<group>"; };
 		A8867A0E1A304EB0001D8578 /* HddServiceListTableViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HddServiceListTableViewControllerDelegate.swift; path = Protocols/HddServiceListTableViewControllerDelegate.swift; sourceTree = "<group>"; };
+		A88925BE1A61704C0036B32B /* HddService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HddService.swift; path = Models/HddService.swift; sourceTree = "<group>"; };
 		A88BB36F1A2DDEA700E5AE4F /* HdoInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HdoInfo.swift; path = Models/HdoInfo.swift; sourceTree = "<group>"; };
 		A8B212B71A11ED68005988DC /* BaseLineChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseLineChartViewController.swift; path = ViewControllers/BaseLineChartViewController.swift; sourceTree = "<group>"; };
 		A8B212BB1A11EEDC005988DC /* SummaryChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SummaryChartViewController.swift; path = ViewControllers/SummaryChartViewController.swift; sourceTree = "<group>"; };
@@ -246,6 +248,7 @@
 				A807E1501A4D38950064BC11 /* PacketInfoManager.swift */,
 				A8549EFA1A2C6E9C000308AD /* PacketLog.swift */,
 				A88BB36F1A2DDEA700E5AE4F /* HdoInfo.swift */,
+				A88925BE1A61704C0036B32B /* HddService.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -431,6 +434,7 @@
 				A8B212BC1A11EEDC005988DC /* SummaryChartViewController.swift in Sources */,
 				A8D19DFD1A537E81009CB806 /* PromptLoginController.swift in Sources */,
 				A807E1511A4D38950064BC11 /* PacketInfoManager.swift in Sources */,
+				A88925BF1A61704C0036B32B /* HddService.swift in Sources */,
 				A8B39C391A41713E009F519E /* BaseChartViewController.swift in Sources */,
 				A8B212B81A11ED68005988DC /* BaseLineChartViewController.swift in Sources */,
 				A874C0B91A4BF6EB00887932 /* OAuth2Client.swift in Sources */,
