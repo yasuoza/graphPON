@@ -1,4 +1,4 @@
-class HdoInfo: NSObject {
+class HdoService: NSObject {
 
     enum Duration {
         case InThisMonth, InLast30Days

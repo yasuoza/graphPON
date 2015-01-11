@@ -20,7 +20,7 @@ class PacketInfoManager: NSObject {
 
     lazy var hdoServiceCodes: () -> [String] = { [unowned self] in
         return self.hddServices.reduce([], combine: { (var _hddServiceCodes, hddService) -> [String] in
-            if let hdoInfos = hddService.hdoInfos {
+            if let hdoInfos = hddService.hdoServices {
                 return _hddServiceCodes + hdoInfos.reduce([], combine: { (var _hdoInfoCodes, hdoInfo) -> [String] in
                     return _hdoInfoCodes + [hdoInfo.hdoServiceCode]
                 })
@@ -95,7 +95,7 @@ class PacketInfoManager: NSObject {
 
                 for (_, hddServiceJSON) in json["packetLogInfo"] {
                     var serviceCode = hddServiceJSON["hddServiceCode"].stringValue
-                    var tmpHdoInfos: [HdoInfo] = []
+                    var tmpHdoInfos: [HdoService] = []
                     for (_, hdoServiceJson) in hddServiceJSON["hdoInfo"] {
                         var hdoPacketLogs: [PacketLog] = []
                         for (_, packetLogJson) in hdoServiceJson["packetLog"] {
@@ -107,7 +107,7 @@ class PacketInfoManager: NSObject {
                             )
                             hdoPacketLogs.append(packetLog)
                         }
-                        let hdoInfo = HdoInfo(
+                        let hdoInfo = HdoService(
                             hdoServiceCode: hdoServiceJson["hdoServiceCode"].stringValue,
                             packetLogs: hdoPacketLogs
                         )
@@ -129,10 +129,10 @@ class PacketInfoManager: NSObject {
         return self.hddServices.filter { $0.hddServiceCode == hddServiceCode }.first
     }
 
-    func hdoServiceForServiceCode(hdoServiceCode: String) -> HdoInfo? {
+    func hdoServiceForServiceCode(hdoServiceCode: String) -> HdoService? {
         for hddService in self.hddServices {
             if let hdoServiceIndex = find(hddService.hdoServiceCodes, hdoServiceCode) {
-                return hddService.hdoInfos?[hdoServiceIndex]
+                return hddService.hdoServices?[hdoServiceIndex]
             }
         }
         return nil

@@ -2,10 +2,10 @@ import UIKit
 
 class HddService: NSObject {
     private(set) var hddServiceCode: String!
-    private(set) var hdoInfos: [HdoInfo]?
+    private(set) var hdoServices: [HdoService]?
 
     lazy var hdoServiceCodes: [String] = {
-        if let hdoInfos = self.hdoInfos {
+        if let hdoInfos = self.hdoServices {
             return hdoInfos.reduce([], combine: { (var arr, hdoInfo) -> [String] in
                 return arr + [hdoInfo.hdoServiceCode]
             })
@@ -14,9 +14,9 @@ class HddService: NSObject {
         }
     }()
 
-    init(hddServiceCode: String, hdoInfos: [HdoInfo]) {
+    init(hddServiceCode: String, hdoInfos: [HdoService]) {
         super.init()
         self.hddServiceCode = hddServiceCode
-        self.hdoInfos = hdoInfos
+        self.hdoServices = hdoInfos
     }
 }

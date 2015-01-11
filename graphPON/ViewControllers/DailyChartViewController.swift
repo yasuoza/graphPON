@@ -7,7 +7,7 @@ class DailyChartViewController: BaseLineChartViewController, JBBarChartViewDeleg
 
     private var chartDataSegment: ChartDataSegment = .All
     private var chartData: [CGFloat]? = []
-    private var hdoInfo: HdoInfo?
+    private var hdoService: HdoService?
     private var hdoServiceCode: String = ""
 
     // MARK: - View Lifecycle
@@ -42,7 +42,7 @@ class DailyChartViewController: BaseLineChartViewController, JBBarChartViewDeleg
 
         if let hdoServiceCode = PacketInfoManager.sharedManager.hdoServiceCodes().first {
             self.hdoServiceCode = hdoServiceCode
-            self.hdoInfo = PacketInfoManager.sharedManager.hdoServiceForServiceCode(hdoServiceCode)
+            self.hdoService = PacketInfoManager.sharedManager.hdoServiceForServiceCode(hdoServiceCode)
         }
     }
 
@@ -80,7 +80,7 @@ class DailyChartViewController: BaseLineChartViewController, JBBarChartViewDeleg
     func reloadChartView(animated: Bool) {
         self.reBuildChartData()
 
-        if let hdoServiceCode = self.hdoInfo?.hdoServiceCode {
+        if let hdoServiceCode = self.hdoService?.hdoServiceCode {
             self.navigationItem.title = "\(hdoServiceCode) (\(self.chartDataSegment.text()))"
         }
 
@@ -89,8 +89,8 @@ class DailyChartViewController: BaseLineChartViewController, JBBarChartViewDeleg
         }
 
         if let footerView = self.chartViewContainerView.chartView.footerView as? LineChartFooterView {
-            footerView.leftLabel.text = self.hdoInfo?.packetLogs.first?.dateText()
-            footerView.rightLabel.text = self.hdoInfo?.packetLogs.last?.dateText()
+            footerView.leftLabel.text = self.hdoService?.packetLogs.first?.dateText()
+            footerView.rightLabel.text = self.hdoService?.packetLogs.last?.dateText()
             footerView.sectionCount = self.chartData?.count ?? 0
             footerView.hidden = false
         }
@@ -132,7 +132,7 @@ class DailyChartViewController: BaseLineChartViewController, JBBarChartViewDeleg
     }
 
     func displayLatestTotalChartInformation() {
-        if let packetLog = self.hdoInfo?.packetLogs.last? {
+        if let packetLog = self.hdoService?.packetLogs.last? {
             self.chartInformationView.setTitleText("Total - \(packetLog.dateText())")
             self.chartInformationView.setHidden(false, animated: true)
         }
@@ -151,8 +151,8 @@ class DailyChartViewController: BaseLineChartViewController, JBBarChartViewDeleg
     // MARK: - Private methods
 
     func reBuildChartData() {
-        self.hdoInfo = PacketInfoManager.sharedManager.hdoServiceForServiceCode(self.hdoServiceCode)
-        self.chartData = self.hdoInfo?.packetLogs.map { packetLog -> CGFloat in
+        self.hdoService = PacketInfoManager.sharedManager.hdoServiceForServiceCode(self.hdoServiceCode)
+        self.chartData = self.hdoService?.packetLogs.map { packetLog -> CGFloat in
             return CGFloat(packetLog.withCoupon)
         }
     }
@@ -174,7 +174,7 @@ class DailyChartViewController: BaseLineChartViewController, JBBarChartViewDeleg
             || (self.traitCollection.verticalSizeClass == UIUserInterfaceSizeClass.Regular
                 && self.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClass.Regular)
 
-        let dateText = self.hdoInfo?.packetLogs[Int(index)].dateText() ?? ""
+        let dateText = self.hdoService?.packetLogs[Int(index)].dateText() ?? ""
         if displayTooltip {
             self.setTooltipVisible(true, animated: false, touchPoint: touchPoint)
             self.tooltipView.setText(dateText)
@@ -225,8 +225,8 @@ class DailyChartViewController: BaseLineChartViewController, JBBarChartViewDeleg
     // MARK: - HddServiceListTableViewControllerDelegate
 
     func serviceDidSelectedSection(section: Int, row: Int) {
-        self.hdoServiceCode = PacketInfoManager.sharedManager.hddServices[section].hdoInfos![row].hdoServiceCode
-        self.hdoInfo = PacketInfoManager.sharedManager.hddServices[section].hdoInfos?[row]
+        self.hdoServiceCode = PacketInfoManager.sharedManager.hddServices[section].hdoServices![row].hdoServiceCode
+        self.hdoService = PacketInfoManager.sharedManager.hddServices[section].hdoServices?[row]
         self.reloadChartView(true)
     }
 
