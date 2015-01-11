@@ -46,6 +46,11 @@
 		A8BC2A7D1A50030400E6A36A /* OAuth2CredentialTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BC2A7C1A50030400E6A36A /* OAuth2CredentialTests.swift */; };
 		A8BC2A7E1A50032500E6A36A /* OAuth2Credential.swift in Sources */ = {isa = PBXBuildFile; fileRef = A874C0BD1A4C04A800887932 /* OAuth2Credential.swift */; };
 		A8BC58B51A1DE4B2006CD44D /* DailyChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BC58B41A1DE4B2006CD44D /* DailyChartViewController.swift */; };
+		A8BE14A11A625D2C0071ADDD /* HddServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BE14A01A625D2C0071ADDD /* HddServiceTests.swift */; };
+		A8BE14A21A625D760071ADDD /* HddService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88925BE1A61704C0036B32B /* HddService.swift */; };
+		A8BE14A31A625D7B0071ADDD /* HdoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88BB36F1A2DDEA700E5AE4F /* HdoService.swift */; };
+		A8BE14A51A625E070071ADDD /* PacketLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8549EFA1A2C6E9C000308AD /* PacketLog.swift */; };
+		A8BE14A71A6260C60071ADDD /* HdoServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BE14A61A6260C60071ADDD /* HdoServiceTests.swift */; };
 		A8D19DFD1A537E81009CB806 /* PromptLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D19DFC1A537E81009CB806 /* PromptLoginController.swift */; };
 		A8DCA1531A4E7B3E00CE73D3 /* OAuth2ClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DCA1521A4E7B3E00CE73D3 /* OAuth2ClientTests.swift */; };
 		A8DCA1541A4E7B7000CE73D3 /* OAuth2Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = A874C0B71A4BF6EB00887932 /* OAuth2Client.swift */; };
@@ -123,6 +128,8 @@
 		A8B39C381A41713E009F519E /* BaseChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseChartViewController.swift; path = ViewControllers/BaseChartViewController.swift; sourceTree = "<group>"; };
 		A8BC2A7C1A50030400E6A36A /* OAuth2CredentialTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuth2CredentialTests.swift; sourceTree = "<group>"; };
 		A8BC58B41A1DE4B2006CD44D /* DailyChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DailyChartViewController.swift; path = ViewControllers/DailyChartViewController.swift; sourceTree = "<group>"; };
+		A8BE14A01A625D2C0071ADDD /* HddServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HddServiceTests.swift; sourceTree = "<group>"; };
+		A8BE14A61A6260C60071ADDD /* HdoServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HdoServiceTests.swift; sourceTree = "<group>"; };
 		A8D19DFC1A537E81009CB806 /* PromptLoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PromptLoginController.swift; path = Views/PromptLoginController.swift; sourceTree = "<group>"; };
 		A8DCA1521A4E7B3E00CE73D3 /* OAuth2ClientTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuth2ClientTests.swift; sourceTree = "<group>"; };
 		A8DCA1591A4E810200CE73D3 /* configuration.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = configuration.plist; sourceTree = "<group>"; };
@@ -210,6 +217,8 @@
 			children = (
 				A8DCA1521A4E7B3E00CE73D3 /* OAuth2ClientTests.swift */,
 				A8BC2A7C1A50030400E6A36A /* OAuth2CredentialTests.swift */,
+				A8BE14A01A625D2C0071ADDD /* HddServiceTests.swift */,
+				A8BE14A61A6260C60071ADDD /* HdoServiceTests.swift */,
 				A80D19DB1A11CEDA0067A055 /* Supporting Files */,
 			);
 			path = graphPONTests;
@@ -246,9 +255,9 @@
 			children = (
 				A874C0B01A4BF45C00887932 /* OAuth2 */,
 				A807E1501A4D38950064BC11 /* PacketInfoManager.swift */,
-				A8549EFA1A2C6E9C000308AD /* PacketLog.swift */,
-				A88BB36F1A2DDEA700E5AE4F /* HdoService.swift */,
 				A88925BE1A61704C0036B32B /* HddService.swift */,
+				A88BB36F1A2DDEA700E5AE4F /* HdoService.swift */,
+				A8549EFA1A2C6E9C000308AD /* PacketLog.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -449,11 +458,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8BE14A11A625D2C0071ADDD /* HddServiceTests.swift in Sources */,
 				A8DCA1541A4E7B7000CE73D3 /* OAuth2Client.swift in Sources */,
+				A8BE14A21A625D760071ADDD /* HddService.swift in Sources */,
+				A8BE14A71A6260C60071ADDD /* HdoServiceTests.swift in Sources */,
 				A8BC2A7E1A50032500E6A36A /* OAuth2Credential.swift in Sources */,
+				A8BE14A51A625E070071ADDD /* PacketLog.swift in Sources */,
 				A8DCA1531A4E7B3E00CE73D3 /* OAuth2ClientTests.swift in Sources */,
 				A8DCA1581A4E7C5500CE73D3 /* OAuth2Router.swift in Sources */,
 				A8BC2A7D1A50030400E6A36A /* OAuth2CredentialTests.swift in Sources */,
+				A8BE14A31A625D7B0071ADDD /* HdoService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

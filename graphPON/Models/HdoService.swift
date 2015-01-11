@@ -1,3 +1,5 @@
+import UIKit
+
 class HdoService: NSObject {
 
     enum Duration {

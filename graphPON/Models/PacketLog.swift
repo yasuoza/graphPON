@@ -1,3 +1,5 @@
+import UIKit
+
 class PacketLog: NSObject {
 
     var date: NSDate!
