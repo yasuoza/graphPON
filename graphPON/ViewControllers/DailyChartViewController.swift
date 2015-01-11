@@ -36,7 +36,7 @@ class DailyChartViewController: BaseLineChartViewController, JBBarChartViewDeleg
         footerView.rightLabel.textColor = UIColor.whiteColor()
         self.chartViewContainerView.chartView.footerView = footerView
 
-        self.chartInformationView.setHidden(true)
+        self.chartInformationView.hidden = true
 
         self.navigationItem.title = ""
 
@@ -162,7 +162,6 @@ class DailyChartViewController: BaseLineChartViewController, JBBarChartViewDeleg
     func numberOfBarsInBarChartView(barChartView: JBBarChartView!) -> UInt {
         return UInt(self.chartData?.count ?? 0)
     }
-
 
     // MARK: - JBLineChartViewDelegate
 
