@@ -2,18 +2,20 @@ import UIKit
 
 class HddServiceListTableViewController: UITableViewController {
 
-    var hddServices: [String] = []
+    var services: [String] = []
+    var mode: BaseLineChartViewController.Mode = .Summary
 
     weak var delegate: HddServiceListTableViewControllerDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        switch self.mode {
+        case .Summary:
+            self.services = PacketInfoManager.sharedManager.hddServiceCodes()
+        case .Daily:
+            self.services = PacketInfoManager.sharedManager.hdoServiceCodes()
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -30,25 +32,34 @@ class HddServiceListTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        if self.mode == .Daily {
+            return PacketInfoManager.sharedManager.hddServiceCodes().count ?? 1
+        }
         return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.hddServices.count
+        return self.services.count
     }
 
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if self.mode == .Daily {
+            return PacketInfoManager.sharedManager.hddServiceCodes()[section]
+        }
+        return nil
+    }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("HddServiceCell", forIndexPath: indexPath) as UITableViewCell
 
-        cell.textLabel?.text = self.hddServices[indexPath.row]
+        cell.textLabel?.text = self.services[indexPath.row]
 
         return cell
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         dismissViewControllerAnimated(true, completion: nil)
-        delegate?.hddServiceDidSelected(indexPath.row)
+        delegate?.serviceDidSelectedSection(indexPath.section, row: indexPath.row)
     }
 
     /*

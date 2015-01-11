@@ -6,18 +6,14 @@ class DailyChartViewController: BaseLineChartViewController, JBBarChartViewDeleg
     let mode: Mode = .Daily
 
     private var chartDataSegment: ChartDataSegment = .All
-    private var chartData: [CGFloat]!
-    private var horizontalSymbols: [NSString]!
-
-    var amounts = [29, 15, 45, 90, 72, 70, 90, 101, 113, 75, 34, 53, 56, 111, 11, 3, 41, 72, 36, 7, 8]
+    private var chartData: [CGFloat]? = []
+    private var hdoInfo: HdoInfo?
+    private var hdoServiceCode: String = ""
 
     // MARK: - View Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.initFakeData()
-        self.chartViewContainerView.chartView.maximumValue = maxElement(self.chartData)
 
         self.view.backgroundColor = self.mode.backgroundColor()
         self.navigationItem.title = self.mode.titleText()
@@ -36,23 +32,87 @@ class DailyChartViewController: BaseLineChartViewController, JBBarChartViewDeleg
             kJBLineChartViewControllerChartFooterHeight + kJBLineChartViewControllerChartPadding
             ))
         footerView.backgroundColor = UIColor.clearColor()
-        footerView.leftLabel.text = self.horizontalSymbols.first
         footerView.leftLabel.textColor = UIColor.whiteColor()
-        footerView.rightLabel.text = self.horizontalSymbols.last
         footerView.rightLabel.textColor = UIColor.whiteColor()
-        footerView.sectionCount = self.largestLineData().count
         self.chartViewContainerView.chartView.footerView = footerView
 
         self.chartInformationView.setHidden(true)
 
-        self.navigationItem.title = "hddservice: service00"
+        self.navigationItem.title = ""
+
+        if let hdoServiceCode = PacketInfoManager.sharedManager.hdoServiceCodes().first {
+            self.hdoServiceCode = hdoServiceCode
+            self.hdoInfo = PacketInfoManager.sharedManager.hdoServiceForServiceCode(hdoServiceCode)
+        }
+    }
+
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+
+        self.reloadChartView(false)
     }
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
 
+        NSNotificationCenter.defaultCenter().addObserverForName(
+            PacketInfoManager.LatestPacketLogsDidFetchNotification,
+            object: nil,
+            queue: NSOperationQueue.mainQueue(),
+            usingBlock: { _ in
+                self.reloadChartView(true)
+        })
+
+        switch OAuth2Client.sharedClient.state {
+        case .UnAuthorized:
+            self.promptLogin()
+        default:
+            break
+        }
+    }
+
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+
+    // MARK: - Actions
+
+    func reloadChartView(animated: Bool) {
+        self.reBuildChartData()
+
+        if let hdoServiceCode = self.hdoInfo?.hdoServiceCode {
+            self.navigationItem.title = "\(hdoServiceCode) (\(self.chartDataSegment.text()))"
+        }
+
+        if let chartData = self.chartData {
+            self.chartViewContainerView.chartView.maximumValue = maxElement(chartData)
+        }
+
+        if let footerView = self.chartViewContainerView.chartView.footerView as? LineChartFooterView {
+            footerView.leftLabel.text = self.hdoInfo?.packetLogs.first?.dateText()
+            footerView.rightLabel.text = self.hdoInfo?.packetLogs.last?.dateText()
+            footerView.sectionCount = self.chartData?.count ?? 0
+            footerView.hidden = false
+        }
         self.displayLatestTotalChartInformation()
-        self.chartViewContainerView.chartView.setState(JBChartViewState.Expanded, animated: true)
+        self.chartViewContainerView.reloadChartData()
+        self.chartViewContainerView.chartView.setState(JBChartViewState.Expanded, animated: animated)
+    }
+
+    func promptLogin() {
+        switch OAuth2Client.sharedClient.state {
+        case OAuth2Client.AuthorizationState.UnAuthorized:
+            if let _ = self.presentedViewController as? PromptLoginController {
+                break
+            }
+            return self.presentViewController(
+                PromptLoginController.alertController(),
+                animated: true,
+                completion: nil
+            )
+        default:
+            break
+        }
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -60,21 +120,20 @@ class DailyChartViewController: BaseLineChartViewController, JBBarChartViewDeleg
             let navigationController = segue.destinationViewController as UINavigationController
             let hddServiceListViewController = navigationController.topViewController as HddServiceListTableViewController
             hddServiceListViewController.delegate = self
+            hddServiceListViewController.mode = .Daily
         }
     }
 
-    // MARK: - Actions
-
     @IBAction func chartSegmentedControlValueDidChanged(segmentedControl: UISegmentedControl) {
         self.chartDataSegment = ChartDataSegment(rawValue: segmentedControl.selectedSegmentIndex)!
-        initFakeData()
+        reBuildChartData()
         displayLatestTotalChartInformation()
         self.chartViewContainerView.reloadChartData()
     }
 
     func displayLatestTotalChartInformation() {
-        if let date = self.horizontalSymbols.last? {
-            self.chartInformationView.setTitleText("Total - \(String(date))")
+        if let packetLog = self.hdoInfo?.packetLogs.last? {
+            self.chartInformationView.setTitleText("Total - \(packetLog.dateText())")
             self.chartInformationView.setHidden(false, animated: true)
         }
         UIView.animateWithDuration(NSTimeInterval(kJBChartViewDefaultAnimationDuration) * 0.5,
@@ -82,12 +141,7 @@ class DailyChartViewController: BaseLineChartViewController, JBBarChartViewDeleg
             options: UIViewAnimationOptions.BeginFromCurrentState,
             animations: {
                 self.informationValueLabelSeparatorView.alpha = 1.0
-                var (value, unit) = (self.chartData.last?, "MB")
-                if value != nil && value >= 100_0.0 {
-                    (value, unit) =  (value! / 100_0.0, "GB")
-                }
-                let valueText = NSString(format: "%.01f", Float(value!))
-                self.valueLabel.text = "\(valueText)\(unit)"
+                self.valueLabel.text = PacketLog.stringForValue(self.chartData?.last)
                 self.valueLabel.alpha = 1.0
             },
             completion: nil
@@ -96,54 +150,38 @@ class DailyChartViewController: BaseLineChartViewController, JBBarChartViewDeleg
 
     // MARK: - Private methods
 
-    func initFakeData() {
-        let multipler = self.chartDataSegment.rawValue == 0 ? 1.0 : CGFloat(2.0 / 3.0) / CGFloat(self.chartDataSegment.rawValue)
-        chartData = amounts.map { CGFloat($0) * multipler }
-
-        // 今月の日付を表示
-        let today = NSDate()
-        let calendar = NSCalendar(calendarIdentifier: NSGregorianCalendar)!
-        var comps = calendar.components(
-            (NSCalendarUnit.CalendarUnitYear|NSCalendarUnit.CalendarUnitMonth|NSCalendarUnit.CalendarUnitDay), fromDate: today
-        )
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "MM/dd"
-        dateFormatter.locale = NSLocale(localeIdentifier: "en_US")
-
-        horizontalSymbols = (1...chartData.count).map {
-            comps.day = $0
-            let date = calendar.dateFromComponents(comps)!
-            return dateFormatter.stringFromDate(date)
+    func reBuildChartData() {
+        self.hdoInfo = PacketInfoManager.sharedManager.hdoServiceForServiceCode(self.hdoServiceCode)
+        self.chartData = self.hdoInfo?.packetLogs.map { packetLog -> CGFloat in
+            return CGFloat(packetLog.withCoupon)
         }
-    }
-
-    func largestLineData() -> NSArray {
-        return self.chartData
     }
 
     // MARK: - JBLineChartViewDataSource
 
     func numberOfBarsInBarChartView(barChartView: JBBarChartView!) -> UInt {
-        return UInt(self.chartData.count)
+        return UInt(self.chartData?.count ?? 0)
     }
 
 
     // MARK: - JBLineChartViewDelegate
 
     func barChartView(barChartView: JBBarChartView!, heightForBarViewAtIndex index: UInt) -> CGFloat {
-        return self.chartData[Int(index)]
+        return self.chartData?[Int(index)] ?? 0.0
     }
 
     func barChartView(barChartView: JBBarChartView!, didSelectBarAtIndex index: UInt, touchPoint: CGPoint) {
         let displayTooltip = self.traitCollection.verticalSizeClass == UIUserInterfaceSizeClass.Compact
             || (self.traitCollection.verticalSizeClass == UIUserInterfaceSizeClass.Regular
                 && self.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClass.Regular)
+
+        let dateText = self.hdoInfo?.packetLogs[Int(index)].dateText() ?? ""
         if displayTooltip {
             self.setTooltipVisible(true, animated: false, touchPoint: touchPoint)
-            self.tooltipView.setText(horizontalSymbols[Int(index)])
+            self.tooltipView.setText(dateText)
         }
 
-        self.chartInformationView.setTitleText("Total - \(horizontalSymbols[Int(index)])")
+        self.chartInformationView.setTitleText("Total - \(dateText)")
         self.chartInformationView.setHidden(false, animated: true)
 
         UIView.animateWithDuration(
@@ -151,14 +189,7 @@ class DailyChartViewController: BaseLineChartViewController, JBBarChartViewDeleg
             delay: 0.0,
             options: UIViewAnimationOptions.BeginFromCurrentState,
             animations: {
-                var value = self.chartData[Int(index)]
-                var unit = "MB"
-                if value >= 1000.0 {
-                    value /= 1000.0
-                    unit = "GB"
-                }
-                let valueText = NSString(format: "%.01f", Float(value))
-                self.valueLabel.text = "\(valueText)\(unit)"
+                self.valueLabel.text = PacketLog.stringForValue(self.chartData?[Int(index)])
                 self.valueLabel.alpha = 1.0
             },
             completion: nil
@@ -194,16 +225,10 @@ class DailyChartViewController: BaseLineChartViewController, JBBarChartViewDeleg
 
     // MARK: - HddServiceListTableViewControllerDelegate
 
-    func hddServiceDidSelected(hddServiceIndex: Int) {
-        self.navigationItem.title = "hddservice: \(hddServiceIndex)"
-
-        func randomly(a: Int, b: Int) -> Bool {
-            return arc4random() % 2 == 0
-        }
-
-        self.amounts = sorted(self.amounts, randomly)
-        initFakeData()
-        self.chartViewContainerView.reloadChartData()
+    func serviceDidSelectedSection(section: Int, row: Int) {
+        self.hdoServiceCode = PacketInfoManager.sharedManager.hddServices[section].hdoInfos![row].hdoServiceCode
+        self.hdoInfo = PacketInfoManager.sharedManager.hddServices[section].hdoInfos?[row]
+        self.reloadChartView(true)
     }
 
 }

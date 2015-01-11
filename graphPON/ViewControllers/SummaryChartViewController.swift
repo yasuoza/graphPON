@@ -9,9 +9,9 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
 
     private var chartDataSegment: ChartDataSegment = .All
     private var chartDurationSegment: HdoInfo.Duration = .InThisMonth
-    private var hdoInfos: [HdoInfo] = []
-    private var chartLabels: [String] = []
-    private var chartData: [[CGFloat]] = []
+    private var hddServiceCode: String = ""
+    private var hdoInfos: [HdoInfo]? = []
+    private var chartData: [[CGFloat]]? = []
 
     // MARK: - View Lifecycle
 
@@ -90,9 +90,7 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
             let navigationController = segue.destinationViewController as UINavigationController
             let hddServiceListViewController = navigationController.topViewController as HddServiceListTableViewController
             hddServiceListViewController.delegate = self
-            if let hddServices = PacketInfoManager.sharedManager.hddServiceCodes() {
-                hddServiceListViewController.hddServices = hddServices
-            }
+            hddServiceListViewController.services = PacketInfoManager.sharedManager.hddServiceCodes()
         } else if segue.identifier == "DisplayPacketLogsSelectFromSummaryChartSegue" {
             let navigationController = segue.destinationViewController as UINavigationController
             let displayPacketLogSelectViewController = navigationController.topViewController as DisplayPacketLogsSelectTableViewController
@@ -113,35 +111,40 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
     func reloadChartView(animated: Bool) {
         self.reBuildChartData()
 
-        if self.hdoInfos.isEmpty {
-            return
-        }
-
         if !self.loadingIndicatorView.hidden {
             self.loadingIndicatorView.stopAnimating()
         }
 
-        if let hddServiceCode = PacketInfoManager.sharedManager.hddServiceCodes()?.first {
+        if let hddServiceCode = PacketInfoManager.sharedManager.hddServiceCodes().first {
             self.navigationItem.title = "\(hddServiceCode) (\(self.chartDataSegment.text()))"
         }
 
-        self.chartViewContainerView.chartView.maximumValue = self.chartData.last?.last ?? 0
+        self.chartViewContainerView.chartView.maximumValue = self.chartData?.last?.last ?? 0
 
         if let footerView = self.chartViewContainerView.chartView.footerView as? LineChartFooterView {
-            footerView.leftLabel.text = self.hdoInfos.first?.packetLogs.first?.dateText()
-            footerView.rightLabel.text = self.hdoInfos.first?.packetLogs.last?.dateText()
-            footerView.sectionCount = self.chartData.first?.count ?? 0
+            footerView.leftLabel.text = self.hdoInfos?.first?.packetLogs.first?.dateText()
+            footerView.rightLabel.text = self.hdoInfos?.first?.packetLogs.last?.dateText()
+            footerView.sectionCount = self.chartData?.first?.count ?? 0
             footerView.hidden = false
         }
+
         self.displayLatestTotalChartInformation()
         self.chartViewContainerView.reloadChartData()
         self.chartViewContainerView.chartView.setState(JBChartViewState.Expanded, animated: animated)
     }
 
     func displayLatestTotalChartInformation() {
-        let (label, date) = (self.chartLabels.last?, self.hdoInfos.first?.packetLogs.last?.dateText())
-        if label != nil && date != nil {
-            self.chartInformationView.setTitleText("\(String(label!)) - \(String(date!))")
+        let (label, date) = ("Total", self.hdoInfos?.first?.packetLogs.last?.dateText())
+
+        if date == nil {
+            self.chartInformationView.setHidden(true)
+            self.informationValueLabelSeparatorView.alpha = 0.0
+            self.valueLabel.alpha = 0.0
+            return
+        }
+
+        if date != nil {
+            self.chartInformationView.setTitleText("\(label) - \(String(date!))")
             self.chartInformationView.setHidden(false, animated: true)
         }
         UIView.animateWithDuration(
@@ -150,7 +153,7 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
             options: UIViewAnimationOptions.BeginFromCurrentState,
             animations: {
                 self.informationValueLabelSeparatorView.alpha = 1.0
-                self.valueLabel.text = PacketLog.stringForValue(self.chartData.last?.last!)
+                self.valueLabel.text = PacketLog.stringForValue(self.chartData?.last?.last!)
                 self.valueLabel.alpha = 1.0
             },
             completion: nil
@@ -177,22 +180,24 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
 
     func reBuildChartData() {
         let logManager = PacketInfoManager.sharedManager
-        let hddServiceCode = logManager.hddServiceCodes()?.first
+        self.hdoInfos  = []
+        self.chartData = []
 
-        if hddServiceCode == nil {
+        if find(logManager.hddServiceCodes(), self.hddServiceCode) == nil {
+            self.hddServiceCode = logManager.hddServiceCodes().first ?? ""
+        }
+
+        self.hdoInfos = logManager.hddServiceForServiceCode(self.hddServiceCode)?.hdoInfos
+        if self.hdoInfos == nil {
             return
         }
 
-        self.hdoInfos = logManager.hddServiceInfoForServiceCode[hddServiceCode!]!
-        self.chartLabels = []
-
-        for hdoInfo in self.hdoInfos {
+        for hdoInfo in self.hdoInfos! {
             hdoInfo.duration = self.chartDurationSegment
         }
 
-        var totalSum = [CGFloat](count: self.hdoInfos.first!.packetLogs.count, repeatedValue: 0.0)
-        self.chartData = self.hdoInfos.reduce([], combine: { (var _chartData, hdoInfo) -> [[CGFloat]] in
-            self.chartLabels.append(hdoInfo.hdoServiceCode)
+        var totalSum = [CGFloat](count: self.hdoInfos!.first!.packetLogs.count, repeatedValue: 0.0)
+        self.chartData = self.hdoInfos?.reduce([], combine: { (var _chartData, hdoInfo) -> [[CGFloat]] in
             var hdoServiceindex = 0
             let hdoPacketSum = hdoInfo.packetLogs.reduce([], combine: { (var _hdoPacketSum, packetLog) -> [CGFloat] in
                 var lastPacketAmount = _hdoPacketSum.last ?? 0.0
@@ -213,18 +218,17 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
             _chartData.append(hdoPacketSum)
             return _chartData
         })
-        self.chartLabels.append("Total")
-        self.chartData.append(totalSum)
+        self.chartData?.append(totalSum)
     }
 
     // MARK: - JBLineChartViewDataSource
 
     func numberOfLinesInLineChartView(lineChartView: JBLineChartView!) -> UInt {
-        return UInt(self.chartData.count)
+        return UInt(self.chartData?.count ?? 0)
     }
 
     func lineChartView(lineChartView: JBLineChartView!, numberOfVerticalValuesAtLineIndex lineIndex: UInt) -> UInt {
-        return UInt(self.chartData.first?.count ?? 0)
+        return UInt(self.chartData?.first?.count ?? 0)
     }
 
     func lineChartView(lineChartView: JBLineChartView!, smoothLineAtLineIndex lineIndex: UInt) -> Bool {
@@ -234,7 +238,7 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
     // MARK: - JBLineChartViewDelegate
 
     func lineChartView(lineChartView: JBLineChartView!, verticalValueForHorizontalIndex horizontalIndex: UInt, atLineIndex lineIndex: UInt) -> CGFloat {
-        return self.chartData[Int(lineIndex)][Int(horizontalIndex)]
+        return self.chartData?[Int(lineIndex)][Int(horizontalIndex)] ?? 0.0
     }
 
     func lineChartView(lineChartView: JBLineChartView!, didSelectLineAtIndex lineIndex: UInt, horizontalIndex: UInt, touchPoint: CGPoint) {
@@ -242,13 +246,17 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
         let tcolHorz = self.traitCollection.horizontalSizeClass
         let displayTooltip = tcolVert == .Compact || (tcolVert == .Regular && tcolHorz == .Regular)
 
-        let dateText = self.hdoInfos.first?.packetLogs[Int(horizontalIndex)].dateText() ?? ""
+        let dateText = self.hdoInfos?.first?.packetLogs[Int(horizontalIndex)].dateText() ?? ""
         if displayTooltip {
             self.setTooltipVisible(true, animated: false, touchPoint: touchPoint)
             self.tooltipView.setText(dateText)
         }
 
-        self.chartInformationView.setTitleText("\(self.chartLabels[Int(lineIndex)]) - \(dateText)")
+        var label = "Total"
+        if Int(lineIndex) < self.hdoInfos?.count {
+            label = self.hdoInfos?[Int(lineIndex)].hdoServiceCode ?? ""
+        }
+        self.chartInformationView.setTitleText("\(label) - \(dateText)")
         self.chartInformationView.setHidden(false, animated: true)
 
         UIView.animateWithDuration(
@@ -257,7 +265,7 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
             options: UIViewAnimationOptions.BeginFromCurrentState,
             animations: {
                 self.informationValueLabelSeparatorView.alpha = 1.0
-                self.valueLabel.text = PacketLog.stringForValue(self.chartData[Int(lineIndex)][Int(horizontalIndex)])
+                self.valueLabel.text = PacketLog.stringForValue(self.chartData?[Int(lineIndex)][Int(horizontalIndex)])
                 self.valueLabel.alpha = 1.0
             },
             completion: nil
@@ -308,8 +316,8 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
 
     // MARK: - HddServiceListTableViewControllerDelegate
 
-    func hddServiceDidSelected(hddServiceIndex: Int) {
-        self.navigationItem.title = PacketInfoManager.sharedManager.hddServiceCodes()?[hddServiceIndex]
+    func serviceDidSelectedSection(section: Int, row: Int) {
+        self.navigationItem.title = PacketInfoManager.sharedManager.hddServiceCodes()[row]
     }
 
     // MARK: - DisplayPacketLogsSelectTableViewControllerDelegate
