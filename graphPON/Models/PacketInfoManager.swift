@@ -12,17 +12,20 @@ class PacketInfoManager: NSObject {
 
     private let dateFormatter = NSDateFormatter()
 
-    private(set) var hddServiceInfoForServiceCode: [String: [HdoInfo]]! = [String: [HdoInfo]]()
+    private(set) var hddServices: [HddService] = []
 
-    lazy var hddServiceCodes: () -> [String]? = { [unowned self] in
-        return Array(self.hddServiceInfoForServiceCode.keys)
+    lazy var hddServiceCodes: () -> [String] = { [unowned self] in
+        return self.hddServices.map { $0.hddServiceCode }
     }
 
-    lazy var hdoServiceCodes: () -> [String]? = { [unowned self] in
-        let values = Array(self.hddServiceInfoForServiceCode.values)
-        return values.reduce([], combine: { (var arr, hdoInfos) -> [String] in
-            return arr + hdoInfos.map { hdoInfo in
-                hdoInfo.hdoServiceCode
+    lazy var hdoServiceCodes: () -> [String] = { [unowned self] in
+        return self.hddServices.reduce([], combine: { (var _hddServiceCodes, hddService) -> [String] in
+            if let hdoInfos = hddService.hdoInfos {
+                return _hddServiceCodes + hdoInfos.reduce([], combine: { (var _hdoInfoCodes, hdoInfo) -> [String] in
+                    return _hdoInfoCodes + [hdoInfo.hdoServiceCode]
+                })
+            } else {
+                return []
             }
         })
     }
@@ -46,11 +49,11 @@ class PacketInfoManager: NSObject {
     }
 
     func fetchLatestPacketLog(completion _completion: ((error: NSError?)->())?) {
-        var tmpHddServiceInfoForServiceCode = [String: [HdoInfo]]()
+        var tmpHddServices: [HddService] = []
 
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         Alamofire.request(OAuth2Router.LogPacket)
-            .responseJSON { (_, response, json, error) in
+            .responseJSON { [unowned self] (_, response, json, error) in
                 UIApplication.sharedApplication().networkActivityIndicatorVisible = false
 
                 if error != nil {
@@ -91,8 +94,8 @@ class PacketInfoManager: NSObject {
                 }
 
                 for (_, hddServiceJSON) in json["packetLogInfo"] {
-                    let serviceCode = hddServiceJSON["hddServiceCode"].stringValue
-                    tmpHddServiceInfoForServiceCode[serviceCode] = tmpHddServiceInfoForServiceCode[serviceCode] ?? []
+                    var serviceCode = hddServiceJSON["hddServiceCode"].stringValue
+                    var tmpHdoInfos: [HdoInfo] = []
                     for (_, hdoServiceJson) in hddServiceJSON["hdoInfo"] {
                         var hdoPacketLogs: [PacketLog] = []
                         for (_, packetLogJson) in hdoServiceJson["packetLog"] {
@@ -108,10 +111,12 @@ class PacketInfoManager: NSObject {
                             hdoServiceCode: hdoServiceJson["hdoServiceCode"].stringValue,
                             packetLogs: hdoPacketLogs
                         )
-                        tmpHddServiceInfoForServiceCode[serviceCode]!.append(hdoInfo)
+                        tmpHdoInfos.append(hdoInfo)
                     }
+                    let hddService = HddService(hddServiceCode: serviceCode, hdoInfos: tmpHdoInfos)
+                    tmpHddServices.append(hddService)
                 }
-                self.hddServiceInfoForServiceCode = tmpHddServiceInfoForServiceCode
+                self.hddServices = tmpHddServices
                 NSNotificationCenter.defaultCenter().postNotificationName(
                     PacketInfoManager.LatestPacketLogsDidFetchNotification,
                     object: nil
@@ -120,8 +125,17 @@ class PacketInfoManager: NSObject {
         }
     }
 
-    func packetLogsForServiceCode(serviceCode: String) -> [HdoInfo]? {
-        return self.hddServiceInfoForServiceCode[serviceCode]
+    func hddServiceForServiceCode(hddServiceCode: String) -> HddService? {
+        return self.hddServices.filter { $0.hddServiceCode == hddServiceCode }.first
     }
-   
+
+    func hdoServiceForServiceCode(hdoServiceCode: String) -> HdoInfo? {
+        for hddService in self.hddServices {
+            if let hdoServiceIndex = find(hddService.hdoServiceCodes, hdoServiceCode) {
+                return hddService.hdoInfos?[hdoServiceIndex]
+            }
+        }
+        return nil
+    }
+
 }
