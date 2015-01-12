@@ -53,7 +53,7 @@ class PacketInfoManager: NSObject {
 
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         Alamofire.request(OAuth2Router.LogPacket)
-            .responseJSON { [unowned self] (_, response, json, error) in
+            .responseJSON { (_, response, json, error) in
                 UIApplication.sharedApplication().networkActivityIndicatorVisible = false
 
                 if error != nil {
