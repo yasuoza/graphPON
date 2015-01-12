@@ -105,12 +105,13 @@
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstItem="sSd-lo-9Sb" firstAttribute="leading" secondItem="OYq-J2-cFd" secondAttribute="leading" id="APc-A1-44L"/>
+                                            <constraint firstItem="sSd-lo-9Sb" firstAttribute="leading" secondItem="OYq-J2-cFd" secondAttribute="leading" id="APc-A1-44L">
+                                                <variation key="heightClass=regular-widthClass=regular" constant="0.0"/>
+                                            </constraint>
                                             <constraint firstAttribute="bottom" secondItem="sSd-lo-9Sb" secondAttribute="bottom" id="JfW-kJ-1Vv"/>
                                             <constraint firstItem="sSd-lo-9Sb" firstAttribute="top" secondItem="OYq-J2-cFd" secondAttribute="top" constant="36" id="PXb-QH-N06">
                                                 <variation key="heightClass=compact" constant="16"/>
                                                 <variation key="heightClass=regular-widthClass=compact" constant="8"/>
-                                                <variation key="heightClass=regular-widthClass=regular" constant="20" symbolic="YES"/>
                                             </constraint>
                                             <constraint firstAttribute="trailing" secondItem="sSd-lo-9Sb" secondAttribute="trailing" id="pv2-Cc-cGY"/>
                                         </constraints>
@@ -132,38 +133,25 @@
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="20"/>
                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
+                                                        <variation key="heightClass=regular-widthClass=regular">
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="30"/>
+                                                        </variation>
                                                     </label>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="24" id="KYB-xd-ZYq"/>
-                                                    <constraint firstAttribute="centerY" secondItem="4Ag-jb-dJv" secondAttribute="centerY" constant="-0.5" id="XDs-cq-x7g">
-                                                        <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
+                                                    <constraint firstAttribute="centerY" secondItem="4Ag-jb-dJv" secondAttribute="centerY" id="XDs-cq-x7g">
+                                                        <variation key="heightClass=regular-widthClass=regular" constant="10"/>
                                                     </constraint>
                                                     <constraint firstAttribute="width" secondItem="4Ag-jb-dJv" secondAttribute="width" id="YLb-98-rLi"/>
                                                     <constraint firstAttribute="height" secondItem="4Ag-jb-dJv" secondAttribute="height" id="sH6-Bv-tpJ"/>
                                                     <constraint firstAttribute="centerX" secondItem="4Ag-jb-dJv" secondAttribute="centerX" id="ywO-FT-Op9"/>
                                                 </constraints>
-                                                <variation key="default">
-                                                    <mask key="subviews">
-                                                        <exclude reference="4Ag-jb-dJv"/>
-                                                    </mask>
-                                                    <mask key="constraints">
-                                                        <exclude reference="XDs-cq-x7g"/>
-                                                        <exclude reference="YLb-98-rLi"/>
-                                                        <exclude reference="sH6-Bv-tpJ"/>
-                                                        <exclude reference="ywO-FT-Op9"/>
-                                                    </mask>
-                                                </variation>
-                                                <variation key="heightClass=regular-widthClass=compact">
-                                                    <mask key="subviews">
-                                                        <include reference="4Ag-jb-dJv"/>
-                                                    </mask>
+                                                <variation key="heightClass=regular-widthClass=compact"/>
+                                                <variation key="heightClass=regular-widthClass=regular">
                                                     <mask key="constraints">
                                                         <include reference="XDs-cq-x7g"/>
-                                                        <include reference="YLb-98-rLi"/>
-                                                        <include reference="sH6-Bv-tpJ"/>
-                                                        <include reference="ywO-FT-Op9"/>
                                                     </mask>
                                                 </variation>
                                                 <connections>
@@ -315,6 +303,7 @@
                                     <constraint firstItem="OYq-J2-cFd" firstAttribute="top" secondItem="yQL-KM-CDt" secondAttribute="top" id="yBg-gv-zQi">
                                         <variation key="heightClass=compact" constant="4"/>
                                         <variation key="heightClass=regular-widthClass=compact" constant="8"/>
+                                        <variation key="heightClass=regular-widthClass=regular" constant="4"/>
                                     </constraint>
                                     <constraint firstAttribute="trailing" secondItem="bNI-Ht-YV3" secondAttribute="trailing" id="zdY-RS-s5m"/>
                                 </constraints>
@@ -406,12 +395,16 @@
                     <navigationItem key="navigationItem" id="mOI-FS-AaM">
                         <barButtonItem key="leftBarButtonItem" title="Services" id="i4K-3A-1iz">
                             <connections>
-                                <segue destination="bSI-9S-jFO" kind="presentation" identifier="HddServiceListFromSummaryChartSegue" id="n52-Wc-6v2"/>
+                                <segue destination="bSI-9S-jFO" kind="popoverPresentation" identifier="HddServiceListFromSummaryChartSegue" popoverAnchorBarButtonItem="i4K-3A-1iz" id="n52-Wc-6v2">
+                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                </segue>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="menu" id="T6p-37-1eI">
                             <connections>
-                                <segue destination="thF-4Q-z8b" kind="presentation" identifier="DisplayPacketLogsSelectFromSummaryChartSegue" id="k4d-7r-hdZ"/>
+                                <segue destination="thF-4Q-z8b" kind="popoverPresentation" identifier="DisplayPacketLogsSelectFromSummaryChartSegue" popoverAnchorBarButtonItem="T6p-37-1eI" id="k4d-7r-hdZ">
+                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                </segue>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -554,6 +547,9 @@
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="20"/>
                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
+                                                        <variation key="heightClass=regular-widthClass=regular">
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="30"/>
+                                                        </variation>
                                                     </label>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -561,33 +557,13 @@
                                                     <constraint firstAttribute="centerX" secondItem="kt4-zw-D4x" secondAttribute="centerX" id="BMe-4M-Qh8"/>
                                                     <constraint firstAttribute="height" constant="24" id="K7V-Eo-H7j"/>
                                                     <constraint firstItem="kt4-zw-D4x" firstAttribute="height" secondItem="9YX-4L-xZq" secondAttribute="height" id="MCx-Fp-u5q"/>
-                                                    <constraint firstAttribute="centerY" secondItem="kt4-zw-D4x" secondAttribute="centerY" constant="-0.5" id="SWw-Yq-uFS">
-                                                        <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
+                                                    <constraint firstAttribute="centerY" secondItem="kt4-zw-D4x" secondAttribute="centerY" id="SWw-Yq-uFS">
+                                                        <variation key="heightClass=regular-widthClass=regular" constant="10"/>
                                                     </constraint>
                                                     <constraint firstItem="kt4-zw-D4x" firstAttribute="width" secondItem="9YX-4L-xZq" secondAttribute="width" id="wWU-XJ-vOR"/>
                                                 </constraints>
-                                                <variation key="default">
-                                                    <mask key="subviews">
-                                                        <exclude reference="kt4-zw-D4x"/>
-                                                    </mask>
-                                                    <mask key="constraints">
-                                                        <exclude reference="BMe-4M-Qh8"/>
-                                                        <exclude reference="MCx-Fp-u5q"/>
-                                                        <exclude reference="SWw-Yq-uFS"/>
-                                                        <exclude reference="wWU-XJ-vOR"/>
-                                                    </mask>
-                                                </variation>
-                                                <variation key="heightClass=regular-widthClass=compact">
-                                                    <mask key="subviews">
-                                                        <include reference="kt4-zw-D4x"/>
-                                                    </mask>
-                                                    <mask key="constraints">
-                                                        <include reference="BMe-4M-Qh8"/>
-                                                        <include reference="MCx-Fp-u5q"/>
-                                                        <include reference="SWw-Yq-uFS"/>
-                                                        <include reference="wWU-XJ-vOR"/>
-                                                    </mask>
-                                                </variation>
+                                                <variation key="heightClass=regular-widthClass=compact"/>
+                                                <variation key="heightClass=regular-widthClass=regular"/>
                                                 <connections>
                                                     <outlet property="titleLabel" destination="kt4-zw-D4x" id="5hn-ff-0V4"/>
                                                 </connections>
@@ -730,6 +706,7 @@
                                     <constraint firstItem="Jes-Ju-HKb" firstAttribute="top" secondItem="vZz-gw-9ZK" secondAttribute="top" id="hI4-iY-aCq">
                                         <variation key="heightClass=compact" constant="4"/>
                                         <variation key="heightClass=regular-widthClass=compact" constant="8"/>
+                                        <variation key="heightClass=regular-widthClass=regular" constant="4"/>
                                     </constraint>
                                     <constraint firstAttribute="trailing" secondItem="0ou-cQ-nsd" secondAttribute="trailing" id="lO0-nS-UvV"/>
                                     <constraint firstAttribute="trailing" secondItem="Jes-Ju-HKb" secondAttribute="trailing" id="nNM-gK-9bi"/>
@@ -823,7 +800,9 @@
                     <navigationItem key="navigationItem" id="f4b-Lo-an5">
                         <barButtonItem key="leftBarButtonItem" title="Services" id="VfS-KA-qak">
                             <connections>
-                                <segue destination="jMB-ZZ-dEg" kind="presentation" identifier="HddServiceListFromDailyChartSegue" id="V9X-w2-9FV"/>
+                                <segue destination="jMB-ZZ-dEg" kind="popoverPresentation" identifier="HddServiceListFromDailyChartSegue" popoverAnchorBarButtonItem="VfS-KA-qak" id="V9X-w2-9FV">
+                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                </segue>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="A52-MH-2w4"/>

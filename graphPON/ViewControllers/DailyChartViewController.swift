@@ -92,7 +92,7 @@ class DailyChartViewController: BaseLineChartViewController, JBBarChartViewDeleg
             footerView.leftLabel.text = self.hdoService?.packetLogs.first?.dateText()
             footerView.rightLabel.text = self.hdoService?.packetLogs.last?.dateText()
             footerView.sectionCount = self.chartData?.count ?? 0
-            footerView.hidden = false
+            footerView.hidden = footerView.sectionCount == 0
         }
         self.displayLatestTotalChartInformation()
         self.chartViewContainerView.reloadChartData()
