@@ -2,9 +2,9 @@ import UIKit
 
 class HddServiceListTableViewController: UITableViewController {
 
-    var services: [String] = []
+    private var services: [String] = []
+    var selectedService: String = ""
     var mode: BaseLineChartViewController.Mode = .Summary
-
     weak var delegate: HddServiceListTableViewControllerDelegate?
 
     override func viewDidLoad() {
@@ -52,7 +52,19 @@ class HddServiceListTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("HddServiceCell", forIndexPath: indexPath) as UITableViewCell
 
-        cell.textLabel?.text = self.services[indexPath.row]
+        let serviceCode = self.services[indexPath.row]
+
+        cell.textLabel?.text = serviceCode
+
+        if self.selectedService == serviceCode {
+            cell.selected = true
+            cell.accessoryType = .Checkmark
+            cell.textLabel?.textColor = GlobalTintColor
+        } else {
+            cell.selected = false
+            cell.accessoryType = .None
+            cell.textLabel?.textColor = UIColor.blackColor()
+        }
 
         return cell
     }

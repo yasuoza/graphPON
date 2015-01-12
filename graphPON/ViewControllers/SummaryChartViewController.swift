@@ -90,7 +90,7 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
             let navigationController = segue.destinationViewController as UINavigationController
             let hddServiceListViewController = navigationController.topViewController as HddServiceListTableViewController
             hddServiceListViewController.delegate = self
-            hddServiceListViewController.services = PacketInfoManager.sharedManager.hddServiceCodes()
+            hddServiceListViewController.selectedService = self.hddServiceCode
         } else if segue.identifier == "DisplayPacketLogsSelectFromSummaryChartSegue" {
             let navigationController = segue.destinationViewController as UINavigationController
             let displayPacketLogSelectViewController = navigationController.topViewController as DisplayPacketLogsSelectTableViewController

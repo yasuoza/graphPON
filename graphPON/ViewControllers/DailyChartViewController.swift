@@ -121,6 +121,7 @@ class DailyChartViewController: BaseLineChartViewController, JBBarChartViewDeleg
             let hddServiceListViewController = navigationController.topViewController as HddServiceListTableViewController
             hddServiceListViewController.delegate = self
             hddServiceListViewController.mode = .Daily
+            hddServiceListViewController.selectedService = self.hdoServiceCode
         }
     }
 
