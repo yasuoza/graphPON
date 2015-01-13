@@ -9,8 +9,12 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
 
     private var chartDataSegment: ChartDataSegment = .All
     private var chartDurationSegment: HdoService.Duration = .InThisMonth
-    private var hddServiceCode: String = ""
-    private var hddService: HddService?
+    private var hddServiceCode: String?
+    private var hddService: HddService? {
+        didSet {
+            self.hddServiceCode = hddService?.hddServiceCode
+        }
+    }
     private var chartData: [[CGFloat]]? = []
 
     // MARK: - View Lifecycle
@@ -90,7 +94,7 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
             let navigationController = segue.destinationViewController as UINavigationController
             let hddServiceListViewController = navigationController.topViewController as HddServiceListTableViewController
             hddServiceListViewController.delegate = self
-            hddServiceListViewController.selectedService = self.hddServiceCode
+            hddServiceListViewController.selectedService = self.hddServiceCode ?? ""
         } else if segue.identifier == "DisplayPacketLogsSelectFromSummaryChartSegue" {
             let navigationController = segue.destinationViewController as UINavigationController
             let displayPacketLogSelectViewController = navigationController.topViewController as DisplayPacketLogsSelectTableViewController
@@ -115,7 +119,7 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
             self.loadingIndicatorView.stopAnimating()
         }
 
-        if let hddServiceCode = self.hddService?.hddServiceCode {
+        if let hddServiceCode = self.hddServiceCode {
             self.navigationItem.title = "\(hddServiceCode) (\(self.chartDataSegment.text()))"
         }
 
@@ -183,12 +187,9 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
         self.hddService = nil
         self.chartData = []
 
-        if find(logManager.hddServiceCodes(), self.hddServiceCode) == nil {
-            self.hddServiceCode = logManager.hddServiceCodes().first ?? ""
-        }
-
-        self.hddService = logManager.hddServiceForServiceCode(self.hddServiceCode)
-        if self.hddService == nil {
+        if let hddService = logManager.hddServiceForServiceCode(self.hddServiceCode ?? "") ?? logManager.hddServices.first {
+            self.hddService = hddService
+        } else {
             return
         }
 
@@ -317,7 +318,7 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
     // MARK: - HddServiceListTableViewControllerDelegate
 
     func serviceDidSelectedSection(section: Int, row: Int) {
-        self.hddServiceCode = PacketInfoManager.sharedManager.hddServiceCodes()[row]
+        self.hddService = PacketInfoManager.sharedManager.hddServices[row]
     }
 
     // MARK: - DisplayPacketLogsSelectTableViewControllerDelegate

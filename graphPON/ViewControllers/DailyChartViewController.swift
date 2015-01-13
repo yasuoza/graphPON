@@ -7,8 +7,12 @@ class DailyChartViewController: BaseLineChartViewController, JBBarChartViewDeleg
 
     private var chartDataSegment: ChartDataSegment = .All
     private var chartData: [CGFloat]? = []
-    private var hdoService: HdoService?
-    private var hdoServiceCode: String = ""
+    private var hdoService: HdoService? {
+        didSet {
+            self.hdoServiceCode = hdoService?.hdoServiceCode
+        }
+    }
+    private var hdoServiceCode: String?
 
     // MARK: - View Lifecycle
 
@@ -42,7 +46,6 @@ class DailyChartViewController: BaseLineChartViewController, JBBarChartViewDeleg
 
         if let hdoService = PacketInfoManager.sharedManager.hddServices.first?.hdoServices?.first {
             self.hdoService = hdoService
-            self.hdoServiceCode = hdoService.hdoServiceCode
         }
     }
 
@@ -80,8 +83,8 @@ class DailyChartViewController: BaseLineChartViewController, JBBarChartViewDeleg
     func reloadChartView(animated: Bool) {
         self.reBuildChartData()
 
-        if let hdoServiceCode = self.hdoService?.hdoServiceCode {
-            self.navigationItem.title = "\(hdoServiceCode) (\(self.chartDataSegment.text()))"
+        if let hdoService = self.hdoService {
+            self.navigationItem.title = "\(hdoService.number) (\(self.chartDataSegment.text()))"
         }
 
         if let chartData = self.chartData {
@@ -121,7 +124,7 @@ class DailyChartViewController: BaseLineChartViewController, JBBarChartViewDeleg
             let hddServiceListViewController = navigationController.topViewController as HddServiceListTableViewController
             hddServiceListViewController.delegate = self
             hddServiceListViewController.mode = .Daily
-            hddServiceListViewController.selectedService = self.hdoServiceCode
+            hddServiceListViewController.selectedService = self.hdoService?.number ?? ""
         }
     }
 
@@ -152,7 +155,12 @@ class DailyChartViewController: BaseLineChartViewController, JBBarChartViewDeleg
     // MARK: - Private methods
 
     func reBuildChartData() {
-        self.hdoService = PacketInfoManager.sharedManager.hdoServiceForServiceCode(self.hdoServiceCode)
+        if let hdoService = PacketInfoManager.sharedManager.hdoServiceForServiceCode(self.hdoServiceCode ?? "") {
+            self.hdoService = hdoService
+        } else if let hdoService = PacketInfoManager.sharedManager.hddServices.first?.hdoServices?.first {
+            self.hdoService = hdoService
+        }
+
         self.chartData = self.hdoService?.packetLogs.map { packetLog -> CGFloat in
             return CGFloat(packetLog.withCoupon)
         }

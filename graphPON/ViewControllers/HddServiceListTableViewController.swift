@@ -14,7 +14,7 @@ class HddServiceListTableViewController: UITableViewController {
         case .Summary:
             self.services = PacketInfoManager.sharedManager.hddServiceCodes()
         case .Daily:
-            self.services = PacketInfoManager.sharedManager.hdoServiceCodes()
+            self.services = PacketInfoManager.sharedManager.hdoServiceNumbers()
         }
     }
 

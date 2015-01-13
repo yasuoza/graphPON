@@ -30,6 +30,18 @@ class PacketInfoManager: NSObject {
         })
     }
 
+    lazy var hdoServiceNumbers: () -> [String] = { [unowned self] in
+        return self.hddServices.reduce([], combine: { (var _hddServiceCodes, hddService) -> [String] in
+            if let hdoInfos = hddService.hdoServices {
+                return _hddServiceCodes + hdoInfos.reduce([], combine: { (var _hdoInfoCodes, hdoInfo) -> [String] in
+                    return _hdoInfoCodes + [hdoInfo.number]
+                })
+            } else {
+                return []
+            }
+        })
+    }
+
     // MARK: - Singleton methods
 
     class var sharedManager : PacketInfoManager {
