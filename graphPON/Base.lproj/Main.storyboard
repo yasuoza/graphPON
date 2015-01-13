@@ -111,6 +111,7 @@
                                             <constraint firstAttribute="bottom" secondItem="sSd-lo-9Sb" secondAttribute="bottom" id="JfW-kJ-1Vv"/>
                                             <constraint firstItem="sSd-lo-9Sb" firstAttribute="top" secondItem="OYq-J2-cFd" secondAttribute="top" constant="36" id="PXb-QH-N06">
                                                 <variation key="heightClass=compact" constant="16"/>
+                                                <variation key="heightClass=compact-widthClass=regular" constant="32"/>
                                                 <variation key="heightClass=regular-widthClass=compact" constant="8"/>
                                             </constraint>
                                             <constraint firstAttribute="trailing" secondItem="sSd-lo-9Sb" secondAttribute="trailing" id="pv2-Cc-cGY"/>
@@ -128,7 +129,7 @@
                                             <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ijf-0g-1O4" userLabel="08011111111" customClass="ChartInformationView" customModule="graphPON" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="16" width="300" height="30"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Ag-jb-dJv">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Ag-jb-dJv">
                                                         <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="20"/>
                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -148,7 +149,6 @@
                                                     <constraint firstAttribute="height" secondItem="4Ag-jb-dJv" secondAttribute="height" id="sH6-Bv-tpJ"/>
                                                     <constraint firstAttribute="centerX" secondItem="4Ag-jb-dJv" secondAttribute="centerX" id="ywO-FT-Op9"/>
                                                 </constraints>
-                                                <variation key="heightClass=regular-widthClass=compact"/>
                                                 <variation key="heightClass=regular-widthClass=regular">
                                                     <mask key="constraints">
                                                         <include reference="XDs-cq-x7g"/>
@@ -542,7 +542,7 @@
                                             <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9YX-4L-xZq" userLabel="08011111111" customClass="ChartInformationView" customModule="graphPON" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="16" width="300" height="30"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kt4-zw-D4x">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kt4-zw-D4x">
                                                         <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="20"/>
                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -562,8 +562,6 @@
                                                     </constraint>
                                                     <constraint firstItem="kt4-zw-D4x" firstAttribute="width" secondItem="9YX-4L-xZq" secondAttribute="width" id="wWU-XJ-vOR"/>
                                                 </constraints>
-                                                <variation key="heightClass=regular-widthClass=compact"/>
-                                                <variation key="heightClass=regular-widthClass=regular"/>
                                                 <connections>
                                                     <outlet property="titleLabel" destination="kt4-zw-D4x" id="5hn-ff-0V4"/>
                                                 </connections>
