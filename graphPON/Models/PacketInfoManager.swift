@@ -48,13 +48,10 @@ class PacketInfoManager: NSObject {
         self.dateFormatter.locale = NSLocale(localeIdentifier: "en_US")
     }
 
-    func fetchLatestPacketLog(completion _completion: ((error: NSError?)->())?) {
-        var tmpHddServices: [HddService] = []
-
+    func fetchLatestCouponInfo(completion _completion: ((error: NSError?)->())?) {
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-        Alamofire.request(OAuth2Router.LogPacket)
+        Alamofire.request(OAuth2Router.Coupon)
             .responseJSON { (_, response, json, error) in
-                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
 
                 if error != nil {
                     _completion?(error: error)
@@ -93,36 +90,103 @@ class PacketInfoManager: NSObject {
                     break
                 }
 
-                for (_, hddServiceJSON) in json["packetLogInfo"] {
-                    var serviceCode = hddServiceJSON["hddServiceCode"].stringValue
+                for (_, hddServiceJSON) in json["couponInfo"] {
+                    let hddServiceCode = hddServiceJSON["hddServiceCode"].stringValue
                     var tmpHdoInfos: [HdoService] = []
                     for (_, hdoServiceJson) in hddServiceJSON["hdoInfo"] {
-                        var hdoPacketLogs: [PacketLog] = []
-                        for (_, packetLogJson) in hdoServiceJson["packetLog"] {
-                            let date = self.dateFormatter.dateFromString(packetLogJson["date"].stringValue)!
-                            let packetLog = PacketLog(
-                                date: date,
-                                withCoupon: packetLogJson["withCoupon"].intValue,
-                                withoutCoupon: packetLogJson["withoutCoupon"].intValue
-                            )
-                            hdoPacketLogs.append(packetLog)
-                        }
-                        let hdoInfo = HdoService(
+                        let hdoService = HdoService(
                             hdoServiceCode: hdoServiceJson["hdoServiceCode"].stringValue,
-                            packetLogs: hdoPacketLogs
+                            number: hdoServiceJson["number"].stringValue
                         )
-                        tmpHdoInfos.append(hdoInfo)
+                        tmpHdoInfos.append(hdoService)
                     }
-                    let hddService = HddService(hddServiceCode: serviceCode, hdoInfos: tmpHdoInfos)
-                    tmpHddServices.append(hddService)
+                    self.hddServices.append(HddService(hddServiceCode: hddServiceCode, hdoInfos: tmpHdoInfos))
                 }
-                self.hddServices = tmpHddServices
-                NSNotificationCenter.defaultCenter().postNotificationName(
-                    PacketInfoManager.LatestPacketLogsDidFetchNotification,
-                    object: nil
-                )
                 _completion?(error: nil)
         }
+    }
+
+    func fetchLatestPacketLog(completion _completion: ((error: NSError?)->())?) {
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+
+        self.fetchLatestCouponInfo(completion: { error in
+            if error != nil {
+                _completion?(error: error)
+                return
+            }
+
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+            Alamofire.request(OAuth2Router.LogPacket)
+                .responseJSON { (_, response, json, error) in
+                    UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+
+                    if error != nil {
+                        _completion?(error: error)
+                        return
+                    }
+
+                    let json = JSON(json!)
+
+                    switch response!.statusCode {
+                    case 403:
+                        // return Authentication error
+                        let apiError = NSError(
+                            domain: OAuth2Router.APIErrorDomain,
+                            code: OAuth2Router.AuthorizationFailureErrorCode,
+                            userInfo: ["resultCode": json["resultCode"].stringValue]
+                        )
+                        _completion?(error: apiError)
+                        return
+                    case 429:
+                        let apiError = NSError(
+                            domain: OAuth2Router.APIErrorDomain,
+                            code: OAuth2Router.TooManyRequestErrorCode,
+                            userInfo: ["resultCode": json["resultCode"].stringValue]
+                        )
+                        _completion?(error: apiError)
+                        return
+                    case 400...503:
+                        let apiError = NSError(
+                            domain: OAuth2Router.APIErrorDomain,
+                            code: OAuth2Router.UnknownErrorCode,
+                            userInfo: ["resultCode": json["resultCode"].stringValue]
+                        )
+                        _completion?(error: apiError)
+                        return
+                    default:
+                        break
+                    }
+
+                    for (_, hddServiceJSON) in json["packetLogInfo"] {
+                        let hddServiceCode = hddServiceJSON["hddServiceCode"].stringValue
+                        for (_, hdoServiceJson) in hddServiceJSON["hdoInfo"] {
+                            let hdoServiceCode = hdoServiceJson["hdoServiceCode"].stringValue
+                            var hdoPacketLogs: [PacketLog] = []
+                            for (_, packetLogJson) in hdoServiceJson["packetLog"] {
+                                let date = self.dateFormatter.dateFromString(packetLogJson["date"].stringValue)!
+                                let packetLog = PacketLog(
+                                    date: date,
+                                    withCoupon: packetLogJson["withCoupon"].intValue,
+                                    withoutCoupon: packetLogJson["withoutCoupon"].intValue
+                                )
+                                hdoPacketLogs.append(packetLog)
+                            }
+                            if let hddService = self.hddServiceForServiceCode(hddServiceCode) {
+                                if let hdoService = hddService.hdoServiceForServiceCode(hdoServiceCode) {
+                                    hdoService.allPacketLogs = hdoPacketLogs
+                                }
+                            }
+
+                        }
+                    }
+                    NSNotificationCenter.defaultCenter().postNotificationName(
+                        PacketInfoManager.LatestPacketLogsDidFetchNotification,
+                        object: nil
+                    )
+                    _completion?(error: nil)
+            }
+        })
+
     }
 
     func hddServiceForServiceCode(hddServiceCode: String) -> HddService? {

@@ -10,13 +10,12 @@ enum OAuth2Router: URLRequestConvertible {
     private static let baseURLString = "https://api.iijmio.jp/mobile/d/v1"
 
     case Authorize
+    case Coupon
     case LogPacket
 
     var method: Alamofire.Method {
         switch self {
-        case .Authorize:
-            return .GET
-        case .LogPacket:
+        default:
             return .GET
         }
     }
@@ -25,6 +24,8 @@ enum OAuth2Router: URLRequestConvertible {
         switch self {
         case .Authorize:
             return "authorization"
+        case .Coupon:
+            return "coupon"
         case .LogPacket:
             return "log/packet"
         }
@@ -52,13 +53,13 @@ enum OAuth2Router: URLRequestConvertible {
         request.HTTPMethod = method.rawValue
 
         switch self {
-        case .LogPacket:
+        case .Authorize:
+            break
+        default:
             request.setValue(OAuth2Client.sharedClient.iijDeveloperID, forHTTPHeaderField: "X-IIJmio-Developer")
             if let accessToken = OAuth2Client.sharedClient.credential?.accessToken {
                 request.setValue(accessToken, forHTTPHeaderField: "X-IIJmio-Authorization")
             }
-        default:
-            break
         }
 
         return Alamofire.ParameterEncoding.URL.encode(request, parameters: parameters).0
