@@ -36,4 +36,9 @@ class HdoServiceTests: XCTestCase {
         XCTAssertEqual(hdoService.packetLogs, [logLastMonth, logToday])
     }
 
+    func testInitWithNumber() {
+        hdoService = HdoService(hdoServiceCode: "hdoServiceCode", number: "08012345678")
+        XCTAssertEqual(hdoService.number, "080-1234-5678")
+    }
+
 }

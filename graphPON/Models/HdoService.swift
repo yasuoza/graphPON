@@ -34,7 +34,16 @@ class HdoService: NSObject {
     init(hdoServiceCode: String, number: String) {
         super.init()
         self.hdoServiceCode = hdoServiceCode
-        self.number = number
+        self.number = Array(0..<3).reduce("", combine: { (var _number, index) -> String in
+            var startIndex = index * 4 - 1
+            if startIndex < 0 {
+                startIndex = 0
+            } else {
+                _number += "-"
+            }
+            let range = Range(start: advance(number.startIndex, startIndex), end: advance(number.startIndex, (index + 1) * 4 - 1))
+            return _number + number.substringWithRange(range)
+        })
     }
 
     // MARK: - Private
