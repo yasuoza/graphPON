@@ -131,8 +131,8 @@ class PacketInfoManager: NSObject {
 
     func hdoServiceForServiceCode(hdoServiceCode: String) -> HdoService? {
         for hddService in self.hddServices {
-            if let hdoServiceIndex = find(hddService.hdoServiceCodes, hdoServiceCode) {
-                return hddService.hdoServices?[hdoServiceIndex]
+            if let hdoService = hddService.hdoServiceForServiceCode(hdoServiceCode) {
+                return hdoService
             }
         }
         return nil

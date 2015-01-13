@@ -19,4 +19,11 @@ class HddService: NSObject {
         self.hddServiceCode = hddServiceCode
         self.hdoServices = hdoInfos
     }
+
+    func hdoServiceForServiceCode(hdoServiceCode: String) -> HdoService? {
+        if let hdoServiceIndex = find(self.hdoServiceCodes, hdoServiceCode) {
+            return self.hdoServices?[hdoServiceIndex]
+        }
+        return nil
+    }
 }

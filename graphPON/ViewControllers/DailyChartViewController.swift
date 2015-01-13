@@ -40,9 +40,9 @@ class DailyChartViewController: BaseLineChartViewController, JBBarChartViewDeleg
 
         self.navigationItem.title = ""
 
-        if let hdoServiceCode = PacketInfoManager.sharedManager.hdoServiceCodes().first {
-            self.hdoServiceCode = hdoServiceCode
-            self.hdoService = PacketInfoManager.sharedManager.hdoServiceForServiceCode(hdoServiceCode)
+        if let hdoService = PacketInfoManager.sharedManager.hddServices.first?.hdoServices?.first {
+            self.hdoService = hdoService
+            self.hdoServiceCode = hdoService.hdoServiceCode
         }
     }
 
