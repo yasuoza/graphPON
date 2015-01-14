@@ -3,7 +3,12 @@ import UIKit
 class LineChartFooterView: UIView {
 
     var footerSeparatorColor: UIColor! = UIColor.whiteColor()
-    var sectionCount: NSInteger! = 2
+    var sectionCount: NSInteger! = 2 {
+        didSet {
+            // re-drawRect
+            self.setNeedsDisplay()
+          }
+    }
     var leftLabel: UILabel! = UILabel()
     var rightLabel: UILabel! = UILabel()
 
