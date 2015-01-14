@@ -201,14 +201,16 @@ class PacketInfoManager: NSObject {
 
     }
 
-    func hddServiceForServiceCode(hddServiceCode: String) -> HddService? {
+    func hddServiceForServiceCode(hddServiceCode: String?) -> HddService? {
         return self.hddServices.filter { $0.hddServiceCode == hddServiceCode }.first
     }
 
-    func hdoServiceForServiceCode(hdoServiceCode: String) -> HdoService? {
-        for hddService in self.hddServices {
-            if let hdoService = hddService.hdoServiceForServiceCode(hdoServiceCode) {
-                return hdoService
+    func hdoServiceForServiceCode(hdoServiceCode: String?) -> HdoService? {
+        if let hdoServiceCode = hdoServiceCode {
+            for hddService in self.hddServices {
+                if let hdoService = hddService.hdoServiceForServiceCode(hdoServiceCode) {
+                    return hdoService
+                }
             }
         }
         return nil
