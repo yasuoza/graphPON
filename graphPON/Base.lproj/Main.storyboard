@@ -129,7 +129,7 @@
                                             <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ijf-0g-1O4" userLabel="08011111111" customClass="ChartInformationView" customModule="graphPON" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="16" width="300" height="30"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Ag-jb-dJv">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Ag-jb-dJv">
                                                         <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="20"/>
                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -419,7 +419,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-136.5" y="861"/>
+            <point key="canvasLocation" x="-712.5" y="873"/>
         </scene>
         <!--DailyChart-->
         <scene sceneID="mS8-5G-ovX">
@@ -461,7 +461,7 @@
                                                     <rect key="frame" x="48" y="4" width="504" height="33"/>
                                                 </variation>
                                                 <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="50" y="2" width="300" height="29"/>
+                                                    <rect key="frame" x="50" y="2" width="300" height="33"/>
                                                 </variation>
                                                 <connections>
                                                     <action selector="chartSegmentedControlValueDidChanged:" destination="lH2-CS-amT" eventType="valueChanged" id="BlV-2q-Bbp"/>
@@ -545,7 +545,7 @@
                                             <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9YX-4L-xZq" userLabel="08011111111" customClass="ChartInformationView" customModule="graphPON" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="16" width="300" height="30"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kt4-zw-D4x">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kt4-zw-D4x">
                                                         <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="20"/>
                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -824,7 +824,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nCo-Ba-eTq" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1437" y="861"/>
+            <point key="canvasLocation" x="861" y="873"/>
         </scene>
         <!--DailyChart Navigation-->
         <scene sceneID="QQU-kd-gtN">
@@ -841,7 +841,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9wH-fE-uWp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1437" y="129"/>
+            <point key="canvasLocation" x="861" y="141"/>
         </scene>
         <!--HddServiceListTableViewController-->
         <scene sceneID="ffR-cV-yX4">
@@ -874,7 +874,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mEe-dh-oYP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-570" y="2328"/>
+            <point key="canvasLocation" x="-1146" y="2340"/>
         </scene>
         <!--Hdd Service List Table View Controller-->
         <scene sceneID="gn2-EN-M6o">
@@ -907,7 +907,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d9b-yC-AAy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1053" y="2328"/>
+            <point key="canvasLocation" x="477" y="2340"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="tCd-uP-HMx">
@@ -923,7 +923,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="12w-xB-LOL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-570" y="1575.75"/>
+            <point key="canvasLocation" x="-1146" y="1587.75"/>
         </scene>
         <!--SummaryChart Navigation-->
         <scene sceneID="Apm-5s-4XF">
@@ -940,7 +940,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hQL-bh-zVG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-136.5" y="129"/>
+            <point key="canvasLocation" x="-712.5" y="141"/>
         </scene>
         <!--Root View Controller-->
         <scene sceneID="R4s-6W-OO8">
@@ -1022,7 +1022,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5mx-ax-W8X" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1858" y="-658"/>
+            <point key="canvasLocation" x="1827" y="-643.5"/>
         </scene>
         <!--FilterPacketLogsSelectTableViewController-->
         <scene sceneID="ZyQ-nk-qyq">
@@ -1055,7 +1055,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ega-xa-okc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="283.5" y="2328"/>
+            <point key="canvasLocation" x="-292.5" y="2340"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="vZV-vW-5pE">
@@ -1071,7 +1071,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P5Q-KI-bsf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="283.5" y="1575.75"/>
+            <point key="canvasLocation" x="-292.5" y="1587.75"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="0NG-ce-pOU">
@@ -1087,7 +1087,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z0Q-ws-tCt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1053" y="1575.75"/>
+            <point key="canvasLocation" x="477" y="1587.75"/>
         </scene>
         <!--RatioChart-->
         <scene sceneID="fAD-xi-Xjb">
@@ -1122,13 +1122,18 @@
                                                 <rect key="frame" x="48" y="0.0" width="504" height="33"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <segments>
-                                                    <segment title="ALL"/>
-                                                    <segment title="ON"/>
-                                                    <segment title="OFF"/>
+                                                    <segment title="This month"/>
+                                                    <segment title="Last 30 days"/>
                                                 </segments>
                                                 <variation key="heightClass=compact" misplaced="YES">
                                                     <rect key="frame" x="48" y="4" width="504" height="33"/>
                                                 </variation>
+                                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                    <rect key="frame" x="50" y="2" width="300" height="29"/>
+                                                </variation>
+                                                <connections>
+                                                    <action selector="chartSegmentedControlValueDidChanged:" destination="85B-rS-6MT" eventType="valueChanged" id="GrN-Qq-9AV"/>
+                                                </connections>
                                             </segmentedControl>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -1233,10 +1238,53 @@
                                         <subviews>
                                             <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zRI-we-3hb" userLabel="08011111111" customClass="ChartInformationView" customModule="graphPON" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="16" width="300" height="30"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cSj-BI-PwK">
+                                                        <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="20"/>
+                                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                            <rect key="frame" x="0.0" y="0.0" width="184" height="24"/>
+                                                        </variation>
+                                                        <variation key="heightClass=regular-widthClass=regular">
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="30"/>
+                                                        </variation>
+                                                    </label>
+                                                </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
+                                                    <constraint firstItem="cSj-BI-PwK" firstAttribute="height" secondItem="zRI-we-3hb" secondAttribute="height" id="1TH-bi-Hhi"/>
+                                                    <constraint firstAttribute="centerX" secondItem="cSj-BI-PwK" secondAttribute="centerX" id="E83-DM-bvy"/>
+                                                    <constraint firstAttribute="centerY" secondItem="cSj-BI-PwK" secondAttribute="centerY" id="Q3Q-cD-q7w"/>
+                                                    <constraint firstItem="cSj-BI-PwK" firstAttribute="height" secondItem="zRI-we-3hb" secondAttribute="height" id="h82-aq-HDZ"/>
                                                     <constraint firstAttribute="height" constant="24" id="txS-EA-RC3"/>
                                                 </constraints>
+                                                <variation key="default">
+                                                    <mask key="subviews">
+                                                        <exclude reference="cSj-BI-PwK"/>
+                                                    </mask>
+                                                    <mask key="constraints">
+                                                        <exclude reference="1TH-bi-Hhi"/>
+                                                        <exclude reference="E83-DM-bvy"/>
+                                                        <exclude reference="Q3Q-cD-q7w"/>
+                                                        <exclude reference="h82-aq-HDZ"/>
+                                                    </mask>
+                                                </variation>
+                                                <variation key="heightClass=regular-widthClass=compact">
+                                                    <mask key="subviews">
+                                                        <include reference="cSj-BI-PwK"/>
+                                                    </mask>
+                                                    <mask key="constraints">
+                                                        <include reference="1TH-bi-Hhi"/>
+                                                        <include reference="E83-DM-bvy"/>
+                                                        <include reference="Q3Q-cD-q7w"/>
+                                                        <include reference="h82-aq-HDZ"/>
+                                                    </mask>
+                                                </variation>
+                                                <connections>
+                                                    <outlet property="titleLabel" destination="cSj-BI-PwK" id="uhA-8H-72e"/>
+                                                </connections>
                                             </view>
                                             <view alpha="0.0" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7a7-8m-ptd" userLabel="Separator Line">
                                                 <rect key="frame" x="0.0" y="46" width="552" height="1"/>
@@ -1472,10 +1520,23 @@
                     <tabBarItem key="tabBarItem" title="Item" id="Z8o-yo-Mnj"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="hLt-oi-02w">
-                        <barButtonItem key="leftBarButtonItem" title="Services" id="eyY-v0-XTy"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="zC5-UX-Zuu"/>
+                        <barButtonItem key="leftBarButtonItem" title="Services" id="eyY-v0-XTy">
+                            <connections>
+                                <segue destination="gJy-3l-m5f" kind="popoverPresentation" identifier="HddServiceListFromRatioChartSegue" popoverAnchorBarButtonItem="eyY-v0-XTy" id="Kzz-iD-UYe">
+                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                </segue>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="menu" id="zC5-UX-Zuu">
+                            <connections>
+                                <segue destination="NxR-Ex-Ukc" kind="popoverPresentation" identifier="DisplayPacketLogsSelectFromRatioChartSegue" popoverAnchorBarButtonItem="zC5-UX-Zuu" id="ROQ-BU-7zS">
+                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                </segue>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="chartDurationSegmentControl" destination="Tkg-B4-piC" id="4Nq-A5-07Z"/>
                         <outlet property="chartInformationView" destination="zRI-we-3hb" id="80o-EL-P0R"/>
                         <outlet property="informationValueLabelSeparatorView" destination="7a7-8m-ptd" id="mUf-VN-GGX"/>
                         <outlet property="ratioChartContainerView" destination="VAQ-0c-6HB" id="bgA-ku-lmn"/>
@@ -1517,7 +1578,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3sn-yq-YVc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1926" y="2328"/>
+            <point key="canvasLocation" x="1350" y="2340"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="fY4-CF-Pfl">
@@ -1533,7 +1594,129 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="40t-Zg-Obn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1926" y="1575.75"/>
+            <point key="canvasLocation" x="1350" y="1587.75"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Ms1-iw-8ht">
+            <objects>
+                <navigationController id="li1-YU-skt" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Fbr-OU-Tac">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="U4f-mi-XuQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="477" y="1587.75"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Ldk-h4-NZX">
+            <objects>
+                <navigationController id="Jhc-HM-2tj" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="cH3-fR-NL2">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kri-sy-lWk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1350" y="1587.75"/>
+        </scene>
+        <!--Display Data-->
+        <scene sceneID="Zq8-6O-LvK">
+            <objects>
+                <tableViewController id="Ay7-4f-DvC" customClass="DisplayPacketLogsSelectTableViewController" customModule="graphPON" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="V2K-qw-9rE">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="FilterPacketLogsSelectCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="FilterPacketLogsSelectCell" id="1K1-4h-16c">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1K1-4h-16c" id="Vvz-km-PEf">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Ay7-4f-DvC" id="9Vz-M7-IaL"/>
+                            <outlet property="delegate" destination="Ay7-4f-DvC" id="2F9-mn-Oyw"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Display Data" id="eLw-2H-y6l">
+                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="Loe-1H-8f9">
+                            <connections>
+                                <action selector="closeViewController" destination="Ay7-4f-DvC" id="Rh6-M6-EBv"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QGA-jK-Tdp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3201" y="2340"/>
+        </scene>
+        <!--Hdd Service List Table View Controller-->
+        <scene sceneID="BA9-L5-0iU">
+            <objects>
+                <tableViewController id="f7J-ae-fpX" customClass="HddServiceListTableViewController" customModule="graphPON" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="vW8-vS-ar6">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HddServiceCell" id="7Z2-e7-EW7">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7Z2-e7-EW7" id="tty-qi-zOv">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="f7J-ae-fpX" id="qDi-va-Eom"/>
+                            <outlet property="delegate" destination="f7J-ae-fpX" id="IiN-lt-zg1"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="2bP-wX-mNk">
+                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="cHt-zw-FSr">
+                            <connections>
+                                <action selector="closeViewController" destination="f7J-ae-fpX" id="Tvs-Ec-j4F"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="g9b-yw-uat" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2340" y="2340"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="iBk-XW-OqL">
+            <objects>
+                <navigationController id="gJy-3l-m5f" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="pz2-ND-6Q6">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="f7J-ae-fpX" kind="relationship" relationship="rootViewController" id="1Th-w7-qwB"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="N0F-jf-ORm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2340" y="1587.75"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="NEK-Cg-TFL">
+            <objects>
+                <navigationController id="NxR-Ex-Ukc" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Xxb-gb-G71">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Ay7-4f-DvC" kind="relationship" relationship="rootViewController" id="ZVc-U2-MWF"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1b7-ZY-4Za" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3201" y="1587.75"/>
         </scene>
     </scenes>
     <resources>

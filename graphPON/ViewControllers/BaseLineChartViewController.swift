@@ -2,28 +2,6 @@ import UIKit
 
 class BaseLineChartViewController: BaseChartViewController {
 
-    enum Mode {
-        case Daily, Summary
-
-        func backgroundColor() -> UIColor {
-            switch self {
-            case .Daily:
-                return UIColor(red:0.376, green:0.573, blue:0.714, alpha:1.000)
-            case .Summary:
-                return UIColor(red: 0.369, green: 0.408, blue: 0.686, alpha: 1.0)
-            }
-        }
-
-        func titleText() -> String {
-            switch self {
-            case .Daily:
-                return "Daily Total"
-            case .Summary:
-                return "Summary"
-            }
-        }
-    }
-
     @IBOutlet weak var chartViewContainerView: ChartViewContainerView!
 
     var tooltipView: ChartTooltipView = ChartTooltipView()
