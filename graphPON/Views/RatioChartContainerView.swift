@@ -8,7 +8,7 @@ class RatioChartContainerView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        self.chartView.reloadData(true)
+        self.chartView.reloadData(false)
     }
 
 }

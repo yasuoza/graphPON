@@ -30,7 +30,7 @@ class RatioChartViewController: BaseChartViewController, XYDoughnutChartDelegate
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 
-        self.reloadChartView(false)
+        self.reloadChartView(animated)
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -73,7 +73,7 @@ class RatioChartViewController: BaseChartViewController, XYDoughnutChartDelegate
 
     @IBAction func chartSegmentedControlValueDidChanged(segmentedControl: UISegmentedControl) {
         self.chartDurationSegment = HdoService.Duration(rawValue: segmentedControl.selectedSegmentIndex)!
-        self.reloadChartView(false)
+        self.reloadChartView(true)
     }
 
 

@@ -50,7 +50,7 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 
-        self.reloadChartView(false)
+        self.reloadChartView(animated)
     }
 
     override func viewDidAppear(animated: Bool) {
