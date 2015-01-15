@@ -39,7 +39,7 @@ class DisplayPacketLogsSelectTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("FilterPacketLogsSelectCell", forIndexPath: indexPath) as UITableViewCell
 
-        let chartDataSegment = BaseLineChartViewController.ChartDataSegment(rawValue: indexPath.row)
+        let chartDataSegment = BaseChartViewController.ChartDataFilteringSegment(rawValue: indexPath.row)
 
         cell.textLabel?.text = chartDataSegment?.text() ?? ""
 

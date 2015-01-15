@@ -13,14 +13,44 @@ let kJBAreaChartViewControllerChartFooterHeight   = CGFloat(20.0)
 let kJBAreaChartViewControllerChartFooterPadding  = CGFloat(5.0)
 let kJBAreaChartViewControllerChartLineWidth      = CGFloat(2.0)
 
-class BaseChartViewController: UIViewController {
+class BaseChartViewController: UIViewController, StateRestorable {
 
     @IBOutlet weak var loadingIndicatorView: UIActivityIndicatorView!
     @IBOutlet weak var chartInformationView: ChartInformationView!
     @IBOutlet weak var informationValueLabelSeparatorView: UIView!
     @IBOutlet weak var valueLabel: UILabel!
+    @IBOutlet weak var chartDurationSegmentControl: UISegmentedControl!
+
+    var serviceCode: String?
+    var chartDataFilteringSegment: ChartDataFilteringSegment = .All
+    var chartDurationSegment: HdoService.Duration = .InThisMonth
 
     private var navBarHairlineImageView: UIImageView?
+    private var restrationalServiceCodeIdentifier: String!
+    private var restrationalDurationSegmentIdentifier: String!
+    private var restrationalDataFilteringSegmentIdentifier: String!
+
+    enum ChartDataFilteringSegment: Int {
+        case All = 0, WithCoupon = 1, WithoutCoupon = 2
+
+        func text() -> String {
+            switch self {
+            case .All:
+                return "ALL"
+            case .WithCoupon:
+                return "ON"
+            case .WithoutCoupon:
+                return "OFF"
+            }
+        }
+    }
+
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.restrationalServiceCodeIdentifier = "\(self.restorationIdentifier!).serviceCode"
+        self.restrationalDurationSegmentIdentifier = "\(self.restorationIdentifier!).durationSegment"
+        self.restrationalDataFilteringSegmentIdentifier = "\(self.restorationIdentifier!).dataFilteringSegment"
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +58,12 @@ class BaseChartViewController: UIViewController {
         self.navBarHairlineImageView = self.findHairlineImageViewUnder(self.navigationController!.navigationBar)
         self.navBarHairlineImageView?.hidden = true
         self.navigationController?.navigationBar.translucent = true
+    }
+
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+
+        self.chartDurationSegmentControl.selectedSegmentIndex = self.chartDurationSegment.rawValue
     }
 
     // MARK: - Private
@@ -43,5 +79,27 @@ class BaseChartViewController: UIViewController {
         }
         return nil
     }
-    
+
+    // MARK: - StateRestorableProtocol
+
+    func storeCurrentState() {
+        NSUserDefaults().setObject(self.serviceCode ?? nil, forKey: self.restrationalServiceCodeIdentifier)
+        NSUserDefaults().setInteger(self.chartDurationSegment.rawValue, forKey: self.restrationalDurationSegmentIdentifier)
+        NSUserDefaults().setInteger(self.chartDataFilteringSegment.rawValue, forKey: self.restrationalDataFilteringSegmentIdentifier)
+    }
+
+    func restoreLastState() {
+        if let serviceCode = NSUserDefaults().objectForKey(self.restrationalServiceCodeIdentifier) as? String {
+            self.serviceCode = serviceCode
+        }
+        self.chartDurationSegment
+            = HdoService.Duration(rawValue: NSUserDefaults().integerForKey(self.restrationalDurationSegmentIdentifier))!
+        self.chartDataFilteringSegment
+            = ChartDataFilteringSegment(rawValue: NSUserDefaults().integerForKey(self.restrationalDataFilteringSegmentIdentifier))!
+
+        NSUserDefaults().setObject(nil, forKey: self.restrationalServiceCodeIdentifier)
+        NSUserDefaults().setInteger(HdoService.Duration.InThisMonth.rawValue, forKey: self.restrationalDurationSegmentIdentifier)
+        NSUserDefaults().setInteger(ChartDataFilteringSegment.All.rawValue, forKey: self.restrationalDataFilteringSegmentIdentifier)
+    }
+
 }

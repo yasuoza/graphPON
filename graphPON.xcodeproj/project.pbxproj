@@ -60,6 +60,7 @@
 		A8DCA1571A4E7C3900CE73D3 /* XYDoughnutChart.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A804D4CD1A4AD62D00F22CFE /* XYDoughnutChart.framework */; };
 		A8DCA1581A4E7C5500CE73D3 /* OAuth2Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = A874C0B81A4BF6EB00887932 /* OAuth2Router.swift */; };
 		A8DCA15A1A4E810200CE73D3 /* configuration.plist in Resources */ = {isa = PBXBuildFile; fileRef = A8DCA1591A4E810200CE73D3 /* configuration.plist */; };
+		A8E0AC3E1A66215F00D4E043 /* StateRestorable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E0AC3D1A66215F00D4E043 /* StateRestorable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -135,6 +136,7 @@
 		A8D19DFC1A537E81009CB806 /* PromptLoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PromptLoginController.swift; path = Views/PromptLoginController.swift; sourceTree = "<group>"; };
 		A8DCA1521A4E7B3E00CE73D3 /* OAuth2ClientTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuth2ClientTests.swift; sourceTree = "<group>"; };
 		A8DCA1591A4E810200CE73D3 /* configuration.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = configuration.plist; sourceTree = "<group>"; };
+		A8E0AC3D1A66215F00D4E043 /* StateRestorable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StateRestorable.swift; path = Protocols/StateRestorable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -280,6 +282,7 @@
 			children = (
 				A8867A0E1A304EB0001D8578 /* HddServiceListTableViewControllerDelegate.swift */,
 				A88398C11A5CF67700B3DE5B /* DisplayPacketLogsSelectTableViewControllerDelegate.swift */,
+				A8E0AC3D1A66215F00D4E043 /* StateRestorable.swift */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -452,6 +455,7 @@
 				A874C0B91A4BF6EB00887932 /* OAuth2Client.swift in Sources */,
 				A874C0BA1A4BF6EB00887932 /* OAuth2Router.swift in Sources */,
 				A88BB3701A2DDEA700E5AE4F /* HdoService.swift in Sources */,
+				A8E0AC3E1A66215F00D4E043 /* StateRestorable.swift in Sources */,
 				A8867A051A30333C001D8578 /* ExtendedNavBarView.swift in Sources */,
 				A88398C21A5CF67700B3DE5B /* DisplayPacketLogsSelectTableViewControllerDelegate.swift in Sources */,
 				A833C34D1A637E0800EBE788 /* Constants.swift in Sources */,

@@ -1,18 +1,16 @@
 import UIKit
 import JBChartFramework
 
-class DailyChartViewController: BaseLineChartViewController, JBBarChartViewDelegate, JBBarChartViewDataSource, HddServiceListTableViewControllerDelegate {
+class DailyChartViewController: BaseLineChartViewController, JBBarChartViewDelegate, JBBarChartViewDataSource, HddServiceListTableViewControllerDelegate, DisplayPacketLogsSelectTableViewControllerDelegate {
 
     let mode: Mode = .Daily
 
-    private var chartDataSegment: ChartDataSegment = .All
     private var chartData: [CGFloat]? = []
     private var hdoService: HdoService? {
         didSet {
-            self.hdoServiceCode = hdoService?.hdoServiceCode
+            self.serviceCode = hdoService?.hdoServiceCode
         }
     }
-    private var hdoServiceCode: String?
 
     // MARK: - View Lifecycle
 
@@ -44,8 +42,10 @@ class DailyChartViewController: BaseLineChartViewController, JBBarChartViewDeleg
 
         self.navigationItem.title = ""
 
-        if let hdoService = PacketInfoManager.sharedManager.hddServices.first?.hdoServices?.first {
-            self.hdoService = hdoService
+        if self.serviceCode == nil {
+            if let hdoService = PacketInfoManager.sharedManager.hddServices.first?.hdoServices?.first {
+                self.hdoService = hdoService
+            }
         }
     }
 
@@ -80,11 +80,30 @@ class DailyChartViewController: BaseLineChartViewController, JBBarChartViewDeleg
 
     // MARK: - Actions
 
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "HddServiceListFromDailyChartSegue" {
+            let navigationController = segue.destinationViewController as UINavigationController
+            let hddServiceListViewController = navigationController.topViewController as HddServiceListTableViewController
+            hddServiceListViewController.delegate = self
+            hddServiceListViewController.mode = .Daily
+            hddServiceListViewController.selectedService = self.hdoService?.number ?? ""
+        } else if segue.identifier == "DisplayPacketLogsSelectFromSummaryChartSegue" {
+            let navigationController = segue.destinationViewController as UINavigationController
+            let displayPacketLogSelectViewController = navigationController.topViewController as DisplayPacketLogsSelectTableViewController
+            displayPacketLogSelectViewController.delegate = self
+        }
+    }
+
+    @IBAction func chartSegmentedControlValueDidChanged(segmentedControl: UISegmentedControl) {
+        self.chartDurationSegment = HdoService.Duration(rawValue: segmentedControl.selectedSegmentIndex)!
+        self.reloadChartView(false)
+    }
+
     func reloadChartView(animated: Bool) {
         self.reBuildChartData()
 
         if let hdoService = self.hdoService {
-            self.navigationItem.title = "\(hdoService.number) (\(self.chartDataSegment.text()))"
+            self.navigationItem.title = "\(hdoService.number) (\(self.chartDataFilteringSegment.text()))"
         }
 
         if let chartData = self.chartData {
@@ -100,6 +119,28 @@ class DailyChartViewController: BaseLineChartViewController, JBBarChartViewDeleg
         self.displayLatestTotalChartInformation()
         self.chartViewContainerView.reloadChartData()
         self.chartViewContainerView.chartView.setState(JBChartViewState.Expanded, animated: animated)
+    }
+
+    func displayLatestTotalChartInformation() {
+        if let packetLog = self.hdoService?.packetLogs.last? {
+            self.chartInformationView.setTitleText("Total - \(packetLog.dateText())")
+            self.chartInformationView.setHidden(false, animated: true)
+        } else {
+            self.chartInformationView.setHidden(true)
+            self.informationValueLabelSeparatorView.alpha = 0.0
+            self.valueLabel.alpha = 0.0
+            return
+        }
+        UIView.animateWithDuration(NSTimeInterval(kJBChartViewDefaultAnimationDuration) * 0.5,
+            delay: 0.0,
+            options: UIViewAnimationOptions.BeginFromCurrentState,
+            animations: {
+                self.informationValueLabelSeparatorView.alpha = 1.0
+                self.valueLabel.text = PacketLog.stringForValue(self.chartData?.last)
+                self.valueLabel.alpha = 1.0
+            },
+            completion: nil
+        )
     }
 
     func promptLogin() {
@@ -118,51 +159,28 @@ class DailyChartViewController: BaseLineChartViewController, JBBarChartViewDeleg
         }
     }
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "HddServiceListFromDailyChartSegue" {
-            let navigationController = segue.destinationViewController as UINavigationController
-            let hddServiceListViewController = navigationController.topViewController as HddServiceListTableViewController
-            hddServiceListViewController.delegate = self
-            hddServiceListViewController.mode = .Daily
-            hddServiceListViewController.selectedService = self.hdoService?.number ?? ""
-        }
-    }
-
-    @IBAction func chartSegmentedControlValueDidChanged(segmentedControl: UISegmentedControl) {
-        self.chartDataSegment = ChartDataSegment(rawValue: segmentedControl.selectedSegmentIndex)!
-        reBuildChartData()
-        displayLatestTotalChartInformation()
-        self.chartViewContainerView.reloadChartData()
-    }
-
-    func displayLatestTotalChartInformation() {
-        if let packetLog = self.hdoService?.packetLogs.last? {
-            self.chartInformationView.setTitleText("Total - \(packetLog.dateText())")
-            self.chartInformationView.setHidden(false, animated: true)
-        }
-        UIView.animateWithDuration(NSTimeInterval(kJBChartViewDefaultAnimationDuration) * 0.5,
-            delay: 0.0,
-            options: UIViewAnimationOptions.BeginFromCurrentState,
-            animations: {
-                self.informationValueLabelSeparatorView.alpha = 1.0
-                self.valueLabel.text = PacketLog.stringForValue(self.chartData?.last)
-                self.valueLabel.alpha = 1.0
-            },
-            completion: nil
-        )
-    }
-
     // MARK: - Private methods
 
     func reBuildChartData() {
-        if let hdoService = PacketInfoManager.sharedManager.hdoServiceForServiceCode(self.hdoServiceCode ?? "") {
-            self.hdoService = hdoService
-        } else if let hdoService = PacketInfoManager.sharedManager.hddServices.first?.hdoServices?.first {
+        if let hdoService = PacketInfoManager.sharedManager.hdoServiceForServiceCode(self.serviceCode) {
             self.hdoService = hdoService
         }
 
+        if self.serviceCode == nil && self.hdoService == nil {
+            self.hdoService = PacketInfoManager.sharedManager.hddServices.first?.hdoServices?.first
+        }
+
+        self.hdoService?.duration = self.chartDurationSegment
+
         self.chartData = self.hdoService?.packetLogs.map { packetLog -> CGFloat in
-            return CGFloat(packetLog.withCoupon)
+            switch self.chartDataFilteringSegment {
+            case .All:
+                return CGFloat(packetLog.withCoupon + packetLog.withoutCoupon)
+            case .WithCoupon:
+                return CGFloat(packetLog.withCoupon)
+            case .WithoutCoupon:
+                return CGFloat(packetLog.withoutCoupon)
+            }
         }
     }
 
@@ -234,9 +252,35 @@ class DailyChartViewController: BaseLineChartViewController, JBBarChartViewDeleg
     // MARK: - HddServiceListTableViewControllerDelegate
 
     func serviceDidSelectedSection(section: Int, row: Int) {
-        self.hdoServiceCode = PacketInfoManager.sharedManager.hddServices[section].hdoServices![row].hdoServiceCode
+        self.serviceCode = PacketInfoManager.sharedManager.hddServices[section].hdoServices![row].hdoServiceCode
         self.hdoService = PacketInfoManager.sharedManager.hddServices[section].hdoServices?[row]
         self.reloadChartView(true)
+    }
+
+    // MARK: - DisplayPacketLogsSelectTableViewControllerDelegate
+
+    func displayPacketLogSegmentDidSelected(segment: Int) {
+        self.chartDataFilteringSegment = ChartDataFilteringSegment(rawValue: segment)!
+        self.reloadChartView(true)
+    }
+
+    // MARK: - UIStateRestoration
+
+    override func encodeRestorableStateWithCoder(coder: NSCoder) {
+        coder.encodeObject(self.serviceCode, forKey: "hdoServiceCode")
+        coder.encodeInteger(self.chartDurationSegment.rawValue, forKey: "hdoShartDurationSegment")
+        coder.encodeInteger(self.chartDataFilteringSegment.rawValue, forKey: "hdoChartFilteringSegment")
+        super.encodeRestorableStateWithCoder(coder)
+    }
+
+    override func decodeRestorableStateWithCoder(coder: NSCoder) {
+        if let hddServiceCode = coder.decodeObjectForKey("hdoServiceCode") as? String {
+            self.serviceCode = hddServiceCode
+        }
+        self.chartDurationSegment = HdoService.Duration(rawValue: Int(coder.decodeIntForKey("hdoShartDurationSegment")))!
+        self.chartDurationSegmentControl.selectedSegmentIndex = self.chartDurationSegment.rawValue
+        self.chartDataFilteringSegment = ChartDataFilteringSegment(rawValue: Int(coder.decodeIntForKey("hdoChartFilteringSegment")))!
+        super.decodeRestorableStateWithCoder(coder)
     }
 
 }

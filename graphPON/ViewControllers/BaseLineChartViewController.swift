@@ -24,21 +24,6 @@ class BaseLineChartViewController: BaseChartViewController {
         }
     }
 
-    enum ChartDataSegment: Int {
-        case All = 0, WithCoupon = 1, WithoutCoupon = 2
-
-        func text() -> String {
-            switch self {
-            case .All:
-                return "ALL"
-            case .WithCoupon:
-                return "ON"
-            case .WithoutCoupon:
-                return "OFF"
-            }
-        }
-    }
-
     @IBOutlet weak var chartViewContainerView: ChartViewContainerView!
 
     var tooltipView: ChartTooltipView = ChartTooltipView()

@@ -9,6 +9,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         window?.tintColor = GlobalTintColor
+
+        let selectedIndex = NSUserDefaults().integerForKey("selectedIndex")
+        if let tabBarController = window?.rootViewController as? UITabBarController {
+            tabBarController.selectedIndex = selectedIndex
+            for vc in tabBarController.viewControllers! {
+                if let navVC = vc as? UINavigationController {
+                    if let vc = navVC.viewControllers.first as? StateRestorable {
+                        vc.restoreLastState()
+                    }
+                }
+            }
+        }
+
         return true
     }
 
@@ -35,6 +48,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+
+        if let tabBarController = window?.rootViewController as UITabBarController? {
+            let selectedIndex = tabBarController.selectedIndex
+            NSUserDefaults().setInteger(selectedIndex, forKey: "selectedIndex")
+            for vc in tabBarController.viewControllers! {
+                if let navVC = vc as? UINavigationController {
+                    if let vc = navVC.viewControllers.first as? StateRestorable {
+                        vc.storeCurrentState()
+                    }
+                }
+            }
+        }
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
@@ -54,5 +79,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    // REQUIRED FOR STATE RESTORATION
+    // Identify we are interested in storing application state, this is called when the app is suspended to the background.
+    func application(application: UIApplication, shouldSaveApplicationState coder: NSCoder) -> Bool {
+        return true
+    }
+
+    // REQUIRED FOR STATE RESTORATION
+    // Identify we are interested in re-storing application state, this is called when the app is re-launched.
+    func application(application: UIApplication, shouldRestoreApplicationState coder: NSCoder) -> Bool {
+        return true
+    }
 }
 

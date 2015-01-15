@@ -10,7 +10,7 @@
         <!--SummaryChart-->
         <scene sceneID="yUG-lL-AsK">
             <objects>
-                <viewController title="SummaryChart" id="JEX-9P-axG" customClass="SummaryChartViewController" customModule="graphPON" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SummaryChart" title="SummaryChart" useStoryboardIdentifierAsRestorationIdentifier="YES" id="JEX-9P-axG" customClass="SummaryChartViewController" customModule="graphPON" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="SYR-Wa-9uf"/>
                         <viewControllerLayoutGuide type="bottom" id="GAO-Cl-Wes"/>
@@ -409,6 +409,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="chartDurationSegmentControl" destination="Wva-27-qQN" id="ZzX-9v-nxR"/>
                         <outlet property="chartInformationView" destination="ijf-0g-1O4" id="dBg-OM-o6Z"/>
                         <outlet property="chartViewContainerView" destination="OYq-J2-cFd" id="a3Z-FA-vhX"/>
                         <outlet property="informationValueLabelSeparatorView" destination="dGs-Or-dAF" id="A9i-kn-473"/>
@@ -418,12 +419,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="620" y="861"/>
+            <point key="canvasLocation" x="-136.5" y="861"/>
         </scene>
         <!--DailyChart-->
         <scene sceneID="mS8-5G-ovX">
             <objects>
-                <viewController title="DailyChart" id="lH2-CS-amT" customClass="DailyChartViewController" customModule="graphPON" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DailyChart" title="DailyChart" useStoryboardIdentifierAsRestorationIdentifier="YES" id="lH2-CS-amT" customClass="DailyChartViewController" customModule="graphPON" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Nca-n2-KwQ"/>
                         <viewControllerLayoutGuide type="bottom" id="xpp-Oe-BQj"/>
@@ -453,12 +454,14 @@
                                                 <rect key="frame" x="48" y="0.0" width="504" height="33"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <segments>
-                                                    <segment title="ALL"/>
-                                                    <segment title="ON"/>
-                                                    <segment title="OFF"/>
+                                                    <segment title="This month"/>
+                                                    <segment title="Last 30 days"/>
                                                 </segments>
                                                 <variation key="heightClass=compact" misplaced="YES">
                                                     <rect key="frame" x="48" y="4" width="504" height="33"/>
+                                                </variation>
+                                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                    <rect key="frame" x="50" y="2" width="300" height="29"/>
                                                 </variation>
                                                 <connections>
                                                     <action selector="chartSegmentedControlValueDidChanged:" destination="lH2-CS-amT" eventType="valueChanged" id="BlV-2q-Bbp"/>
@@ -803,9 +806,16 @@
                                 </segue>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="A52-MH-2w4"/>
+                        <barButtonItem key="rightBarButtonItem" image="menu" id="A52-MH-2w4">
+                            <connections>
+                                <segue destination="U95-XL-QGo" kind="popoverPresentation" identifier="DisplayPacketLogsSelectFromSummaryChartSegue" popoverAnchorBarButtonItem="A52-MH-2w4" id="kEt-Ts-40o">
+                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                </segue>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="chartDurationSegmentControl" destination="uhu-vF-HOS" id="GYh-sZ-5sq"/>
                         <outlet property="chartInformationView" destination="9YX-4L-xZq" id="Kzz-ph-Em3"/>
                         <outlet property="chartViewContainerView" destination="Jes-Ju-HKb" id="h2v-0f-yT0"/>
                         <outlet property="informationValueLabelSeparatorView" destination="ks8-gA-4XF" id="ood-jE-eGt"/>
@@ -819,7 +829,7 @@
         <!--DailyChart Navigation-->
         <scene sceneID="QQU-kd-gtN">
             <objects>
-                <navigationController title="DailyChart Navigation" id="XMX-od-Atw" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="DailyChartNavigation" title="DailyChart Navigation" useStoryboardIdentifierAsRestorationIdentifier="YES" id="XMX-od-Atw" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Daily" image="bar_chart" id="Hjv-Yj-UqX"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="0VU-sL-wMl">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -864,7 +874,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mEe-dh-oYP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="72" y="2322"/>
+            <point key="canvasLocation" x="-570" y="2328"/>
         </scene>
         <!--Hdd Service List Table View Controller-->
         <scene sceneID="gn2-EN-M6o">
@@ -897,7 +907,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d9b-yC-AAy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1437" y="2278"/>
+            <point key="canvasLocation" x="1053" y="2328"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="tCd-uP-HMx">
@@ -913,12 +923,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="12w-xB-LOL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="72" y="1609"/>
+            <point key="canvasLocation" x="-570" y="1575.75"/>
         </scene>
         <!--SummaryChart Navigation-->
         <scene sceneID="Apm-5s-4XF">
             <objects>
-                <navigationController title="SummaryChart Navigation" id="Fq7-hd-MSV" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="SummaryChartNavigation" title="SummaryChart Navigation" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Fq7-hd-MSV" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Summary" image="area_chart" id="IO0-qi-r7P"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="nEg-xM-cus">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -930,7 +940,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hQL-bh-zVG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="620" y="129"/>
+            <point key="canvasLocation" x="-136.5" y="129"/>
         </scene>
         <!--Root View Controller-->
         <scene sceneID="R4s-6W-OO8">
@@ -957,12 +967,12 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4x3-Wv-a1n" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3763" y="129"/>
+            <point key="canvasLocation" x="4308" y="129"/>
         </scene>
         <!--RatioChart-->
         <scene sceneID="Gga-qa-ywg">
             <objects>
-                <navigationController title="RatioChart" id="Z2W-eC-eh7" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="RatioNavigation" title="RatioChart" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Z2W-eC-eh7" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Ratio" image="doughnut_chart" id="35h-Du-r7v"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="faq-0m-jc7">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -974,12 +984,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SGl-yU-08i" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2197" y="129"/>
+            <point key="canvasLocation" x="2742" y="129"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="fbL-wK-P9N">
             <objects>
-                <navigationController id="FsK-wD-X12" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="MoreNavigation" useStoryboardIdentifierAsRestorationIdentifier="YES" id="FsK-wD-X12" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="more" id="SqD-03-ovD"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="icu-yb-YxD">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -991,12 +1001,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A8j-z6-xbO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2944" y="129"/>
+            <point key="canvasLocation" x="3489" y="129"/>
         </scene>
-        <!--InitialViewController-->
+        <!--ParentTabBarViewController-->
         <scene sceneID="XdX-FA-7lQ">
             <objects>
-                <tabBarController title="InitialViewController" id="T6D-GE-Lnu" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="InitialTabBarController" title="ParentTabBarViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="T6D-GE-Lnu" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="ZFV-yj-YQR">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
@@ -1045,7 +1055,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ega-xa-okc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="788" y="2322"/>
+            <point key="canvasLocation" x="283.5" y="2328"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="vZV-vW-5pE">
@@ -1061,7 +1071,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P5Q-KI-bsf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="788" y="1609"/>
+            <point key="canvasLocation" x="283.5" y="1575.75"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="0NG-ce-pOU">
@@ -1077,12 +1087,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z0Q-ws-tCt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1437" y="1569"/>
+            <point key="canvasLocation" x="1053" y="1575.75"/>
         </scene>
         <!--RatioChart-->
         <scene sceneID="fAD-xi-Xjb">
             <objects>
-                <viewController title="RatioChart" id="85B-rS-6MT" customClass="RatioChartViewController" customModule="graphPON" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RatioChart" title="RatioChart" useStoryboardIdentifierAsRestorationIdentifier="YES" id="85B-rS-6MT" customClass="RatioChartViewController" customModule="graphPON" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="XGr-xP-ye9"/>
                         <viewControllerLayoutGuide type="bottom" id="jEp-nP-QXU"/>
@@ -1474,7 +1484,56 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OQF-mR-5n2" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2197" y="861"/>
+            <point key="canvasLocation" x="2742" y="861"/>
+        </scene>
+        <!--FilterPacketLogsSelectTableViewController-->
+        <scene sceneID="vPD-bc-l5W">
+            <objects>
+                <tableViewController title="FilterPacketLogsSelectTableViewController" id="LkW-q5-HCn" customClass="DisplayPacketLogsSelectTableViewController" customModule="graphPON" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="OTJ-U6-xMK">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FilterPacketLogsSelectCell" id="fs9-G1-aQR">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fs9-G1-aQR" id="TmJ-DT-GqS">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="LkW-q5-HCn" id="v70-dU-gbn"/>
+                            <outlet property="delegate" destination="LkW-q5-HCn" id="ZQp-sd-NWq"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Display data" id="Led-xd-nTd">
+                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="sgN-lg-jBJ">
+                            <connections>
+                                <action selector="closeViewController" destination="LkW-q5-HCn" id="pS6-Rc-Y1J"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3sn-yq-YVc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1926" y="2328"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="fY4-CF-Pfl">
+            <objects>
+                <navigationController id="U95-XL-QGo" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="W1k-DH-Cdw">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="LkW-q5-HCn" kind="relationship" relationship="rootViewController" id="x3J-4A-Vfv"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="40t-Zg-Obn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1926" y="1575.75"/>
         </scene>
     </scenes>
     <resources>

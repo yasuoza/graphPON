@@ -7,12 +7,9 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
 
     private let mode: Mode = .Summary
 
-    private var chartDataSegment: ChartDataSegment = .All
-    private var chartDurationSegment: HdoService.Duration = .InThisMonth
-    private var hddServiceCode: String?
     private var hddService: HddService? {
         didSet {
-            self.hddServiceCode = hddService?.hddServiceCode
+            self.serviceCode = hddService?.hddServiceCode
         }
     }
     private var chartData: [[CGFloat]]? = []
@@ -94,7 +91,7 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
             let navigationController = segue.destinationViewController as UINavigationController
             let hddServiceListViewController = navigationController.topViewController as HddServiceListTableViewController
             hddServiceListViewController.delegate = self
-            hddServiceListViewController.selectedService = self.hddServiceCode ?? ""
+            hddServiceListViewController.selectedService = self.serviceCode ?? ""
         } else if segue.identifier == "DisplayPacketLogsSelectFromSummaryChartSegue" {
             let navigationController = segue.destinationViewController as UINavigationController
             let displayPacketLogSelectViewController = navigationController.topViewController as DisplayPacketLogsSelectTableViewController
@@ -103,12 +100,7 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
     }
 
     @IBAction func chartSegmentedControlValueDidChanged(segmentedControl: UISegmentedControl) {
-        switch segmentedControl.selectedSegmentIndex {
-        case 0:
-            self.chartDurationSegment = .InThisMonth
-        default:
-            self.chartDurationSegment = .InLast30Days
-        }
+        self.chartDurationSegment = HdoService.Duration(rawValue: segmentedControl.selectedSegmentIndex)!
         self.reloadChartView(false)
     }
 
@@ -119,8 +111,8 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
             self.loadingIndicatorView.stopAnimating()
         }
 
-        if let hddServiceCode = self.hddServiceCode {
-            self.navigationItem.title = "\(hddServiceCode) (\(self.chartDataSegment.text()))"
+        if let hddServiceCode = self.serviceCode {
+            self.navigationItem.title = "\(hddServiceCode) (\(self.chartDataFilteringSegment.text()))"
         }
 
         self.chartViewContainerView.chartView.maximumValue = self.chartData?.last?.last ?? 0
@@ -187,7 +179,7 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
         self.hddService = nil
         self.chartData = []
 
-        if let hddService = logManager.hddServiceForServiceCode(self.hddServiceCode ?? "") ?? logManager.hddServices.first {
+        if let hddService = logManager.hddServiceForServiceCode(self.serviceCode ?? "") ?? logManager.hddServices.first {
             self.hddService = hddService
         } else {
             return
@@ -202,12 +194,12 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
             var hdoServiceindex = 0
             let hdoPacketSum = hdoInfo.packetLogs.reduce([], combine: { (var _hdoPacketSum, packetLog) -> [CGFloat] in
                 var lastPacketAmount = _hdoPacketSum.last ?? 0.0
-                switch self.chartDataSegment.rawValue {
-                case 0:
+                switch self.chartDataFilteringSegment {
+                case .All:
                     lastPacketAmount += CGFloat(packetLog.withCoupon + packetLog.withoutCoupon)
-                case 1:
+                case .WithCoupon:
                     lastPacketAmount += CGFloat(packetLog.withCoupon)
-                case 2:
+                case .WithoutCoupon:
                     lastPacketAmount += CGFloat(packetLog.withoutCoupon)
                 default:
                     break
@@ -324,8 +316,27 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
     // MARK: - DisplayPacketLogsSelectTableViewControllerDelegate
 
     func displayPacketLogSegmentDidSelected(segment: Int) {
-        self.chartDataSegment = ChartDataSegment(rawValue: segment)!
+        self.chartDataFilteringSegment = ChartDataFilteringSegment(rawValue: segment)!
         self.reloadChartView(true)
+    }
+
+    // MARK: - UIStateRestoration
+
+    override func encodeRestorableStateWithCoder(coder: NSCoder) {
+        coder.encodeObject(self.serviceCode, forKey: "hddServiceCode")
+        coder.encodeInteger(self.chartDurationSegment.rawValue, forKey: "hddChartDurationSegment")
+        coder.encodeInteger(self.chartDataFilteringSegment.rawValue, forKey: "hddChartFilteringSegment")
+        super.encodeRestorableStateWithCoder(coder)
+    }
+
+    override func decodeRestorableStateWithCoder(coder: NSCoder) {
+        if let hddServiceCode = coder.decodeObjectForKey("hddServiceCode") as? String {
+            self.serviceCode = hddServiceCode
+        }
+        self.chartDurationSegment = HdoService.Duration(rawValue: Int(coder.decodeIntForKey("hddChartDurationSegment")))!
+        self.chartDurationSegmentControl.selectedSegmentIndex = self.chartDurationSegment.rawValue
+        self.chartDataFilteringSegment = ChartDataFilteringSegment(rawValue: Int(coder.decodeIntForKey("hddChartFilteringSegment")))!
+        super.decodeRestorableStateWithCoder(coder)
     }
 
 }

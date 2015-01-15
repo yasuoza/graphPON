@@ -2,8 +2,8 @@ import UIKit
 
 class HdoService: NSObject {
 
-    enum Duration {
-        case InThisMonth, InLast30Days
+    enum Duration: Int {
+        case InThisMonth = 0, InLast30Days = 1
     }
 
     private(set) var hdoServiceCode = ""
