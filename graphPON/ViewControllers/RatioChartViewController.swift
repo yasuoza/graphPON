@@ -90,7 +90,7 @@ class RatioChartViewController: BaseChartViewController, XYDoughnutChartDelegate
 
     func displayLatestTotalChartInformation() {
         if let hdoService = self.hddService?.hdoServices?.last? {
-            self.chartInformationView.setTitleText("\(hdoService.number)")
+            self.chartInformationView.setTitleText("Proportion - \(hdoService.number)")
             self.chartInformationView.setHidden(false, animated: true)
 
             UIView.animateWithDuration(
@@ -163,7 +163,7 @@ class RatioChartViewController: BaseChartViewController, XYDoughnutChartDelegate
 
     func doughnutChart(doughnutChart: XYDoughnutChart!, didSelectSliceAtIndex index: UInt) {
         if let hdoService = self.hddService?.hdoServices?[Int(index)] {
-            self.chartInformationView.setTitleText("\(hdoService.number)")
+            self.chartInformationView.setTitleText("Proportion - \(hdoService.number)")
             self.chartInformationView.setHidden(false, animated: true)
         }
 

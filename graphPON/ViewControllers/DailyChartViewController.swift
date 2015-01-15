@@ -123,7 +123,7 @@ class DailyChartViewController: BaseLineChartViewController, JBBarChartViewDeleg
 
     func displayLatestTotalChartInformation() {
         if let packetLog = self.hdoService?.packetLogs.last? {
-            self.chartInformationView.setTitleText("Total - \(packetLog.dateText())")
+            self.chartInformationView.setTitleText("Daily - \(packetLog.dateText())")
             self.chartInformationView.setHidden(false, animated: true)
         } else {
             self.chartInformationView.setHidden(true)
@@ -207,7 +207,7 @@ class DailyChartViewController: BaseLineChartViewController, JBBarChartViewDeleg
             self.tooltipView.setText(dateText)
         }
 
-        self.chartInformationView.setTitleText("Total - \(dateText)")
+        self.chartInformationView.setTitleText("Daily - \(dateText)")
         self.chartInformationView.setHidden(false, animated: true)
 
         UIView.animateWithDuration(
