@@ -1244,6 +1244,9 @@
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="20"/>
                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
+                                                        <variation key="heightClass=compact-widthClass=regular">
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="16"/>
+                                                        </variation>
                                                         <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
                                                             <rect key="frame" x="0.0" y="0.0" width="184" height="24"/>
                                                         </variation>
@@ -1260,28 +1263,7 @@
                                                     <constraint firstItem="cSj-BI-PwK" firstAttribute="height" secondItem="zRI-we-3hb" secondAttribute="height" id="h82-aq-HDZ"/>
                                                     <constraint firstAttribute="height" constant="24" id="txS-EA-RC3"/>
                                                 </constraints>
-                                                <variation key="default">
-                                                    <mask key="subviews">
-                                                        <exclude reference="cSj-BI-PwK"/>
-                                                    </mask>
-                                                    <mask key="constraints">
-                                                        <exclude reference="1TH-bi-Hhi"/>
-                                                        <exclude reference="E83-DM-bvy"/>
-                                                        <exclude reference="Q3Q-cD-q7w"/>
-                                                        <exclude reference="h82-aq-HDZ"/>
-                                                    </mask>
-                                                </variation>
-                                                <variation key="heightClass=regular-widthClass=compact">
-                                                    <mask key="subviews">
-                                                        <include reference="cSj-BI-PwK"/>
-                                                    </mask>
-                                                    <mask key="constraints">
-                                                        <include reference="1TH-bi-Hhi"/>
-                                                        <include reference="E83-DM-bvy"/>
-                                                        <include reference="Q3Q-cD-q7w"/>
-                                                        <include reference="h82-aq-HDZ"/>
-                                                    </mask>
-                                                </variation>
+                                                <variation key="heightClass=regular-widthClass=compact"/>
                                                 <connections>
                                                     <outlet property="titleLabel" destination="cSj-BI-PwK" id="uhA-8H-72e"/>
                                                 </connections>
