@@ -105,15 +105,15 @@ class PacketInfoManager: NSObject {
                 var tmpHddServices: [HddService] = []
                 for (_, hddServiceJSON) in json["couponInfo"] {
                     let hddServiceCode = hddServiceJSON["hddServiceCode"].stringValue
-                    var tmpHdoInfos: [HdoService] = []
+                    var tmpHdoServices: [HdoService] = []
                     for (_, hdoServiceJson) in hddServiceJSON["hdoInfo"] {
                         let hdoService = HdoService(
                             hdoServiceCode: hdoServiceJson["hdoServiceCode"].stringValue,
                             number: hdoServiceJson["number"].stringValue
                         )
-                        tmpHdoInfos.append(hdoService)
+                        tmpHdoServices.append(hdoService)
                     }
-                    tmpHddServices.append(HddService(hddServiceCode: hddServiceCode, hdoInfos: tmpHdoInfos))
+                    tmpHddServices.append(HddService(hddServiceCode: hddServiceCode, hdoInfos: tmpHdoServices))
                 }
                 self.hddServices = tmpHddServices
                 _completion?(error: nil)
