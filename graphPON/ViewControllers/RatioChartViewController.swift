@@ -89,22 +89,31 @@ class RatioChartViewController: BaseChartViewController, XYDoughnutChartDelegate
     }
 
     func displayLatestTotalChartInformation() {
-        if let hdoService = self.hddService?.hdoServices?.last? {
-            self.chartInformationView.setTitleText("Proportion - \(hdoService.number)")
-            self.chartInformationView.setHidden(false, animated: true)
-
-            UIView.animateWithDuration(
-                NSTimeInterval(kJBChartViewDefaultAnimationDuration) * 0.5,
-                delay: 0.0,
-                options: UIViewAnimationOptions.BeginFromCurrentState,
-                animations: {
-                    self.informationValueLabelSeparatorView.alpha = 1.0
-                    let valueText = NSString(format: "%.01f", Float(self.slices?.last ?? 0.0))
-                    self.valueLabel.text = "\(valueText)%"
-                    self.valueLabel.alpha = 1.0
-                },
-                completion: nil
-            )
+        if let slices = self.slices {
+            if slices.count == 0 {
+                return
+            }
+            let max = maxElement(slices)
+            let maxIndex = find(slices, max)
+            if maxIndex == nil {
+                return
+            }
+            if let hdoService = self.hddService?.hdoServices?[maxIndex!] {
+                self.chartInformationView.setTitleText("Proportion - \(hdoService.number)")
+                self.chartInformationView.setHidden(false, animated: true)
+                UIView.animateWithDuration(
+                    NSTimeInterval(kJBChartViewDefaultAnimationDuration) * 0.5,
+                    delay: 0.0,
+                    options: UIViewAnimationOptions.BeginFromCurrentState,
+                    animations: {
+                        self.informationValueLabelSeparatorView.alpha = 1.0
+                        let valueText = NSString(format: "%.01f", Float(max ?? 0.0))
+                        self.valueLabel.text = "\(valueText)%"
+                        self.valueLabel.alpha = 1.0
+                    },
+                    completion: nil
+                )
+            }
         }
     }
 
@@ -200,10 +209,13 @@ class RatioChartViewController: BaseChartViewController, XYDoughnutChartDelegate
     }
 
     func doughnutChart(doughnutChart: XYDoughnutChart!, colorForSliceAtIndex index: UInt) -> UIColor! {
-        let count = self.slices?.count ?? 1
-        let total = count == 0 ? 1.0 : CGFloat(count)
-        let alpha = (1.0 / total) * CGFloat(index + 1)
-        return UIColor.whiteColor().colorWithAlphaComponent(alpha)
+        if let slices = self.slices {
+            var max = maxElement(slices)
+            max = max == 0 ? 1.0 : max
+            let alpha = slices[Int(index)] / max
+            return UIColor.whiteColor().colorWithAlphaComponent(alpha)
+        }
+        return UIColor.clearColor()
     }
 
     func doughnutChart(doughnutChart: XYDoughnutChart!, selectedStrokeWidthForSliceAtIndex index: UInt) -> CGFloat {
