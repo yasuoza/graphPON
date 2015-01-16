@@ -199,6 +199,17 @@ class RatioChartViewController: BaseChartViewController, XYDoughnutChartDelegate
         )
     }
 
+    func doughnutChart(doughnutChart: XYDoughnutChart!, colorForSliceAtIndex index: UInt) -> UIColor! {
+        let count = self.slices?.count ?? 1
+        let total = count == 0 ? 1.0 : CGFloat(count)
+        let alpha = (1.0 / total) * CGFloat(index + 1)
+        return UIColor.whiteColor().colorWithAlphaComponent(alpha)
+    }
+
+    func doughnutChart(doughnutChart: XYDoughnutChart!, selectedStrokeWidthForSliceAtIndex index: UInt) -> CGFloat {
+        return 2.0
+    }
+
     // MARK: - XYDoughnutChartDataSource
 
     func numberOfSlicesInDoughnutChart(pieChart: XYDoughnutChart!) -> UInt {
