@@ -187,7 +187,7 @@ class PacketInfoManager: NSObject {
                             }
                             if let hddService = self.hddServiceForServiceCode(hddServiceCode) {
                                 if let hdoService = hddService.hdoServiceForServiceCode(hdoServiceCode) {
-                                    hdoService.allPacketLogs = hdoPacketLogs
+                                    hdoService.packetLogs = hdoPacketLogs
                                 }
                             }
 

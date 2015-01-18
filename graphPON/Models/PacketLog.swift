@@ -1,6 +1,6 @@
 import UIKit
 
-class PacketLog: NSObject {
+struct PacketLog {
 
     var date: NSDate!
     var withCoupon: Int = 0
@@ -10,7 +10,7 @@ class PacketLog: NSObject {
 
     // MARK: - Singleton methods
 
-    class func stringForValue(var packetValue: CGFloat?) -> String {
+    static func stringForValue(var packetValue: CGFloat?) -> String {
         packetValue = packetValue ?? 0.0
         let unit: String = { _ -> String in
             if packetValue >= 1_000.0 {

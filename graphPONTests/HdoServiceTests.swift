@@ -27,13 +27,13 @@ class HdoServiceTests: XCTestCase {
 
     func testPacketLogsInThisMonth() {
         XCTAssertEqual(hdoService.duration, HdoService.Duration.InThisMonth)
-        XCTAssertEqual(hdoService.packetLogs, [logToday])
+        XCTAssertEqual(hdoService.packetLogs.map { $0.date }, [logToday.date])
     }
 
     func testPacketLogsInLast30Days() {
         hdoService.duration = .InLast30Days
         XCTAssertEqual(hdoService.duration, HdoService.Duration.InLast30Days)
-        XCTAssertEqual(hdoService.packetLogs, [logLastMonth, logToday])
+        XCTAssertEqual(hdoService.packetLogs.map { $0.date }, [logLastMonth.date, logToday.date])
     }
 
     func testInitWithNumber() {

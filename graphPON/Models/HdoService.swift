@@ -8,27 +8,32 @@ class HdoService: NSObject {
 
     private(set) var hdoServiceCode = ""
     private(set) var number = ""
-    private(set) var packetLogs: [PacketLog] = []
-    var duration: Duration = .InThisMonth {
-        didSet {
-            self.setPacketLogsDependsOnDuration()
+    var packetLogs: [PacketLog] {
+        get {
+            switch self.duration {
+            case .InThisMonth:
+                return self.packetLogsInThisMonth
+            case .InLast30Days:
+                return self.allPacketLogs
+            }
+        }
+        set(packets) {
+            self.allPacketLogs = packets
         }
     }
-    var allPacketLogs: [PacketLog] = [] {
-        didSet {
-            self.setPacketLogsDependsOnDuration()
+    var duration: Duration = .InThisMonth
+
+    private var allPacketLogs: [PacketLog] = []
+    private var packetLogsInThisMonth: [PacketLog] {
+        get {
+            return self.collectInThisMonthPacketLogs()
         }
-    }
-    private lazy var packetLogsInThisMonth: () -> [PacketLog] = { [unowned self] in
-        return self.collectInThisMonthPacketLogs()
     }
 
     init(hdoServiceCode: String, packetLogs: [PacketLog]) {
         super.init()
-
         self.hdoServiceCode = hdoServiceCode
-        self.allPacketLogs = packetLogs
-        self.packetLogs = self.packetLogsInThisMonth()
+        self.packetLogs = packetLogs
     }
 
     init(hdoServiceCode: String, number: String) {
@@ -62,15 +67,6 @@ class HdoService: NSObject {
                 return false
             }
             return true
-        }
-    }
-
-    private func setPacketLogsDependsOnDuration() {
-        switch self.duration {
-        case .InThisMonth:
-            self.packetLogs = self.packetLogsInThisMonth()
-        case .InLast30Days:
-            self.packetLogs = self.allPacketLogs
         }
     }
 
