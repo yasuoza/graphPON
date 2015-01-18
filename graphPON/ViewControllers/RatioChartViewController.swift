@@ -242,7 +242,6 @@ class RatioChartViewController: BaseChartViewController, XYDoughnutChartDelegate
 
     func displayPacketLogSegmentDidSelected(segment: Int) {
         self.chartDataFilteringSegment = ChartDataFilteringSegment(rawValue: segment)!
-        self.reloadChartView(true)
     }
 
     // MARK: - UIStateRestoration

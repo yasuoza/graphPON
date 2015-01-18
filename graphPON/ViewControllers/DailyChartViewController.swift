@@ -254,14 +254,12 @@ class DailyChartViewController: BaseLineChartViewController, JBBarChartViewDeleg
     func serviceDidSelectedSection(section: Int, row: Int) {
         self.serviceCode = PacketInfoManager.sharedManager.hddServices[section].hdoServices![row].hdoServiceCode
         self.hdoService = PacketInfoManager.sharedManager.hddServices[section].hdoServices?[row]
-        self.reloadChartView(true)
     }
 
     // MARK: - DisplayPacketLogsSelectTableViewControllerDelegate
 
     func displayPacketLogSegmentDidSelected(segment: Int) {
         self.chartDataFilteringSegment = ChartDataFilteringSegment(rawValue: segment)!
-        self.reloadChartView(true)
     }
 
     // MARK: - UIStateRestoration
