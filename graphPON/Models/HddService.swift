@@ -3,6 +3,7 @@ import UIKit
 class HddService: NSObject {
     private(set) var hddServiceCode: String!
     private(set) var hdoServices: [HdoService]?
+    private(set) var coupons: [Coupon] = []
     var hdoServiceCodes: [String] {
         get {
             if let hdoService = hdoServices {
@@ -16,8 +17,34 @@ class HddService: NSObject {
     }
 
     init(hddServiceCode: String, hdoInfos: [HdoService]) {
+        super.init()
         self.hddServiceCode = hddServiceCode
         self.hdoServices = hdoInfos
+    }
+
+    init(hddServiceCode: String, coupons: [Coupon], hdoInfos: [HdoService]) {
+        super.init()
+        self.hddServiceCode = hddServiceCode
+        self.coupons = coupons
+        self.hdoServices = hdoInfos
+    }
+
+    func availableCouponVolume() -> Int {
+        return self.coupons.reduce(0, combine: { (sum , coupon) in
+            return sum + coupon.volume
+        })
+    }
+
+    func availableCouponVolumeString() -> String {
+        var available = Float(self.availableCouponVolume())
+        let unit: String = { _ -> String in
+            if available >= 1_000.0 {
+                available = available / 1_000.0
+                return "GB"
+            }
+            return "MB"
+            }()
+        return NSString(format: "%.01f", available) + unit
     }
 
     func hdoServiceForServiceCode(hdoServiceCode: String) -> HdoService? {
@@ -26,4 +53,5 @@ class HddService: NSObject {
         }
         return nil
     }
+
 }

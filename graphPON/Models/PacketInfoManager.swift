@@ -105,6 +105,11 @@ class PacketInfoManager: NSObject {
                 var tmpHddServices: [HddService] = []
                 for (_, hddServiceJSON) in json["couponInfo"] {
                     let hddServiceCode = hddServiceJSON["hddServiceCode"].stringValue
+                    var tmpCoupons: [Coupon] = []
+                    for (_, couponJSON) in hddServiceJSON["coupon"] {
+                        let coupon = Coupon(volume: couponJSON["volume"].intValue)
+                        tmpCoupons.append(coupon)
+                    }
                     var tmpHdoServices: [HdoService] = []
                     for (_, hdoServiceJson) in hddServiceJSON["hdoInfo"] {
                         let hdoService = HdoService(
@@ -113,7 +118,9 @@ class PacketInfoManager: NSObject {
                         )
                         tmpHdoServices.append(hdoService)
                     }
-                    tmpHddServices.append(HddService(hddServiceCode: hddServiceCode, hdoInfos: tmpHdoServices))
+                    tmpHddServices.append(
+                        HddService(hddServiceCode: hddServiceCode, coupons: tmpCoupons, hdoInfos: tmpHdoServices)
+                    )
                 }
                 self.hddServices = tmpHddServices
                 _completion?(error: nil)
