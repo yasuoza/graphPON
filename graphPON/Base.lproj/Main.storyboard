@@ -1206,11 +1206,13 @@
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="centerX" secondItem="SJF-Wo-xgB" secondAttribute="centerX" id="9jw-mt-THl"/>
-                                            <constraint firstAttribute="bottom" secondItem="SJF-Wo-xgB" secondAttribute="bottom" id="Ep1-pv-mUx"/>
+                                            <constraint firstAttribute="bottom" secondItem="SJF-Wo-xgB" secondAttribute="bottom" id="Ep1-pv-mUx">
+                                                <variation key="heightClass=regular-widthClass=compact" constant="16"/>
+                                            </constraint>
                                             <constraint firstAttribute="width" secondItem="VAQ-0c-6HB" secondAttribute="height" multiplier="1:1" priority="500" id="YyH-Rm-gdE"/>
                                             <constraint firstItem="SJF-Wo-xgB" firstAttribute="top" secondItem="VAQ-0c-6HB" secondAttribute="top" constant="36" id="dwk-qN-SRl">
                                                 <variation key="heightClass=compact" constant="16"/>
-                                                <variation key="heightClass=regular-widthClass=compact" constant="8"/>
+                                                <variation key="heightClass=regular-widthClass=compact" constant="24"/>
                                                 <variation key="heightClass=regular-widthClass=regular" constant="20" symbolic="YES"/>
                                             </constraint>
                                             <constraint firstAttribute="width" secondItem="VAQ-0c-6HB" secondAttribute="height" multiplier="1:1" id="e7F-kI-Zaj"/>
@@ -1237,7 +1239,7 @@
                                         <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
                                             <rect key="frame" x="0.0" y="283" width="368" height="368"/>
                                             <mask key="constraints">
-                                                <include reference="YyH-Rm-gdE"/>
+                                                <exclude reference="YyH-Rm-gdE"/>
                                             </mask>
                                         </variation>
                                         <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
