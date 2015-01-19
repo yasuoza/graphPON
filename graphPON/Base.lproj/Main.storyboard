@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="T6D-GE-Lnu">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -1015,13 +1016,16 @@
                                 </tableViewCellContentView>
                                 <accessibility key="accessibilityConfiguration" label="fassfa"/>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingTableHdoServiceSwitchCell" id="o4u-Or-Uib">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingTableHdoServiceSwitchCell" id="o4u-Or-Uib" customClass="SettingTableHdoServiceSwitchCell" customModule="graphPON" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="o4u-Or-Uib" id="nu4-GS-Zws">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="right" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LBC-yu-fkH">
                                             <rect key="frame" x="-25" y="-15" width="51" height="31"/>
+                                            <connections>
+                                                <action selector="switchButtonValueChanged:" destination="o4u-Or-Uib" eventType="valueChanged" id="yIA-eh-MMO"/>
+                                            </connections>
                                         </switch>
                                     </subviews>
                                     <constraints>
@@ -1046,6 +1050,9 @@
                                     </variation>
                                 </tableViewCellContentView>
                                 <accessibility key="accessibilityConfiguration" label="fassfa"/>
+                                <connections>
+                                    <outlet property="switchButton" destination="LBC-yu-fkH" id="P2B-ff-F95"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <sections/>

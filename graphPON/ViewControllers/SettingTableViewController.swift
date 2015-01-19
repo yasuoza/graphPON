@@ -1,6 +1,6 @@
 import UIKit
 
-class SettingTableViewController: UITableViewController {
+class SettingTableViewController: UITableViewController, SettingTableHdoServiceSwitchCellDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,8 +29,9 @@ class SettingTableViewController: UITableViewController {
             cell.detailTextLabel?.text = "080-1234-5678"
             return cell
         } else {
-            let cell = tableView.dequeueReusableCellWithIdentifier("SettingTableHdoServiceSwitchCell", forIndexPath: indexPath) as UITableViewCell
+            let cell = tableView.dequeueReusableCellWithIdentifier("SettingTableHdoServiceSwitchCell", forIndexPath: indexPath) as SettingTableHdoServiceSwitchCell
             cell.textLabel?.text = "Coupon"
+            cell.delegate = self
             return cell
         }
     }
@@ -68,6 +69,15 @@ class SettingTableViewController: UITableViewController {
         alertController.addAction(saveAction)
 
         self.presentViewController(alertController, animated: true, completion: nil)
+    }
+
+    // MARK: - SettingTableHdoServiceSwitchCellDelegate
+
+    func couponSwitchButtonValueDidChanged(switchButton: UISwitch, buttonCell: UITableViewCell) {
+        println(switchButton.on)
+        if let indexPath = self.tableView.indexPathForCell(buttonCell) {
+            println("hddServiceIndex = \(indexPath.section), hdoServiceIndex = \((indexPath.row - 2) / 2)")
+        }
     }
 
 }
