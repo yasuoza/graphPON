@@ -3,7 +3,9 @@ import JBChartFramework
 import Alamofire
 import SwiftyJSON
 
-class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDelegate, JBLineChartViewDataSource, HddServiceListTableViewControllerDelegate, DisplayPacketLogsSelectTableViewControllerDelegate {
+class SummaryChartViewController: BaseChartViewController, JBLineChartViewDelegate, JBLineChartViewDataSource, HddServiceListTableViewControllerDelegate, DisplayPacketLogsSelectTableViewControllerDelegate {
+
+    @IBOutlet weak var chartViewContainerView: ChartViewContainerView!
 
     private let mode: Mode = .Summary
 
@@ -136,7 +138,7 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
             dateFormatter.locale = NSLocale(localeIdentifier: "en_US")
             let today = dateFormatter.stringFromDate(NSDate())
             let endOfThisMonth = dateFormatter.stringFromDate(NSDate().endDateOfMonth()!)
-            self.chartInformationView.setTitleText("Available coupon  \(today)-\(endOfThisMonth)")
+            self.chartInformationView.setTitleText("Available in \(today)-\(endOfThisMonth)")
             self.chartInformationView.setHidden(false, animated: true)
             UIView.animateWithDuration(
                 NSTimeInterval(kJBChartViewDefaultAnimationDuration) * 0.5,
@@ -238,13 +240,7 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
     func lineChartView(lineChartView: JBLineChartView!, didSelectLineAtIndex lineIndex: UInt, horizontalIndex: UInt, touchPoint: CGPoint) {
         let tcolVert = self.traitCollection.verticalSizeClass
         let tcolHorz = self.traitCollection.horizontalSizeClass
-        let displayTooltip = tcolVert == .Compact || (tcolVert == .Regular && tcolHorz == .Regular)
-
         let dateText = self.hddService?.hdoServices?.first?.packetLogs[Int(horizontalIndex)].dateText() ?? ""
-        if displayTooltip {
-            self.setTooltipVisible(true, animated: false, touchPoint: touchPoint)
-            self.tooltipView.setText(dateText)
-        }
 
         var label = "Total"
         if Int(lineIndex) < self.hddService?.hdoServices?.count {
@@ -261,7 +257,7 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
             startDateOfThisMonth = self.hddService?.hdoServices?.first?.packetLogs.first?.dateText() ?? ""
         }
 
-        self.chartInformationView.setTitleText("\(label)  \(startDateOfThisMonth)-\(dateText)")
+        self.chartInformationView.setTitleText("\(label) summary in \(startDateOfThisMonth)-\(dateText)")
         self.chartInformationView.setHidden(false, animated: true)
 
         UIView.animateWithDuration(
@@ -278,8 +274,6 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
     }
 
     func didDeselectLineInLineChartView(lineChartView: JBLineChartView!) {
-        self.setTooltipVisible(false, animated: true)
-
         self.chartInformationView.setHidden(true, animated: true)
 
         UIView.animateWithDuration(
@@ -323,12 +317,18 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
 
     func serviceDidSelectedSection(section: Int, row: Int) {
         self.hddService = PacketInfoManager.sharedManager.hddServices[row]
+        if self.traitCollection.horizontalSizeClass == .Regular {
+            self.reloadChartView(true)
+        }
     }
 
     // MARK: - DisplayPacketLogsSelectTableViewControllerDelegate
 
     func displayPacketLogSegmentDidSelected(segment: Int) {
         self.chartDataFilteringSegment = ChartDataFilteringSegment(rawValue: segment)!
+        if self.traitCollection.horizontalSizeClass == .Regular {
+            self.reloadChartView(true)
+        }
     }
 
     // MARK: - UIStateRestoration

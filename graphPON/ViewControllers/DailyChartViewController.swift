@@ -1,7 +1,9 @@
 import UIKit
 import JBChartFramework
 
-class DailyChartViewController: BaseLineChartViewController, JBBarChartViewDelegate, JBBarChartViewDataSource, HddServiceListTableViewControllerDelegate, DisplayPacketLogsSelectTableViewControllerDelegate {
+class DailyChartViewController: BaseChartViewController, JBBarChartViewDelegate, JBBarChartViewDataSource, HddServiceListTableViewControllerDelegate, DisplayPacketLogsSelectTableViewControllerDelegate {
+
+    @IBOutlet weak var chartViewContainerView: ChartViewContainerView!
 
     let mode: Mode = .Daily
 
@@ -197,15 +199,7 @@ class DailyChartViewController: BaseLineChartViewController, JBBarChartViewDeleg
     }
 
     func barChartView(barChartView: JBBarChartView!, didSelectBarAtIndex index: UInt, touchPoint: CGPoint) {
-        let displayTooltip = self.traitCollection.verticalSizeClass == UIUserInterfaceSizeClass.Compact
-            || (self.traitCollection.verticalSizeClass == UIUserInterfaceSizeClass.Regular
-                && self.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClass.Regular)
-
         let dateText = self.hdoService?.packetLogs[Int(index)].dateText() ?? ""
-        if displayTooltip {
-            self.setTooltipVisible(true, animated: false, touchPoint: touchPoint)
-            self.tooltipView.setText(dateText)
-        }
 
         self.chartInformationView.setTitleText("Daily - \(dateText)")
         self.chartInformationView.setHidden(false, animated: true)
@@ -223,7 +217,6 @@ class DailyChartViewController: BaseLineChartViewController, JBBarChartViewDeleg
     }
 
     func didDeselectBarChartView(barChartView: JBBarChartView!) {
-        self.setTooltipVisible(false, animated: true)
         self.chartInformationView.setHidden(true, animated: true)
 
         UIView.animateWithDuration(
@@ -254,12 +247,18 @@ class DailyChartViewController: BaseLineChartViewController, JBBarChartViewDeleg
     func serviceDidSelectedSection(section: Int, row: Int) {
         self.serviceCode = PacketInfoManager.sharedManager.hddServices[section].hdoServices![row].hdoServiceCode
         self.hdoService = PacketInfoManager.sharedManager.hddServices[section].hdoServices?[row]
+        if self.traitCollection.horizontalSizeClass == .Regular {
+            self.reloadChartView(true)
+        }
     }
 
     // MARK: - DisplayPacketLogsSelectTableViewControllerDelegate
 
     func displayPacketLogSegmentDidSelected(segment: Int) {
         self.chartDataFilteringSegment = ChartDataFilteringSegment(rawValue: segment)!
+        if self.traitCollection.horizontalSizeClass == .Regular {
+            self.reloadChartView(true)
+        }
     }
 
     // MARK: - UIStateRestoration

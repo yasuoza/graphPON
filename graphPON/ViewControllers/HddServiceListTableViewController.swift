@@ -4,7 +4,7 @@ class HddServiceListTableViewController: UITableViewController {
 
     private var services: [String] = []
     var selectedService: String = ""
-    var mode: BaseLineChartViewController.Mode = .Summary
+    var mode: BaseChartViewController.Mode = .Summary
     weak var delegate: HddServiceListTableViewControllerDelegate?
 
     override func viewDidLoad() {
