@@ -130,30 +130,30 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
     }
 
     func displayLatestTotalChartInformation() {
-        let (label, date) = ("Total", self.hddService?.hdoServices?.first?.packetLogs.last?.dateText())
-
-        if date == nil {
+        if let hddService = self.hddService {
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "MM/dd"
+            dateFormatter.locale = NSLocale(localeIdentifier: "en_US")
+            let today = dateFormatter.stringFromDate(NSDate())
+            let endOfThisMonth = dateFormatter.stringFromDate(NSDate().endDateOfMonth()!)
+            self.chartInformationView.setTitleText("Available coupon  \(today)-\(endOfThisMonth)")
+            self.chartInformationView.setHidden(false, animated: true)
+            UIView.animateWithDuration(
+                NSTimeInterval(kJBChartViewDefaultAnimationDuration) * 0.5,
+                delay: 0.0,
+                options: UIViewAnimationOptions.BeginFromCurrentState,
+                animations: {
+                    self.informationValueLabelSeparatorView.alpha = 1.0
+                    self.valueLabel.text = hddService.availableCouponVolumeString()
+                    self.valueLabel.alpha = 1.0
+                },
+                completion: nil
+            )
+        } else {
             self.chartInformationView.setHidden(true)
             self.informationValueLabelSeparatorView.alpha = 0.0
             self.valueLabel.alpha = 0.0
-            return
         }
-
-        if date != nil {
-            self.chartInformationView.setTitleText("\(label) - \(String(date!))")
-            self.chartInformationView.setHidden(false, animated: true)
-        }
-        UIView.animateWithDuration(
-            NSTimeInterval(kJBChartViewDefaultAnimationDuration) * 0.5,
-            delay: 0.0,
-            options: UIViewAnimationOptions.BeginFromCurrentState,
-            animations: {
-                self.informationValueLabelSeparatorView.alpha = 1.0
-                self.valueLabel.text = PacketLog.stringForValue(self.chartData?.last?.last!)
-                self.valueLabel.alpha = 1.0
-            },
-            completion: nil
-        )
     }
 
     func promptLogin() {
@@ -179,7 +179,8 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
         self.hddService = nil
         self.chartData = []
 
-        if let hddService = logManager.hddServiceForServiceCode(self.serviceCode ?? "") ?? logManager.hddServices.first {
+        if let hddService = logManager.hddServiceForServiceCode(self.serviceCode ?? "")
+            ?? logManager.hddServices.first {
             self.hddService = hddService
         } else {
             return
@@ -249,7 +250,18 @@ class SummaryChartViewController: BaseLineChartViewController, JBLineChartViewDe
         if Int(lineIndex) < self.hddService?.hdoServices?.count {
             label = self.hddService?.hdoServices?[Int(lineIndex)].hdoServiceCode ?? ""
         }
-        self.chartInformationView.setTitleText("\(label) - \(dateText)")
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "MM/dd"
+        dateFormatter.locale = NSLocale(localeIdentifier: "en_US")
+        var startDateOfThisMonth = ""
+        switch self.chartDurationSegment {
+        case .InThisMonth:
+            startDateOfThisMonth = dateFormatter.stringFromDate(NSDate().startDateOfMonth()!)
+        case .InLast30Days:
+            startDateOfThisMonth = self.hddService?.hdoServices?.first?.packetLogs.first?.dateText() ?? ""
+        }
+
+        self.chartInformationView.setTitleText("\(label)  \(startDateOfThisMonth)-\(dateText)")
         self.chartInformationView.setHidden(false, animated: true)
 
         UIView.animateWithDuration(

@@ -228,7 +228,7 @@
                                             <constraint firstAttribute="width" secondItem="ijf-0g-1O4" secondAttribute="width" id="dVa-WF-aB7"/>
                                             <constraint firstAttribute="centerY" secondItem="dGs-Or-dAF" secondAttribute="centerY" id="egw-zX-0lw"/>
                                             <constraint firstItem="ijf-0g-1O4" firstAttribute="leading" secondItem="bNI-Ht-YV3" secondAttribute="leading" id="fXl-a7-B48"/>
-                                            <constraint firstItem="ijf-0g-1O4" firstAttribute="width" secondItem="bNI-Ht-YV3" secondAttribute="width" multiplier="1:2" priority="750" id="kbE-St-jdn"/>
+                                            <constraint firstItem="ijf-0g-1O4" firstAttribute="width" secondItem="bNI-Ht-YV3" secondAttribute="width" multiplier="3:4" priority="750" id="kbE-St-jdn"/>
                                             <constraint firstItem="dGs-Or-dAF" firstAttribute="width" secondItem="bNI-Ht-YV3" secondAttribute="width" id="n8r-Vv-tHg"/>
                                         </constraints>
                                         <variation key="default">
@@ -1129,7 +1129,7 @@
                                                     <rect key="frame" x="48" y="4" width="504" height="33"/>
                                                 </variation>
                                                 <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="50" y="2" width="300" height="29"/>
+                                                    <rect key="frame" x="50" y="2" width="300" height="33"/>
                                                 </variation>
                                                 <connections>
                                                     <action selector="chartSegmentedControlValueDidChanged:" destination="85B-rS-6MT" eventType="valueChanged" id="GrN-Qq-9AV"/>
@@ -1263,7 +1263,6 @@
                                                     <constraint firstItem="cSj-BI-PwK" firstAttribute="height" secondItem="zRI-we-3hb" secondAttribute="height" id="h82-aq-HDZ"/>
                                                     <constraint firstAttribute="height" constant="24" id="txS-EA-RC3"/>
                                                 </constraints>
-                                                <variation key="heightClass=regular-widthClass=compact"/>
                                                 <connections>
                                                     <outlet property="titleLabel" destination="cSj-BI-PwK" id="uhA-8H-72e"/>
                                                 </connections>
@@ -1609,6 +1608,7 @@
             <objects>
                 <tableViewController id="Ay7-4f-DvC" customClass="DisplayPacketLogsSelectTableViewController" customModule="graphPON" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="V2K-qw-9rE">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -1641,6 +1641,7 @@
             <objects>
                 <tableViewController id="f7J-ae-fpX" customClass="HddServiceListTableViewController" customModule="graphPON" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="vW8-vS-ar6">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
