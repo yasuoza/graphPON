@@ -63,6 +63,7 @@
 		A8DCA1581A4E7C5500CE73D3 /* OAuth2Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = A874C0B81A4BF6EB00887932 /* OAuth2Router.swift */; };
 		A8DCA15A1A4E810200CE73D3 /* configuration.plist in Resources */ = {isa = PBXBuildFile; fileRef = A8DCA1591A4E810200CE73D3 /* configuration.plist */; };
 		A8E0AC3E1A66215F00D4E043 /* StateRestorable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E0AC3D1A66215F00D4E043 /* StateRestorable.swift */; };
+		A8F036FC1A6CD0ED00DEFA61 /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F036FB1A6CD0ED00DEFA61 /* SettingTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -140,6 +141,7 @@
 		A8DCA1521A4E7B3E00CE73D3 /* OAuth2ClientTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuth2ClientTests.swift; sourceTree = "<group>"; };
 		A8DCA1591A4E810200CE73D3 /* configuration.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = configuration.plist; sourceTree = "<group>"; };
 		A8E0AC3D1A66215F00D4E043 /* StateRestorable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StateRestorable.swift; path = Protocols/StateRestorable.swift; sourceTree = "<group>"; };
+		A8F036FB1A6CD0ED00DEFA61 /* SettingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingTableViewController.swift; path = ViewControllers/SettingTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -309,6 +311,7 @@
 				A8B212B91A11EEAB005988DC /* CharViewControllers */,
 				A8867A0B1A304E8B001D8578 /* HddServiceListTableViewController.swift */,
 				A88398BF1A5CF40700B3DE5B /* DisplayPacketLogsSelectTableViewController.swift */,
+				A8F036FB1A6CD0ED00DEFA61 /* SettingTableViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -459,6 +462,7 @@
 				A8B39C391A41713E009F519E /* BaseChartViewController.swift in Sources */,
 				A874C0B91A4BF6EB00887932 /* OAuth2Client.swift in Sources */,
 				A874C0BA1A4BF6EB00887932 /* OAuth2Router.swift in Sources */,
+				A8F036FC1A6CD0ED00DEFA61 /* SettingTableViewController.swift in Sources */,
 				A88BB3701A2DDEA700E5AE4F /* HdoService.swift in Sources */,
 				A8E0AC3E1A66215F00D4E043 /* StateRestorable.swift in Sources */,
 				A8867A051A30333C001D8578 /* ExtendedNavBarView.swift in Sources */,
