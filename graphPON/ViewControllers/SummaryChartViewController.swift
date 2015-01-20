@@ -178,7 +178,6 @@ class SummaryChartViewController: BaseChartViewController, JBLineChartViewDelega
 
     func reBuildChartData() {
         let logManager = PacketInfoManager.sharedManager
-        self.hddService = nil
         self.chartData = []
 
         if let hddService = logManager.hddServiceForServiceCode(self.serviceCode ?? "")

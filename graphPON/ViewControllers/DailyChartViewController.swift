@@ -7,7 +7,7 @@ class DailyChartViewController: BaseChartViewController, JBBarChartViewDelegate,
 
     let mode: Mode = .Daily
 
-    private var chartData: [CGFloat]? = []
+    private var chartData: [CGFloat]?
     private var hdoService: HdoService? {
         didSet {
             self.serviceCode = hdoService?.hdoServiceCode
@@ -109,7 +109,9 @@ class DailyChartViewController: BaseChartViewController, JBBarChartViewDelegate,
         }
 
         if let chartData = self.chartData {
-            self.chartViewContainerView.chartView.maximumValue = maxElement(chartData)
+            if chartData.count > 0 {
+                self.chartViewContainerView.chartView.maximumValue = maxElement(chartData)
+            }
         }
 
         if let footerView = self.chartViewContainerView.chartView.footerView as? LineChartFooterView {

@@ -38,7 +38,7 @@ class HddServiceListTableViewController: UITableViewController {
         case .Summary, .Ratio:
             return PacketInfoManager.sharedManager.hddServiceCodes().count
         case .Daily:
-            return PacketInfoManager.sharedManager.hdoServiceNumbers().count
+            return PacketInfoManager.sharedManager.hddServices[section].hdoServices?.count ?? 0
         }
     }
 
@@ -54,7 +54,7 @@ class HddServiceListTableViewController: UITableViewController {
 
         switch self.mode {
         case .Summary, .Ratio:
-            cell.textLabel?.text = PacketInfoManager.sharedManager.hddServices[indexPath.section].nickName
+            cell.textLabel?.text = PacketInfoManager.sharedManager.hddServices[indexPath.row].nickName
         case .Daily:
             cell.textLabel?.text = PacketInfoManager.sharedManager.hddServices[indexPath.section].hdoServices?[indexPath.row].nickName
         }

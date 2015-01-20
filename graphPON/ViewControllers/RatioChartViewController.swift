@@ -76,7 +76,6 @@ class RatioChartViewController: BaseChartViewController, XYDoughnutChartDelegate
         self.reloadChartView(true)
     }
 
-
     func reloadChartView(animated: Bool) {
         self.reBuildChartData()
 
@@ -137,7 +136,6 @@ class RatioChartViewController: BaseChartViewController, XYDoughnutChartDelegate
 
     func reBuildChartData() {
         let logManager = PacketInfoManager.sharedManager
-        self.hddService = nil
         self.slices = []
 
         if let hddService = logManager.hddServiceForServiceCode(self.serviceCode ?? "") ?? logManager.hddServices.first {
