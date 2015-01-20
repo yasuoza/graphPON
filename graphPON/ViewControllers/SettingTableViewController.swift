@@ -2,8 +2,12 @@ import UIKit
 
 class SettingTableViewController: UITableViewController, SettingTableHdoServiceSwitchCellDelegate {
 
+    private var couponUseDict: [String : Bool] = [:]
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        self.navigationItem.rightBarButtonItem?.enabled = false
     }
 
     // MARK: - Table view data source
@@ -42,6 +46,14 @@ class SettingTableViewController: UITableViewController, SettingTableHdoServiceS
         return "hdd8080123-\(section)"
     }
 
+    override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
+        // Disable coupon cell selection
+        if indexPath.row > 0 && indexPath.row % 2 == 0 {
+            return nil
+        }
+        return indexPath
+    }
+
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cell = tableView.cellForRowAtIndexPath(indexPath)!
         cell.selected = false
@@ -74,9 +86,12 @@ class SettingTableViewController: UITableViewController, SettingTableHdoServiceS
     // MARK: - SettingTableHdoServiceSwitchCellDelegate
 
     func couponSwitchButtonValueDidChanged(switchButton: UISwitch, buttonCell: UITableViewCell) {
-        println(switchButton.on)
         if let indexPath = self.tableView.indexPathForCell(buttonCell) {
-            println("hddServiceIndex = \(indexPath.section), hdoServiceIndex = \((indexPath.row - 2) / 2)")
+            let hdoService = "hdoServiceIndex#\((indexPath.row - 2) / 2)"
+            if self.couponUseDict.removeValueForKey(hdoService) == nil {
+                self.couponUseDict[hdoService] = switchButton.on
+            }
+            self.navigationItem.rightBarButtonItem?.enabled = !self.couponUseDict.keys.isEmpty
         }
     }
 
