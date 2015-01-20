@@ -1,3 +1,5 @@
+import Foundation
+
 extension NSDate {
 
     func startDateOfMonth() -> NSDate? {

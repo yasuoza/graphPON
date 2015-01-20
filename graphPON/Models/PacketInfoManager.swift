@@ -1,3 +1,4 @@
+import UIKit
 import Alamofire
 import SwiftyJSON
 
@@ -197,7 +198,6 @@ class PacketInfoManager: NSObject {
                                     hdoService.packetLogs = hdoPacketLogs
                                 }
                             }
-
                         }
                     }
                     NSNotificationCenter.defaultCenter().postNotificationName(
