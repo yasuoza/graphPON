@@ -13,28 +13,26 @@ class SettingTableViewController: UITableViewController, SettingTableHdoServiceS
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 2
+        return PacketInfoManager.sharedManager.hddServices.count
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return 7 // 3 * 2 + 1
-        }
-        return 4 // 3 * 1 + 1
+        return 1 + 2 * (PacketInfoManager.sharedManager.hddServices[section].hdoServices?.count ?? 0)
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCellWithIdentifier("SettingTableHddServiceNicknameCell", forIndexPath: indexPath) as UITableViewCell
-            cell.detailTextLabel?.text = "My sweet family"
+            cell.detailTextLabel?.text = PacketInfoManager.sharedManager.hddServices[indexPath.section].nickName
             return cell
         } else if (indexPath.row - 1) % 2 == 0 {
             let cell = tableView.dequeueReusableCellWithIdentifier("SettingTableHdoServiceNicknameCell", forIndexPath: indexPath) as UITableViewCell
-            cell.detailTextLabel?.text = "080-1234-5678"
+            let hdoNickname = PacketInfoManager.sharedManager.hddServices[indexPath.section].hdoServices?[(indexPath.row - 1) / 2 ].nickName
+            cell.detailTextLabel?.text = hdoNickname
             return cell
         } else {
             let cell = tableView.dequeueReusableCellWithIdentifier("SettingTableHdoServiceSwitchCell", forIndexPath: indexPath) as SettingTableHdoServiceSwitchCell
-            cell.textLabel?.text = "Coupon"
+            cell.textLabel?.text = "Coupon Use"
             cell.delegate = self
             return cell
         }
@@ -43,7 +41,7 @@ class SettingTableViewController: UITableViewController, SettingTableHdoServiceS
     // MARK: - Table view delegate
 
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "hdd8080123-\(section)"
+        return PacketInfoManager.sharedManager.hddServices[section].hddServiceCode
     }
 
     override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
@@ -64,17 +62,18 @@ class SettingTableViewController: UITableViewController, SettingTableHdoServiceS
 
         let saveAction = UIAlertAction(title: "Save", style: .Default) { (_) in
             let nicknameTextField = alertController.textFields![0] as UITextField
-            cell.detailTextLabel?.text = nicknameTextField.text
+            if indexPath.row == 0 {
+                let hddService = PacketInfoManager.sharedManager.hddServices[indexPath.section]
+                hddService.nickName = nicknameTextField.text
+            } else {
+                if let hdoService = PacketInfoManager.sharedManager.hddServices[indexPath.section].hdoServices?[(indexPath.row - 1) / 2] {
+                    hdoService.nickName = nicknameTextField.text
+                }
+            }
+            self.tableView.reloadData()
         }
-        saveAction.enabled = false
         alertController.addTextFieldWithConfigurationHandler { (textField) in
             textField.placeholder = cell.detailTextLabel?.text
-            NSNotificationCenter.defaultCenter().addObserverForName(
-                UITextFieldTextDidChangeNotification,
-                object: textField,
-                queue: NSOperationQueue.mainQueue()) { (_) in
-                saveAction.enabled = textField.text != ""
-            }
         }
 
         alertController.addAction(cancelAction)
@@ -87,12 +86,15 @@ class SettingTableViewController: UITableViewController, SettingTableHdoServiceS
 
     func couponSwitchButtonValueDidChanged(switchButton: UISwitch, buttonCell: UITableViewCell) {
         if let indexPath = self.tableView.indexPathForCell(buttonCell) {
-            let hdoService = "hdoServiceIndex#\((indexPath.row - 2) / 2)"
-            if self.couponUseDict.removeValueForKey(hdoService) == nil {
-                self.couponUseDict[hdoService] = switchButton.on
+            if let hdoService = PacketInfoManager.sharedManager.hddServices[indexPath.section].hdoServices?[(indexPath.row - 1) / 2] {
+                let hdoServiceCode = hdoService.hdoServiceCode
+                if self.couponUseDict.removeValueForKey(hdoServiceCode) == nil {
+                    self.couponUseDict[hdoServiceCode] = switchButton.on
+                }
+                self.navigationItem.rightBarButtonItem?.enabled = !self.couponUseDict.keys.isEmpty
             }
-            self.navigationItem.rightBarButtonItem?.enabled = !self.couponUseDict.keys.isEmpty
         }
+        println(self.couponUseDict)
     }
 
 }

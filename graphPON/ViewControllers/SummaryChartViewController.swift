@@ -113,8 +113,8 @@ class SummaryChartViewController: BaseChartViewController, JBLineChartViewDelega
             self.loadingIndicatorView.stopAnimating()
         }
 
-        if let hddServiceCode = self.serviceCode {
-            self.navigationItem.title = "\(hddServiceCode) (\(self.chartDataFilteringSegment.text()))"
+        if let hddService = self.hddService {
+            self.navigationItem.title = "\(hddService.nickName) (\(self.chartDataFilteringSegment.text()))"
         }
 
         self.chartViewContainerView.chartView.maximumValue = self.chartData?.last?.last ?? 0
@@ -244,7 +244,7 @@ class SummaryChartViewController: BaseChartViewController, JBLineChartViewDelega
 
         var label = "Total"
         if Int(lineIndex) < self.hddService?.hdoServices?.count {
-            label = self.hddService?.hdoServices?[Int(lineIndex)].hdoServiceCode ?? ""
+            label = self.hddService?.hdoServices?[Int(lineIndex)].nickName ?? ""
         }
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "MM/dd"

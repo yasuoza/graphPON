@@ -21,6 +21,21 @@ class HdoService: NSObject {
             self.allPacketLogs = packets
         }
     }
+    var nickName: String {
+        get {
+            if let nickname = NSUserDefaults().objectForKey(self.hdoServiceCode) as String?  {
+                return nickname
+            }
+            return self.number
+        }
+        set(nickname) {
+            if nickname != "" {
+                NSUserDefaults().setObject(nickname, forKey: self.hdoServiceCode)
+            } else {
+                NSUserDefaults().removeObjectForKey(self.hdoServiceCode)
+            }
+        }
+    }
     var duration: Duration = .InThisMonth
 
     private var allPacketLogs: [PacketLog] = []

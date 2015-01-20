@@ -15,6 +15,21 @@ class HddService: NSObject {
             }
         }
     }
+    var nickName: String {
+        get {
+            if let nickname = NSUserDefaults().objectForKey(self.hddServiceCode) as String?  {
+                return nickname
+            }
+            return self.hddServiceCode
+        }
+        set(nickname) {
+            if nickname != "" {
+                NSUserDefaults().setObject(nickname, forKey: self.hddServiceCode)
+            } else {
+                NSUserDefaults().removeObjectForKey(self.hddServiceCode)
+            }
+        }
+    }
 
     init(hddServiceCode: String, hdoInfos: [HdoService]) {
         super.init()

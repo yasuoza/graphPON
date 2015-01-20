@@ -105,7 +105,7 @@ class DailyChartViewController: BaseChartViewController, JBBarChartViewDelegate,
         self.reBuildChartData()
 
         if let hdoService = self.hdoService {
-            self.navigationItem.title = "\(hdoService.number) (\(self.chartDataFilteringSegment.text()))"
+            self.navigationItem.title = "\(hdoService.nickName) (\(self.chartDataFilteringSegment.text()))"
         }
 
         if let chartData = self.chartData {

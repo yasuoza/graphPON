@@ -80,8 +80,8 @@ class RatioChartViewController: BaseChartViewController, XYDoughnutChartDelegate
     func reloadChartView(animated: Bool) {
         self.reBuildChartData()
 
-        if let hddServiceCode = self.serviceCode {
-            self.navigationItem.title = "\(hddServiceCode) (\(self.chartDataFilteringSegment.text()))"
+        if let hddService = self.hddService {
+            self.navigationItem.title = "\(hddService.nickName) (\(self.chartDataFilteringSegment.text()))"
         }
 
         self.ratioChartContainerView.chartView.reloadData(animated)
@@ -99,7 +99,7 @@ class RatioChartViewController: BaseChartViewController, XYDoughnutChartDelegate
                 return
             }
             if let hdoService = self.hddService?.hdoServices?[maxIndex!] {
-                self.chartInformationView.setTitleText("Proportion - \(hdoService.number)")
+                self.chartInformationView.setTitleText("Proportion - \(hdoService.nickName)")
                 self.chartInformationView.setHidden(false, animated: true)
                 UIView.animateWithDuration(
                     NSTimeInterval(kJBChartViewDefaultAnimationDuration) * 0.5,
@@ -172,7 +172,7 @@ class RatioChartViewController: BaseChartViewController, XYDoughnutChartDelegate
 
     func doughnutChart(doughnutChart: XYDoughnutChart!, didSelectSliceAtIndex index: UInt) {
         if let hdoService = self.hddService?.hdoServices?[Int(index)] {
-            self.chartInformationView.setTitleText("Proportion - \(hdoService.number)")
+            self.chartInformationView.setTitleText("Proportion - \(hdoService.nickName)")
             self.chartInformationView.setHidden(false, animated: true)
         }
 

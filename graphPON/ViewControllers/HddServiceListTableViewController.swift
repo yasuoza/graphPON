@@ -2,19 +2,19 @@ import UIKit
 
 class HddServiceListTableViewController: UITableViewController {
 
-    private var services: [String] = []
     var selectedService: String = ""
     var mode: BaseChartViewController.Mode = .Summary
     weak var delegate: HddServiceListTableViewControllerDelegate?
+    private var serviceCodes: [String] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         switch self.mode {
         case .Summary, .Ratio:
-            self.services = PacketInfoManager.sharedManager.hddServiceCodes()
+            self.serviceCodes = PacketInfoManager.sharedManager.hddServiceCodes()
         case .Daily:
-            self.services = PacketInfoManager.sharedManager.hdoServiceNumbers()
+            self.serviceCodes = PacketInfoManager.sharedManager.hdoServiceNumbers()
         }
     }
 
@@ -28,18 +28,23 @@ class HddServiceListTableViewController: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         if self.mode == .Daily {
-            return PacketInfoManager.sharedManager.hddServiceCodes().count ?? 1
+            return PacketInfoManager.sharedManager.hddServiceCodes().count ?? 0
         }
         return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.services.count
+        switch self.mode {
+        case .Summary, .Ratio:
+            return PacketInfoManager.sharedManager.hddServiceCodes().count
+        case .Daily:
+            return PacketInfoManager.sharedManager.hdoServiceNumbers().count
+        }
     }
 
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if self.mode == .Daily {
-            return PacketInfoManager.sharedManager.hddServiceCodes()[section]
+            return PacketInfoManager.sharedManager.hddServices[section].nickName
         }
         return nil
     }
@@ -47,11 +52,15 @@ class HddServiceListTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("HddServiceCell", forIndexPath: indexPath) as UITableViewCell
 
-        let serviceCode = self.services[indexPath.row]
+        switch self.mode {
+        case .Summary, .Ratio:
+            cell.textLabel?.text = PacketInfoManager.sharedManager.hddServices[indexPath.section].nickName
+        case .Daily:
+            cell.textLabel?.text = PacketInfoManager.sharedManager.hddServices[indexPath.section].hdoServices?[indexPath.row].nickName
+        }
 
-        cell.textLabel?.text = serviceCode
-
-        if self.selectedService == serviceCode {
+        let serviceCode = self.serviceCodes[indexPath.row]
+        if serviceCode == self.selectedService {
             cell.selected = true
             cell.accessoryType = .Checkmark
             cell.textLabel?.textColor = GlobalTintColor
