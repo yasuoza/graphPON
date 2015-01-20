@@ -73,7 +73,15 @@ class SettingTableViewController: UITableViewController, SettingTableHdoServiceS
             self.tableView.reloadData()
         }
         alertController.addTextFieldWithConfigurationHandler { (textField) in
-            textField.placeholder = cell.detailTextLabel?.text
+            textField.text = cell.detailTextLabel?.text
+            if indexPath.row == 0 {
+                let hddService = PacketInfoManager.sharedManager.hddServices[indexPath.section]
+                textField.placeholder = hddService.hddServiceCode
+            } else {
+                if let hdoService = PacketInfoManager.sharedManager.hddServices[indexPath.section].hdoServices?[(indexPath.row - 1) / 2] {
+                    textField.placeholder = hdoService.hdoServiceCode
+                }
+            }
         }
 
         alertController.addAction(cancelAction)
