@@ -22,7 +22,12 @@ class HdoServiceTests: XCTestCase {
             hdoServiceCode: "hdoServiceCode",
             packetLogs: [logLastMonth, logToday]
         )
+    }
 
+    override func tearDown() {
+        NSUserDefaults().removeObjectForKey("hdoServiceCode:nickName")
+
+        super.tearDown()
     }
 
     func testPacketLogsInThisMonth() {
@@ -39,6 +44,23 @@ class HdoServiceTests: XCTestCase {
     func testInitWithNumber() {
         hdoService = HdoService(hdoServiceCode: "hdoServiceCode", number: "08012345678")
         XCTAssertEqual(hdoService.number, "080-1234-5678")
+    }
+
+    func testDefaultNicknameIsNumber() {
+        hdoService = HdoService(hdoServiceCode: "hdoServiceCode", number: "08012345678")
+        XCTAssertEqual(hdoService.nickName, "080-1234-5678")
+    }
+
+    func testSetNickname() {
+        let nickName = "hello-nickname"
+        hdoService.nickName = nickName
+        XCTAssertEqual(hdoService.nickName, nickName)
+    }
+
+    func testRemoveNickname() {
+        hdoService = HdoService(hdoServiceCode: "hdoServiceCode", number: "08012345678")
+        hdoService.nickName = ""
+        XCTAssertEqual(hdoService.nickName, "080-1234-5678")
     }
 
 }

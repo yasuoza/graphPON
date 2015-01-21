@@ -21,4 +21,22 @@ class HddServiceTests: XCTestCase {
         XCTAssertEqual(hddService.hdoServiceForServiceCode("hdoServiceCode00")!, hdoInfos.first!)
     }
 
+    func testDefaultNicknameIsNumber() {
+        let hddService = HddService(hddServiceCode: "hddServiceCode", coupons: [], hdoInfos: [])
+        XCTAssertEqual(hddService.nickName, "hddServiceCode")
+    }
+
+    func testSetNickname() {
+        let nickName = "hello-nickname"
+        let hddService = HddService(hddServiceCode: "hddServiceCode", coupons: [], hdoInfos: [])
+        hddService.nickName = nickName
+        XCTAssertEqual(hddService.nickName, nickName)
+    }
+
+    func testRemoveNickname() {
+        let hddService = HddService(hddServiceCode: "hddServiceCode", coupons: [], hdoInfos: [])
+        hddService.nickName = ""
+        XCTAssertEqual(hddService.nickName, "hddServiceCode")
+    }
+
 }
