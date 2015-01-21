@@ -26,7 +26,7 @@ class OAuth2Credential: NSObject, NSCoding {
                 let dict = copy.takeRetainedValue() as NSDictionary
                 let key = String(kSecAttrGeneric)
                 if let data = dict[key] as? NSData {
-                    return NSKeyedUnarchiver.unarchiveObjectWithData(data) as OAuth2Credential?
+                    return NSKeyedUnarchiver.unarchiveObjectWithData(data) as? OAuth2Credential
                 }
             }
         }

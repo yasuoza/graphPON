@@ -3,6 +3,12 @@ import XCTest
 
 class HddServiceTests: XCTestCase {
 
+    override func tearDown() {
+        NSUserDefaults().removeObjectForKey("hddServiceCode:nickName")
+
+        super.tearDown()
+    }
+
     func testHdoServiceCodes() {
         let hdoInfos = [
             HdoService(hdoServiceCode: "hdoServiceCode00", packetLogs: []),

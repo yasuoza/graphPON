@@ -13,6 +13,7 @@ class OAuth2CredentialTests: XCTestCase {
     override func setUp() {
         super.setUp()
 
+        OAuth2Credential.restoreCredential()?.destroy()
         credential = OAuth2Credential(dictionary: credentialDict)
     }
     
