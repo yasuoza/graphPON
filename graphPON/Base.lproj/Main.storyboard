@@ -117,6 +117,9 @@
                                             </constraint>
                                             <constraint firstAttribute="trailing" secondItem="sSd-lo-9Sb" secondAttribute="trailing" id="pv2-Cc-cGY"/>
                                         </constraints>
+                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                            <rect key="frame" x="0.0" y="194" width="368" height="458"/>
+                                        </variation>
                                         <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
                                             <rect key="frame" x="307" y="0.0" width="461" height="456"/>
                                         </variation>
@@ -263,7 +266,8 @@
                                                 <include reference="dVa-WF-aB7"/>
                                             </mask>
                                         </variation>
-                                        <variation key="heightClass=regular-widthClass=compact">
+                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                            <rect key="frame" x="0.0" y="16" width="368" height="178"/>
                                             <mask key="constraints">
                                                 <exclude reference="4FF-uQ-pRp"/>
                                             </mask>
@@ -539,6 +543,9 @@
                                             <constraint firstAttribute="bottom" secondItem="wEB-xR-9hZ" secondAttribute="bottom" id="SHZ-29-Vs5"/>
                                             <constraint firstAttribute="trailing" secondItem="wEB-xR-9hZ" secondAttribute="trailing" id="iNO-pq-lT8"/>
                                         </constraints>
+                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                            <rect key="frame" x="0.0" y="194" width="368" height="458"/>
+                                        </variation>
                                         <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
                                             <rect key="frame" x="307" y="0.0" width="461" height="456"/>
                                         </variation>
@@ -678,7 +685,8 @@
                                                 <include reference="YWT-4i-Onp"/>
                                             </mask>
                                         </variation>
-                                        <variation key="heightClass=regular-widthClass=compact">
+                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                            <rect key="frame" x="0.0" y="16" width="368" height="178"/>
                                             <mask key="constraints">
                                                 <exclude reference="HJw-Qa-Ndk"/>
                                             </mask>
@@ -956,7 +964,7 @@
         <!--Settings-->
         <scene sceneID="R4s-6W-OO8">
             <objects>
-                <tableViewController id="W2M-BP-dmq" customClass="SettingTableViewController" customModule="graphPON" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SettingList" useStoryboardIdentifierAsRestorationIdentifier="YES" id="W2M-BP-dmq" customClass="SettingTableViewController" customModule="graphPON" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="C66-kv-WZC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1062,7 +1070,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Settings" id="Kr9-ZG-yf3">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="IL8-RL-FFV"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="IL8-RL-FFV">
+                            <connections>
+                                <action selector="saveButtonTaped:" destination="W2M-BP-dmq" id="uB1-VK-S18"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4x3-Wv-a1n" userLabel="First Responder" sceneMemberID="firstResponder"/>

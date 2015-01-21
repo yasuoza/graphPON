@@ -12,9 +12,12 @@ enum OAuth2Router: URLRequestConvertible {
     case Authorize
     case Coupon
     case LogPacket
+    case PutCoupon([[String: AnyObject]])
 
     var method: Alamofire.Method {
         switch self {
+        case .PutCoupon:
+            return .PUT
         default:
             return .GET
         }
@@ -24,7 +27,7 @@ enum OAuth2Router: URLRequestConvertible {
         switch self {
         case .Authorize:
             return "authorization"
-        case .Coupon:
+        case .Coupon, .PutCoupon:
             return "coupon"
         case .LogPacket:
             return "log/packet"
@@ -39,6 +42,10 @@ enum OAuth2Router: URLRequestConvertible {
                 "client_id": OAuth2Client.sharedClient.iijDeveloperID,
                 "state": "state",
                 "redirect_uri": OAuth2Client.sharedClient.iijOAuthCallbackURI,
+            ]
+        case .PutCoupon(let params):
+            return [
+                "couponInfo": [["hdoInfo": params]]
             ]
         default:
             return nil
@@ -62,7 +69,16 @@ enum OAuth2Router: URLRequestConvertible {
             }
         }
 
-        return Alamofire.ParameterEncoding.URL.encode(request, parameters: parameters).0
+        let encoding: Alamofire.ParameterEncoding = {
+            switch self {
+            case .PutCoupon:
+                return Alamofire.ParameterEncoding.JSON
+            default:
+                return Alamofire.ParameterEncoding.URL
+            }
+        }()
+
+        return encoding.encode(request, parameters: parameters).0
     }
 
     // MARK: - Singleton methods

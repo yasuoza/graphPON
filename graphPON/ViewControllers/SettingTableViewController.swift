@@ -1,13 +1,51 @@
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 class SettingTableViewController: UITableViewController, SettingTableHdoServiceSwitchCellDelegate {
 
-    private var couponUseDict: [String : Bool] = [:]
+    private var couponUseDict: [String: Bool] = [:]
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.navigationItem.rightBarButtonItem?.enabled = false
+    }
+
+    // MARK: - Actions
+
+    @IBAction func saveButtonTaped(sender: AnyObject) {
+        if self.couponUseDict.keys.isEmpty {
+            self.navigationItem.rightBarButtonItem?.enabled = false
+            return
+        }
+
+        let params: [[String: AnyObject]] = couponUseDict.keys.array.map { key in
+            return [
+                "hdoServiceCode": key,
+                "couponUse": self.couponUseDict[key]!
+            ]
+        }
+
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+        Alamofire.request(OAuth2Router.PutCoupon(params))
+            .responseJSON { (_, _, json, error) in
+                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+
+                if let error = error {
+                    // Alert here
+                    return
+                }
+
+                let responseJSON = JSON(json!)
+                if responseJSON["returnCode"].string != "OK" {
+                    // Alert here
+                    return
+                }
+
+                self.couponUseDict = [:]
+                self.navigationItem.rightBarButtonItem?.enabled = false
+        }
     }
 
     // MARK: - Table view data source
@@ -34,6 +72,11 @@ class SettingTableViewController: UITableViewController, SettingTableHdoServiceS
             let cell = tableView.dequeueReusableCellWithIdentifier("SettingTableHdoServiceSwitchCell", forIndexPath: indexPath) as SettingTableHdoServiceSwitchCell
             cell.textLabel?.text = "Coupon Use"
             cell.delegate = self
+
+            if let hdoService = PacketInfoManager.sharedManager.hddServices[indexPath.section].hdoServices?[(indexPath.row - 2) / 2] {
+                cell.switchButton.on = hdoService.couponUse
+            }
+
             return cell
         }
     }
@@ -102,7 +145,6 @@ class SettingTableViewController: UITableViewController, SettingTableHdoServiceS
                 self.navigationItem.rightBarButtonItem?.enabled = !self.couponUseDict.keys.isEmpty
             }
         }
-        println(self.couponUseDict)
     }
 
 }

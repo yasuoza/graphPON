@@ -8,6 +8,7 @@ class HdoService: NSObject {
 
     private(set) var hdoServiceCode = ""
     private(set) var number = ""
+    var couponUse = true
     var packetLogs: [PacketLog] {
         get {
             switch self.duration {

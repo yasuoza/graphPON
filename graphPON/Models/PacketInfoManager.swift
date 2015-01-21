@@ -117,6 +117,7 @@ class PacketInfoManager: NSObject {
                             hdoServiceCode: hdoServiceJson["hdoServiceCode"].stringValue,
                             number: hdoServiceJson["number"].stringValue
                         )
+                        hdoService.couponUse = hdoServiceJson["couponUse"].boolValue
                         tmpHdoServices.append(hdoService)
                     }
                     tmpHddServices.append(
