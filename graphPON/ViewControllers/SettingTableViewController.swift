@@ -79,7 +79,7 @@ class SettingTableViewController: UITableViewController, SettingTableHdoServiceS
                 textField.placeholder = hddService.hddServiceCode
             } else {
                 if let hdoService = PacketInfoManager.sharedManager.hddServices[indexPath.section].hdoServices?[(indexPath.row - 1) / 2] {
-                    textField.placeholder = hdoService.hdoServiceCode
+                    textField.placeholder = hdoService.number
                 }
             }
         }

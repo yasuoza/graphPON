@@ -256,7 +256,7 @@ class SummaryChartViewController: BaseChartViewController, JBLineChartViewDelega
             startDateOfThisMonth = self.hddService?.hdoServices?.first?.packetLogs.first?.dateText() ?? ""
         }
 
-        self.chartInformationView.setTitleText("\(label) summary in \(startDateOfThisMonth)-\(dateText)")
+        self.chartInformationView.setTitleText("\(label) in \(startDateOfThisMonth)-\(dateText)")
         self.chartInformationView.setHidden(false, animated: true)
 
         UIView.animateWithDuration(
