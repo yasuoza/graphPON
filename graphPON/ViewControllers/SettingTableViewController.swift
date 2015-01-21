@@ -10,6 +10,18 @@ class SettingTableViewController: UITableViewController, SettingTableHdoServiceS
         super.viewDidLoad()
 
         self.navigationItem.rightBarButtonItem?.enabled = false
+
+        NSNotificationCenter.defaultCenter().addObserverForName(
+            PacketInfoManager.LatestPacketLogsDidFetchNotification,
+            object: nil,
+            queue: NSOperationQueue.mainQueue(),
+            usingBlock: { _ in
+                self.tableView.reloadData()
+        })
+    }
+
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 
     // MARK: - Actions
@@ -116,6 +128,8 @@ class SettingTableViewController: UITableViewController, SettingTableHdoServiceS
             self.tableView.reloadData()
         }
         alertController.addTextFieldWithConfigurationHandler { (textField) in
+            textField.clearButtonMode = .WhileEditing
+            textField.autocapitalizationType = .Words
             textField.text = cell.detailTextLabel?.text
             if indexPath.row == 0 {
                 let hddService = PacketInfoManager.sharedManager.hddServices[indexPath.section]
