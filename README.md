@@ -1,3 +1,3 @@
 # graphPON
 
-![](https://raw.githubusercontent.com/yasuoza/graphPON/master/screenshot.png)
+![](https://raw.githubusercontent.com/yasuoza/graphPON/master/images/screenshot.png)
