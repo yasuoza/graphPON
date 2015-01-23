@@ -168,8 +168,8 @@ class RatioChartViewController: BaseChartViewController, XYDoughnutChartDelegate
 
     // MARK: - XYDoughnutChartDelegate
 
-    func doughnutChart(doughnutChart: XYDoughnutChart!, didSelectSliceAtIndex index: UInt) {
-        if let hdoService = self.hddService?.hdoServices?[Int(index)] {
+    func doughnutChart(doughnutChart: XYDoughnutChart!, didSelectSliceAtIndexPath indexPath: NSIndexPath) {
+        if let hdoService = self.hddService?.hdoServices?[indexPath.slice] {
             self.chartInformationView.setTitleText("Proportion - \(hdoService.nickName)")
             self.chartInformationView.setHidden(false, animated: true)
         }
@@ -180,7 +180,7 @@ class RatioChartViewController: BaseChartViewController, XYDoughnutChartDelegate
             options: UIViewAnimationOptions.BeginFromCurrentState,
             animations: {
                 self.informationValueLabelSeparatorView.alpha = 1.0
-                let valueText = NSString(format: "%.01f", Float(self.slices?[Int(index)] ?? 0.0))
+                let valueText = NSString(format: "%.01f", Float(self.slices?[indexPath.slice] ?? 0.0))
                 self.valueLabel.text = "\(valueText)%"
                 self.valueLabel.alpha = 1.0
             },
@@ -188,7 +188,7 @@ class RatioChartViewController: BaseChartViewController, XYDoughnutChartDelegate
         )
     }
 
-    func doughnutChart(doughnutChart: XYDoughnutChart!, didDeselectSliceAtIndex index: UInt) {
+    func doughnutChart(doughnutChart: XYDoughnutChart!, didDeselectSliceAtIndexPath indexPath: NSIndexPath) {
         self.chartInformationView.setHidden(true, animated: true)
 
         UIView.animateWithDuration(
@@ -206,28 +206,28 @@ class RatioChartViewController: BaseChartViewController, XYDoughnutChartDelegate
         )
     }
 
-    func doughnutChart(doughnutChart: XYDoughnutChart!, colorForSliceAtIndex index: UInt) -> UIColor! {
+    func doughnutChart(doughnutChart: XYDoughnutChart!, colorForSliceAtIndexPath indexPath: NSIndexPath!) -> UIColor! {
         if let slices = self.slices {
             var max = maxElement(slices)
             max = max == 0 ? 1.0 : max
-            let alpha = slices[Int(index)] / max
+            let alpha = slices[indexPath.slice] / max
             return UIColor.whiteColor().colorWithAlphaComponent(alpha)
         }
         return UIColor.clearColor()
     }
 
-    func doughnutChart(doughnutChart: XYDoughnutChart!, selectedStrokeWidthForSliceAtIndex index: UInt) -> CGFloat {
+    func doughnutChart(doughnutChart: XYDoughnutChart!, selectedStrokeWidthForSliceAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 2.0
     }
 
     // MARK: - XYDoughnutChartDataSource
 
-    func numberOfSlicesInDoughnutChart(pieChart: XYDoughnutChart!) -> UInt {
-        return UInt(slices?.count ?? 0);
+    func numberOfSlicesInDoughnutChart(doughnutChart: XYDoughnutChart!) -> Int {
+        return slices?.count ?? 0;
     }
 
-    func doughnutChart(doughnutChart: XYDoughnutChart!, valueForSliceAtIndex index: UInt) -> CGFloat {
-        return CGFloat(self.slices?[Int(index)] ?? 0);
+    func doughnutChart(doughnutChart: XYDoughnutChart!, valueForSliceAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return CGFloat(self.slices?[indexPath.slice] ?? 0);
     }
 
     // MARK: - HddServiceListTableViewControllerDelegate
