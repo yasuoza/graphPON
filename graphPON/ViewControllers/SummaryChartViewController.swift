@@ -132,30 +132,40 @@ class SummaryChartViewController: BaseChartViewController, JBLineChartViewDelega
     }
 
     func displayLatestTotalChartInformation() {
-        if let hddService = self.hddService {
-            let dateFormatter = NSDateFormatter()
-            dateFormatter.dateFormat = "MM/dd"
-            dateFormatter.locale = NSLocale(localeIdentifier: "en_US")
-            let today = dateFormatter.stringFromDate(NSDate())
-            let endOfThisMonth = dateFormatter.stringFromDate(NSDate().endDateOfMonth()!)
-            self.chartInformationView.setTitleText("Available in \(today)-\(endOfThisMonth)")
-            self.chartInformationView.setHidden(false, animated: true)
-            UIView.animateWithDuration(
-                NSTimeInterval(kJBChartViewDefaultAnimationDuration) * 0.5,
-                delay: 0.0,
-                options: UIViewAnimationOptions.BeginFromCurrentState,
-                animations: {
-                    self.informationValueLabelSeparatorView.alpha = 1.0
-                    self.valueLabel.text = hddService.availableCouponVolumeString()
-                    self.valueLabel.alpha = 1.0
-                },
-                completion: nil
-            )
-        } else {
+        let (label, dateText) = ("Total", self.hddService?.hdoServices?.first?.packetLogs.last?.dateText())
+
+        if dateText == nil {
             self.chartInformationView.setHidden(true)
             self.informationValueLabelSeparatorView.alpha = 0.0
             self.valueLabel.alpha = 0.0
+            return
         }
+
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "MM/dd"
+        dateFormatter.locale = NSLocale(localeIdentifier: "en_US")
+        var startDateOfThisMonth = ""
+        switch self.chartDurationSegment {
+        case .InThisMonth:
+            startDateOfThisMonth = dateFormatter.stringFromDate(NSDate().startDateOfMonth()!)
+        case .InLast30Days:
+            startDateOfThisMonth = self.hddService?.hdoServices?.first?.packetLogs.first?.dateText() ?? ""
+        }
+
+        self.chartInformationView.setTitleText("\(label) in \(startDateOfThisMonth)-\(dateText!)")
+        self.chartInformationView.setHidden(false, animated: true)
+        UIView.animateWithDuration(
+            NSTimeInterval(kJBChartViewDefaultAnimationDuration) * 0.5,
+            delay: 0.0,
+            options: UIViewAnimationOptions.BeginFromCurrentState,
+            animations: {
+                self.informationValueLabelSeparatorView.alpha = 1.0
+                self.valueLabel.text = PacketLog.stringForValue(self.chartData?.last?.last!)
+                self.valueLabel.alpha = 1.0
+            },
+            completion: nil
+        )
+
     }
 
     func promptLogin() {
