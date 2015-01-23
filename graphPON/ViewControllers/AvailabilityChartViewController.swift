@@ -2,11 +2,13 @@ import UIKit
 import JBChartFramework
 import XYDoughnutChart
 
-class RatioChartViewController: BaseChartViewController, XYDoughnutChartDelegate, XYDoughnutChartDataSource, HddServiceListTableViewControllerDelegate, DisplayPacketLogsSelectTableViewControllerDelegate {
+class AvailabilityChartViewController: BaseChartViewController, XYDoughnutChartDelegate, XYDoughnutChartDataSource, HddServiceListTableViewControllerDelegate {
 
-    private let mode: Mode = .Ratio
+    private let mode: Mode = .Availability
 
     @IBOutlet var ratioChartContainerView: RatioChartContainerView!
+    @IBOutlet var usedLabel: UILabel!
+    @IBOutlet var usedPercentageLabel: UILabel!
 
     private var hddService: HddService? {
         didSet {
@@ -23,6 +25,7 @@ class RatioChartViewController: BaseChartViewController, XYDoughnutChartDelegate
         self.ratioChartContainerView.chartView.showLabel = false
         self.ratioChartContainerView.chartView.dataSource = self
         self.ratioChartContainerView.chartView.delegate = self
+        self.ratioChartContainerView.chartView.radiusOffset = 0.8;
 
         self.chartInformationView.setHidden(true, animated: true)
     }
@@ -64,10 +67,6 @@ class RatioChartViewController: BaseChartViewController, XYDoughnutChartDelegate
             let hddServiceListViewController = navigationController.topViewController as HddServiceListTableViewController
             hddServiceListViewController.delegate = self
             hddServiceListViewController.selectedService = self.serviceCode ?? ""
-        } else if segue.identifier == "DisplayPacketLogsSelectFromRatioChartSegue" {
-            let navigationController = segue.destinationViewController as UINavigationController
-            let displayPacketLogSelectViewController = navigationController.topViewController as DisplayPacketLogsSelectTableViewController
-            displayPacketLogSelectViewController.delegate = self
         }
     }
 
@@ -92,22 +91,32 @@ class RatioChartViewController: BaseChartViewController, XYDoughnutChartDelegate
             if slices.count == 0 {
                 return
             }
-            let max = maxElement(slices)
-            let maxIndex = find(slices, max)
+            let maxIndex = find(slices, maxElement(slices))
             if maxIndex == nil {
                 return
             }
             if let hdoService = self.hddService?.hdoServices?[maxIndex!] {
-                self.chartInformationView.setTitleText("Proportion - \(hdoService.nickName)")
+                let dateFormatter = NSDateFormatter()
+                dateFormatter.dateFormat = "MM/dd"
+                dateFormatter.locale = NSLocale(localeIdentifier: "en_US")
+                let today = dateFormatter.stringFromDate(NSDate())
+                let endOfThisMonth = dateFormatter.stringFromDate(NSDate().endDateOfMonth()!)
+                self.chartInformationView.setTitleText("Available in \(today)-\(endOfThisMonth)")
                 self.chartInformationView.setHidden(false, animated: true)
+
+                var totalAvailability = self.slices?.reduce(0, combine: +) ?? 1.0
+                totalAvailability = totalAvailability != 0 ? totalAvailability : 1.0
+                let usedPercentage = slices.first! / totalAvailability
+
                 UIView.animateWithDuration(
                     NSTimeInterval(kJBChartViewDefaultAnimationDuration) * 0.5,
                     delay: 0.0,
                     options: UIViewAnimationOptions.BeginFromCurrentState,
                     animations: {
+                        self.usedPercentageLabel.text = NSString(format: "%.01f%%", Float(usedPercentage * 100))
+                        self.usedLabel.hidden = false
                         self.informationValueLabelSeparatorView.alpha = 1.0
-                        let valueText = NSString(format: "%.01f", Float(max ?? 0.0))
-                        self.valueLabel.text = "\(valueText)%"
+                        self.valueLabel.text = PacketLog.stringForValue(slices.last)
                         self.valueLabel.alpha = 1.0
                     },
                     completion: nil
@@ -150,74 +159,27 @@ class RatioChartViewController: BaseChartViewController, XYDoughnutChartDelegate
 
         let packetSum = self.hddService?.hdoServices?.map { hdoInfo -> CGFloat in
             return hdoInfo.packetLogs.reduce(0.0, combine: { (hdoPacketSum, packetLog) -> CGFloat in
-                switch self.chartDataFilteringSegment {
-                case .All:
-                    return hdoPacketSum + CGFloat(packetLog.withCoupon + packetLog.withoutCoupon)
-                case .WithCoupon:
-                    return hdoPacketSum + CGFloat(packetLog.withCoupon)
-                case .WithoutCoupon:
-                    return hdoPacketSum + CGFloat(packetLog.withoutCoupon)
-                }
+                return hdoPacketSum + CGFloat(packetLog.withCoupon)
             })
-        } ?? []
+            } ?? []
 
-        var total = packetSum.reduce(0, combine:+)
-        total = total == 0 ? 1 : total
-        self.slices = packetSum.map { $0 / total * 100 }
+        let used = packetSum.reduce(0, combine:+)
+        let available = CGFloat(self.hddService?.availableCouponVolume() ?? 0)
+        self.slices = [used, available];
     }
 
     // MARK: - XYDoughnutChartDelegate
 
-    func doughnutChart(doughnutChart: XYDoughnutChart!, didSelectSliceAtIndexPath indexPath: NSIndexPath) {
-        if let hdoService = self.hddService?.hdoServices?[indexPath.slice] {
-            self.chartInformationView.setTitleText("Proportion - \(hdoService.nickName)")
-            self.chartInformationView.setHidden(false, animated: true)
-        }
-
-        UIView.animateWithDuration(
-            NSTimeInterval(kJBChartViewDefaultAnimationDuration) * 0.5,
-            delay: 0.0,
-            options: UIViewAnimationOptions.BeginFromCurrentState,
-            animations: {
-                self.informationValueLabelSeparatorView.alpha = 1.0
-                let valueText = NSString(format: "%.01f", Float(self.slices?[indexPath.slice] ?? 0.0))
-                self.valueLabel.text = "\(valueText)%"
-                self.valueLabel.alpha = 1.0
-            },
-            completion: nil
-        )
-    }
-
-    func doughnutChart(doughnutChart: XYDoughnutChart!, didDeselectSliceAtIndexPath indexPath: NSIndexPath) {
-        self.chartInformationView.setHidden(true, animated: true)
-
-        UIView.animateWithDuration(
-            NSTimeInterval(kJBChartViewDefaultAnimationDuration) * 0.5,
-            delay: 0.0,
-            options: UIViewAnimationOptions.BeginFromCurrentState,
-            animations: {
-                self.valueLabel.alpha = 0.0
-            },
-            completion: { [unowned self] finish in
-                if finish {
-                    self.displayLatestTotalChartInformation()
-                }
-            }
-        )
+    func doughnutChart(doughnutChart: XYDoughnutChart!, willSelectSliceAtIndex indexPath: NSIndexPath) -> NSIndexPath? {
+        return nil
     }
 
     func doughnutChart(doughnutChart: XYDoughnutChart!, colorForSliceAtIndexPath indexPath: NSIndexPath!) -> UIColor! {
-        if let slices = self.slices {
-            var max = maxElement(slices)
-            max = max == 0 ? 1.0 : max
-            let alpha = slices[indexPath.slice] / max
-            return UIColor.whiteColor().colorWithAlphaComponent(alpha)
+        if indexPath.slice == 0 {
+            return UIColor.whiteColor()
         }
-        return UIColor.clearColor()
-    }
 
-    func doughnutChart(doughnutChart: XYDoughnutChart!, selectedStrokeWidthForSliceAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 2.0
+        return UIColor.whiteColor().colorWithAlphaComponent(0.5)
     }
 
     // MARK: - XYDoughnutChartDataSource
@@ -234,15 +196,6 @@ class RatioChartViewController: BaseChartViewController, XYDoughnutChartDelegate
 
     func serviceDidSelectedSection(section: Int, row: Int) {
         self.hddService = PacketInfoManager.sharedManager.hddServices[row]
-        if self.traitCollection.horizontalSizeClass == .Regular {
-            self.reloadChartView(true)
-        }
-    }
-
-    // MARK: - DisplayPacketLogsSelectTableViewControllerDelegate
-
-    func displayPacketLogSegmentDidSelected(segment: Int) {
-        self.chartDataFilteringSegment = ChartDataFilteringSegment(rawValue: segment)!
         if self.traitCollection.horizontalSizeClass == .Regular {
             self.reloadChartView(true)
         }
@@ -266,5 +219,5 @@ class RatioChartViewController: BaseChartViewController, XYDoughnutChartDelegate
         self.chartDataFilteringSegment = ChartDataFilteringSegment(rawValue: Int(coder.decodeIntForKey("hddChartFilteringSegment")))!
         super.decodeRestorableStateWithCoder(coder)
     }
-
+    
 }

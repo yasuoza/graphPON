@@ -26,6 +26,7 @@
 		A83F8ACF1A4C4BC1003A9318 /* configuration.plist in Resources */ = {isa = PBXBuildFile; fileRef = A83F8ACE1A4C4BC1003A9318 /* configuration.plist */; };
 		A8409FB91A16F4A8007573EC /* ChartViewContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8409FB81A16F4A8007573EC /* ChartViewContainerView.swift */; };
 		A8549EFB1A2C6E9C000308AD /* PacketLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8549EFA1A2C6E9C000308AD /* PacketLog.swift */; };
+		A857096D1A723DD100A11F2D /* AvailabilityChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A857096C1A723DD100A11F2D /* AvailabilityChartViewController.swift */; };
 		A85FA8A71A5798FC00992948 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A85FA8A61A5798FC00992948 /* SwiftyJSON.framework */; };
 		A85FA8A81A5798FC00992948 /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A85FA8A61A5798FC00992948 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A874C0AC1A4BDE7200887932 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A874C0AB1A4BDE7200887932 /* Alamofire.framework */; };
@@ -115,6 +116,7 @@
 		A83F8ACE1A4C4BC1003A9318 /* configuration.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = configuration.plist; sourceTree = "<group>"; };
 		A8409FB81A16F4A8007573EC /* ChartViewContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChartViewContainerView.swift; path = Views/ChartViewContainerView.swift; sourceTree = "<group>"; };
 		A8549EFA1A2C6E9C000308AD /* PacketLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PacketLog.swift; path = Models/PacketLog.swift; sourceTree = "<group>"; };
+		A857096C1A723DD100A11F2D /* AvailabilityChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AvailabilityChartViewController.swift; path = ViewControllers/AvailabilityChartViewController.swift; sourceTree = "<group>"; };
 		A85FA8A61A5798FC00992948 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 		A874C0AB1A4BDE7200887932 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		A874C0B71A4BF6EB00887932 /* OAuth2Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OAuth2Client.swift; path = Models/OAuth2Client.swift; sourceTree = "<group>"; };
@@ -299,6 +301,7 @@
 				A8B212BB1A11EEDC005988DC /* SummaryChartViewController.swift */,
 				A8BC58B41A1DE4B2006CD44D /* DailyChartViewController.swift */,
 				A83612811A3EB7E300BB1B3F /* RatioChartViewController.swift */,
+				A857096C1A723DD100A11F2D /* AvailabilityChartViewController.swift */,
 			);
 			name = CharViewControllers;
 			sourceTree = "<group>";
@@ -434,6 +437,7 @@
 				A8BC51BE1A6B651500AE3B67 /* NSDate.swift in Sources */,
 				A83612821A3EB7E300BB1B3F /* RatioChartViewController.swift in Sources */,
 				A8BC58B51A1DE4B2006CD44D /* DailyChartViewController.swift in Sources */,
+				A857096D1A723DD100A11F2D /* AvailabilityChartViewController.swift in Sources */,
 				A874C0BE1A4C04A800887932 /* OAuth2Credential.swift in Sources */,
 				A8131D0A1A6D1D00007C7D14 /* SettingTableHdoServiceSwitchCellDelegate.swift in Sources */,
 				A80748621A134417008ADC0A /* UIColor.swift in Sources */,

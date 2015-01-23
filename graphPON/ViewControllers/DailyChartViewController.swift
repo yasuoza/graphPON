@@ -277,7 +277,7 @@ class DailyChartViewController: BaseChartViewController, JBBarChartViewDelegate,
             self.serviceCode = hddServiceCode
         }
         self.chartDurationSegment = HdoService.Duration(rawValue: Int(coder.decodeIntForKey("hdoShartDurationSegment")))!
-        self.chartDurationSegmentControl.selectedSegmentIndex = self.chartDurationSegment.rawValue
+        self.chartDurationSegmentControl?.selectedSegmentIndex = self.chartDurationSegment.rawValue
         self.chartDataFilteringSegment = ChartDataFilteringSegment(rawValue: Int(coder.decodeIntForKey("hdoChartFilteringSegment")))!
         super.decodeRestorableStateWithCoder(coder)
     }

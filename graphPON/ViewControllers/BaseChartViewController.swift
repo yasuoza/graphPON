@@ -19,7 +19,7 @@ class BaseChartViewController: UIViewController, StateRestorable {
     @IBOutlet weak var chartInformationView: ChartInformationView!
     @IBOutlet weak var informationValueLabelSeparatorView: UIView!
     @IBOutlet weak var valueLabel: UILabel!
-    @IBOutlet weak var chartDurationSegmentControl: UISegmentedControl!
+    @IBOutlet weak var chartDurationSegmentControl: UISegmentedControl?
 
     var serviceCode: String?
     var chartDataFilteringSegment: ChartDataFilteringSegment = .All
@@ -46,7 +46,7 @@ class BaseChartViewController: UIViewController, StateRestorable {
     }
 
     enum Mode {
-        case Daily, Summary, Ratio
+        case Daily, Summary, Ratio, Availability
 
         func backgroundColor() -> UIColor {
             switch self {
@@ -56,6 +56,8 @@ class BaseChartViewController: UIViewController, StateRestorable {
                 return UIColor(red: 0.369, green: 0.408, blue: 0.686, alpha: 1.0)
             case .Ratio:
                 return UIColor(red:0.180, green:0.361, blue:0.573, alpha:1.000)
+            case .Availability:
+                return UIColor(red: 0.7, green: 0.2, blue: 0.38, alpha: 1.0)
             }
         }
 
@@ -67,12 +69,15 @@ class BaseChartViewController: UIViewController, StateRestorable {
                 return "Summary"
             case .Ratio:
                 return "Ratio"
+            case .Availability:
+                return "Availability"
             }
         }
     }
 
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+
         self.restrationalServiceCodeIdentifier = "\(self.restorationIdentifier!).serviceCode"
         self.restrationalDurationSegmentIdentifier = "\(self.restorationIdentifier!).durationSegment"
         self.restrationalDataFilteringSegmentIdentifier = "\(self.restorationIdentifier!).dataFilteringSegment"
@@ -80,7 +85,7 @@ class BaseChartViewController: UIViewController, StateRestorable {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.navBarHairlineImageView = self.findHairlineImageViewUnder(self.navigationController!.navigationBar)
         self.navBarHairlineImageView?.hidden = true
         self.navigationController?.navigationBar.translucent = true
@@ -89,7 +94,7 @@ class BaseChartViewController: UIViewController, StateRestorable {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 
-        self.chartDurationSegmentControl.selectedSegmentIndex = self.chartDurationSegment.rawValue
+        self.chartDurationSegmentControl?.selectedSegmentIndex = self.chartDurationSegment.rawValue
     }
 
     // MARK: - Private

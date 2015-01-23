@@ -344,7 +344,7 @@ class SummaryChartViewController: BaseChartViewController, JBLineChartViewDelega
             self.serviceCode = hddServiceCode
         }
         self.chartDurationSegment = HdoService.Duration(rawValue: Int(coder.decodeIntForKey("hddChartDurationSegment")))!
-        self.chartDurationSegmentControl.selectedSegmentIndex = self.chartDurationSegment.rawValue
+        self.chartDurationSegmentControl?.selectedSegmentIndex = self.chartDurationSegment.rawValue
         self.chartDataFilteringSegment = ChartDataFilteringSegment(rawValue: Int(coder.decodeIntForKey("hddChartFilteringSegment")))!
         super.decodeRestorableStateWithCoder(coder)
     }
