@@ -20,6 +20,8 @@ class AvailabilityChartViewController: BaseChartViewController, XYDoughnutChartD
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.chartDataFilteringSegment = .WithCoupon
+
         self.view.backgroundColor = self.mode.backgroundColor()
 
         self.ratioChartContainerView.chartView.showLabel = false
@@ -79,7 +81,7 @@ class AvailabilityChartViewController: BaseChartViewController, XYDoughnutChartD
         self.reBuildChartData()
 
         if let hddService = self.hddService {
-            self.navigationItem.title = "\(hddService.nickName) (\(self.chartDataFilteringSegment.text()))"
+            self.navigationItem.title = "\(hddService.nickName)"
         }
 
         self.ratioChartContainerView.chartView.reloadData(animated)
