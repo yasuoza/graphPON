@@ -85,6 +85,8 @@ class BaseChartViewController: UIViewController, StateRestorable {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        self.restoreLastState()
         
         self.navBarHairlineImageView = self.findHairlineImageViewUnder(self.navigationController!.navigationBar)
         self.navBarHairlineImageView?.hidden = true

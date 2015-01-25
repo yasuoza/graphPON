@@ -13,13 +13,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let selectedIndex = NSUserDefaults().integerForKey("selectedIndex")
         if let tabBarController = window?.rootViewController as? UITabBarController {
             tabBarController.selectedIndex = selectedIndex
-            for vc in tabBarController.viewControllers! {
-                if let navVC = vc as? UINavigationController {
-                    if let vc = navVC.viewControllers.first as? StateRestorable {
-                        vc.restoreLastState()
-                    }
-                }
-            }
         }
 
         return true
