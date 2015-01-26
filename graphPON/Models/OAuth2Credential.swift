@@ -1,4 +1,5 @@
 import Foundation
+import Security
 
 class OAuth2Credential: NSObject, NSCoding {
     private(set) var accessToken: String? = ""
@@ -20,10 +21,12 @@ class OAuth2Credential: NSObject, NSCoding {
         var attrs = AccountStore.attributes
         attrs[kSecReturnAttributes] = kCFBooleanTrue
 
-        var copy: Unmanaged<AnyObject>? = nil
-        if SecItemCopyMatching(attrs, &copy) == OSStatus(errSecSuccess)  {
-            if let copy = copy? {
-                let dict = copy.takeRetainedValue() as NSDictionary
+        // http://stackoverflow.com/a/27721235/1427595
+        var result: AnyObject?
+        let status = withUnsafeMutablePointer(&result) { SecItemCopyMatching(attrs, UnsafeMutablePointer($0)) }
+
+        if status == errSecSuccess {
+            if let dict = result as? NSDictionary {
                 let key = String(kSecAttrGeneric)
                 if let data = dict[key] as? NSData {
                     return NSKeyedUnarchiver.unarchiveObjectWithData(data) as? OAuth2Credential
