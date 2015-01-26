@@ -1,4 +1,4 @@
-SCHEME = 'graphPON'
+SCHEME = ENV['SCHEME'] || 'graphPON'
 
 desc 'clean build'
 task :clean do
