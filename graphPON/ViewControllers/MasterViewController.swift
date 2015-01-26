@@ -73,4 +73,3 @@ class MasterViewController: UITableViewController {
     }
 
 }
-

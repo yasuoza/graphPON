@@ -35,7 +35,6 @@ class DisplayPacketLogsSelectTableViewController: UITableViewController {
         return 3
     }
 
-
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("FilterPacketLogsSelectCell", forIndexPath: indexPath) as UITableViewCell
 
