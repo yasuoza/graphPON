@@ -1,4 +1,4 @@
-github "yasuoza/XYDoughnutChart" ~> 1.0
+github "yasuoza/XYDoughnutChart" ~> 1.1.1
 
 github "yasuoza/JBChartView" "carthage"
 
