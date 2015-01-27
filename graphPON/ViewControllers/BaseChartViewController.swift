@@ -37,24 +37,24 @@ class BaseChartViewController: UIViewController, StateRestorable {
         func text() -> String {
             switch self {
             case .All:
-                return "ALL"
+                return NSLocalizedString("All", comment: "All")
             case .WithCoupon:
-                return "ON"
+                return NSLocalizedString("On", comment: "On")
             case .WithoutCoupon:
-                return "OFF"
+                return NSLocalizedString("Off", comment: "Off")
             }
         }
     }
 
     enum Mode {
-        case Daily, Summary, Ratio, Availability
+        case Summary, Daily, Ratio, Availability
 
         func backgroundColor() -> UIColor {
             switch self {
-            case .Daily:
-                return UIColor(red:0.376, green:0.573, blue:0.714, alpha:1.000)
             case .Summary:
                 return UIColor(red: 0.369, green: 0.408, blue: 0.686, alpha: 1.0)
+            case .Daily:
+                return UIColor(red:0.376, green:0.573, blue:0.714, alpha:1.000)
             case .Ratio:
                 return UIColor(red:0.180, green:0.361, blue:0.573, alpha:1.000)
             case .Availability:
@@ -64,14 +64,14 @@ class BaseChartViewController: UIViewController, StateRestorable {
 
         func titleText() -> String {
             switch self {
-            case .Daily:
-                return "Daily Total"
             case .Summary:
-                return "Summary"
+                return NSLocalizedString("Summary", comment: "Summary")
+            case .Daily:
+                return NSLocalizedString("Daily", comment: "Daily")
             case .Ratio:
-                return "Ratio"
+                return NSLocalizedString("Ratio", comment: "Ratio")
             case .Availability:
-                return "Availability"
+                return NSLocalizedString("Availability", comment: "Availability")
             }
         }
     }
@@ -109,7 +109,7 @@ class BaseChartViewController: UIViewController, StateRestorable {
         }
     }
 
-    // MARK: - Public
+    // MARK: - Internal
 
     func iOS3_5InchPortraitOrientation() -> Bool {
         let compactWregularH = self.traitCollection.horizontalSizeClass == .Compact

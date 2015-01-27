@@ -4,14 +4,14 @@ class PromptLoginController: UIAlertController {
 
     class func alertController() -> PromptLoginController {
         let alert = PromptLoginController(
-            title: "Authentiacation required",
-            message: "This application requires Iijmio authentication. Open login page and please login.",
+            title: NSLocalizedString("AuthentiacationRequired", comment: "Authentication prompt alert title"),
+            message: NSLocalizedString("ThisApplicationRequiresUserAuthentication", comment: "User authentication required"),
             preferredStyle: UIAlertControllerStyle.Alert
         )
 
         alert.addAction(
             UIAlertAction(
-                title: "Open",
+                title: NSLocalizedString("Open", comment: "Open"),
                 style: UIAlertActionStyle.Default,
                 handler: { action in
                     OAuth2Client.sharedClient.openOAuthAuthorizeURL()

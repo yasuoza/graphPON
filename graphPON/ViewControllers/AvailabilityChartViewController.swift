@@ -23,6 +23,7 @@ class AvailabilityChartViewController: BaseChartViewController, XYDoughnutChartD
         self.chartDataFilteringSegment = .WithCoupon
 
         self.view.backgroundColor = self.mode.backgroundColor()
+        self.navigationItem.title = self.mode.titleText()
 
         self.ratioChartContainerView.chartView.showLabel = false
         self.ratioChartContainerView.chartView.dataSource = self
@@ -112,7 +113,10 @@ class AvailabilityChartViewController: BaseChartViewController, XYDoughnutChartD
                 dateFormatter.locale = NSLocale(localeIdentifier: "en_US")
                 let today = dateFormatter.stringFromDate(NSDate())
                 let endOfThisMonth = dateFormatter.stringFromDate(NSDate().endDateOfMonth()!)
-                self.chartInformationView.setTitleText("Available in \(today)-\(endOfThisMonth)")
+                self.chartInformationView.setTitleText(
+                    String(format: NSLocalizedString("Available in %@-%@", comment: "Chart information title text in available chart"),
+                        today, endOfThisMonth)
+                )
                 self.chartInformationView.setHidden(false, animated: true)
 
                 var totalAvailability = self.slices?.reduce(0, combine: +) ?? 1.0

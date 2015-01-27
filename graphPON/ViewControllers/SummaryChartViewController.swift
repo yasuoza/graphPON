@@ -132,7 +132,10 @@ class SummaryChartViewController: BaseChartViewController, JBLineChartViewDelega
     }
 
     func displayLatestTotalChartInformation() {
-        let (label, dateText) = ("Total", self.hddService?.hdoServices?.first?.packetLogs.last?.dateText())
+        let (label, dateText) = (
+            NSLocalizedString("Total", comment: "Total"),
+            self.hddService?.hdoServices?.first?.packetLogs.last?.dateText()
+        )
 
         if dateText == nil {
             self.chartInformationView.setHidden(true)
@@ -152,7 +155,10 @@ class SummaryChartViewController: BaseChartViewController, JBLineChartViewDelega
             startDateOfThisMonth = self.hddService?.hdoServices?.first?.packetLogs.first?.dateText() ?? ""
         }
 
-        self.chartInformationView.setTitleText("\(label) in \(startDateOfThisMonth)-\(dateText!)")
+        self.chartInformationView.setTitleText(
+            String(format: NSLocalizedString("%@ in %@-%@", comment: "Chart information title text in summary chart"),
+                label, startDateOfThisMonth, dateText!)
+        )
         self.chartInformationView.setHidden(false, animated: true)
         UIView.animateWithDuration(
             NSTimeInterval(kJBChartViewDefaultAnimationDuration) * 0.5,
@@ -251,7 +257,7 @@ class SummaryChartViewController: BaseChartViewController, JBLineChartViewDelega
         let tcolHorz = self.traitCollection.horizontalSizeClass
         let dateText = self.hddService?.hdoServices?.first?.packetLogs[Int(horizontalIndex)].dateText() ?? ""
 
-        var label = "Total"
+        var label = NSLocalizedString("Total", comment: "Total")
         if Int(lineIndex) < self.hddService?.hdoServices?.count {
             label = self.hddService?.hdoServices?[Int(lineIndex)].nickName ?? ""
         }
@@ -266,7 +272,10 @@ class SummaryChartViewController: BaseChartViewController, JBLineChartViewDelega
             startDateOfThisMonth = self.hddService?.hdoServices?.first?.packetLogs.first?.dateText() ?? ""
         }
 
-        self.chartInformationView.setTitleText("\(label) in \(startDateOfThisMonth)-\(dateText)")
+        self.chartInformationView.setTitleText(
+            String(format: NSLocalizedString("%@ in %@-%@", comment: "Chart information title text in summary chart"),
+                label, startDateOfThisMonth, dateText)
+        )
         self.chartInformationView.setHidden(false, animated: true)
 
         UIView.animateWithDuration(

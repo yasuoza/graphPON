@@ -27,6 +27,7 @@
 		A8409FB91A16F4A8007573EC /* ChartViewContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8409FB81A16F4A8007573EC /* ChartViewContainerView.swift */; };
 		A8549EFB1A2C6E9C000308AD /* PacketLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8549EFA1A2C6E9C000308AD /* PacketLog.swift */; };
 		A857096D1A723DD100A11F2D /* AvailabilityChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A857096C1A723DD100A11F2D /* AvailabilityChartViewController.swift */; };
+		A858714C1A7766B3007C78C1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A858714A1A7766B3007C78C1 /* Localizable.strings */; };
 		A85FA8A71A5798FC00992948 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A85FA8A61A5798FC00992948 /* SwiftyJSON.framework */; };
 		A85FA8A81A5798FC00992948 /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A85FA8A61A5798FC00992948 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A874C0AC1A4BDE7200887932 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A874C0AB1A4BDE7200887932 /* Alamofire.framework */; };
@@ -117,6 +118,9 @@
 		A8409FB81A16F4A8007573EC /* ChartViewContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChartViewContainerView.swift; path = Views/ChartViewContainerView.swift; sourceTree = "<group>"; };
 		A8549EFA1A2C6E9C000308AD /* PacketLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PacketLog.swift; path = Models/PacketLog.swift; sourceTree = "<group>"; };
 		A857096C1A723DD100A11F2D /* AvailabilityChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AvailabilityChartViewController.swift; path = ViewControllers/AvailabilityChartViewController.swift; sourceTree = "<group>"; };
+		A85871461A776109007C78C1 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
+		A858714B1A7766B3007C78C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A858714F1A7768C2007C78C1 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A85FA8A61A5798FC00992948 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 		A874C0AB1A4BDE7200887932 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		A874C0B71A4BF6EB00887932 /* OAuth2Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OAuth2Client.swift; path = Models/OAuth2Client.swift; sourceTree = "<group>"; };
@@ -217,6 +221,7 @@
 		A80D19C31A11CEDA0067A055 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A858714A1A7766B3007C78C1 /* Localizable.strings */,
 				A80D19C41A11CEDA0067A055 /* Info.plist */,
 				A83F8ACE1A4C4BC1003A9318 /* configuration.plist */,
 			);
@@ -392,6 +397,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ja,
 			);
 			mainGroup = A80D19B71A11CEDA0067A055;
 			productRefGroup = A80D19C11A11CEDA0067A055 /* Products */;
@@ -409,6 +415,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A858714C1A7766B3007C78C1 /* Localizable.strings in Resources */,
 				A80D19CD1A11CEDA0067A055 /* Main.storyboard in Resources */,
 				A83F8ACF1A4C4BC1003A9318 /* configuration.plist in Resources */,
 				A80D19D21A11CEDA0067A055 /* LaunchScreen.xib in Resources */,
@@ -498,6 +505,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				A80D19CC1A11CEDA0067A055 /* Base */,
+				A85871461A776109007C78C1 /* ja */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -508,6 +516,15 @@
 				A80D19D11A11CEDA0067A055 /* Base */,
 			);
 			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		A858714A1A7766B3007C78C1 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A858714B1A7766B3007C78C1 /* Base */,
+				A858714F1A7768C2007C78C1 /* ja */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

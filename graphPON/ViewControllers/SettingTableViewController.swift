@@ -82,7 +82,7 @@ class SettingTableViewController: UITableViewController, SettingTableHdoServiceS
             return cell
         } else {
             let cell = tableView.dequeueReusableCellWithIdentifier("SettingTableHdoServiceSwitchCell", forIndexPath: indexPath) as SettingTableHdoServiceSwitchCell
-            cell.textLabel?.text = "Coupon Use"
+            cell.textLabel?.text = NSLocalizedString("UseCoupon", comment: "Use coupon or not in setting table cell")
             cell.delegate = self
 
             if let hdoService = PacketInfoManager.sharedManager.hddServices[indexPath.section].hdoServices?[(indexPath.row - 2) / 2] {

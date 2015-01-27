@@ -19,6 +19,7 @@ class RatioChartViewController: BaseChartViewController, XYDoughnutChartDelegate
         super.viewDidLoad()
 
         self.view.backgroundColor = self.mode.backgroundColor()
+        self.navigationItem.title = self.mode.titleText()
 
         self.ratioChartContainerView.chartView.showLabel = false
         self.ratioChartContainerView.chartView.dataSource = self
@@ -98,7 +99,10 @@ class RatioChartViewController: BaseChartViewController, XYDoughnutChartDelegate
                 return
             }
             if let hdoService = self.hddService?.hdoServices?[maxIndex!] {
-                self.chartInformationView.setTitleText("Proportion - \(hdoService.nickName)")
+                self.chartInformationView.setTitleText(
+                    String(format: NSLocalizedString("Proportion of %@", comment: "Chart information title text in ratio chart"),
+                        hdoService.nickName)
+                )
                 self.chartInformationView.setHidden(false, animated: true)
                 UIView.animateWithDuration(
                     NSTimeInterval(kJBChartViewDefaultAnimationDuration) * 0.5,
@@ -170,7 +174,10 @@ class RatioChartViewController: BaseChartViewController, XYDoughnutChartDelegate
 
     func doughnutChart(doughnutChart: XYDoughnutChart!, didSelectSliceAtIndexPath indexPath: NSIndexPath) {
         if let hdoService = self.hddService?.hdoServices?[indexPath.slice] {
-            self.chartInformationView.setTitleText("Proportion - \(hdoService.nickName)")
+            self.chartInformationView.setTitleText(
+                String(format: NSLocalizedString("Proportion of %@", comment: "Chart information title text in ratio chart"),
+                    hdoService.nickName)
+            )
             self.chartInformationView.setHidden(false, animated: true)
         }
 

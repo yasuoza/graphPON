@@ -127,7 +127,10 @@ class DailyChartViewController: BaseChartViewController, JBBarChartViewDelegate,
 
     func displayLatestTotalChartInformation() {
         if let packetLog = self.hdoService?.packetLogs.last? {
-            self.chartInformationView.setTitleText("Used in \(packetLog.dateText())")
+            self.chartInformationView.setTitleText(
+                String(format: NSLocalizedString("Used in %@", comment: "Chart information title text in daily chart"),
+                    packetLog.dateText())
+            )
             self.chartInformationView.setHidden(false, animated: true)
         } else {
             self.chartInformationView.setHidden(true)
@@ -203,7 +206,10 @@ class DailyChartViewController: BaseChartViewController, JBBarChartViewDelegate,
     func barChartView(barChartView: JBBarChartView!, didSelectBarAtIndex index: UInt, touchPoint: CGPoint) {
         let dateText = self.hdoService?.packetLogs[Int(index)].dateText() ?? ""
 
-        self.chartInformationView.setTitleText("Used in \(dateText)")
+        self.chartInformationView.setTitleText(
+            String(format: NSLocalizedString("Used in %@", comment: "Chart information title text in daily chart"),
+                dateText)
+        )
         self.chartInformationView.setHidden(false, animated: true)
 
         UIView.animateWithDuration(
