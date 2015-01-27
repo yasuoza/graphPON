@@ -1839,7 +1839,7 @@
         <scene sceneID="tTv-bd-oTS">
             <objects>
                 <navigationController storyboardIdentifier="AvailabilityNavigation" title="AvailabilityNavigation" useStoryboardIdentifierAsRestorationIdentifier="YES" id="b8H-YD-JbL" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Availability" image="doughnut_chart" id="8W9-aR-bEr"/>
+                    <tabBarItem key="tabBarItem" title="Availability" image="progress_chart" id="8W9-aR-bEr"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="mZQ-TN-oAA">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -2449,6 +2449,7 @@
         <image name="bar_chart" width="25" height="25"/>
         <image name="doughnut_chart" width="25" height="25"/>
         <image name="menu" width="25" height="25"/>
+        <image name="progress_chart" width="25" height="25"/>
     </resources>
     <color key="tintColor" red="0.36862745098039218" green="0.40784313725490196" blue="0.68627450980392157" alpha="1" colorSpace="calibratedRGB"/>
 </document>
