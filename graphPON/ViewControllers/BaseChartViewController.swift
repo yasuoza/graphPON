@@ -19,6 +19,7 @@ class BaseChartViewController: UIViewController, StateRestorable {
     @IBOutlet weak var chartInformationView: ChartInformationView!
     @IBOutlet weak var informationValueLabelSeparatorView: UIView!
     @IBOutlet weak var valueLabel: UILabel!
+    @IBOutlet weak var valueLabelTopSpaceConstraint: NSLayoutConstraint!
     @IBOutlet weak var chartDurationSegmentControl: UISegmentedControl?
 
     var serviceCode: String?
@@ -97,6 +98,24 @@ class BaseChartViewController: UIViewController, StateRestorable {
         super.viewWillAppear(animated)
 
         self.chartDurationSegmentControl?.selectedSegmentIndex = self.chartDurationSegment.rawValue
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        if iOS3_5InchPortraitOrientation() {
+            self.valueLabelTopSpaceConstraint.constant = -8.0
+            self.valueLabel.font = UIFont(name: GlobalValueFontFamily, size: 60.0)
+        }
+    }
+
+    // MARK: - Public
+
+    func iOS3_5InchPortraitOrientation() -> Bool {
+        let compactWregularH = self.traitCollection.horizontalSizeClass == .Compact
+            && self.traitCollection.verticalSizeClass == .Regular
+
+        return compactWregularH && self.view.frame.height == 480.0
     }
 
     // MARK: - Private

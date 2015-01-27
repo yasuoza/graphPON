@@ -117,9 +117,6 @@
                                             </constraint>
                                             <constraint firstAttribute="trailing" secondItem="sSd-lo-9Sb" secondAttribute="trailing" id="pv2-Cc-cGY"/>
                                         </constraints>
-                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="194" width="368" height="458"/>
-                                        </variation>
                                         <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
                                             <rect key="frame" x="307" y="0.0" width="461" height="456"/>
                                         </variation>
@@ -426,6 +423,7 @@
                         <outlet property="informationValueLabelSeparatorView" destination="dGs-Or-dAF" id="A9i-kn-473"/>
                         <outlet property="loadingIndicatorView" destination="203-70-Mle" id="Qa7-Jk-aJT"/>
                         <outlet property="valueLabel" destination="jES-Jp-I3I" id="ma7-Oh-2LJ"/>
+                        <outlet property="valueLabelTopSpaceConstraint" destination="Fdu-Rv-X3t" id="ULX-lf-Qhv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
@@ -543,9 +541,6 @@
                                             <constraint firstAttribute="bottom" secondItem="wEB-xR-9hZ" secondAttribute="bottom" id="SHZ-29-Vs5"/>
                                             <constraint firstAttribute="trailing" secondItem="wEB-xR-9hZ" secondAttribute="trailing" id="iNO-pq-lT8"/>
                                         </constraints>
-                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="194" width="368" height="458"/>
-                                        </variation>
                                         <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
                                             <rect key="frame" x="307" y="0.0" width="461" height="456"/>
                                         </variation>
@@ -839,6 +834,7 @@
                         <outlet property="chartViewContainerView" destination="Jes-Ju-HKb" id="h2v-0f-yT0"/>
                         <outlet property="informationValueLabelSeparatorView" destination="ks8-gA-4XF" id="ood-jE-eGt"/>
                         <outlet property="valueLabel" destination="RSm-tY-YgJ" id="x1F-ic-IpF"/>
+                        <outlet property="valueLabelTopSpaceConstraint" destination="N3j-d8-eD8" id="NIZ-L2-lMo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nCo-Ba-eTq" sceneMemberID="firstResponder"/>
@@ -1656,6 +1652,7 @@
                         <outlet property="informationValueLabelSeparatorView" destination="7a7-8m-ptd" id="mUf-VN-GGX"/>
                         <outlet property="ratioChartContainerView" destination="VAQ-0c-6HB" id="bgA-ku-lmn"/>
                         <outlet property="valueLabel" destination="xIp-12-LIP" id="EMa-FU-TrL"/>
+                        <outlet property="valueLabelTopSpaceConstraint" destination="gCR-Ka-3wL" id="fN4-NI-jwn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OQF-mR-5n2" sceneMemberID="firstResponder"/>
@@ -2339,6 +2336,7 @@
                         <outlet property="usedLabel" destination="ACA-Ya-NEi" id="wdX-8t-ihs"/>
                         <outlet property="usedPercentageLabel" destination="wPU-E1-iZ9" id="BP8-dn-Pfm"/>
                         <outlet property="valueLabel" destination="MOe-Ha-tAs" id="Co5-aR-9Eg"/>
+                        <outlet property="valueLabelTopSpaceConstraint" destination="zlv-tp-8Hu" id="FpQ-sg-mM3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pMq-mD-Hcy" sceneMemberID="firstResponder"/>

@@ -38,6 +38,15 @@ class AvailabilityChartViewController: BaseChartViewController, XYDoughnutChartD
         self.reloadChartView(animated)
     }
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        if iOS3_5InchPortraitOrientation() {
+            self.usedLabel.font = UIFont(name: GlobalValueFontFamily, size: 35.0)
+            self.usedPercentageLabel.font = UIFont(name: GlobalValueFontFamily, size: 50.0)
+        }
+    }
+
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
 
