@@ -3,3 +3,4 @@
 *.storyboard binary merge=union
 *.h diff=objc
 *.m diff=objc
+*.strings diff=localizablestrings
