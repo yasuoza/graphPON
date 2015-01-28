@@ -25,7 +25,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let credential = OAuth2Credential(dictionary: dict)
                 if credential.save() {
                     OAuth2Client.sharedClient.authorized(credential: credential)
-                    PacketInfoManager.sharedManager.fetchLatestPacketLog(completion: nil)
+                    PacketInfoManager.sharedManager.fetchLatestPacketLog(completion: { error in
+                        self.handleAPIError(error)
+                    })
                     return true
                 }
             }
@@ -63,21 +65,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         switch OAuth2Client.sharedClient.state {
         case .Authorized:
             PacketInfoManager.sharedManager.fetchLatestPacketLog(completion: { error in
-                if error == nil {
-                    return
-                }
-
-                if let tabBarController = self.window?.rootViewController as? UITabBarController {
-                    if let navVC = tabBarController.selectedViewController as? UINavigationController {
-                        if error!.domain == OAuth2Router.APIErrorDomain && error!.code == OAuth2Router.AuthorizationFailureErrorCode {
-                            if let vc = navVC.visibleViewController as? PromptLoginPresenter {
-                                return vc.presentPromptLoginControllerIfNeeded()
-                            }
-                        } else if let vc = navVC.visibleViewController as? ErrorAlertPresenter {
-                            return vc.presentErrorAlertController(error!)
-                        }
-                    }
-                }
+                self.handleAPIError(error)
             })
         default:
             break
@@ -98,5 +86,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Identify we are interested in re-storing application state, this is called when the app is re-launched.
     func application(application: UIApplication, shouldRestoreApplicationState coder: NSCoder) -> Bool {
         return true
+    }
+
+    // MARK: - Private methods
+
+    private func handleAPIError(error: NSError?) {
+        if error == nil {
+            return
+        }
+
+        if let tabBarController = self.window?.rootViewController as? UITabBarController {
+            if let navVC = tabBarController.selectedViewController as? UINavigationController {
+                if error!.domain == OAuth2Router.APIErrorDomain && error!.code == OAuth2Router.AuthorizationFailureErrorCode {
+                    if let vc = navVC.visibleViewController as? PromptLoginPresenter {
+                        return vc.presentPromptLoginControllerIfNeeded()
+                    }
+                } else if let vc = navVC.visibleViewController as? ErrorAlertPresenter {
+                    return vc.presentErrorAlertController(error!)
+                }
+            }
+        }
     }
 }
