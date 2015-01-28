@@ -58,7 +58,9 @@
 		A8C743C51A6B56A0001F688C /* Coupon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C743C41A6B56A0001F688C /* Coupon.swift */; };
 		A8CB1A591A786110002FA9F7 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CB1A581A786110002FA9F7 /* BaseViewController.swift */; };
 		A8CB1A5B1A789606002FA9F7 /* PromptLoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CB1A5A1A789606002FA9F7 /* PromptLoginPresenter.swift */; };
-		A8D19DFD1A537E81009CB806 /* PromptLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D19DFC1A537E81009CB806 /* PromptLoginController.swift */; };
+		A8CB1A5D1A7898FF002FA9F7 /* PromptLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CB1A5C1A7898FF002FA9F7 /* PromptLoginController.swift */; };
+		A8CB1A601A789929002FA9F7 /* ErrorAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CB1A5F1A789929002FA9F7 /* ErrorAlertController.swift */; };
+		A8CB1A621A789FD8002FA9F7 /* ErrorAlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CB1A611A789FD8002FA9F7 /* ErrorAlertPresenter.swift */; };
 		A8DCA1531A4E7B3E00CE73D3 /* OAuth2ClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DCA1521A4E7B3E00CE73D3 /* OAuth2ClientTests.swift */; };
 		A8DCA1541A4E7B7000CE73D3 /* OAuth2Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = A874C0B71A4BF6EB00887932 /* OAuth2Client.swift */; };
 		A8DCA1551A4E7C3900CE73D3 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A874C0AB1A4BDE7200887932 /* Alamofire.framework */; };
@@ -146,7 +148,9 @@
 		A8C743C41A6B56A0001F688C /* Coupon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Coupon.swift; path = Models/Coupon.swift; sourceTree = "<group>"; };
 		A8CB1A581A786110002FA9F7 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseViewController.swift; path = ViewControllers/BaseViewController.swift; sourceTree = "<group>"; };
 		A8CB1A5A1A789606002FA9F7 /* PromptLoginPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PromptLoginPresenter.swift; path = Protocols/PromptLoginPresenter.swift; sourceTree = "<group>"; };
-		A8D19DFC1A537E81009CB806 /* PromptLoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PromptLoginController.swift; path = Views/PromptLoginController.swift; sourceTree = "<group>"; };
+		A8CB1A5C1A7898FF002FA9F7 /* PromptLoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PromptLoginController.swift; path = ViewControllers/PromptLoginController.swift; sourceTree = "<group>"; };
+		A8CB1A5F1A789929002FA9F7 /* ErrorAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ErrorAlertController.swift; path = ViewControllers/ErrorAlertController.swift; sourceTree = "<group>"; };
+		A8CB1A611A789FD8002FA9F7 /* ErrorAlertPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ErrorAlertPresenter.swift; path = Protocols/ErrorAlertPresenter.swift; sourceTree = "<group>"; };
 		A8DCA1521A4E7B3E00CE73D3 /* OAuth2ClientTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuth2ClientTests.swift; sourceTree = "<group>"; };
 		A8DCA1591A4E810200CE73D3 /* configuration.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = configuration.plist; sourceTree = "<group>"; };
 		A8E0AC3D1A66215F00D4E043 /* StateRestorable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StateRestorable.swift; path = Protocols/StateRestorable.swift; sourceTree = "<group>"; };
@@ -263,7 +267,6 @@
 				A83612831A3EB9E100BB1B3F /* RatioChartContainerView.swift */,
 				A83F30EB1A2EF4AF00FE2D86 /* ChartInformationView.swift */,
 				A8867A041A30333C001D8578 /* ExtendedNavBarView.swift */,
-				A8D19DFC1A537E81009CB806 /* PromptLoginController.swift */,
 				A8131D071A6D076E007C7D14 /* SettingTableHdoServiceSwitchCell.swift */,
 			);
 			name = Views;
@@ -300,6 +303,7 @@
 				A8E0AC3D1A66215F00D4E043 /* StateRestorable.swift */,
 				A8131D091A6D1D00007C7D14 /* SettingTableHdoServiceSwitchCellDelegate.swift */,
 				A8CB1A5A1A789606002FA9F7 /* PromptLoginPresenter.swift */,
+				A8CB1A611A789FD8002FA9F7 /* ErrorAlertPresenter.swift */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -319,6 +323,7 @@
 		A8B212BA1A11EEB6005988DC /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				A8CB1A5E1A789909002FA9F7 /* AlertControllers */,
 				A8B212B91A11EEAB005988DC /* CharViewControllers */,
 				A8CB1A581A786110002FA9F7 /* BaseViewController.swift */,
 				A8F036FB1A6CD0ED00DEFA61 /* SettingTableViewController.swift */,
@@ -326,6 +331,15 @@
 				A88398BF1A5CF40700B3DE5B /* DisplayPacketLogsSelectTableViewController.swift */,
 			);
 			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		A8CB1A5E1A789909002FA9F7 /* AlertControllers */ = {
+			isa = PBXGroup;
+			children = (
+				A8CB1A5C1A7898FF002FA9F7 /* PromptLoginController.swift */,
+				A8CB1A5F1A789929002FA9F7 /* ErrorAlertController.swift */,
+			);
+			name = AlertControllers;
 			sourceTree = "<group>";
 		};
 		F46B956D86CB6147453819A7 /* Frameworks */ = {
@@ -445,6 +459,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A8B212C01A1204B2005988DC /* LineChartFooterView.swift in Sources */,
+				A8CB1A5D1A7898FF002FA9F7 /* PromptLoginController.swift in Sources */,
 				A83F30EC1A2EF4AF00FE2D86 /* ChartInformationView.swift in Sources */,
 				A8867A0C1A304E8B001D8578 /* HddServiceListTableViewController.swift in Sources */,
 				A8BC51BE1A6B651500AE3B67 /* NSDate.swift in Sources */,
@@ -453,7 +468,9 @@
 				A857096D1A723DD100A11F2D /* AvailabilityChartViewController.swift in Sources */,
 				A874C0BE1A4C04A800887932 /* OAuth2Credential.swift in Sources */,
 				A8131D0A1A6D1D00007C7D14 /* SettingTableHdoServiceSwitchCellDelegate.swift in Sources */,
+				A8CB1A621A789FD8002FA9F7 /* ErrorAlertPresenter.swift in Sources */,
 				A80748621A134417008ADC0A /* UIColor.swift in Sources */,
+				A8CB1A601A789929002FA9F7 /* ErrorAlertController.swift in Sources */,
 				A8549EFB1A2C6E9C000308AD /* PacketLog.swift in Sources */,
 				A80D19C61A11CEDA0067A055 /* AppDelegate.swift in Sources */,
 				A8867A0F1A304EB0001D8578 /* HddServiceListTableViewControllerDelegate.swift in Sources */,
@@ -464,7 +481,6 @@
 				A83612841A3EB9E100BB1B3F /* RatioChartContainerView.swift in Sources */,
 				A8B212BC1A11EEDC005988DC /* SummaryChartViewController.swift in Sources */,
 				A8C743C51A6B56A0001F688C /* Coupon.swift in Sources */,
-				A8D19DFD1A537E81009CB806 /* PromptLoginController.swift in Sources */,
 				A807E1511A4D38950064BC11 /* PacketInfoManager.swift in Sources */,
 				A88925BF1A61704C0036B32B /* HddService.swift in Sources */,
 				A8B39C391A41713E009F519E /* BaseChartViewController.swift in Sources */,

@@ -6,7 +6,7 @@ class PromptLoginController: UIAlertController {
         let alert = PromptLoginController(
             title: NSLocalizedString("AuthentiacationRequired", comment: "Authentication prompt alert title"),
             message: NSLocalizedString("ThisApplicationRequiresUserAuthentication", comment: "User authentication required"),
-            preferredStyle: UIAlertControllerStyle.Alert
+            preferredStyle: .Alert
         )
 
         alert.addAction(

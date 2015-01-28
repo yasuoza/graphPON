@@ -62,7 +62,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(application: UIApplication) {
         switch OAuth2Client.sharedClient.state {
         case .Authorized:
-            PacketInfoManager.sharedManager.fetchLatestPacketLog(completion: nil)
+            PacketInfoManager.sharedManager.fetchLatestPacketLog(completion: { error in
+                if error == nil {
+                    return
+                }
+
+                if let tabBarController = self.window?.rootViewController as? UITabBarController {
+                    if let navVC = tabBarController.selectedViewController as? UINavigationController {
+                        if error!.domain == OAuth2Router.APIErrorDomain && error!.code == OAuth2Router.AuthorizationFailureErrorCode {
+                            if let vc = navVC.visibleViewController as? PromptLoginPresenter {
+                                return vc.presentPromptLoginControllerIfNeeded()
+                            }
+                        } else if let vc = navVC.visibleViewController as? ErrorAlertPresenter {
+                            return vc.presentErrorAlertController(error!)
+                        }
+                    }
+                }
+            })
         default:
             break
         }

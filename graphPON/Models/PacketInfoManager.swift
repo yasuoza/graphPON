@@ -65,6 +65,7 @@ class PacketInfoManager: NSObject {
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         Alamofire.request(OAuth2Router.Coupon)
             .responseJSON { (_, response, json, error) in
+                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
 
                 if error != nil {
                     _completion?(error: error)
@@ -81,6 +82,7 @@ class PacketInfoManager: NSObject {
                         code: OAuth2Router.AuthorizationFailureErrorCode,
                         userInfo: ["resultCode": json["resultCode"].stringValue]
                     )
+                    OAuth2Client.sharedClient.deauthorize()
                     _completion?(error: apiError)
                     return
                 case 429:
@@ -158,6 +160,7 @@ class PacketInfoManager: NSObject {
                             code: OAuth2Router.AuthorizationFailureErrorCode,
                             userInfo: ["resultCode": json["resultCode"].stringValue]
                         )
+                        OAuth2Client.sharedClient.deauthorize()
                         _completion?(error: apiError)
                         return
                     case 429:

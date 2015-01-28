@@ -2,7 +2,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-class SettingTableViewController: UITableViewController, SettingTableHdoServiceSwitchCellDelegate, PromptLoginPresenter {
+class SettingTableViewController: UITableViewController, SettingTableHdoServiceSwitchCellDelegate, PromptLoginPresenter, ErrorAlertPresenter {
 
     private var couponUseDict: [String: Bool] = [:]
 
@@ -79,6 +79,8 @@ class SettingTableViewController: UITableViewController, SettingTableHdoServiceS
         }
     }
 
+    // MARK: - PromptLoginPresenter
+
     func presentPromptLoginControllerIfNeeded() {
         switch OAuth2Client.sharedClient.state {
         case OAuth2Client.AuthorizationState.UnAuthorized:
@@ -93,6 +95,16 @@ class SettingTableViewController: UITableViewController, SettingTableHdoServiceS
         default:
             break
         }
+    }
+
+    // MARK: - ErrorAlertPresenter
+
+    func presentErrorAlertController(error: NSError) {
+        self.presentViewController(
+            ErrorAlertController.initWithError(error),
+            animated: true,
+            completion: nil
+        )
     }
 
     // MARK: - Table view data source

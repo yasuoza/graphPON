@@ -2,10 +2,10 @@ import UIKit
 import Alamofire
 
 enum OAuth2Router: URLRequestConvertible {
-    static let APIErrorDomain = "com.yasuoza.graphPON.apierror"
+    static let APIErrorDomain: String = "com.yasuoza.graphPON.apierror"
     static let AuthorizationFailureErrorCode: Int = 403
-    static let TooManyRequestErrorCode: Int = 403
-    static let UnknownErrorCode: Int = 403
+    static let TooManyRequestErrorCode: Int = 429
+    static let UnknownErrorCode: Int = 500
 
     private static let baseURLString = "https://api.iijmio.jp/mobile/d/v1"
 
