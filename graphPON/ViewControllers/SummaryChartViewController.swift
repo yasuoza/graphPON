@@ -59,27 +59,12 @@ class SummaryChartViewController: BaseChartViewController, JBLineChartViewDelega
         super.viewDidAppear(animated)
 
         NSNotificationCenter.defaultCenter().addObserverForName(
-            UIApplicationDidBecomeActiveNotification,
-            object: nil,
-            queue: NSOperationQueue.mainQueue(),
-            usingBlock: { _ in
-                self.promptLogin()
-        })
-
-        NSNotificationCenter.defaultCenter().addObserverForName(
             PacketInfoManager.LatestPacketLogsDidFetchNotification,
             object: nil,
             queue: NSOperationQueue.mainQueue(),
             usingBlock: { _ in
                 self.reloadChartView(true)
         })
-
-        switch OAuth2Client.sharedClient.state {
-        case .UnAuthorized:
-            self.promptLogin()
-        default:
-            break
-        }
     }
 
     deinit {
@@ -172,22 +157,6 @@ class SummaryChartViewController: BaseChartViewController, JBLineChartViewDelega
             completion: nil
         )
 
-    }
-
-    func promptLogin() {
-        switch OAuth2Client.sharedClient.state {
-        case OAuth2Client.AuthorizationState.UnAuthorized:
-            if let _ = self.presentedViewController as? PromptLoginController {
-                break
-            }
-            return self.presentViewController(
-                PromptLoginController.alertController(),
-                animated: true,
-                completion: nil
-            )
-        default:
-            break
-        }
     }
 
     // MARK: - Private methods

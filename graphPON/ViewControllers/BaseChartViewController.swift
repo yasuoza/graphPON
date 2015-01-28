@@ -13,7 +13,7 @@ let kJBAreaChartViewControllerChartFooterHeight   = CGFloat(20.0)
 let kJBAreaChartViewControllerChartFooterPadding  = CGFloat(5.0)
 let kJBAreaChartViewControllerChartLineWidth      = CGFloat(2.0)
 
-class BaseChartViewController: UIViewController, StateRestorable {
+class BaseChartViewController: BaseViewController, StateRestorable {
 
     @IBOutlet weak var loadingIndicatorView: UIActivityIndicatorView!
     @IBOutlet weak var chartInformationView: ChartInformationView!
@@ -76,7 +76,7 @@ class BaseChartViewController: UIViewController, StateRestorable {
         }
     }
 
-    required init(coder aDecoder: NSCoder) {
+    required override init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
 
         self.restrationalServiceCodeIdentifier = "\(self.restorationIdentifier!).serviceCode"
@@ -98,6 +98,25 @@ class BaseChartViewController: UIViewController, StateRestorable {
         super.viewWillAppear(animated)
 
         self.chartDurationSegmentControl?.selectedSegmentIndex = self.chartDurationSegment.rawValue
+    }
+
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+
+        NSNotificationCenter.defaultCenter().addObserverForName(
+            UIApplicationDidBecomeActiveNotification,
+            object: nil,
+            queue: NSOperationQueue.mainQueue(),
+            usingBlock: { _ in
+                self.presentPromptLoginControllerIfNeeded()
+        })
+
+        switch OAuth2Client.sharedClient.state {
+        case .UnAuthorized:
+            self.presentPromptLoginControllerIfNeeded()
+        default:
+            break
+        }
     }
 
     override func viewDidLayoutSubviews() {

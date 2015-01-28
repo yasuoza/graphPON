@@ -58,13 +58,6 @@ class AvailabilityChartViewController: BaseChartViewController, XYDoughnutChartD
             usingBlock: { _ in
                 self.reloadChartView(true)
         })
-
-        switch OAuth2Client.sharedClient.state {
-        case .UnAuthorized:
-            self.promptLogin()
-        default:
-            break
-        }
     }
 
     deinit {

@@ -2,7 +2,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-class SettingTableViewController: UITableViewController, SettingTableHdoServiceSwitchCellDelegate {
+class SettingTableViewController: UITableViewController, SettingTableHdoServiceSwitchCellDelegate, PromptLoginPresenter {
 
     private var couponUseDict: [String: Bool] = [:]
 
@@ -18,6 +18,25 @@ class SettingTableViewController: UITableViewController, SettingTableHdoServiceS
             usingBlock: { _ in
                 self.tableView.reloadData()
         })
+    }
+
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+
+        NSNotificationCenter.defaultCenter().addObserverForName(
+            UIApplicationDidBecomeActiveNotification,
+            object: nil,
+            queue: NSOperationQueue.mainQueue(),
+            usingBlock: { _ in
+                self.presentPromptLoginControllerIfNeeded()
+        })
+
+        switch OAuth2Client.sharedClient.state {
+        case .UnAuthorized:
+            self.presentPromptLoginControllerIfNeeded()
+        default:
+            break
+        }
     }
 
     deinit {
@@ -57,6 +76,22 @@ class SettingTableViewController: UITableViewController, SettingTableHdoServiceS
 
                 self.couponUseDict = [:]
                 self.navigationItem.rightBarButtonItem?.enabled = false
+        }
+    }
+
+    func presentPromptLoginControllerIfNeeded() {
+        switch OAuth2Client.sharedClient.state {
+        case OAuth2Client.AuthorizationState.UnAuthorized:
+            if let _ = self.presentedViewController as? PromptLoginController {
+                break
+            }
+            return self.presentViewController(
+                PromptLoginController.alertController(),
+                animated: true,
+                completion: nil
+            )
+        default:
+            break
         }
     }
 

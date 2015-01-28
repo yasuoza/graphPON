@@ -56,6 +56,8 @@
 		A8BE14A51A625E070071ADDD /* PacketLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8549EFA1A2C6E9C000308AD /* PacketLog.swift */; };
 		A8BE14A71A6260C60071ADDD /* HdoServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BE14A61A6260C60071ADDD /* HdoServiceTests.swift */; };
 		A8C743C51A6B56A0001F688C /* Coupon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C743C41A6B56A0001F688C /* Coupon.swift */; };
+		A8CB1A591A786110002FA9F7 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CB1A581A786110002FA9F7 /* BaseViewController.swift */; };
+		A8CB1A5B1A789606002FA9F7 /* PromptLoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CB1A5A1A789606002FA9F7 /* PromptLoginPresenter.swift */; };
 		A8D19DFD1A537E81009CB806 /* PromptLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D19DFC1A537E81009CB806 /* PromptLoginController.swift */; };
 		A8DCA1531A4E7B3E00CE73D3 /* OAuth2ClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DCA1521A4E7B3E00CE73D3 /* OAuth2ClientTests.swift */; };
 		A8DCA1541A4E7B7000CE73D3 /* OAuth2Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = A874C0B71A4BF6EB00887932 /* OAuth2Client.swift */; };
@@ -142,6 +144,8 @@
 		A8BE14A01A625D2C0071ADDD /* HddServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HddServiceTests.swift; sourceTree = "<group>"; };
 		A8BE14A61A6260C60071ADDD /* HdoServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HdoServiceTests.swift; sourceTree = "<group>"; };
 		A8C743C41A6B56A0001F688C /* Coupon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Coupon.swift; path = Models/Coupon.swift; sourceTree = "<group>"; };
+		A8CB1A581A786110002FA9F7 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseViewController.swift; path = ViewControllers/BaseViewController.swift; sourceTree = "<group>"; };
+		A8CB1A5A1A789606002FA9F7 /* PromptLoginPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PromptLoginPresenter.swift; path = Protocols/PromptLoginPresenter.swift; sourceTree = "<group>"; };
 		A8D19DFC1A537E81009CB806 /* PromptLoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PromptLoginController.swift; path = Views/PromptLoginController.swift; sourceTree = "<group>"; };
 		A8DCA1521A4E7B3E00CE73D3 /* OAuth2ClientTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuth2ClientTests.swift; sourceTree = "<group>"; };
 		A8DCA1591A4E810200CE73D3 /* configuration.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = configuration.plist; sourceTree = "<group>"; };
@@ -295,6 +299,7 @@
 				A88398C11A5CF67700B3DE5B /* DisplayPacketLogsSelectTableViewControllerDelegate.swift */,
 				A8E0AC3D1A66215F00D4E043 /* StateRestorable.swift */,
 				A8131D091A6D1D00007C7D14 /* SettingTableHdoServiceSwitchCellDelegate.swift */,
+				A8CB1A5A1A789606002FA9F7 /* PromptLoginPresenter.swift */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -315,9 +320,10 @@
 			isa = PBXGroup;
 			children = (
 				A8B212B91A11EEAB005988DC /* CharViewControllers */,
+				A8CB1A581A786110002FA9F7 /* BaseViewController.swift */,
+				A8F036FB1A6CD0ED00DEFA61 /* SettingTableViewController.swift */,
 				A8867A0B1A304E8B001D8578 /* HddServiceListTableViewController.swift */,
 				A88398BF1A5CF40700B3DE5B /* DisplayPacketLogsSelectTableViewController.swift */,
-				A8F036FB1A6CD0ED00DEFA61 /* SettingTableViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -451,6 +457,7 @@
 				A8549EFB1A2C6E9C000308AD /* PacketLog.swift in Sources */,
 				A80D19C61A11CEDA0067A055 /* AppDelegate.swift in Sources */,
 				A8867A0F1A304EB0001D8578 /* HddServiceListTableViewControllerDelegate.swift in Sources */,
+				A8CB1A591A786110002FA9F7 /* BaseViewController.swift in Sources */,
 				A88398C01A5CF40700B3DE5B /* DisplayPacketLogsSelectTableViewController.swift in Sources */,
 				A8409FB91A16F4A8007573EC /* ChartViewContainerView.swift in Sources */,
 				A8131D081A6D076E007C7D14 /* SettingTableHdoServiceSwitchCell.swift in Sources */,
@@ -469,6 +476,7 @@
 				A8867A051A30333C001D8578 /* ExtendedNavBarView.swift in Sources */,
 				A88398C21A5CF67700B3DE5B /* DisplayPacketLogsSelectTableViewControllerDelegate.swift in Sources */,
 				A833C34D1A637E0800EBE788 /* Constants.swift in Sources */,
+				A8CB1A5B1A789606002FA9F7 /* PromptLoginPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
