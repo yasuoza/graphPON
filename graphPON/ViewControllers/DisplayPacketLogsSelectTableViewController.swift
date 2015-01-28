@@ -3,21 +3,8 @@ import UIKit
 class DisplayPacketLogsSelectTableViewController: UITableViewController {
 
     var delegate: DisplayPacketLogsSelectTableViewControllerDelegate?
+    var selectedFilteringSegment: BaseChartViewController.ChartDataFilteringSegment?
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
 
     // MARK: - IBActions
 
@@ -41,6 +28,17 @@ class DisplayPacketLogsSelectTableViewController: UITableViewController {
         let chartDataSegment = BaseChartViewController.ChartDataFilteringSegment(rawValue: indexPath.row)
 
         cell.textLabel?.text = chartDataSegment?.text() ?? ""
+
+        if indexPath.row == self.selectedFilteringSegment?.rawValue {
+            cell.selected = true
+            cell.accessoryType = .Checkmark
+            cell.textLabel?.textColor = GlobalTintColor
+        } else {
+            cell.selected = false
+            cell.accessoryType = .None
+            cell.textLabel?.textColor = UIColor.blackColor()
+        }
+
 
         return cell
     }

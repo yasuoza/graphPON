@@ -86,6 +86,7 @@ class DailyChartViewController: BaseChartViewController, JBBarChartViewDelegate,
             let navigationController = segue.destinationViewController as UINavigationController
             let displayPacketLogSelectViewController = navigationController.topViewController as DisplayPacketLogsSelectTableViewController
             displayPacketLogSelectViewController.delegate = self
+            displayPacketLogSelectViewController.selectedFilteringSegment = self.chartDataFilteringSegment
         }
     }
 
