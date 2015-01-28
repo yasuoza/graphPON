@@ -401,16 +401,16 @@
                     <tabBarItem key="tabBarItem" title="Item" id="Jn6-4O-Ybi"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="mOI-FS-AaM">
-                        <barButtonItem key="leftBarButtonItem" title="Services" id="i4K-3A-1iz">
+                        <barButtonItem key="leftBarButtonItem" image="menu" id="i4K-3A-1iz">
                             <connections>
-                                <segue destination="bSI-9S-jFO" kind="popoverPresentation" identifier="HddServiceListFromSummaryChartSegue" popoverAnchorBarButtonItem="i4K-3A-1iz" id="n52-Wc-6v2">
+                                <segue destination="thF-4Q-z8b" kind="popoverPresentation" identifier="DisplayPacketLogsSelectFromSummaryChartSegue" popoverAnchorBarButtonItem="i4K-3A-1iz" id="vr7-Oc-Tyl">
                                     <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                 </segue>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="menu" id="T6p-37-1eI">
+                        <barButtonItem key="rightBarButtonItem" title="Services" id="T6p-37-1eI">
                             <connections>
-                                <segue destination="thF-4Q-z8b" kind="popoverPresentation" identifier="DisplayPacketLogsSelectFromSummaryChartSegue" popoverAnchorBarButtonItem="T6p-37-1eI" id="k4d-7r-hdZ">
+                                <segue destination="bSI-9S-jFO" kind="popoverPresentation" identifier="HddServiceListFromSummaryChartSegue" popoverAnchorBarButtonItem="T6p-37-1eI" id="b82-qn-Yty">
                                     <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                 </segue>
                             </connections>
@@ -813,16 +813,16 @@
                     <tabBarItem key="tabBarItem" title="Item" id="Dhs-07-FVl"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="f4b-Lo-an5">
-                        <barButtonItem key="leftBarButtonItem" title="Services" id="VfS-KA-qak">
+                        <barButtonItem key="leftBarButtonItem" image="menu" id="VfS-KA-qak">
                             <connections>
-                                <segue destination="jMB-ZZ-dEg" kind="popoverPresentation" identifier="HddServiceListFromDailyChartSegue" popoverAnchorBarButtonItem="VfS-KA-qak" id="V9X-w2-9FV">
+                                <segue destination="Xbm-hl-J8K" kind="popoverPresentation" identifier="DisplayPacketLogsSelectFromSummaryChartSegue" popoverAnchorBarButtonItem="VfS-KA-qak" id="Bf3-NA-PVi">
                                     <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                 </segue>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="menu" id="A52-MH-2w4">
+                        <barButtonItem key="rightBarButtonItem" title="Services" id="A52-MH-2w4">
                             <connections>
-                                <segue destination="U95-XL-QGo" kind="popoverPresentation" identifier="DisplayPacketLogsSelectFromSummaryChartSegue" popoverAnchorBarButtonItem="A52-MH-2w4" id="kEt-Ts-40o">
+                                <segue destination="WnF-tm-kZx" kind="popoverPresentation" identifier="HddServiceListFromDailyChartSegue" popoverAnchorBarButtonItem="A52-MH-2w4" id="6He-ba-wTC">
                                     <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                 </segue>
                             </connections>
@@ -879,7 +879,7 @@
                             <outlet property="delegate" destination="2Cr-i6-BBz" id="m1E-Sn-Z9i"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="haP-64-BZw">
+                    <navigationItem key="navigationItem" title="Services" id="haP-64-BZw">
                         <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="mwf-mH-FbX">
                             <connections>
                                 <action selector="closeViewController" destination="2Cr-i6-BBz" id="lgW-vV-FF4"/>
@@ -889,9 +889,9 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mEe-dh-oYP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1146" y="2340"/>
+            <point key="canvasLocation" x="-306" y="2340"/>
         </scene>
-        <!--Hdd Service List Table View Controller-->
+        <!--Services-->
         <scene sceneID="gn2-EN-M6o">
             <objects>
                 <tableViewController id="G03-oB-wn5" customClass="HddServiceListTableViewController" customModule="graphPON" customModuleProvider="target" sceneMemberID="viewController">
@@ -912,7 +912,7 @@
                             <outlet property="delegate" destination="G03-oB-wn5" id="h7F-bq-Zkc"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="M7i-19-QuV">
+                    <navigationItem key="navigationItem" title="Services" id="M7i-19-QuV">
                         <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="8Pp-h7-wf0">
                             <connections>
                                 <action selector="closeViewController" destination="G03-oB-wn5" id="z9h-XZ-bVP"/>
@@ -922,7 +922,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d9b-yC-AAy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="477" y="2340"/>
+            <point key="canvasLocation" x="1282.5" y="2340"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="tCd-uP-HMx">
@@ -938,7 +938,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="12w-xB-LOL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1146" y="1587.75"/>
+            <point key="canvasLocation" x="-306" y="1587.75"/>
         </scene>
         <!--SummaryChart Navigation-->
         <scene sceneID="Apm-5s-4XF">
@@ -1075,7 +1075,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4x3-Wv-a1n" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6198" y="123"/>
+            <point key="canvasLocation" x="5379" y="873"/>
         </scene>
         <!--RatioChart-->
         <scene sceneID="Gga-qa-ywg">
@@ -1131,7 +1131,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5mx-ax-W8X" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1827" y="-643.5"/>
+            <point key="canvasLocation" x="2742" y="-667.5"/>
         </scene>
         <!--FilterPacketLogsSelectTableViewController-->
         <scene sceneID="ZyQ-nk-qyq">
@@ -1164,7 +1164,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ega-xa-okc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-292.5" y="2340"/>
+            <point key="canvasLocation" x="-1186.5" y="2340"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="vZV-vW-5pE">
@@ -1180,23 +1180,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P5Q-KI-bsf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-292.5" y="1587.75"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="0NG-ce-pOU">
-            <objects>
-                <navigationController id="jMB-ZZ-dEg" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="nSG-KF-JOa">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="G03-oB-wn5" kind="relationship" relationship="rootViewController" id="66x-OZ-t15"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Z0Q-ws-tCt" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="477" y="1587.75"/>
+            <point key="canvasLocation" x="-1186.5" y="1587.75"/>
         </scene>
         <!--RatioChart-->
         <scene sceneID="fAD-xi-Xjb">
@@ -1631,16 +1615,16 @@
                     <tabBarItem key="tabBarItem" title="Item" id="Z8o-yo-Mnj"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="hLt-oi-02w">
-                        <barButtonItem key="leftBarButtonItem" title="Services" id="eyY-v0-XTy">
+                        <barButtonItem key="leftBarButtonItem" image="menu" id="eyY-v0-XTy">
                             <connections>
-                                <segue destination="gJy-3l-m5f" kind="popoverPresentation" identifier="HddServiceListFromRatioChartSegue" popoverAnchorBarButtonItem="eyY-v0-XTy" id="Kzz-iD-UYe">
+                                <segue destination="NxR-Ex-Ukc" kind="popoverPresentation" identifier="DisplayPacketLogsSelectFromRatioChartSegue" popoverAnchorBarButtonItem="eyY-v0-XTy" id="Jmh-Nl-myO">
                                     <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                 </segue>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="menu" id="zC5-UX-Zuu">
+                        <barButtonItem key="rightBarButtonItem" title="Services" id="zC5-UX-Zuu">
                             <connections>
-                                <segue destination="NxR-Ex-Ukc" kind="popoverPresentation" identifier="DisplayPacketLogsSelectFromRatioChartSegue" popoverAnchorBarButtonItem="zC5-UX-Zuu" id="ROQ-BU-7zS">
+                                <segue destination="gJy-3l-m5f" kind="popoverPresentation" identifier="HddServiceListFromRatioChartSegue" popoverAnchorBarButtonItem="zC5-UX-Zuu" id="QaB-uN-e6Y">
                                     <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                 </segue>
                             </connections>
@@ -1657,7 +1641,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OQF-mR-5n2" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2742" y="861"/>
+            <point key="canvasLocation" x="2742" y="873"/>
         </scene>
         <!--FilterPacketLogsSelectTableViewController-->
         <scene sceneID="vPD-bc-l5W">
@@ -1690,49 +1674,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3sn-yq-YVc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1350" y="2340"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="fY4-CF-Pfl">
-            <objects>
-                <navigationController id="U95-XL-QGo" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="W1k-DH-Cdw">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="LkW-q5-HCn" kind="relationship" relationship="rootViewController" id="x3J-4A-Vfv"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="40t-Zg-Obn" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1350" y="1587.75"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="Ms1-iw-8ht">
-            <objects>
-                <navigationController id="li1-YU-skt" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Fbr-OU-Tac">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="U4f-mi-XuQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="477" y="1587.75"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="Ldk-h4-NZX">
-            <objects>
-                <navigationController id="Jhc-HM-2tj" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="cH3-fR-NL2">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="kri-sy-lWk" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1350" y="1587.75"/>
+            <point key="canvasLocation" x="498" y="2340"/>
         </scene>
         <!--Display Data-->
         <scene sceneID="Zq8-6O-LvK">
@@ -1765,9 +1707,9 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QGA-jK-Tdp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3201" y="2340"/>
+            <point key="canvasLocation" x="2325" y="2340"/>
         </scene>
-        <!--Hdd Service List Table View Controller-->
+        <!--Services-->
         <scene sceneID="BA9-L5-0iU">
             <objects>
                 <tableViewController id="f7J-ae-fpX" customClass="HddServiceListTableViewController" customModule="graphPON" customModuleProvider="target" sceneMemberID="viewController">
@@ -1788,7 +1730,7 @@
                             <outlet property="delegate" destination="f7J-ae-fpX" id="IiN-lt-zg1"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="2bP-wX-mNk">
+                    <navigationItem key="navigationItem" title="Services" id="2bP-wX-mNk">
                         <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="cHt-zw-FSr">
                             <connections>
                                 <action selector="closeViewController" destination="f7J-ae-fpX" id="Tvs-Ec-j4F"/>
@@ -1798,7 +1740,39 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g9b-yw-uat" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2340" y="2340"/>
+            <point key="canvasLocation" x="3150" y="2340"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="3pb-KP-W5O">
+            <objects>
+                <navigationController id="WnF-tm-kZx" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="aW3-ty-1Is">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="G03-oB-wn5" kind="relationship" relationship="rootViewController" id="bRK-Et-fDd"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="auD-Nw-JNH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1282.5" y="1587.75"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="zRb-vM-SCr">
+            <objects>
+                <navigationController id="Xbm-hl-J8K" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="VIl-eE-RIr">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="LkW-q5-HCn" kind="relationship" relationship="rootViewController" id="BIR-NH-wY5"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ik3-2A-zFT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="498" y="1587.75"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="iBk-XW-OqL">
@@ -1814,7 +1788,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N0F-jf-ORm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2340" y="1587.75"/>
+            <point key="canvasLocation" x="3150" y="1587.75"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="NEK-Cg-TFL">
@@ -1830,7 +1804,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1b7-ZY-4Za" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3201" y="1587.75"/>
+            <point key="canvasLocation" x="2325" y="1587.75"/>
         </scene>
         <!--AvailabilityNavigation-->
         <scene sceneID="tTv-bd-oTS">
@@ -2321,7 +2295,7 @@
                     <tabBarItem key="tabBarItem" title="Item" id="7oH-Kv-KFF"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="B7Y-dW-JL9">
-                        <barButtonItem key="leftBarButtonItem" title="Services" id="Gll-6f-eOF">
+                        <barButtonItem key="rightBarButtonItem" title="Services" id="Gll-6f-eOF">
                             <connections>
                                 <segue destination="GRy-Lu-fHI" kind="popoverPresentation" identifier="HddServiceListFromRatioChartSegue" popoverAnchorBarButtonItem="Gll-6f-eOF" id="2sI-go-1tY">
                                     <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
@@ -2341,42 +2315,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pMq-mD-Hcy" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4320" y="861"/>
+            <point key="canvasLocation" x="4320" y="873"/>
         </scene>
-        <!--Display Data-->
-        <scene sceneID="ROq-Bl-AqG">
-            <objects>
-                <tableViewController id="RNy-Ya-gaG" customClass="DisplayPacketLogsSelectTableViewController" customModule="graphPON" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="CUA-hd-3hj">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="FilterPacketLogsSelectCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="FilterPacketLogsSelectCell" id="h7l-iM-Bia">
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="h7l-iM-Bia" id="mMv-fV-ak6">
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="RNy-Ya-gaG" id="BpY-Rl-YSS"/>
-                            <outlet property="delegate" destination="RNy-Ya-gaG" id="fM5-0Q-PfR"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Display Data" id="D7k-pC-hsf">
-                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="4o1-QC-q1f">
-                            <connections>
-                                <action selector="closeViewController" destination="RNy-Ya-gaG" id="Lkw-jK-RwM"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="iu6-Bn-9nK" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4779" y="2340"/>
-        </scene>
-        <!--Hdd Service List Table View Controller-->
+        <!--Services-->
         <scene sceneID="Z51-OL-2EL">
             <objects>
                 <tableViewController id="lnY-y7-ve3" customClass="HddServiceListTableViewController" customModule="graphPON" customModuleProvider="target" sceneMemberID="viewController">
@@ -2397,7 +2338,7 @@
                             <outlet property="delegate" destination="lnY-y7-ve3" id="6Qi-AV-9cq"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="uPn-RM-Q9j">
+                    <navigationItem key="navigationItem" title="Services" id="uPn-RM-Q9j">
                         <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="ow3-PD-lMX">
                             <connections>
                                 <action selector="closeViewController" destination="lnY-y7-ve3" id="p1s-hz-KR2"/>
@@ -2407,7 +2348,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mtG-qd-rZK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3918" y="2340"/>
+            <point key="canvasLocation" x="4320" y="2346"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="fBH-eg-rRy">
@@ -2423,23 +2364,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="afs-EH-RgM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3918" y="1587.75"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="Pvi-NW-Pek">
-            <objects>
-                <navigationController id="KrQ-g7-x7H" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="kGa-Tr-ykb">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="RNy-Ya-gaG" kind="relationship" relationship="rootViewController" id="eol-vZ-KtT"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3Qb-zK-R4j" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4779" y="1587.75"/>
+            <point key="canvasLocation" x="4320" y="1593.75"/>
         </scene>
     </scenes>
     <resources>

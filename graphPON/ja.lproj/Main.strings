@@ -2,6 +2,9 @@
 /* Class = "IBUITableViewController"; title = "HddServiceListTableViewController"; ObjectID = "2Cr-i6-BBz"; */
 "2Cr-i6-BBz.title" = "HddServiceListTableViewController";
 
+/* Class = "IBUINavigationItem"; title = "Services"; ObjectID = "2bP-wX-mNk"; */
+"2bP-wX-mNk.title" = "サービス";
+
 /* Class = "IBUITabBarItem"; title = "Ratio"; ObjectID = "35h-Du-r7v"; */
 "35h-Du-r7v.title" = "割合";
 
@@ -12,16 +15,16 @@
 "7oH-Kv-KFF.title" = "Item";
 
 /* Class = "IBUIViewController"; title = "RatioChart"; ObjectID = "85B-rS-6MT"; */
-"85B-rS-6MT.title" = "RatioChart";
+"85B-rS-6MT.title" = "割合";
 
 /* Class = "IBUITabBarItem"; title = "Availability"; ObjectID = "8W9-aR-bEr"; */
 "8W9-aR-bEr.title" = "利用可能容量";
 
+/* Class = "IBUIBarButtonItem"; title = "Services"; ObjectID = "A52-MH-2w4"; */
+"A52-MH-2w4.title" = "サービス";
+
 /* Class = "IBUILabel"; text = "Used"; ObjectID = "ACA-Ya-NEi"; */
 "ACA-Ya-NEi.text" = "Used";
-
-/* Class = "IBUINavigationItem"; title = "Display Data"; ObjectID = "D7k-pC-hsf"; */
-"D7k-pC-hsf.title" = "表示データ";
 
 /* Class = "IBUITabBarItem"; title = "Item"; ObjectID = "Dhs-07-FVl"; */
 "Dhs-07-FVl.title" = "Item";
@@ -30,7 +33,7 @@
 "Fq7-hd-MSV.title" = "SummaryChart Navigation";
 
 /* Class = "IBUIBarButtonItem"; title = "Services"; ObjectID = "Gll-6f-eOF"; */
-"Gll-6f-eOF.title" = "Services";
+"Gll-6f-eOF.title" = "サービス";
 
 /* Class = "IBUITabBarItem"; title = "Daily"; ObjectID = "Hjv-Yj-UqX"; */
 "Hjv-Yj-UqX.title" = "日次";
@@ -39,7 +42,7 @@
 "IO0-qi-r7P.title" = "サマリ";
 
 /* Class = "IBUIViewController"; title = "SummaryChart"; ObjectID = "JEX-9P-axG"; */
-"JEX-9P-axG.title" = "SummaryChart";
+"JEX-9P-axG.title" = "サマリ";
 
 /* Class = "IBUITabBarItem"; title = "Item"; ObjectID = "Jn6-4O-Ybi"; */
 "Jn6-4O-Ybi.title" = "Item";
@@ -53,6 +56,9 @@
 /* Class = "IBUITableViewController"; title = "FilterPacketLogsSelectTableViewController"; ObjectID = "LkW-q5-HCn"; */
 "LkW-q5-HCn.title" = "FilterPacketLogsSelectTableViewController";
 
+/* Class = "IBUINavigationItem"; title = "Services"; ObjectID = "M7i-19-QuV"; */
+"M7i-19-QuV.title" = "サービス";
+
 /* Class = "IBUILabel"; text = "Detail"; ObjectID = "MZX-8o-2Gf"; */
 "MZX-8o-2Gf.text" = "詳細";
 
@@ -65,14 +71,14 @@
 /* Class = "IBUITabBarController"; title = "ParentTabBarViewController"; ObjectID = "T6D-GE-Lnu"; */
 "T6D-GE-Lnu.title" = "ParentTabBarViewController";
 
+/* Class = "IBUIBarButtonItem"; title = "Services"; ObjectID = "T6p-37-1eI"; */
+"T6p-37-1eI.title" = "サービス";
+
 /* Class = "IBUISegmentedControl"; Tkg-B4-piC.segmentTitles[0] = "This month"; ObjectID = "Tkg-B4-piC"; */
 "Tkg-B4-piC.segmentTitles[0]" = "今月";
 
 /* Class = "IBUISegmentedControl"; Tkg-B4-piC.segmentTitles[1] = "Last 30 days"; ObjectID = "Tkg-B4-piC"; */
 "Tkg-B4-piC.segmentTitles[1]" = "過去30日";
-
-/* Class = "IBUIBarButtonItem"; title = "Services"; ObjectID = "VfS-KA-qak"; */
-"VfS-KA-qak.title" = "Services";
 
 /* Class = "IBUITableViewCell"; accessibilityLabel = "fassfa"; ObjectID = "WuU-pA-Vqe"; */
 "WuU-pA-Vqe.accessibilityLabel" = "fassfa";
@@ -90,7 +96,7 @@
 "XMX-od-Atw.title" = "DailyChart Navigation";
 
 /* Class = "IBUINavigationController"; title = "RatioChart"; ObjectID = "Z2W-eC-eh7"; */
-"Z2W-eC-eh7.title" = "RatioChart";
+"Z2W-eC-eh7.title" = "割合";
 
 /* Class = "IBUITabBarItem"; title = "Item"; ObjectID = "Z8o-yo-Mnj"; */
 "Z8o-yo-Mnj.title" = "Item";
@@ -101,35 +107,35 @@
 /* Class = "IBUINavigationItem"; title = "Display Data"; ObjectID = "eLw-2H-y6l"; */
 "eLw-2H-y6l.title" = "表示データ";
 
-/* Class = "IBUIBarButtonItem"; title = "Services"; ObjectID = "eyY-v0-XTy"; */
-"eyY-v0-XTy.title" = "サービス";
-
 /* Class = "IBUITableViewCell"; accessibilityLabel = "fassfa"; ObjectID = "ggm-UY-HMy"; */
 "ggm-UY-HMy.accessibilityLabel" = "fassfa";
 
 /* Class = "IBUINavigationItem"; title = "Root View Controller"; ObjectID = "haP-64-BZw"; */
-"haP-64-BZw.title" = "Root View Controller";
-
-/* Class = "IBUIBarButtonItem"; title = "Services"; ObjectID = "i4K-3A-1iz"; */
-"i4K-3A-1iz.title" = "サービス";
+"haP-64-BZw.title" = "サービス";
 
 /* Class = "IBUILabel"; text = "Daily"; ObjectID = "kt4-zw-D4x"; */
 "kt4-zw-D4x.text" = "日次";
 
 /* Class = "IBUIViewController"; title = "DailyChart"; ObjectID = "lH2-CS-amT"; */
-"lH2-CS-amT.title" = "DailyChart";
+"lH2-CS-amT.title" = "日次";
 
 /* Class = "IBUITableViewCell"; accessibilityLabel = "fassfa"; ObjectID = "o4u-Or-Uib"; */
 "o4u-Or-Uib.accessibilityLabel" = "fassfa";
 
 /* Class = "IBUIViewController"; title = "AvailabilityChart"; ObjectID = "oMS-7e-hKV"; */
-"oMS-7e-hKV.title" = "AvailabilityChart";
+"oMS-7e-hKV.title" = "利用可能容量";
+
+/* Class = "IBUINavigationItem"; title = "Services"; ObjectID = "uPn-RM-Q9j"; */
+"uPn-RM-Q9j.title" = "サービス";
 
 /* Class = "IBUISegmentedControl"; uhu-vF-HOS.segmentTitles[0] = "This month"; ObjectID = "uhu-vF-HOS"; */
 "uhu-vF-HOS.segmentTitles[0]" = "今月";
 
 /* Class = "IBUISegmentedControl"; uhu-vF-HOS.segmentTitles[1] = "Last 30 days"; ObjectID = "uhu-vF-HOS"; */
 "uhu-vF-HOS.segmentTitles[1]" = "過去30日";
+
+/* Class = "IBUIBarButtonItem"; title = "Services"; ObjectID = "zC5-UX-Zuu"; */
+"zC5-UX-Zuu.title" = "サービス";
 
 /* Class = "IBUILabel"; text = "SIM Nickname"; ObjectID = "zv7-BF-8gP"; */
 "zv7-BF-8gP.text" = "SIMニックネーム";
