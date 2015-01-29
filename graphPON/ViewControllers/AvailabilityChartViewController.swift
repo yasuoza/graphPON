@@ -93,43 +93,34 @@ class AvailabilityChartViewController: BaseChartViewController, XYDoughnutChartD
 
     func displayLatestTotalChartInformation() {
         if let slices = self.slices {
-            if slices.count == 0 {
-                return
-            }
-            let maxIndex = find(slices, maxElement(slices))
-            if maxIndex == nil {
-                return
-            }
-            if let hdoService = self.hddService?.hdoServices?[maxIndex!] {
-                let dateFormatter = NSDateFormatter()
-                dateFormatter.dateFormat = "MM/dd"
-                dateFormatter.locale = NSLocale(localeIdentifier: "en_US")
-                let today = dateFormatter.stringFromDate(NSDate())
-                let endOfThisMonth = dateFormatter.stringFromDate(NSDate().endDateOfMonth()!)
-                self.chartInformationView.setTitleText(
-                    String(format: NSLocalizedString("Available in %@-%@", comment: "Chart information title text in available chart"),
-                        today, endOfThisMonth)
-                )
-                self.chartInformationView.setHidden(false, animated: true)
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "MM/dd"
+            dateFormatter.locale = NSLocale(localeIdentifier: "en_US")
+            let today = dateFormatter.stringFromDate(NSDate())
+            let endOfThisMonth = dateFormatter.stringFromDate(NSDate().endDateOfMonth()!)
+            self.chartInformationView.setTitleText(
+                String(format: NSLocalizedString("Available in %@-%@", comment: "Chart information title text in available chart"),
+                    today, endOfThisMonth)
+            )
+            self.chartInformationView.setHidden(false, animated: true)
 
-                var totalAvailability = self.slices?.reduce(0, combine: +) ?? 1.0
-                totalAvailability = totalAvailability != 0 ? totalAvailability : 1.0
-                let usedPercentage = slices.first! / totalAvailability
+            var totalAvailability = self.slices?.reduce(0, combine: +) ?? 1.0
+            totalAvailability = totalAvailability != 0 ? totalAvailability : 1.0
+            let usedPercentage = slices.first! / totalAvailability
 
-                UIView.animateWithDuration(
-                    NSTimeInterval(kJBChartViewDefaultAnimationDuration) * 0.5,
-                    delay: 0.0,
-                    options: UIViewAnimationOptions.BeginFromCurrentState,
-                    animations: {
-                        self.usedPercentageLabel.text = NSString(format: "%.01f%%", Float(usedPercentage * 100))
-                        self.usedLabel.hidden = false
-                        self.informationValueLabelSeparatorView.alpha = 1.0
-                        self.valueLabel.text = PacketLog.stringForValue(slices.last)
-                        self.valueLabel.alpha = 1.0
-                    },
-                    completion: nil
-                )
-            }
+            UIView.animateWithDuration(
+                NSTimeInterval(kJBChartViewDefaultAnimationDuration) * 0.5,
+                delay: 0.0,
+                options: UIViewAnimationOptions.BeginFromCurrentState,
+                animations: {
+                    self.usedPercentageLabel.text = NSString(format: "%.01f%%", Float(usedPercentage * 100))
+                    self.usedLabel.hidden = false
+                    self.informationValueLabelSeparatorView.alpha = 1.0
+                    self.valueLabel.text = PacketLog.stringForValue(slices.last)
+                    self.valueLabel.alpha = 1.0
+                },
+                completion: nil
+            )
         }
     }
 

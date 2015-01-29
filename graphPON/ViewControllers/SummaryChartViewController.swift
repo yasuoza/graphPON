@@ -199,7 +199,11 @@ class SummaryChartViewController: BaseChartViewController, JBLineChartViewDelega
             _chartData.append(hdoPacketSum)
             return _chartData
         })
-        self.chartData?.append(totalSum)
+
+        // Total sum makes meaning only when user has more than one service
+        if self.chartData?.count > 1 {
+            self.chartData?.append(totalSum)
+        }
     }
 
     // MARK: - JBLineChartViewDataSource
