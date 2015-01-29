@@ -13,7 +13,7 @@ class HdoService: NSObject {
         get {
             switch self.duration {
             case .InThisMonth:
-                return self.packetLogsInThisMonth
+                return self.collectInThisMonthPacketLogs()
             case .InLast30Days:
                 return self.allPacketLogs
             }
@@ -40,11 +40,6 @@ class HdoService: NSObject {
     var duration: Duration = .InThisMonth
 
     private var allPacketLogs: [PacketLog] = []
-    private var packetLogsInThisMonth: [PacketLog] {
-        get {
-            return self.collectInThisMonthPacketLogs()
-        }
-    }
 
     init(hdoServiceCode: String, packetLogs: [PacketLog]) {
         super.init()
