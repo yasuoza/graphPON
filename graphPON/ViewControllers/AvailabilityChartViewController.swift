@@ -127,27 +127,10 @@ class AvailabilityChartViewController: BaseChartViewController, XYDoughnutChartD
         }
     }
 
-    func promptLogin() {
-        switch OAuth2Client.sharedClient.state {
-        case OAuth2Client.AuthorizationState.UnAuthorized:
-            if let _ = self.presentedViewController as? PromptLoginController {
-                break
-            }
-            return self.presentViewController(
-                PromptLoginController.alertController(),
-                animated: true,
-                completion: nil
-            )
-        default:
-            break
-        }
-    }
-
     // MARK: - Private methods
 
     func reBuildChartData() {
         let logManager = PacketInfoManager.sharedManager
-        self.slices = []
 
         if let hddService = logManager.hddServiceForServiceCode(self.serviceCode ?? "") ?? logManager.hddServices.first {
             self.hddService = hddService
@@ -163,11 +146,13 @@ class AvailabilityChartViewController: BaseChartViewController, XYDoughnutChartD
             return hdoInfo.packetLogs.reduce(0.0, combine: { (hdoPacketSum, packetLog) -> CGFloat in
                 return hdoPacketSum + CGFloat(packetLog.withCoupon)
             })
-            } ?? []
+        }
 
-        let used = packetSum.reduce(0, combine:+)
-        let available =  CGFloat(self.hddService?.availableCouponVolume() ?? 0)
-        self.slices = [used, available];
+        if let usedPackets = packetSum {
+            let used = usedPackets.reduce(0, combine:+)
+            let available =  CGFloat(self.hddService?.availableCouponVolume() ?? 0)
+            self.slices = [used, available];
+        }
     }
 
     // MARK: - XYDoughnutChartDelegate

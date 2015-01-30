@@ -13,7 +13,6 @@ class ErrorAlertController: UIAlertController {
         return alert
     }
 
-
     private class func buildTitleAndMessageFromError(error: NSError) -> (String, String) {
         switch error.domain {
         case String(OAuth2Router.APIErrorDomain):
