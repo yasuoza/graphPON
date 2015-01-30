@@ -76,18 +76,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-    // REQUIRED FOR STATE RESTORATION
-    // Identify we are interested in storing application state, this is called when the app is suspended to the background.
-    func application(application: UIApplication, shouldSaveApplicationState coder: NSCoder) -> Bool {
-        return true
-    }
-
-    // REQUIRED FOR STATE RESTORATION
-    // Identify we are interested in re-storing application state, this is called when the app is re-launched.
-    func application(application: UIApplication, shouldRestoreApplicationState coder: NSCoder) -> Bool {
-        return true
-    }
-
     // MARK: - Private methods
 
     private func handleAPIError(error: NSError?) {

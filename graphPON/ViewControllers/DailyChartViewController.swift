@@ -247,23 +247,4 @@ class DailyChartViewController: BaseChartViewController, JBBarChartViewDelegate,
         }
     }
 
-    // MARK: - UIStateRestoration
-
-    override func encodeRestorableStateWithCoder(coder: NSCoder) {
-        coder.encodeObject(self.serviceCode, forKey: "hdoServiceCode")
-        coder.encodeInteger(self.chartDurationSegment.rawValue, forKey: "hdoShartDurationSegment")
-        coder.encodeInteger(self.chartDataFilteringSegment.rawValue, forKey: "hdoChartFilteringSegment")
-        super.encodeRestorableStateWithCoder(coder)
-    }
-
-    override func decodeRestorableStateWithCoder(coder: NSCoder) {
-        if let hddServiceCode = coder.decodeObjectForKey("hdoServiceCode") as? String {
-            self.serviceCode = hddServiceCode
-        }
-        self.chartDurationSegment = HdoService.Duration(rawValue: Int(coder.decodeIntForKey("hdoShartDurationSegment")))!
-        self.chartDurationSegmentControl?.selectedSegmentIndex = self.chartDurationSegment.rawValue
-        self.chartDataFilteringSegment = ChartDataFilteringSegment(rawValue: Int(coder.decodeIntForKey("hdoChartFilteringSegment")))!
-        super.decodeRestorableStateWithCoder(coder)
-    }
-
 }

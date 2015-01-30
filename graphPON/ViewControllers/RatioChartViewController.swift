@@ -233,23 +233,4 @@ class RatioChartViewController: BaseChartViewController, XYDoughnutChartDelegate
         }
     }
 
-    // MARK: - UIStateRestoration
-
-    override func encodeRestorableStateWithCoder(coder: NSCoder) {
-        coder.encodeObject(self.serviceCode, forKey: "hddServiceCode")
-        coder.encodeInteger(self.chartDurationSegment.rawValue, forKey: "hddChartDurationSegment")
-        coder.encodeInteger(self.chartDataFilteringSegment.rawValue, forKey: "hddChartFilteringSegment")
-        super.encodeRestorableStateWithCoder(coder)
-    }
-
-    override func decodeRestorableStateWithCoder(coder: NSCoder) {
-        if let hddServiceCode = coder.decodeObjectForKey("hddServiceCode") as? String {
-            self.serviceCode = hddServiceCode
-        }
-        self.chartDurationSegment = HdoService.Duration(rawValue: Int(coder.decodeIntForKey("hddChartDurationSegment")))!
-        self.chartDurationSegmentControl?.selectedSegmentIndex = self.chartDurationSegment.rawValue
-        self.chartDataFilteringSegment = ChartDataFilteringSegment(rawValue: Int(coder.decodeIntForKey("hddChartFilteringSegment")))!
-        super.decodeRestorableStateWithCoder(coder)
-    }
-
 }

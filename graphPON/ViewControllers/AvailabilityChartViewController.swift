@@ -93,6 +93,9 @@ class AvailabilityChartViewController: BaseChartViewController, XYDoughnutChartD
 
     func displayLatestTotalChartInformation() {
         if let slices = self.slices {
+            if slices.first == nil {
+                return
+            }
             let dateFormatter = NSDateFormatter()
             dateFormatter.dateFormat = "MM/dd"
             dateFormatter.locale = NSLocale(localeIdentifier: "en_US")
@@ -163,7 +166,7 @@ class AvailabilityChartViewController: BaseChartViewController, XYDoughnutChartD
             } ?? []
 
         let used = packetSum.reduce(0, combine:+)
-        let available = CGFloat(self.hddService?.availableCouponVolume() ?? 0)
+        let available =  CGFloat(self.hddService?.availableCouponVolume() ?? 0)
         self.slices = [used, available];
     }
 
@@ -200,23 +203,4 @@ class AvailabilityChartViewController: BaseChartViewController, XYDoughnutChartD
         }
     }
 
-    // MARK: - UIStateRestoration
-
-    override func encodeRestorableStateWithCoder(coder: NSCoder) {
-        coder.encodeObject(self.serviceCode, forKey: "hddServiceCode")
-        coder.encodeInteger(self.chartDurationSegment.rawValue, forKey: "hddChartDurationSegment")
-        coder.encodeInteger(self.chartDataFilteringSegment.rawValue, forKey: "hddChartFilteringSegment")
-        super.encodeRestorableStateWithCoder(coder)
-    }
-
-    override func decodeRestorableStateWithCoder(coder: NSCoder) {
-        if let hddServiceCode = coder.decodeObjectForKey("hddServiceCode") as? String {
-            self.serviceCode = hddServiceCode
-        }
-        self.chartDurationSegment = HdoService.Duration(rawValue: Int(coder.decodeIntForKey("hddChartDurationSegment")))!
-        self.chartDurationSegmentControl?.selectedSegmentIndex = self.chartDurationSegment.rawValue
-        self.chartDataFilteringSegment = ChartDataFilteringSegment(rawValue: Int(coder.decodeIntForKey("hddChartFilteringSegment")))!
-        super.decodeRestorableStateWithCoder(coder)
-    }
-    
 }
