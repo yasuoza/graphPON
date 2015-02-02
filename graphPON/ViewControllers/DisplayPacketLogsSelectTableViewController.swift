@@ -5,7 +5,6 @@ class DisplayPacketLogsSelectTableViewController: UITableViewController {
     var delegate: DisplayPacketLogsSelectTableViewControllerDelegate?
     var selectedFilteringSegment: BaseChartViewController.ChartDataFilteringSegment?
 
-
     // MARK: - IBActions
 
     @IBAction func closeViewController() {
@@ -38,7 +37,6 @@ class DisplayPacketLogsSelectTableViewController: UITableViewController {
             cell.accessoryType = .None
             cell.textLabel?.textColor = UIColor.blackColor()
         }
-
 
         return cell
     }
