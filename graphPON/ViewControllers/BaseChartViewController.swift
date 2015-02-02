@@ -15,6 +15,7 @@ let kJBAreaChartViewControllerChartLineWidth      = CGFloat(2.0)
 
 class BaseChartViewController: BaseViewController, StateRestorable {
 
+    @IBOutlet weak var extendedNavBarView: ExtendedNavBarView?
     @IBOutlet weak var loadingIndicatorView: UIActivityIndicatorView!
     @IBOutlet weak var chartInformationView: ChartInformationView!
     @IBOutlet weak var informationValueLabelSeparatorView: UIView!
@@ -121,6 +122,19 @@ class BaseChartViewController: BaseViewController, StateRestorable {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+
+        if let extendedNavBarView = self.extendedNavBarView {
+            if let navBarFooterImageView = self.navBarHairlineImageView {
+                navBarFooterImageView.hidden = false
+                navBarFooterImageView.frame = CGRectMake(
+                    extendedNavBarView.frame.origin.x,
+                    extendedNavBarView.bounds.origin.y + extendedNavBarView.frame.height,
+                    navBarFooterImageView.frame.width,
+                    navBarFooterImageView.frame.height
+                )
+                self.extendedNavBarView!.addSubview(navBarFooterImageView)
+            }
+        }
 
         if iOS3_5InchPortraitOrientation() {
             self.valueLabelTopSpaceConstraint.constant = -8.0

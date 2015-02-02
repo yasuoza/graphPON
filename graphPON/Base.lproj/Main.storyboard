@@ -419,6 +419,7 @@
                         <outlet property="chartDurationSegmentControl" destination="Wva-27-qQN" id="ZzX-9v-nxR"/>
                         <outlet property="chartInformationView" destination="ijf-0g-1O4" id="dBg-OM-o6Z"/>
                         <outlet property="chartViewContainerView" destination="OYq-J2-cFd" id="a3Z-FA-vhX"/>
+                        <outlet property="extendedNavBarView" destination="U8s-Fg-9Wb" id="rcK-QD-fEN"/>
                         <outlet property="informationValueLabelSeparatorView" destination="dGs-Or-dAF" id="A9i-kn-473"/>
                         <outlet property="loadingIndicatorView" destination="203-70-Mle" id="Qa7-Jk-aJT"/>
                         <outlet property="valueLabel" destination="jES-Jp-I3I" id="ma7-Oh-2LJ"/>
@@ -831,6 +832,7 @@
                         <outlet property="chartDurationSegmentControl" destination="uhu-vF-HOS" id="GYh-sZ-5sq"/>
                         <outlet property="chartInformationView" destination="9YX-4L-xZq" id="Kzz-ph-Em3"/>
                         <outlet property="chartViewContainerView" destination="Jes-Ju-HKb" id="h2v-0f-yT0"/>
+                        <outlet property="extendedNavBarView" destination="Fj4-rn-Lhx" id="4j2-7x-b9h"/>
                         <outlet property="informationValueLabelSeparatorView" destination="ks8-gA-4XF" id="ood-jE-eGt"/>
                         <outlet property="valueLabel" destination="RSm-tY-YgJ" id="x1F-ic-IpF"/>
                         <outlet property="valueLabelTopSpaceConstraint" destination="N3j-d8-eD8" id="NIZ-L2-lMo"/>
@@ -1625,6 +1627,7 @@
                     <connections>
                         <outlet property="chartDurationSegmentControl" destination="Tkg-B4-piC" id="4Nq-A5-07Z"/>
                         <outlet property="chartInformationView" destination="zRI-we-3hb" id="80o-EL-P0R"/>
+                        <outlet property="extendedNavBarView" destination="eGS-JJ-7fP" id="GxG-je-CA3"/>
                         <outlet property="informationValueLabelSeparatorView" destination="7a7-8m-ptd" id="mUf-VN-GGX"/>
                         <outlet property="ratioChartContainerView" destination="VAQ-0c-6HB" id="bgA-ku-lmn"/>
                         <outlet property="valueLabel" destination="xIp-12-LIP" id="EMa-FU-TrL"/>
@@ -2297,6 +2300,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="chartInformationView" destination="8kJ-oS-fxo" id="cr8-1W-NOR"/>
+                        <outlet property="extendedNavBarView" destination="kiU-5M-f4W" id="mFz-lm-HGh"/>
                         <outlet property="informationValueLabelSeparatorView" destination="gmG-ok-t8O" id="n7P-dZ-Wjx"/>
                         <outlet property="ratioChartContainerView" destination="VUb-JG-FGe" id="av3-Do-1hB"/>
                         <outlet property="usedLabel" destination="ACA-Ya-NEi" id="wdX-8t-ihs"/>
