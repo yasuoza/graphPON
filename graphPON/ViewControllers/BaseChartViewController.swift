@@ -128,11 +128,10 @@ class BaseChartViewController: BaseViewController, StateRestorable {
                 navBarFooterImageView.hidden = false
                 navBarFooterImageView.frame = CGRectMake(
                     extendedNavBarView.frame.origin.x,
-                    extendedNavBarView.bounds.origin.y + extendedNavBarView.frame.height,
+                    extendedNavBarView.frame.origin.y + extendedNavBarView.frame.height,
                     navBarFooterImageView.frame.width,
                     navBarFooterImageView.frame.height
                 )
-                self.extendedNavBarView!.addSubview(navBarFooterImageView)
             }
         }
 
