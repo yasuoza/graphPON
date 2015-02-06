@@ -167,7 +167,9 @@ class BaseChartViewController: BaseViewController, StateRestorable {
     // MARK: - StateRestorableProtocol
 
     func storeCurrentState() {
-        NSUserDefaults().setObject(self.serviceCode ?? nil, forKey: self.restrationalServiceCodeIdentifier)
+        if let serviceCode = self.serviceCode {
+            NSUserDefaults().setObject(serviceCode, forKey: self.restrationalServiceCodeIdentifier)
+        }
         NSUserDefaults().setInteger(self.chartDurationSegment.rawValue, forKey: self.restrationalDurationSegmentIdentifier)
         NSUserDefaults().setInteger(self.chartDataFilteringSegment.rawValue, forKey: self.restrationalDataFilteringSegmentIdentifier)
     }
