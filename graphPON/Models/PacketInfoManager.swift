@@ -15,11 +15,11 @@ class PacketInfoManager: NSObject {
 
     private(set) var hddServices: [HddService] = []
 
-    lazy var hddServiceCodes: () -> [String] = { [unowned self] in
+    var hddServiceCodes: [String] {
         return self.hddServices.map { $0.hddServiceCode }
     }
 
-    lazy var hdoServiceCodes: () -> [String] = { [unowned self] in
+    var hdoServiceCodes: [String] {
         return self.hddServices.reduce([], combine: { (var _hddServiceCodes, hddService) -> [String] in
             if let hdoInfos = hddService.hdoServices {
                 return _hddServiceCodes + hdoInfos.reduce([], combine: { (var _hdoInfoCodes, hdoInfo) -> [String] in
@@ -31,7 +31,7 @@ class PacketInfoManager: NSObject {
         })
     }
 
-    lazy var hdoServiceNumbers: () -> [String] = { [unowned self] in
+    var hdoServiceNumbers: [String] {
         return self.hddServices.reduce([], combine: { (var _hddServiceCodes, hddService) -> [String] in
             if let hdoInfos = hddService.hdoServices {
                 return _hddServiceCodes + hdoInfos.reduce([], combine: { (var _hdoInfoCodes, hdoInfo) -> [String] in

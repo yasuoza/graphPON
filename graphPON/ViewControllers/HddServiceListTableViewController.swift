@@ -12,9 +12,9 @@ class HddServiceListTableViewController: UITableViewController {
 
         switch self.mode {
         case .Summary, .Ratio, .Availability:
-            self.serviceCodes = PacketInfoManager.sharedManager.hddServiceCodes()
+            self.serviceCodes = PacketInfoManager.sharedManager.hddServiceCodes
         case .Daily:
-            self.serviceCodes = PacketInfoManager.sharedManager.hdoServiceNumbers()
+            self.serviceCodes = PacketInfoManager.sharedManager.hdoServiceNumbers
         }
     }
 
@@ -28,7 +28,7 @@ class HddServiceListTableViewController: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         if self.mode == .Daily {
-            return PacketInfoManager.sharedManager.hddServiceCodes().count ?? 0
+            return PacketInfoManager.sharedManager.hddServiceCodes.count ?? 0
         }
         return 1
     }
@@ -36,7 +36,7 @@ class HddServiceListTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch self.mode {
         case .Summary, .Ratio, .Availability:
-            return PacketInfoManager.sharedManager.hddServiceCodes().count
+            return PacketInfoManager.sharedManager.hddServiceCodes.count
         case .Daily:
             return PacketInfoManager.sharedManager.hddServices[section].hdoServices?.count ?? 0
         }
