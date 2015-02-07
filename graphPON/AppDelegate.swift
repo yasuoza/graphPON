@@ -10,7 +10,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         window?.tintColor = GlobalTintColor
 
-        let selectedIndex = NSUserDefaults().integerForKey("selectedIndex")
+        let selectedIndex = NSUserDefaults.standardUserDefaults().integerForKey("selectedIndex")
         if let tabBarController = window?.rootViewController as? UITabBarController {
             tabBarController.selectedIndex = selectedIndex
         }
@@ -46,7 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         if let tabBarController = window?.rootViewController as UITabBarController? {
             let selectedIndex = tabBarController.selectedIndex
-            NSUserDefaults().setInteger(selectedIndex, forKey: "selectedIndex")
+            NSUserDefaults.standardUserDefaults().setInteger(selectedIndex, forKey: "selectedIndex")
             for vc in tabBarController.viewControllers! {
                 if let navVC = vc as? UINavigationController {
                     if let vc = navVC.viewControllers.first as? StateRestorable {

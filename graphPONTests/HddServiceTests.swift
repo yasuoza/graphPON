@@ -4,7 +4,7 @@ import XCTest
 class HddServiceTests: XCTestCase {
 
     override func tearDown() {
-        NSUserDefaults().removeObjectForKey("hddServiceCode:nickName")
+        NSUserDefaults.standardUserDefaults().removeObjectForKey("hddServiceCode:nickName")
 
         super.tearDown()
     }

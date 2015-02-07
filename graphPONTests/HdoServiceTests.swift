@@ -25,7 +25,7 @@ class HdoServiceTests: XCTestCase {
     }
 
     override func tearDown() {
-        NSUserDefaults().removeObjectForKey("hdoServiceCode:nickName")
+        NSUserDefaults.standardUserDefaults().removeObjectForKey("hdoServiceCode:nickName")
 
         super.tearDown()
     }

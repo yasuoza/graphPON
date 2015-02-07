@@ -167,25 +167,27 @@ class BaseChartViewController: BaseViewController, StateRestorable {
     // MARK: - StateRestorableProtocol
 
     func storeCurrentState() {
+        let standardDefaults = NSUserDefaults.standardUserDefaults()
         if let serviceCode = self.serviceCode {
-            NSUserDefaults().setObject(serviceCode, forKey: self.restrationalServiceCodeIdentifier)
+            standardDefaults.setObject(serviceCode, forKey: self.restrationalServiceCodeIdentifier)
         }
-        NSUserDefaults().setInteger(self.chartDurationSegment.rawValue, forKey: self.restrationalDurationSegmentIdentifier)
-        NSUserDefaults().setInteger(self.chartDataFilteringSegment.rawValue, forKey: self.restrationalDataFilteringSegmentIdentifier)
+        standardDefaults.setInteger(self.chartDurationSegment.rawValue, forKey: self.restrationalDurationSegmentIdentifier)
+        standardDefaults.setInteger(self.chartDataFilteringSegment.rawValue, forKey: self.restrationalDataFilteringSegmentIdentifier)
     }
 
     func restoreLastState() {
-        if let serviceCode = NSUserDefaults().objectForKey(self.restrationalServiceCodeIdentifier) as? String {
+        let standardDefaults = NSUserDefaults.standardUserDefaults()
+        if let serviceCode = standardDefaults.objectForKey(self.restrationalServiceCodeIdentifier) as? String {
             self.serviceCode = serviceCode
         }
         self.chartDurationSegment
-            = HdoService.Duration(rawValue: NSUserDefaults().integerForKey(self.restrationalDurationSegmentIdentifier))!
+            = HdoService.Duration(rawValue: standardDefaults.integerForKey(self.restrationalDurationSegmentIdentifier))!
         self.chartDataFilteringSegment
-            = ChartDataFilteringSegment(rawValue: NSUserDefaults().integerForKey(self.restrationalDataFilteringSegmentIdentifier))!
+            = ChartDataFilteringSegment(rawValue: standardDefaults.integerForKey(self.restrationalDataFilteringSegmentIdentifier))!
 
-        NSUserDefaults().setObject(nil, forKey: self.restrationalServiceCodeIdentifier)
-        NSUserDefaults().setInteger(HdoService.Duration.InThisMonth.rawValue, forKey: self.restrationalDurationSegmentIdentifier)
-        NSUserDefaults().setInteger(ChartDataFilteringSegment.All.rawValue, forKey: self.restrationalDataFilteringSegmentIdentifier)
+        standardDefaults.setObject(nil, forKey: self.restrationalServiceCodeIdentifier)
+        standardDefaults.setInteger(HdoService.Duration.InThisMonth.rawValue, forKey: self.restrationalDurationSegmentIdentifier)
+        standardDefaults.setInteger(ChartDataFilteringSegment.All.rawValue, forKey: self.restrationalDataFilteringSegmentIdentifier)
     }
 
 }

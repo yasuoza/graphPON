@@ -262,8 +262,7 @@
                                                 <include reference="dVa-WF-aB7"/>
                                             </mask>
                                         </variation>
-                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="16" width="368" height="178"/>
+                                        <variation key="heightClass=regular-widthClass=compact">
                                             <mask key="constraints">
                                                 <exclude reference="4FF-uQ-pRp"/>
                                             </mask>
@@ -680,8 +679,7 @@
                                                 <include reference="YWT-4i-Onp"/>
                                             </mask>
                                         </variation>
-                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="16" width="368" height="178"/>
+                                        <variation key="heightClass=regular-widthClass=compact">
                                             <mask key="constraints">
                                                 <exclude reference="HJw-Qa-Ndk"/>
                                             </mask>
@@ -2080,7 +2078,7 @@
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="100"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <nil key="highlightedColor"/>
+                                                <color key="highlightedColor" red="0.18795108795166016" green="0.78501296043395996" blue="0.18474417924880981" alpha="0.51100000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <variation key="default">
                                                     <mask key="constraints">
                                                         <exclude reference="Pj2-xg-ehU"/>

@@ -17,16 +17,16 @@ class HddService: NSObject {
     }
     var nickName: String {
         get {
-            if let nickname = NSUserDefaults().objectForKey("\(self.hddServiceCode):nickName") as String?  {
+            if let nickname = NSUserDefaults.standardUserDefaults().objectForKey("\(self.hddServiceCode):nickName") as String?  {
                 return nickname
             }
             return self.hddServiceCode
         }
         set(nickname) {
             if nickname != "" {
-                NSUserDefaults().setObject(nickname, forKey: "\(self.hddServiceCode):nickName")
+                NSUserDefaults.standardUserDefaults().setObject(nickname, forKey: "\(self.hddServiceCode):nickName")
             } else {
-                NSUserDefaults().removeObjectForKey("\(self.hddServiceCode):nickName")
+                NSUserDefaults.standardUserDefaults().removeObjectForKey("\(self.hddServiceCode):nickName")
             }
         }
     }
