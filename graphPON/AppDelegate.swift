@@ -24,6 +24,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if let dict = parsedQuery {
                 let credential = OAuth2Credential(dictionary: dict)
                 if credential.save() {
+                    if let tabBarController = self.window?.rootViewController as? UITabBarController {
+                        if let navVC = tabBarController.selectedViewController as? UINavigationController {
+                            if let loginController = navVC.visibleViewController as? PromptLoginController {
+                                loginController.dismissViewControllerAnimated(true, completion: nil)
+                            }
+                        }
+                    }
                     OAuth2Client.sharedClient.authorized(credential: credential)
                     PacketInfoManager.sharedManager.fetchLatestPacketLog(completion: { error in
                         self.handleAPIError(error)
