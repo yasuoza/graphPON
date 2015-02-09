@@ -110,14 +110,27 @@ class SettingTableViewController: UITableViewController, SettingTableHdoServiceS
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return PacketInfoManager.sharedManager.hddServices.count
+        return PacketInfoManager.sharedManager.hddServices.count + 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == numberOfSectionsInTableView(tableView) - 1 {
+            return 1
+        }
         return 1 + 2 * (PacketInfoManager.sharedManager.hddServices[section].hdoServices?.count ?? 0)
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        // Logout cell
+        if indexPath.section == self.numberOfSectionsInTableView(tableView) - 1 {
+            let cell = tableView.dequeueReusableCellWithIdentifier("SettingTableServiceLogoutCell", forIndexPath: indexPath) as UITableViewCell
+            cell.textLabel?.text = NSLocalizedString("Logout", comment: "Logout from service")
+            cell.textLabel?.textAlignment = .Center
+            cell.textLabel?.textColor = GlobalTintColor
+            return cell
+        }
+
+        // Service cells
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCellWithIdentifier("SettingTableHddServiceNicknameCell", forIndexPath: indexPath) as UITableViewCell
             cell.detailTextLabel?.text = PacketInfoManager.sharedManager.hddServices[indexPath.section].nickName
@@ -143,6 +156,9 @@ class SettingTableViewController: UITableViewController, SettingTableHdoServiceS
     // MARK: - Table view delegate
 
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == numberOfSectionsInTableView(tableView) - 1 {
+            return nil
+        }
         return PacketInfoManager.sharedManager.hddServices[section].hddServiceCode
     }
 
@@ -158,10 +174,27 @@ class SettingTableViewController: UITableViewController, SettingTableHdoServiceS
         let cell = tableView.cellForRowAtIndexPath(indexPath)!
         cell.selected = false
 
+        // Logout action
+        if indexPath.section == numberOfSectionsInTableView(tableView) - 1 {
+            let alertController = UIAlertController(
+                title: NSLocalizedString("AreYouSureToLogout?", comment: "Logout confirm alert title text"),
+                message: NSLocalizedString("ToLogoutFromServiceTapLogoutButton", comment: "Logout confirm alert message text"),
+                preferredStyle: UIAlertControllerStyle.Alert
+            )
+            let logoutAction = UIAlertAction(title: "Logout", style: .Default, handler: { (_) in
+                OAuth2Client.sharedClient.deauthorize()
+                OAuth2Credential.restoreCredential()?.destroy()
+                OAuth2Client.sharedClient.openOAuthAuthorizeURL()
+            })
+            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+            alertController.addAction(logoutAction)
+            alertController.addAction(cancelAction)
+            self.presentViewController(alertController, animated: true, completion: nil)
+            return
+        }
+
+        // Save nickname action
         let alertController = UIAlertController(title: "Nickname", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
-
-        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
-
         let saveAction = UIAlertAction(title: "Save", style: .Default) { (_) in
             let nicknameTextField = alertController.textFields![0] as UITextField
             if indexPath.row == 0 {
@@ -174,6 +207,7 @@ class SettingTableViewController: UITableViewController, SettingTableHdoServiceS
             }
             self.tableView.reloadData()
         }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
         alertController.addTextFieldWithConfigurationHandler { (textField) in
             textField.clearButtonMode = .WhileEditing
             textField.autocapitalizationType = .Words
@@ -188,8 +222,8 @@ class SettingTableViewController: UITableViewController, SettingTableHdoServiceS
             }
         }
 
-        alertController.addAction(cancelAction)
         alertController.addAction(saveAction)
+        alertController.addAction(cancelAction)
 
         self.presentViewController(alertController, animated: true, completion: nil)
     }
