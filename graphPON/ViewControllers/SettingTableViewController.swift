@@ -60,18 +60,39 @@ class SettingTableViewController: UITableViewController, SettingTableHdoServiceS
 
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         Alamofire.request(OAuth2Router.PutCoupon(params))
-            .responseJSON { (_, _, json, error) in
+            .responseJSON { (_, response, json, error) in
                 UIApplication.sharedApplication().networkActivityIndicatorVisible = false
 
                 if let error = error {
-                    // Alert here
+                    self.presentErrorAlertController(error)
                     return
                 }
 
-                let responseJSON = JSON(json!)
-                if responseJSON["returnCode"].string != "OK" {
-                    // Alert here
+                let json = JSON(json!)
+
+                switch response!.statusCode {
+                case 403:
+                    OAuth2Client.sharedClient.deauthorize()
+                    self.presentPromptLoginControllerIfNeeded()
                     return
+                case 429:
+                    let apiError = NSError(
+                        domain: OAuth2Router.APIErrorDomain,
+                        code: OAuth2Router.TooManyRequestErrorCode,
+                        userInfo: ["resultCode": json["resultCode"].stringValue]
+                    )
+                    self.presentErrorAlertController(apiError)
+                    return
+                case 400...503:
+                    let apiError = NSError(
+                        domain: OAuth2Router.APIErrorDomain,
+                        code: OAuth2Router.UnknownErrorCode,
+                        userInfo: ["resultCode": json["resultCode"].stringValue]
+                    )
+                    self.presentErrorAlertController(apiError)
+                    return
+                default:
+                    break
                 }
 
                 self.couponUseDict = [:]
