@@ -164,6 +164,7 @@ class SettingTableViewController: UITableViewController, SettingTableHdoServiceS
         } else {
             let cell = tableView.dequeueReusableCellWithIdentifier("SettingTableHdoServiceSwitchCell", forIndexPath: indexPath) as SettingTableHdoServiceSwitchCell
             cell.textLabel?.text = NSLocalizedString("UseCoupon", comment: "Use coupon or not in setting table cell")
+            cell.textLabel?.backgroundColor = UIColor.clearColor()
             cell.delegate = self
 
             if let hdoService = PacketInfoManager.sharedManager.hddServices[indexPath.section].hdoServices?[(indexPath.row - 2) / 2] {
@@ -186,6 +187,9 @@ class SettingTableViewController: UITableViewController, SettingTableHdoServiceS
     override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
         // Disable coupon cell selection
         if indexPath.row > 0 && indexPath.row % 2 == 0 {
+            if let cell = tableView.cellForRowAtIndexPath(indexPath) {
+                cell.selected = false
+            }
             return nil
         }
         return indexPath

@@ -1025,7 +1025,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="right" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LBC-yu-fkH">
-                                            <rect key="frame" x="-25" y="-15" width="51" height="31"/>
+                                            <rect key="frame" x="531" y="6.5" width="51" height="31"/>
                                             <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
                                                 <rect key="frame" x="331" y="6" width="51" height="31"/>
                                             </variation>
@@ -1034,16 +1034,11 @@
                                             </connections>
                                         </switch>
                                     </subviews>
-                                    <variation key="default">
-                                        <mask key="subviews">
-                                            <exclude reference="LBC-yu-fkH"/>
-                                        </mask>
-                                    </variation>
-                                    <variation key="heightClass=regular-widthClass=compact">
-                                        <mask key="subviews">
-                                            <include reference="LBC-yu-fkH"/>
-                                        </mask>
-                                    </variation>
+                                    <constraints>
+                                        <constraint firstAttribute="centerY" secondItem="LBC-yu-fkH" secondAttribute="centerY" id="TnB-5l-du5"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="LBC-yu-fkH" secondAttribute="trailing" constant="12" id="YiS-oo-RkG"/>
+                                    </constraints>
+                                    <variation key="heightClass=regular-widthClass=compact"/>
                                 </tableViewCellContentView>
                                 <accessibility key="accessibilityConfiguration" label="fassfa"/>
                                 <connections>
