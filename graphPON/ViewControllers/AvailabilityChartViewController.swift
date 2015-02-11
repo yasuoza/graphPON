@@ -31,6 +31,8 @@ class AvailabilityChartViewController: BaseChartViewController, XYDoughnutChartD
         self.ratioChartContainerView.chartView.radiusOffset = 0.8;
 
         self.chartInformationView.setHidden(true, animated: true)
+
+        self.reBuildChartData()
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -56,6 +58,7 @@ class AvailabilityChartViewController: BaseChartViewController, XYDoughnutChartD
             object: nil,
             queue: NSOperationQueue.mainQueue(),
             usingBlock: { _ in
+                self.reBuildChartData()
                 self.reloadChartView(true)
         })
     }
@@ -77,12 +80,11 @@ class AvailabilityChartViewController: BaseChartViewController, XYDoughnutChartD
 
     @IBAction func chartSegmentedControlValueDidChanged(segmentedControl: UISegmentedControl) {
         self.chartDurationSegment = HdoService.Duration(rawValue: segmentedControl.selectedSegmentIndex)!
+        self.reBuildChartData()
         self.reloadChartView(true)
     }
 
     func reloadChartView(animated: Bool) {
-        self.reBuildChartData()
-
         if let hddService = self.hddService {
             self.navigationItem.title = "\(hddService.nickName)"
         }
@@ -132,7 +134,8 @@ class AvailabilityChartViewController: BaseChartViewController, XYDoughnutChartD
     func reBuildChartData() {
         let logManager = PacketInfoManager.sharedManager
 
-        if let hddService = logManager.hddServiceForServiceCode(self.serviceCode ?? "") ?? logManager.hddServices.first {
+        if let hddService = logManager.hddServiceForServiceCode(self.serviceCode)
+            ?? logManager.hddServices.first {
             self.hddService = hddService
         } else {
             return
@@ -184,6 +187,7 @@ class AvailabilityChartViewController: BaseChartViewController, XYDoughnutChartD
     func serviceDidSelectedSection(section: Int, row: Int) {
         self.hddService = PacketInfoManager.sharedManager.hddServices[row]
         if self.traitCollection.horizontalSizeClass == .Regular {
+            self.reBuildChartData()
             self.reloadChartView(true)
         }
     }

@@ -49,6 +49,8 @@ class DailyChartViewController: BaseChartViewController, JBBarChartViewDelegate,
                 self.hdoService = hdoService
             }
         }
+
+        self.reBuildChartData()
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -65,6 +67,7 @@ class DailyChartViewController: BaseChartViewController, JBBarChartViewDelegate,
             object: nil,
             queue: NSOperationQueue.mainQueue(),
             usingBlock: { _ in
+                self.reBuildChartData()
                 self.reloadChartView(true)
         })
     }
@@ -92,12 +95,11 @@ class DailyChartViewController: BaseChartViewController, JBBarChartViewDelegate,
 
     @IBAction func chartSegmentedControlValueDidChanged(segmentedControl: UISegmentedControl) {
         self.chartDurationSegment = HdoService.Duration(rawValue: segmentedControl.selectedSegmentIndex)!
+        self.reBuildChartData()
         self.reloadChartView(false)
     }
 
     func reloadChartView(animated: Bool) {
-        self.reBuildChartData()
-
         if let hdoService = self.hdoService {
             self.navigationItem.title = "\(hdoService.nickName) (\(self.chartDataFilteringSegment.text()))"
         }
@@ -147,12 +149,11 @@ class DailyChartViewController: BaseChartViewController, JBBarChartViewDelegate,
     // MARK: - Private methods
 
     func reBuildChartData() {
-        if let hdoService = PacketInfoManager.sharedManager.hdoServiceForServiceCode(self.serviceCode) {
+        if let hdoService = PacketInfoManager.sharedManager.hdoServiceForServiceCode(self.serviceCode)
+            ?? PacketInfoManager.sharedManager.hddServices.first?.hdoServices?.first {
             self.hdoService = hdoService
-        }
-
-        if self.serviceCode == nil && self.hdoService == nil {
-            self.hdoService = PacketInfoManager.sharedManager.hddServices.first?.hdoServices?.first
+        } else {
+            return
         }
 
         self.hdoService?.duration = self.chartDurationSegment
@@ -234,6 +235,7 @@ class DailyChartViewController: BaseChartViewController, JBBarChartViewDelegate,
         self.serviceCode = PacketInfoManager.sharedManager.hddServices[section].hdoServices![row].hdoServiceCode
         self.hdoService = PacketInfoManager.sharedManager.hddServices[section].hdoServices?[row]
         if self.traitCollection.horizontalSizeClass == .Regular {
+            self.reBuildChartData()
             self.reloadChartView(true)
         }
     }
@@ -243,6 +245,7 @@ class DailyChartViewController: BaseChartViewController, JBBarChartViewDelegate,
     func displayPacketLogSegmentDidSelected(segment: Int) {
         self.chartDataFilteringSegment = ChartDataFilteringSegment(rawValue: segment)!
         if self.traitCollection.horizontalSizeClass == .Regular {
+            self.reBuildChartData()
             self.reloadChartView(true)
         }
     }

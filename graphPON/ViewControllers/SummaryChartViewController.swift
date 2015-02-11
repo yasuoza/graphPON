@@ -47,6 +47,8 @@ class SummaryChartViewController: BaseChartViewController, JBLineChartViewDelega
         self.chartInformationView.hidden = true
 
         self.navigationItem.title = ""
+
+        self.reBuildChartData()
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -63,6 +65,7 @@ class SummaryChartViewController: BaseChartViewController, JBLineChartViewDelega
             object: nil,
             queue: NSOperationQueue.mainQueue(),
             usingBlock: { _ in
+                self.reBuildChartData()
                 self.reloadChartView(true)
         })
     }
@@ -89,12 +92,11 @@ class SummaryChartViewController: BaseChartViewController, JBLineChartViewDelega
 
     @IBAction func chartSegmentedControlValueDidChanged(segmentedControl: UISegmentedControl) {
         self.chartDurationSegment = HdoService.Duration(rawValue: segmentedControl.selectedSegmentIndex)!
+        self.reBuildChartData()
         self.reloadChartView(false)
     }
 
     func reloadChartView(animated: Bool) {
-        self.reBuildChartData()
-
         if !self.loadingIndicatorView.hidden {
             self.loadingIndicatorView.stopAnimating()
         }
@@ -166,7 +168,7 @@ class SummaryChartViewController: BaseChartViewController, JBLineChartViewDelega
         let logManager = PacketInfoManager.sharedManager
         self.chartData = []
 
-        if let hddService = logManager.hddServiceForServiceCode(self.serviceCode ?? "")
+        if let hddService = logManager.hddServiceForServiceCode(self.serviceCode)
             ?? logManager.hddServices.first {
             self.hddService = hddService
         } else {
@@ -310,6 +312,7 @@ class SummaryChartViewController: BaseChartViewController, JBLineChartViewDelega
     func serviceDidSelectedSection(section: Int, row: Int) {
         self.hddService = PacketInfoManager.sharedManager.hddServices[row]
         if self.traitCollection.horizontalSizeClass == .Regular {
+            self.reBuildChartData()
             self.reloadChartView(true)
         }
     }
@@ -319,6 +322,7 @@ class SummaryChartViewController: BaseChartViewController, JBLineChartViewDelega
     func displayPacketLogSegmentDidSelected(segment: Int) {
         self.chartDataFilteringSegment = ChartDataFilteringSegment(rawValue: segment)!
         if self.traitCollection.horizontalSizeClass == .Regular {
+            self.reBuildChartData()
             self.reloadChartView(true)
         }
     }
