@@ -222,8 +222,8 @@ class RatioChartViewController: BaseChartViewController, XYDoughnutChartDelegate
 
     func serviceDidSelectedSection(section: Int, row: Int) {
         self.hddService = PacketInfoManager.sharedManager.hddServices[row]
+        self.reBuildChartData()
         if self.traitCollection.horizontalSizeClass == .Regular {
-            self.reBuildChartData()
             self.reloadChartView(true)
         }
     }
@@ -232,8 +232,8 @@ class RatioChartViewController: BaseChartViewController, XYDoughnutChartDelegate
 
     func displayPacketLogSegmentDidSelected(segment: Int) {
         self.chartDataFilteringSegment = ChartDataFilteringSegment(rawValue: segment)!
+        self.reBuildChartData()
         if self.traitCollection.horizontalSizeClass == .Regular {
-            self.reBuildChartData()
             self.reloadChartView(true)
         }
     }

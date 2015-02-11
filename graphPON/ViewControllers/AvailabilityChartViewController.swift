@@ -186,8 +186,8 @@ class AvailabilityChartViewController: BaseChartViewController, XYDoughnutChartD
 
     func serviceDidSelectedSection(section: Int, row: Int) {
         self.hddService = PacketInfoManager.sharedManager.hddServices[row]
+        self.reBuildChartData()
         if self.traitCollection.horizontalSizeClass == .Regular {
-            self.reBuildChartData()
             self.reloadChartView(true)
         }
     }

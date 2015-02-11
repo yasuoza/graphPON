@@ -232,10 +232,9 @@ class DailyChartViewController: BaseChartViewController, JBBarChartViewDelegate,
     // MARK: - HddServiceListTableViewControllerDelegate
 
     func serviceDidSelectedSection(section: Int, row: Int) {
-        self.serviceCode = PacketInfoManager.sharedManager.hddServices[section].hdoServices![row].hdoServiceCode
         self.hdoService = PacketInfoManager.sharedManager.hddServices[section].hdoServices?[row]
+        self.reBuildChartData()
         if self.traitCollection.horizontalSizeClass == .Regular {
-            self.reBuildChartData()
             self.reloadChartView(true)
         }
     }
@@ -244,8 +243,8 @@ class DailyChartViewController: BaseChartViewController, JBBarChartViewDelegate,
 
     func displayPacketLogSegmentDidSelected(segment: Int) {
         self.chartDataFilteringSegment = ChartDataFilteringSegment(rawValue: segment)!
+        self.reBuildChartData()
         if self.traitCollection.horizontalSizeClass == .Regular {
-            self.reBuildChartData()
             self.reloadChartView(true)
         }
     }
