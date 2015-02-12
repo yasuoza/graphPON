@@ -15,6 +15,7 @@ class SummaryChartViewController: BaseChartViewController, JBLineChartViewDelega
         }
     }
     private var chartData: [[CGFloat]]? = []
+    private var chartHorizontalData: [String]?
 
     // MARK: - View Lifecycle
 
@@ -201,6 +202,9 @@ class SummaryChartViewController: BaseChartViewController, JBLineChartViewDelega
             _chartData.append(hdoPacketSum)
             return _chartData
         })
+        self.chartHorizontalData = self.hddService?.hdoServices?.first?.packetLogs.map { packetLog in
+            return packetLog.dateText()
+        }
 
         // Total sum makes meaning only when user has more than one service
         if self.chartData?.count > 1 {
@@ -231,7 +235,7 @@ class SummaryChartViewController: BaseChartViewController, JBLineChartViewDelega
     func lineChartView(lineChartView: JBLineChartView!, didSelectLineAtIndex lineIndex: UInt, horizontalIndex: UInt, touchPoint: CGPoint) {
         let tcolVert = self.traitCollection.verticalSizeClass
         let tcolHorz = self.traitCollection.horizontalSizeClass
-        let dateText = self.hddService?.hdoServices?.first?.packetLogs[Int(horizontalIndex)].dateText() ?? ""
+        let dateText = self.chartHorizontalData?[Int(horizontalIndex)] ?? ""
 
         var label = NSLocalizedString("Total", comment: "Total")
         if Int(lineIndex) < self.hddService?.hdoServices?.count {
@@ -245,7 +249,7 @@ class SummaryChartViewController: BaseChartViewController, JBLineChartViewDelega
         case .InThisMonth:
             startDateOfThisMonth = dateFormatter.stringFromDate(NSDate().startDateOfMonth()!)
         case .InLast30Days:
-            startDateOfThisMonth = self.hddService?.hdoServices?.first?.packetLogs.first?.dateText() ?? ""
+            startDateOfThisMonth = self.chartHorizontalData?.first ?? ""
         }
 
         self.chartInformationView.setTitleText(

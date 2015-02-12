@@ -8,6 +8,7 @@ class DailyChartViewController: BaseChartViewController, JBBarChartViewDelegate,
     let mode: Mode = .Daily
 
     private var chartData: [CGFloat]?
+    private var chartHorizontalData: [String]?
     private var hdoService: HdoService? {
         didSet {
             self.serviceCode = hdoService?.hdoServiceCode
@@ -158,16 +159,12 @@ class DailyChartViewController: BaseChartViewController, JBBarChartViewDelegate,
 
         self.hdoService?.duration = self.chartDurationSegment
 
-        self.chartData = self.hdoService?.packetLogs.map { packetLog -> CGFloat in
-            switch self.chartDataFilteringSegment {
-            case .All:
-                return CGFloat(packetLog.withCoupon + packetLog.withoutCoupon)
-            case .WithCoupon:
-                return CGFloat(packetLog.withCoupon)
-            case .WithoutCoupon:
-                return CGFloat(packetLog.withoutCoupon)
-            }
-        }
+        let data = self.hdoService?.packetLogs.reduce((value: [], horizontalValue: []), combine: { (var tuple, packetLog) -> ([CGFloat], [String]) in
+            tuple.value.append(CGFloat(packetLog.withCoupon + packetLog.withoutCoupon))
+            tuple.horizontalValue.append(packetLog.dateText())
+            return tuple
+        })
+        (self.chartData, self.chartHorizontalData) = (data?.value, data?.horizontalValue)
     }
 
     // MARK: - JBLineChartViewDataSource
@@ -183,8 +180,7 @@ class DailyChartViewController: BaseChartViewController, JBBarChartViewDelegate,
     }
 
     func barChartView(barChartView: JBBarChartView!, didSelectBarAtIndex index: UInt, touchPoint: CGPoint) {
-        let dateText = self.hdoService?.packetLogs[Int(index)].dateText() ?? ""
-
+        let dateText = self.chartHorizontalData?[Int(index)] ?? ""
         self.chartInformationView.setTitleText(
             String(format: NSLocalizedString("Used in %@", comment: "Chart information title text in daily chart"),
                 dateText)
