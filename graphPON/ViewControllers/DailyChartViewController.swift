@@ -21,7 +21,6 @@ class DailyChartViewController: BaseChartViewController, JBBarChartViewDelegate,
         super.viewDidLoad()
 
         self.view.backgroundColor = self.mode.backgroundColor()
-        self.navigationItem.title = self.mode.titleText()
 
         self.chartViewContainerView.chartView.delegate = self
         self.chartViewContainerView.chartView.dataSource = self
@@ -42,8 +41,6 @@ class DailyChartViewController: BaseChartViewController, JBBarChartViewDelegate,
         self.chartViewContainerView.chartView.footerView = footerView
 
         self.chartInformationView.hidden = true
-
-        self.navigationItem.title = ""
 
         if self.serviceCode == nil {
             if let hdoService = PacketInfoManager.sharedManager.hddServices.first?.hdoServices?.first {

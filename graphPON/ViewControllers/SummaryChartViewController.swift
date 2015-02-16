@@ -23,7 +23,6 @@ class SummaryChartViewController: BaseChartViewController, JBLineChartViewDelega
         super.viewDidLoad()
 
         self.view.backgroundColor = self.mode.backgroundColor()
-        self.navigationItem.title = self.mode.titleText()
 
         self.chartViewContainerView.chartView.delegate = self
         self.chartViewContainerView.chartView.dataSource = self
@@ -46,8 +45,6 @@ class SummaryChartViewController: BaseChartViewController, JBLineChartViewDelega
         self.chartViewContainerView.chartView.footerView = footerView
 
         self.chartInformationView.hidden = true
-
-        self.navigationItem.title = ""
 
         self.reBuildChartData()
     }

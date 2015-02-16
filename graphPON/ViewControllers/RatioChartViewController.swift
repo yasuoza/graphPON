@@ -19,7 +19,6 @@ class RatioChartViewController: BaseChartViewController, XYDoughnutChartDelegate
         super.viewDidLoad()
 
         self.view.backgroundColor = self.mode.backgroundColor()
-        self.navigationItem.title = self.mode.titleText()
 
         self.ratioChartContainerView.chartView.showLabel = false
         self.ratioChartContainerView.chartView.dataSource = self
