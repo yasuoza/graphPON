@@ -2,7 +2,7 @@ import UIKit
 
 class ChartInformationView: UIView {
 
-    @IBOutlet var titleLabel: UILabel! = UILabel()
+    @IBOutlet private var titleLabel: UILabel! = UILabel()
     private let kJBChartValueViewPadding = CGFloat(0.0)
     private let kJBChartValueViewSeparatorSize = CGFloat(0.5)
     private let kJBChartValueViewTitleHeight = CGFloat(50.0)

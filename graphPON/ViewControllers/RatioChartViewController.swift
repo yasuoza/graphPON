@@ -6,7 +6,7 @@ class RatioChartViewController: BaseChartViewController, XYDoughnutChartDelegate
 
     private let mode: Mode = .Ratio
 
-    @IBOutlet var ratioChartContainerView: RatioChartContainerView!
+    @IBOutlet private var ratioChartContainerView: RatioChartContainerView!
 
     private var hddService: HddService? {
         didSet {

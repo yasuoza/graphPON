@@ -6,9 +6,9 @@ class AvailabilityChartViewController: BaseChartViewController, XYDoughnutChartD
 
     private let mode: Mode = .Availability
 
-    @IBOutlet var ratioChartContainerView: RatioChartContainerView!
-    @IBOutlet var usedLabel: UILabel!
-    @IBOutlet var usedPercentageLabel: UILabel!
+    @IBOutlet private var ratioChartContainerView: RatioChartContainerView!
+    @IBOutlet private var usedLabel: UILabel!
+    @IBOutlet private var usedPercentageLabel: UILabel!
 
     private var hddService: HddService? {
         didSet {

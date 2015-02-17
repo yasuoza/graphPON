@@ -5,7 +5,7 @@ import SwiftyJSON
 
 class SummaryChartViewController: BaseChartViewController, JBLineChartViewDelegate, JBLineChartViewDataSource, HddServiceListTableViewControllerDelegate, DisplayPacketLogsSelectTableViewControllerDelegate {
 
-    @IBOutlet weak var chartViewContainerView: ChartViewContainerView!
+    @IBOutlet private weak var chartViewContainerView: ChartViewContainerView!
 
     private let mode: Mode = .Summary
 
