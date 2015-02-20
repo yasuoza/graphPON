@@ -156,10 +156,18 @@ class DailyChartViewController: BaseChartViewController, JBBarChartViewDelegate,
 
         self.hdoService?.duration = self.chartDurationSegment
 
-        let data = self.hdoService?.packetLogs.reduce((value: [], horizontalValue: []), combine: { (var tuple, packetLog) -> ([CGFloat], [String]) in
-            tuple.value.append(CGFloat(packetLog.withCoupon + packetLog.withoutCoupon))
-            tuple.horizontalValue.append(packetLog.dateText())
-            return tuple
+        let data: (value: [CGFloat], horizontalValue: [String])? = self.hdoService?.packetLogs.reduce((value: [], horizontalValue: []),
+            combine: { (var tuple, packetLog) in
+                switch self.chartDataFilteringSegment {
+                case .All:
+                    tuple.value.append(CGFloat(packetLog.withCoupon + packetLog.withoutCoupon))
+                case .WithCoupon:
+                    tuple.value.append(CGFloat(packetLog.withCoupon))
+                case .WithoutCoupon:
+                    tuple.value.append(CGFloat(packetLog.withoutCoupon))
+                }
+                tuple.horizontalValue.append(packetLog.dateText())
+                return tuple
         })
         (self.chartData, self.chartHorizontalData) = (data?.value, data?.horizontalValue)
     }
