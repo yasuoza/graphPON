@@ -145,7 +145,7 @@ class AvailabilityChartViewController: BaseChartViewController, XYDoughnutChartD
         }
 
         let packetSum = self.hddService?.hdoServices?.map { hdoInfo -> CGFloat in
-            return hdoInfo.packetLogs.reduce(0.0, combine: { (hdoPacketSum, packetLog) -> CGFloat in
+            return hdoInfo.packetLogs.reduce(CGFloat(0.0), combine: { (hdoPacketSum, packetLog) in
                 return hdoPacketSum + CGFloat(packetLog.withCoupon)
             })
         }

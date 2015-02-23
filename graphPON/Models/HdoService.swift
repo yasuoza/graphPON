@@ -50,7 +50,7 @@ class HdoService: NSObject {
     init(hdoServiceCode: String, number: String) {
         super.init()
         self.hdoServiceCode = hdoServiceCode
-        self.number = Array(0..<3).reduce("", combine: { (var _number, index) -> String in
+        self.number = Array(0..<3).reduce("", combine: { (var _number, index) in
             var startIndex = index * 4 - 1
             if startIndex < 0 {
                 startIndex = 0

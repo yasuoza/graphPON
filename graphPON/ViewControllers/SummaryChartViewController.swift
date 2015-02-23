@@ -178,9 +178,9 @@ class SummaryChartViewController: BaseChartViewController, JBLineChartViewDelega
         }
 
         var totalSum = [CGFloat](count: self.hddService!.hdoServices!.first!.packetLogs.count, repeatedValue: 0.0)
-        self.chartData = self.hddService?.hdoServices?.reduce([], combine: { (var _chartData, hdoInfo) -> [[CGFloat]] in
+        self.chartData = self.hddService?.hdoServices?.reduce([] as [[CGFloat]], combine: { (var _chartData, hdoInfo) in
             var hdoServiceindex = 0
-            let hdoPacketSum = hdoInfo.packetLogs.reduce([], combine: { (var _hdoPacketSum, packetLog) -> [CGFloat] in
+            let hdoPacketSum = hdoInfo.packetLogs.reduce([] as [CGFloat], combine: { (var _hdoPacketSum, packetLog) in
                 var lastPacketAmount = _hdoPacketSum.last ?? 0.0
                 switch self.chartDataFilteringSegment {
                 case .All:

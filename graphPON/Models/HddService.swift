@@ -7,7 +7,7 @@ class HddService: NSObject {
     var hdoServiceCodes: [String] {
         get {
             if let hdoService = hdoServices {
-                return hdoService.reduce([], combine: { (var arr, hdoInfo) -> [String] in
+                return hdoService.reduce([] as [String], combine: { (var arr, hdoInfo) in
                     return arr + [hdoInfo.hdoServiceCode]
                 })
             } else {

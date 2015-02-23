@@ -4,11 +4,20 @@ import SwiftyJSON
 
 class PacketInfoManager: NSObject {
 
+    // MARK: - Singleton methods
+
     class var LatestPacketLogsDidFetchNotification: String {
         struct Notification {
             static let name = "graphPON.LatestPacketLogsDidFetchNotification"
         }
         return Notification.name
+    }
+
+    class var sharedManager : PacketInfoManager {
+        struct Static {
+            static let instance : PacketInfoManager = PacketInfoManager()
+        }
+        return Static.instance
     }
 
     private let dateFormatter = NSDateFormatter()
@@ -20,9 +29,9 @@ class PacketInfoManager: NSObject {
     }
 
     var hdoServiceCodes: [String] {
-        return self.hddServices.reduce([], combine: { (var _hddServiceCodes, hddService) -> [String] in
+        return self.hddServices.reduce([] as [String], combine: { (var _hddServiceCodes, hddService) in
             if let hdoInfos = hddService.hdoServices {
-                return _hddServiceCodes + hdoInfos.reduce([], combine: { (var _hdoInfoCodes, hdoInfo) -> [String] in
+                return _hddServiceCodes + hdoInfos.reduce([] as [String], combine: { (var _hdoInfoCodes, hdoInfo) in
                     return _hdoInfoCodes + [hdoInfo.hdoServiceCode]
                 })
             } else {
@@ -32,24 +41,15 @@ class PacketInfoManager: NSObject {
     }
 
     var hdoServiceNumbers: [String] {
-        return self.hddServices.reduce([], combine: { (var _hddServiceCodes, hddService) -> [String] in
+        return self.hddServices.reduce([] as [String], combine: { (var _hddServiceCodes, hddService) in
             if let hdoInfos = hddService.hdoServices {
-                return _hddServiceCodes + hdoInfos.reduce([], combine: { (var _hdoInfoCodes, hdoInfo) -> [String] in
+                return _hddServiceCodes + hdoInfos.reduce([] as [String], combine: { (var _hdoInfoCodes, hdoInfo) in
                     return _hdoInfoCodes + [hdoInfo.number]
                 })
             } else {
                 return []
             }
         })
-    }
-
-    // MARK: - Singleton methods
-
-    class var sharedManager : PacketInfoManager {
-        struct Static {
-            static let instance : PacketInfoManager = PacketInfoManager()
-        }
-        return Static.instance
     }
 
     // MARK: - Instance methods
