@@ -70,8 +70,8 @@ class AvailabilityChartViewController: BaseChartViewController, XYDoughnutChartD
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "HddServiceListFromRatioChartSegue" {
-            let navigationController = segue.destinationViewController as UINavigationController
-            let hddServiceListViewController = navigationController.topViewController as HddServiceListTableViewController
+            let navigationController = segue.destinationViewController as! UINavigationController
+            let hddServiceListViewController = navigationController.topViewController as! HddServiceListTableViewController
             hddServiceListViewController.delegate = self
             hddServiceListViewController.selectedService = self.serviceCode ?? ""
         }
@@ -117,7 +117,7 @@ class AvailabilityChartViewController: BaseChartViewController, XYDoughnutChartD
                 delay: 0.0,
                 options: UIViewAnimationOptions.BeginFromCurrentState,
                 animations: {
-                    self.usedPercentageLabel.text = NSString(format: "%.01f%%", Float(usedPercentage * 100))
+                    self.usedPercentageLabel.text = NSString(format: "%.01f%%", Float(usedPercentage * 100)) as String
                     self.usedLabel.hidden = false
                     self.informationValueLabelSeparatorView.alpha = 1.0
                     self.valueLabel.text = PacketLog.stringForValue(slices.last)

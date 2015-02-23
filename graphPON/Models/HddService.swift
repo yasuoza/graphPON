@@ -17,7 +17,8 @@ class HddService: NSObject {
     }
     var nickName: String {
         get {
-            if let nickname = NSUserDefaults.standardUserDefaults().objectForKey("\(self.hddServiceCode):nickName") as String?  {
+            if let nickname = NSUserDefaults.standardUserDefaults()
+                .objectForKey("\(self.hddServiceCode):nickName") as? String  {
                 return nickname
             }
             return self.hddServiceCode
@@ -59,7 +60,7 @@ class HddService: NSObject {
             }
             return "MB"
             }()
-        return NSString(format: "%.01f", available) + unit
+        return NSString(format: "%.01f", available) as! String + unit
     }
 
     func hdoServiceForServiceCode(hdoServiceCode: String) -> HdoService? {

@@ -76,13 +76,13 @@ class SummaryChartViewController: BaseChartViewController, JBLineChartViewDelega
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "HddServiceListFromSummaryChartSegue" {
-            let navigationController = segue.destinationViewController as UINavigationController
-            let hddServiceListViewController = navigationController.topViewController as HddServiceListTableViewController
+            let navigationController = segue.destinationViewController as! UINavigationController
+            let hddServiceListViewController = navigationController.topViewController as! HddServiceListTableViewController
             hddServiceListViewController.delegate = self
             hddServiceListViewController.selectedService = self.serviceCode ?? ""
         } else if segue.identifier == "DisplayPacketLogsSelectFromSummaryChartSegue" {
-            let navigationController = segue.destinationViewController as UINavigationController
-            let displayPacketLogSelectViewController = navigationController.topViewController as DisplayPacketLogsSelectTableViewController
+            let navigationController = segue.destinationViewController as! UINavigationController
+            let displayPacketLogSelectViewController = navigationController.topViewController as! DisplayPacketLogsSelectTableViewController
             displayPacketLogSelectViewController.delegate = self
             displayPacketLogSelectViewController.selectedFilteringSegment = self.chartDataFilteringSegment
         }
@@ -124,7 +124,7 @@ class SummaryChartViewController: BaseChartViewController, JBLineChartViewDelega
         )
 
         if dateText == nil {
-            self.chartInformationView.setHidden(true)
+            self.chartInformationView.hidden = true
             self.informationValueLabelSeparatorView.alpha = 0.0
             self.valueLabel.alpha = 0.0
             return

@@ -9,9 +9,9 @@ class OAuth2Credential: NSObject, NSCoding {
     struct AccountStore {
         private static let serviceName = "com.iijmio.api"
 
-        static let attributes: Dictionary<String, AnyObject> = [
-            kSecClass: kSecClassGenericPassword,
-            kSecAttrService: serviceName,
+        static let attributes: [String: AnyObject] = [
+            (kSecClass as! String): kSecClassGenericPassword,
+            (kSecAttrService as! String): serviceName,
         ]
     }
 
@@ -19,7 +19,7 @@ class OAuth2Credential: NSObject, NSCoding {
 
     class func restoreCredential() -> OAuth2Credential? {
         var attrs = AccountStore.attributes
-        attrs[kSecReturnAttributes] = kCFBooleanTrue
+        attrs[kSecReturnAttributes as! String] = kCFBooleanTrue
 
         // http://stackoverflow.com/a/27721235/1427595
         var result: AnyObject?
@@ -58,7 +58,7 @@ class OAuth2Credential: NSObject, NSCoding {
     func save() -> Bool {
         var attrs = AccountStore.attributes
 
-        attrs[kSecAttrGeneric] = NSKeyedArchiver.archivedDataWithRootObject(self)
+        attrs[kSecAttrGeneric as! String] = NSKeyedArchiver.archivedDataWithRootObject(self)
 
         let status = SecItemAdd(attrs, nil)
         if status == OSStatus(errSecDuplicateItem) {

@@ -144,7 +144,7 @@ class SettingTableViewController: UITableViewController, SettingTableHdoServiceS
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         // Logout cell
         if indexPath.section == self.numberOfSectionsInTableView(tableView) - 1 {
-            let cell = tableView.dequeueReusableCellWithIdentifier("SettingTableServiceLogoutCell", forIndexPath: indexPath) as UITableViewCell
+            let cell = tableView.dequeueReusableCellWithIdentifier("SettingTableServiceLogoutCell", forIndexPath: indexPath) as! UITableViewCell
             cell.textLabel?.text = NSLocalizedString("Logout", comment: "Logout from service")
             cell.textLabel?.textAlignment = .Center
             cell.textLabel?.textColor = GlobalTintColor
@@ -153,16 +153,16 @@ class SettingTableViewController: UITableViewController, SettingTableHdoServiceS
 
         // Service cells
         if indexPath.row == 0 {
-            let cell = tableView.dequeueReusableCellWithIdentifier("SettingTableHddServiceNicknameCell", forIndexPath: indexPath) as UITableViewCell
+            let cell = tableView.dequeueReusableCellWithIdentifier("SettingTableHddServiceNicknameCell", forIndexPath: indexPath) as! UITableViewCell
             cell.detailTextLabel?.text = PacketInfoManager.sharedManager.hddServices[indexPath.section].nickName
             return cell
         } else if (indexPath.row - 1) % 2 == 0 {
-            let cell = tableView.dequeueReusableCellWithIdentifier("SettingTableHdoServiceNicknameCell", forIndexPath: indexPath) as UITableViewCell
+            let cell = tableView.dequeueReusableCellWithIdentifier("SettingTableHdoServiceNicknameCell", forIndexPath: indexPath) as! UITableViewCell
             let hdoNickname = PacketInfoManager.sharedManager.hddServices[indexPath.section].hdoServices?[(indexPath.row - 1) / 2 ].nickName
             cell.detailTextLabel?.text = hdoNickname
             return cell
         } else {
-            let cell = tableView.dequeueReusableCellWithIdentifier("SettingTableHdoServiceSwitchCell", forIndexPath: indexPath) as SettingTableHdoServiceSwitchCell
+            let cell = tableView.dequeueReusableCellWithIdentifier("SettingTableHdoServiceSwitchCell", forIndexPath: indexPath) as! SettingTableHdoServiceSwitchCell
             cell.textLabel?.text = NSLocalizedString("UseCoupon", comment: "Use coupon or not in setting table cell")
             cell.textLabel?.backgroundColor = UIColor.clearColor()
             cell.delegate = self
@@ -221,7 +221,7 @@ class SettingTableViewController: UITableViewController, SettingTableHdoServiceS
         // Save nickname action
         let alertController = UIAlertController(title: "Nickname", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
         let saveAction = UIAlertAction(title: "Save", style: .Default) { (_) in
-            let nicknameTextField = alertController.textFields![0] as UITextField
+            let nicknameTextField = alertController.textFields![0] as! UITextField
             if indexPath.row == 0 {
                 let hddService = PacketInfoManager.sharedManager.hddServices[indexPath.section]
                 hddService.nickName = nicknameTextField.text

@@ -56,13 +56,13 @@ class RatioChartViewController: BaseChartViewController, XYDoughnutChartDelegate
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "HddServiceListFromRatioChartSegue" {
-            let navigationController = segue.destinationViewController as UINavigationController
-            let hddServiceListViewController = navigationController.topViewController as HddServiceListTableViewController
+            let navigationController = segue.destinationViewController as! UINavigationController
+            let hddServiceListViewController = navigationController.topViewController as! HddServiceListTableViewController
             hddServiceListViewController.delegate = self
             hddServiceListViewController.selectedService = self.serviceCode ?? ""
         } else if segue.identifier == "DisplayPacketLogsSelectFromRatioChartSegue" {
-            let navigationController = segue.destinationViewController as UINavigationController
-            let displayPacketLogSelectViewController = navigationController.topViewController as DisplayPacketLogsSelectTableViewController
+            let navigationController = segue.destinationViewController as! UINavigationController
+            let displayPacketLogSelectViewController = navigationController.topViewController as! DisplayPacketLogsSelectTableViewController
             displayPacketLogSelectViewController.delegate = self
             displayPacketLogSelectViewController.selectedFilteringSegment = self.chartDataFilteringSegment
         }

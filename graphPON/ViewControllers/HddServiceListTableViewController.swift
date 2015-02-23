@@ -50,7 +50,7 @@ class HddServiceListTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("HddServiceCell", forIndexPath: indexPath) as UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("HddServiceCell", forIndexPath: indexPath) as! UITableViewCell
 
         switch self.mode {
         case .Summary, .Ratio, .Availability:

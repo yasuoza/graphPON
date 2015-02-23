@@ -41,7 +41,7 @@ class OAuth2Client: NSObject {
             .map { keyValue in
                 keyValue.componentsSeparatedByString("=")
             }.reduce([:] as [String: String]) { (var dict, elem) in
-                if elem.first? == nil || elem.last? == nil {
+                if elem.first == nil || elem.last == nil {
                     return dict
                 }
                 dict[elem.first!] = String(elem.last!).stringByRemovingPercentEncoding
@@ -60,16 +60,14 @@ class OAuth2Client: NSObject {
     // MARK: - Instance methods
 
     override init() {
-        super.init()
-
         let configurationPlistPath = NSBundle(forClass: OAuth2Client.self)
                                         .pathForResource("configuration", ofType: "plist")!
         let configuration = NSDictionary(contentsOfFile: configurationPlistPath)!
-        let iijConfiguration = configuration["IIJ_API"] as [String: String]
+        let iijConfiguration = configuration["IIJ_API"] as! [String: String]
         self.iijDeveloperID = iijConfiguration["CLIENT_KEY"]
         self.iijOAuthCallbackURI = NSURL(string: iijConfiguration["OAUTH_CALLBACK_URI"]!)
 
-        if let credential = OAuth2Credential.restoreCredential()? {
+        if let credential = OAuth2Credential.restoreCredential() {
             self.state = .Authorized(credential)
 
             // willSet and didSet observers are not called when a property
@@ -80,7 +78,7 @@ class OAuth2Client: NSObject {
     }
 
     func openOAuthAuthorizeURL() {
-        UIApplication.sharedApplication().openURL(OAuth2Router.Authorize.URLRequest.URL)
+        UIApplication.sharedApplication().openURL(OAuth2Router.Authorize.URLRequest.URL!)
     }
 
     func authorized(credential cred: OAuth2Credential) {

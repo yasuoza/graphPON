@@ -24,12 +24,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if let dict = parsedQuery {
                 let credential = OAuth2Credential(dictionary: dict)
                 if credential.save() {
-                    if let tabBarController = self.window?.rootViewController as? UITabBarController {
-                        if let navVC = tabBarController.selectedViewController as? UINavigationController {
-                            if let loginController = navVC.visibleViewController as? PromptLoginController {
-                                loginController.dismissViewControllerAnimated(true, completion: nil)
-                            }
-                        }
+                    if let tabBarController = self.window?.rootViewController as? UITabBarController,
+                        let navVC = tabBarController.selectedViewController as? UINavigationController,
+                        let loginController = navVC.visibleViewController as? PromptLoginController {
+                            loginController.dismissViewControllerAnimated(true, completion: nil)
+
                     }
                     OAuth2Client.sharedClient.authorized(credential: credential)
                     PacketInfoManager.sharedManager.fetchLatestPacketLog(completion: { error in
@@ -51,14 +50,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 
-        if let tabBarController = window?.rootViewController as UITabBarController? {
+        if let tabBarController = window?.rootViewController as! UITabBarController? {
             let selectedIndex = tabBarController.selectedIndex
             NSUserDefaults.standardUserDefaults().setInteger(selectedIndex, forKey: "selectedIndex")
             for vc in tabBarController.viewControllers! {
-                if let navVC = vc as? UINavigationController {
-                    if let vc = navVC.viewControllers.first as? StateRestorable {
+                if let navVC = vc as? UINavigationController,
+                    let vc = navVC.viewControllers.first as? StateRestorable {
                         vc.storeCurrentState()
-                    }
                 }
             }
         }
@@ -90,8 +88,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return
         }
 
-        if let tabBarController = self.window?.rootViewController as? UITabBarController {
-            if let navVC = tabBarController.selectedViewController as? UINavigationController {
+        if let tabBarController = self.window?.rootViewController as? UITabBarController,
+            let navVC = tabBarController.selectedViewController as? UINavigationController {
                 if error!.domain == OAuth2Router.APIErrorDomain && error!.code == OAuth2Router.AuthorizationFailureErrorCode {
                     if let vc = navVC.visibleViewController as? PromptLoginPresenter {
                         return vc.presentPromptLoginControllerIfNeeded()
@@ -99,7 +97,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 } else if let vc = navVC.visibleViewController as? ErrorAlertPresenter {
                     return vc.presentErrorAlertController(error!)
                 }
-            }
         }
     }
 }

@@ -123,8 +123,8 @@ class BaseChartViewController: BaseViewController, StateRestorable {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        if let extendedNavBarView = self.extendedNavBarView {
-            if let navBarFooterImageView = self.navBarHairlineImageView {
+        if let extendedNavBarView = self.extendedNavBarView,
+            let navBarFooterImageView = self.navBarHairlineImageView {
                 navBarFooterImageView.hidden = false
                 navBarFooterImageView.frame = CGRectMake(
                     extendedNavBarView.frame.origin.x,
@@ -132,7 +132,6 @@ class BaseChartViewController: BaseViewController, StateRestorable {
                     navBarFooterImageView.frame.width,
                     navBarFooterImageView.frame.height
                 )
-            }
         }
 
         if iOS3_5InchPortraitOrientation() {
@@ -157,7 +156,7 @@ class BaseChartViewController: BaseViewController, StateRestorable {
             return view as? UIImageView
         }
         for subview in view.subviews {
-            if let view = self.findHairlineImageViewUnder(subview as UIView) {
+            if let view = self.findHairlineImageViewUnder(subview as! UIView) {
                 return view
             }
         }

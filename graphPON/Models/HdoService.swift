@@ -24,7 +24,8 @@ class HdoService: NSObject {
     }
     var nickName: String {
         get {
-            if let nickname = NSUserDefaults.standardUserDefaults().objectForKey("\(self.hdoServiceCode):nickName") as String?  {
+            if let nickname = NSUserDefaults.standardUserDefaults()
+                .objectForKey("\(self.hdoServiceCode):nickName") as? String  {
                 return nickname
             }
             return self.number

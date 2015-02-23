@@ -78,14 +78,14 @@ class DailyChartViewController: BaseChartViewController, JBBarChartViewDelegate,
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "HddServiceListFromDailyChartSegue" {
-            let navigationController = segue.destinationViewController as UINavigationController
-            let hddServiceListViewController = navigationController.topViewController as HddServiceListTableViewController
+            let navigationController = segue.destinationViewController as! UINavigationController
+            let hddServiceListViewController = navigationController.topViewController as! HddServiceListTableViewController
             hddServiceListViewController.delegate = self
             hddServiceListViewController.mode = .Daily
             hddServiceListViewController.selectedService = self.hdoService?.number ?? ""
         } else if segue.identifier == "DisplayPacketLogsSelectFromSummaryChartSegue" {
-            let navigationController = segue.destinationViewController as UINavigationController
-            let displayPacketLogSelectViewController = navigationController.topViewController as DisplayPacketLogsSelectTableViewController
+            let navigationController = segue.destinationViewController as! UINavigationController
+            let displayPacketLogSelectViewController = navigationController.topViewController as! DisplayPacketLogsSelectTableViewController
             displayPacketLogSelectViewController.delegate = self
             displayPacketLogSelectViewController.selectedFilteringSegment = self.chartDataFilteringSegment
         }
@@ -120,14 +120,14 @@ class DailyChartViewController: BaseChartViewController, JBBarChartViewDelegate,
     }
 
     func displayLatestTotalChartInformation() {
-        if let packetLog = self.hdoService?.packetLogs.last? {
+        if let packetLog = self.hdoService?.packetLogs.last {
             self.chartInformationView.setTitleText(
                 String(format: NSLocalizedString("Used in %@", comment: "Chart information title text in daily chart"),
                     packetLog.dateText())
             )
             self.chartInformationView.setHidden(false, animated: true)
         } else {
-            self.chartInformationView.setHidden(true)
+            self.chartInformationView.hidden = true
             self.informationValueLabelSeparatorView.alpha = 0.0
             self.valueLabel.alpha = 0.0
             return
