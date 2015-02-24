@@ -1,9 +1,9 @@
 import UIKit
 
 class HddService: NSObject {
-    private(set) var hddServiceCode: String!
-    private(set) var hdoServices: [HdoService]?
-    private(set) var coupons: [Coupon] = []
+    let hddServiceCode: String!
+    let hdoServices: [HdoService]?
+    let coupons: [Coupon]!
     var hdoServiceCodes: [String] {
         get {
             if let hdoService = hdoServices {
@@ -33,13 +33,12 @@ class HddService: NSObject {
     }
 
     init(hddServiceCode: String, hdoInfos: [HdoService]) {
-        super.init()
         self.hddServiceCode = hddServiceCode
+        self.coupons = []
         self.hdoServices = hdoInfos
     }
 
     init(hddServiceCode: String, coupons: [Coupon], hdoInfos: [HdoService]) {
-        super.init()
         self.hddServiceCode = hddServiceCode
         self.coupons = coupons
         self.hdoServices = hdoInfos
