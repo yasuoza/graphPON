@@ -5,7 +5,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         window?.tintColor = GlobalTintColor
@@ -84,18 +83,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Private methods
 
     private func handleAPIError(error: NSError?) {
-        if error == nil {
-            return
-        }
-
-        if let tabBarController = self.window?.rootViewController as? UITabBarController,
+        if let error = error,
+            let tabBarController = self.window?.rootViewController as? UITabBarController,
             let navVC = tabBarController.selectedViewController as? UINavigationController {
-                if error!.domain == OAuth2Router.APIErrorDomain && error!.code == OAuth2Router.AuthorizationFailureErrorCode {
-                    if let vc = navVC.visibleViewController as? PromptLoginPresenter {
+                if error.domain == OAuth2Router.APIErrorDomain && error.code == OAuth2Router.AuthorizationFailureErrorCode,
+                    let vc = navVC.visibleViewController as? PromptLoginPresenter {
                         return vc.presentPromptLoginControllerIfNeeded()
-                    }
                 } else if let vc = navVC.visibleViewController as? ErrorAlertPresenter {
-                    return vc.presentErrorAlertController(error!)
+                    return vc.presentErrorAlertController(error)
                 }
         }
     }

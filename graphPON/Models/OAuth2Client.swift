@@ -8,12 +8,11 @@ class OAuth2Client: NSObject {
         case Authorized(OAuth2Credential)
     }
 
-    class var OAuthDidAuthorizeNotification: String {
-        struct Notification {
-            static let name = "graphPON.OAuthDidAuthorizeNotification"
-        }
-        return Notification.name
-    }
+    // MARK: - Singleton variables
+
+    static let OAuthDidAuthorizeNotification = "graphPON.OAuthDidAuthorizeNotification"
+
+    // MARK: - Instance variables
 
     let iijDeveloperID: String!
     let iijOAuthCallbackURI: NSURL!

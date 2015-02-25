@@ -4,21 +4,12 @@ import SwiftyJSON
 
 class PacketInfoManager: NSObject {
 
-    // MARK: - Singleton methods
+    // MARK: - Singleton variables
 
-    class var LatestPacketLogsDidFetchNotification: String {
-        struct Notification {
-            static let name = "graphPON.LatestPacketLogsDidFetchNotification"
-        }
-        return Notification.name
-    }
+    static let LatestPacketLogsDidFetchNotification = "graphPON.LatestPacketLogsDidFetchNotification"
+    static let sharedManager = PacketInfoManager()
 
-    class var sharedManager : PacketInfoManager {
-        struct Static {
-            static let instance : PacketInfoManager = PacketInfoManager()
-        }
-        return Static.instance
-    }
+    // MARK: - Instance variables
 
     private let dateFormatter = NSDateFormatter()
 
