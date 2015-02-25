@@ -14,7 +14,7 @@ class HddServiceTests: XCTestCase {
             HdoService(hdoServiceCode: "hdoServiceCode00", packetLogs: []),
             HdoService(hdoServiceCode: "hdoServiceCode01", packetLogs: [])
         ]
-        let hddService = HddService(hddServiceCode: "hddServiceCode", hdoInfos: hdoInfos)
+        let hddService = HddService(hddServiceCode: "hddServiceCode", hdoServices: hdoInfos)
         XCTAssertEqual(hddService.hdoServiceCodes, ["hdoServiceCode00", "hdoServiceCode01"])
     }
 
@@ -23,24 +23,24 @@ class HddServiceTests: XCTestCase {
             HdoService(hdoServiceCode: "hdoServiceCode00", packetLogs: []),
             HdoService(hdoServiceCode: "hdoServiceCode01", packetLogs: [])
         ]
-        let hddService = HddService(hddServiceCode: "hddServiceCode", hdoInfos: hdoInfos)
+        let hddService = HddService(hddServiceCode: "hddServiceCode", hdoServices: hdoInfos)
         XCTAssertEqual(hddService.hdoServiceForServiceCode("hdoServiceCode00")!, hdoInfos.first!)
     }
 
     func testDefaultNicknameIsNumber() {
-        let hddService = HddService(hddServiceCode: "hddServiceCode", coupons: [], hdoInfos: [])
+        let hddService = HddService(hddServiceCode: "hddServiceCode", coupons: [], hdoServices: [])
         XCTAssertEqual(hddService.nickName, "hddServiceCode")
     }
 
     func testSetNickname() {
         let nickName = "hello-nickname"
-        let hddService = HddService(hddServiceCode: "hddServiceCode", coupons: [], hdoInfos: [])
+        let hddService = HddService(hddServiceCode: "hddServiceCode", coupons: [], hdoServices: [])
         hddService.nickName = nickName
         XCTAssertEqual(hddService.nickName, nickName)
     }
 
     func testRemoveNickname() {
-        let hddService = HddService(hddServiceCode: "hddServiceCode", coupons: [], hdoInfos: [])
+        let hddService = HddService(hddServiceCode: "hddServiceCode", coupons: [], hdoServices: [])
         hddService.nickName = ""
         XCTAssertEqual(hddService.nickName, "hddServiceCode")
     }

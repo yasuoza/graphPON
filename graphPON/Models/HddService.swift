@@ -6,8 +6,8 @@ class HddService: NSObject {
     let coupons: [Coupon]!
     var hdoServiceCodes: [String] {
         get {
-            if let hdoService = hdoServices {
-                return hdoService.reduce([] as [String], combine: { (var arr, hdoInfo) in
+            if let hdoServices = hdoServices {
+                return hdoServices.reduce([] as [String], combine: { (var arr, hdoInfo) in
                     return arr + [hdoInfo.hdoServiceCode]
                 })
             } else {
@@ -32,16 +32,16 @@ class HddService: NSObject {
         }
     }
 
-    init(hddServiceCode: String, hdoInfos: [HdoService]) {
+    init(hddServiceCode: String, hdoServices: [HdoService]) {
         self.hddServiceCode = hddServiceCode
         self.coupons = []
-        self.hdoServices = hdoInfos
+        self.hdoServices = hdoServices
     }
 
-    init(hddServiceCode: String, coupons: [Coupon], hdoInfos: [HdoService]) {
+    init(hddServiceCode: String, coupons: [Coupon], hdoServices: [HdoService]) {
         self.hddServiceCode = hddServiceCode
         self.coupons = coupons
-        self.hdoServices = hdoInfos
+        self.hdoServices = hdoServices
     }
 
     func availableCouponVolume() -> Int {

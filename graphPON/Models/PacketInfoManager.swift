@@ -21,8 +21,8 @@ class PacketInfoManager: NSObject {
 
     var hdoServiceCodes: [String] {
         return self.hddServices.reduce([] as [String], combine: { (var _hddServiceCodes, hddService) in
-            if let hdoInfos = hddService.hdoServices {
-                return _hddServiceCodes + hdoInfos.reduce([] as [String], combine: { (var _hdoInfoCodes, hdoInfo) in
+            if let hdoServices = hddService.hdoServices {
+                return _hddServiceCodes + hdoServices.reduce([] as [String], combine: { (var _hdoInfoCodes, hdoInfo) in
                     return _hdoInfoCodes + [hdoInfo.hdoServiceCode]
                 })
             } else {
@@ -33,8 +33,8 @@ class PacketInfoManager: NSObject {
 
     var hdoServiceNumbers: [String] {
         return self.hddServices.reduce([] as [String], combine: { (var _hddServiceCodes, hddService) in
-            if let hdoInfos = hddService.hdoServices {
-                return _hddServiceCodes + hdoInfos.reduce([] as [String], combine: { (var _hdoInfoCodes, hdoInfo) in
+            if let hdoServices = hddService.hdoServices {
+                return _hddServiceCodes + hdoServices.reduce([] as [String], combine: { (var _hdoInfoCodes, hdoInfo) in
                     return _hdoInfoCodes + [hdoInfo.number]
                 })
             } else {
@@ -114,7 +114,7 @@ class PacketInfoManager: NSObject {
                         tmpHdoServices.append(hdoService)
                     }
                     tmpHddServices.append(
-                        HddService(hddServiceCode: hddServiceCode, coupons: tmpCoupons, hdoInfos: tmpHdoServices)
+                        HddService(hddServiceCode: hddServiceCode, coupons: tmpCoupons, hdoServices: tmpHdoServices)
                     )
                 }
                 self.hddServices = tmpHddServices
