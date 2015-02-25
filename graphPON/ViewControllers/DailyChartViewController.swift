@@ -40,7 +40,7 @@ class DailyChartViewController: BaseChartViewController, JBBarChartViewDelegate,
         footerView.rightLabel.textColor = UIColor.whiteColor()
         self.chartViewContainerView.chartView.footerView = footerView
 
-        self.chartInformationView.hidden = true
+        self.chartInformationView.setHidden(true, animated: false)
 
         if self.serviceCode == nil {
             if let hdoService = PacketInfoManager.sharedManager.hddServices.first?.hdoServices?.first {
@@ -127,7 +127,7 @@ class DailyChartViewController: BaseChartViewController, JBBarChartViewDelegate,
             )
             self.chartInformationView.setHidden(false, animated: true)
         } else {
-            self.chartInformationView.hidden = true
+            self.chartInformationView.setHidden(true, animated: false)
             self.informationValueLabelSeparatorView.alpha = 0.0
             self.valueLabel.alpha = 0.0
             return

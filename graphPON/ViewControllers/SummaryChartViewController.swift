@@ -44,7 +44,7 @@ class SummaryChartViewController: BaseChartViewController, JBLineChartViewDelega
         footerView.hidden = true
         self.chartViewContainerView.chartView.footerView = footerView
 
-        self.chartInformationView.hidden = true
+        self.chartInformationView.setHidden(true, animated: false)
 
         self.reBuildChartData()
     }
@@ -124,7 +124,7 @@ class SummaryChartViewController: BaseChartViewController, JBLineChartViewDelega
         )
 
         if dateText == nil {
-            self.chartInformationView.hidden = true
+            self.chartInformationView.setHidden(true, animated: false)
             self.informationValueLabelSeparatorView.alpha = 0.0
             self.valueLabel.alpha = 0.0
             return
@@ -285,7 +285,6 @@ class SummaryChartViewController: BaseChartViewController, JBLineChartViewDelega
                 }
             }
         )
-
     }
 
     func lineChartView(lineChartView: JBLineChartView!, colorForLineAtLineIndex lineIndex: UInt) -> UIColor! {
