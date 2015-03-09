@@ -75,4 +75,4 @@ Carthage.checkout/
 Carthage/
 
 # Development
-graphPON/configuration.plist
+Config/graphPON.xcconfig

@@ -20,5 +20,9 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>IIJAPICallbackURL</key>
+	<string>app://${IIJ_API_CALLBACK_DOMAIN}</string>
+	<key>IIJAPIClientKey</key>
+	<string>${IIJ_API_CLIENT_KEY}</string>
 </dict>
 </plist>

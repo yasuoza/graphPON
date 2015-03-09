@@ -39,6 +39,10 @@
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
+	<key>IIJAPIClientKey</key>
+	<string>${IIJ_API_CLIENT_KEY}</string>
+	<key>IIJAPICallbackURL</key>
+	<string>graphpon://${IIJ_API_CALLBACK_DOMAIN}</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

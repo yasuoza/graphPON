@@ -62,12 +62,11 @@ class OAuth2Client: NSObject {
     override init() {
         super.init()
 
-        let configurationPlistPath = NSBundle(forClass: OAuth2Client.self)
-                                        .pathForResource("configuration", ofType: "plist")!
-        let configuration = NSDictionary(contentsOfFile: configurationPlistPath)!
-        let iijConfiguration = configuration["IIJ_API"] as [String: String]
-        self.iijDeveloperID = iijConfiguration["CLIENT_KEY"]
-        self.iijOAuthCallbackURI = NSURL(string: iijConfiguration["OAUTH_CALLBACK_URI"]!)
+        let callbackURLString = NSBundle(forClass: self.dynamicType)
+            .objectForInfoDictionaryKey("IIJAPICallbackURL") as String
+        self.iijDeveloperID = NSBundle(forClass: self.dynamicType)
+            .objectForInfoDictionaryKey("IIJAPIClientKey") as String
+        self.iijOAuthCallbackURI = NSURL(string: callbackURLString)
 
         if let credential = OAuth2Credential.restoreCredential()? {
             self.state = .Authorized(credential)
