@@ -1,0 +1,6 @@
+//
+//  Test.xcconfig
+//  graphPON
+//
+IIJ_API_CLIENT_KEY = YOUR DEVLOPER ID HERE
+IIJ_API_CALLBACK_DOMAIN = your_callback_uri_here

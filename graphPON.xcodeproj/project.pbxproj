@@ -23,7 +23,6 @@
 		A83612821A3EB7E300BB1B3F /* RatioChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83612811A3EB7E300BB1B3F /* RatioChartViewController.swift */; };
 		A83612841A3EB9E100BB1B3F /* RatioChartContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83612831A3EB9E100BB1B3F /* RatioChartContainerView.swift */; };
 		A83F30EC1A2EF4AF00FE2D86 /* ChartInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83F30EB1A2EF4AF00FE2D86 /* ChartInformationView.swift */; };
-		A83F8ACF1A4C4BC1003A9318 /* configuration.plist in Resources */ = {isa = PBXBuildFile; fileRef = A83F8ACE1A4C4BC1003A9318 /* configuration.plist */; };
 		A8409FB91A16F4A8007573EC /* ChartViewContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8409FB81A16F4A8007573EC /* ChartViewContainerView.swift */; };
 		A8549EFB1A2C6E9C000308AD /* PacketLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8549EFA1A2C6E9C000308AD /* PacketLog.swift */; };
 		A857096D1A723DD100A11F2D /* AvailabilityChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A857096C1A723DD100A11F2D /* AvailabilityChartViewController.swift */; };
@@ -67,7 +66,6 @@
 		A8DCA1561A4E7C3900CE73D3 /* JBChartFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A804D4CC1A4AD62D00F22CFE /* JBChartFramework.framework */; };
 		A8DCA1571A4E7C3900CE73D3 /* XYDoughnutChart.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A804D4CD1A4AD62D00F22CFE /* XYDoughnutChart.framework */; };
 		A8DCA1581A4E7C5500CE73D3 /* OAuth2Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = A874C0B81A4BF6EB00887932 /* OAuth2Router.swift */; };
-		A8DCA15A1A4E810200CE73D3 /* configuration.plist in Resources */ = {isa = PBXBuildFile; fileRef = A8DCA1591A4E810200CE73D3 /* configuration.plist */; };
 		A8E0AC3E1A66215F00D4E043 /* StateRestorable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E0AC3D1A66215F00D4E043 /* StateRestorable.swift */; };
 		A8F036FC1A6CD0ED00DEFA61 /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F036FB1A6CD0ED00DEFA61 /* SettingTableViewController.swift */; };
 /* End PBXBuildFile section */
@@ -114,13 +112,14 @@
 		A80D19DC1A11CEDA0067A055 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A8131D071A6D076E007C7D14 /* SettingTableHdoServiceSwitchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingTableHdoServiceSwitchCell.swift; path = Views/SettingTableHdoServiceSwitchCell.swift; sourceTree = "<group>"; };
 		A8131D091A6D1D00007C7D14 /* SettingTableHdoServiceSwitchCellDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingTableHdoServiceSwitchCellDelegate.swift; path = Protocols/SettingTableHdoServiceSwitchCellDelegate.swift; sourceTree = "<group>"; };
+		A823DF381AA8874E0061A264 /* graphPON.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = graphPON.xcconfig; path = Config/graphPON.xcconfig; sourceTree = "<group>"; };
 		A833C34C1A637E0800EBE788 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A83612811A3EB7E300BB1B3F /* RatioChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RatioChartViewController.swift; path = ViewControllers/RatioChartViewController.swift; sourceTree = "<group>"; };
 		A83612831A3EB9E100BB1B3F /* RatioChartContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RatioChartContainerView.swift; path = Views/RatioChartContainerView.swift; sourceTree = "<group>"; };
 		A83F30EB1A2EF4AF00FE2D86 /* ChartInformationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChartInformationView.swift; path = Views/ChartInformationView.swift; sourceTree = "<group>"; };
-		A83F8ACE1A4C4BC1003A9318 /* configuration.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = configuration.plist; sourceTree = "<group>"; };
 		A8409FB81A16F4A8007573EC /* ChartViewContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChartViewContainerView.swift; path = Views/ChartViewContainerView.swift; sourceTree = "<group>"; };
 		A8549EFA1A2C6E9C000308AD /* PacketLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PacketLog.swift; path = Models/PacketLog.swift; sourceTree = "<group>"; };
+		A856C4F81AA8897E007735C0 /* Test.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Test.xcconfig; path = Config/Test.xcconfig; sourceTree = "<group>"; };
 		A857096C1A723DD100A11F2D /* AvailabilityChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AvailabilityChartViewController.swift; path = ViewControllers/AvailabilityChartViewController.swift; sourceTree = "<group>"; };
 		A85871461A776109007C78C1 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
 		A858714B1A7766B3007C78C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -152,7 +151,6 @@
 		A8CB1A5F1A789929002FA9F7 /* ErrorAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ErrorAlertController.swift; path = ViewControllers/ErrorAlertController.swift; sourceTree = "<group>"; };
 		A8CB1A611A789FD8002FA9F7 /* ErrorAlertPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ErrorAlertPresenter.swift; path = Protocols/ErrorAlertPresenter.swift; sourceTree = "<group>"; };
 		A8DCA1521A4E7B3E00CE73D3 /* OAuth2ClientTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuth2ClientTests.swift; sourceTree = "<group>"; };
-		A8DCA1591A4E810200CE73D3 /* configuration.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = configuration.plist; sourceTree = "<group>"; };
 		A8E0AC3D1A66215F00D4E043 /* StateRestorable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StateRestorable.swift; path = Protocols/StateRestorable.swift; sourceTree = "<group>"; };
 		A8F036FB1A6CD0ED00DEFA61 /* SettingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingTableViewController.swift; path = ViewControllers/SettingTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -196,6 +194,7 @@
 			children = (
 				A80D19C21A11CEDA0067A055 /* graphPON */,
 				A80D19DA1A11CEDA0067A055 /* graphPONTests */,
+				A823DF371AA887300061A264 /* Config */,
 				A80D19C11A11CEDA0067A055 /* Products */,
 				F46B956D86CB6147453819A7 /* Frameworks */,
 			);
@@ -231,7 +230,6 @@
 			children = (
 				A858714A1A7766B3007C78C1 /* Localizable.strings */,
 				A80D19C41A11CEDA0067A055 /* Info.plist */,
-				A83F8ACE1A4C4BC1003A9318 /* configuration.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -252,7 +250,6 @@
 			isa = PBXGroup;
 			children = (
 				A80D19DC1A11CEDA0067A055 /* Info.plist */,
-				A8DCA1591A4E810200CE73D3 /* configuration.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -270,6 +267,15 @@
 				A8131D071A6D076E007C7D14 /* SettingTableHdoServiceSwitchCell.swift */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		A823DF371AA887300061A264 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				A823DF381AA8874E0061A264 /* graphPON.xcconfig */,
+				A856C4F81AA8897E007735C0 /* Test.xcconfig */,
+			);
+			name = Config;
 			sourceTree = "<group>";
 		};
 		A8549EF71A2C6E47000308AD /* Models */ = {
@@ -437,7 +443,6 @@
 			files = (
 				A858714C1A7766B3007C78C1 /* Localizable.strings in Resources */,
 				A80D19CD1A11CEDA0067A055 /* Main.storyboard in Resources */,
-				A83F8ACF1A4C4BC1003A9318 /* configuration.plist in Resources */,
 				A80D19D21A11CEDA0067A055 /* LaunchScreen.xib in Resources */,
 				A80D19CF1A11CEDA0067A055 /* Images.xcassets in Resources */,
 			);
@@ -447,7 +452,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A8DCA15A1A4E810200CE73D3 /* configuration.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -556,6 +560,7 @@
 /* Begin XCBuildConfiguration section */
 		A80D19DF1A11CEDA0067A055 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A823DF381AA8874E0061A264 /* graphPON.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -593,7 +598,7 @@
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -604,6 +609,7 @@
 		};
 		A80D19E01A11CEDA0067A055 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A823DF381AA8874E0061A264 /* graphPON.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -635,7 +641,7 @@
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -655,6 +661,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = graphPON/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -673,6 +680,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = graphPON/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -681,6 +689,7 @@
 		};
 		A80D19E51A11CEDA0067A055 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A856C4F81AA8897E007735C0 /* Test.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -702,6 +711,7 @@
 		};
 		A80D19E61A11CEDA0067A055 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A856C4F81AA8897E007735C0 /* Test.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
