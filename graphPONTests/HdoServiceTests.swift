@@ -10,7 +10,7 @@ class HdoServiceTests: XCTestCase {
     override func setUp() {
         super.setUp()
 
-        let calendar = NSCalendar(calendarIdentifier: NSGregorianCalendar)!
+        let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
         var comps = calendar.components(
             (NSCalendarUnit.CalendarUnitYear|NSCalendarUnit.CalendarUnitMonth|NSCalendarUnit.CalendarUnitDay),
             fromDate: NSDate()

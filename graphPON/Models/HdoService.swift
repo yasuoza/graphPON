@@ -67,12 +67,12 @@ class HdoService: NSObject {
 
     private func collectInThisMonthPacketLogs() -> [PacketLog] {
         let todayComp = NSCalendar.currentCalendar().components(
-            NSCalendarUnit.DayCalendarUnit|NSCalendarUnit.MonthCalendarUnit|NSCalendarUnit.YearCalendarUnit,
+            .CalendarUnitDay | .CalendarUnitMonth | .CalendarUnitYear,
             fromDate: NSDate()
         )
         return self.allPacketLogs.filter { (packetLog) in
             let component = NSCalendar.currentCalendar().components(
-                NSCalendarUnit.DayCalendarUnit|NSCalendarUnit.MonthCalendarUnit|NSCalendarUnit.YearCalendarUnit,
+                .CalendarUnitDay | .CalendarUnitMonth | .CalendarUnitYear,
                 fromDate: packetLog.date
             )
             if component.year < todayComp.year || component.month < todayComp.month {

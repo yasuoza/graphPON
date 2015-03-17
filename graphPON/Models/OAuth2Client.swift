@@ -59,12 +59,10 @@ class OAuth2Client: NSObject {
     // MARK: - Instance methods
 
     override init() {
-        super.init()
-
         let callbackURLString = NSBundle(forClass: self.dynamicType)
-            .objectForInfoDictionaryKey("IIJAPICallbackURL") as String
+            .objectForInfoDictionaryKey("IIJAPICallbackURL") as! String
         self.iijDeveloperID = NSBundle(forClass: self.dynamicType)
-            .objectForInfoDictionaryKey("IIJAPIClientKey") as String
+            .objectForInfoDictionaryKey("IIJAPIClientKey") as! String
         self.iijOAuthCallbackURI = NSURL(string: callbackURLString)
 
         if let credential = OAuth2Credential.restoreCredential() {

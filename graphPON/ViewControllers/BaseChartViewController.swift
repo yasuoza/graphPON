@@ -77,7 +77,7 @@ class BaseChartViewController: BaseViewController, StateRestorable {
         }
     }
 
-    required override init(coder aDecoder: NSCoder) {
+    required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
 
         self.restrationalServiceCodeIdentifier = "\(self.restorationIdentifier!).serviceCode"

@@ -4,7 +4,7 @@ extension NSDate {
 
     func startDateOfMonth() -> NSDate? {
         let calendar = NSCalendar.currentCalendar()
-        let currentDateComponents = calendar.components(.YearCalendarUnit | .MonthCalendarUnit, fromDate: self)
+        let currentDateComponents = calendar.components(.CalendarUnitYear | .CalendarUnitMonth, fromDate: self)
         let startOfMonth = calendar.dateFromComponents(currentDateComponents)
 
         return startOfMonth
@@ -14,7 +14,7 @@ extension NSDate {
         let calendar = NSCalendar.currentCalendar()
         if let plusOneMonthDate = self.dateByAddingMonths(1) {
             let plusOneMonthDateComponents = calendar.components(
-                .YearCalendarUnit | .MonthCalendarUnit, fromDate: plusOneMonthDate
+                .CalendarUnitYear | .CalendarUnitMonth, fromDate: plusOneMonthDate
             )
             return calendar.dateFromComponents(plusOneMonthDateComponents)?.dateByAddingTimeInterval(-1)
         }
