@@ -93,10 +93,7 @@ class AvailabilityChartViewController: BaseChartViewController, XYDoughnutChartD
     }
 
     func displayLatestTotalChartInformation() {
-        if let slices = self.slices {
-            if slices.first == nil {
-                return
-            }
+        if let slices = self.slices where slices.first != nil {
             let dateFormatter = NSDateFormatter()
             dateFormatter.dateFormat = "MM/dd"
             dateFormatter.locale = NSLocale(localeIdentifier: "en_US")

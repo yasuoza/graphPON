@@ -102,10 +102,9 @@ class DailyChartViewController: BaseChartViewController, JBBarChartViewDelegate,
             self.navigationItem.title = "\(hdoService.nickName) (\(self.chartDataFilteringSegment.text()))"
         }
 
-        if let chartData = self.chartData {
-            if chartData.count > 0 {
-                self.chartViewContainerView.chartView.maximumValue = maxElement(chartData)
-            }
+        if let chartData = self.chartData where chartData.count > 0 {
+            self.chartViewContainerView.chartView.minimumValue = 0
+            self.chartViewContainerView.chartView.maximumValue = maxElement(chartData)
         }
 
         if let footerView = self.chartViewContainerView.chartView.footerView as? LineChartFooterView {

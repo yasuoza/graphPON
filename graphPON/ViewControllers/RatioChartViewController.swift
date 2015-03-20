@@ -84,33 +84,27 @@ class RatioChartViewController: BaseChartViewController, XYDoughnutChartDelegate
     }
 
     func displayLatestTotalChartInformation() {
-        if let slices = self.slices {
-            if slices.count == 0 {
-                return
-            }
-            let max = maxElement(slices)
-            let maxIndex = find(slices, max)
-            if maxIndex == nil {
-                return
-            }
-            if let hdoService = self.hddService?.hdoServices?[maxIndex!] {
-                self.chartInformationView.setTitleText(
-                    String(format: NSLocalizedString("Proportion of %@", comment: "Chart information title text in ratio chart"),
-                        hdoService.nickName)
-                )
-                self.chartInformationView.setHidden(false, animated: true)
-                UIView.animateWithDuration(
-                    NSTimeInterval(kJBChartViewDefaultAnimationDuration) * 0.5,
-                    delay: 0.0,
-                    options: UIViewAnimationOptions.BeginFromCurrentState,
-                    animations: {
-                        self.informationValueLabelSeparatorView.alpha = 1.0
-                        let valueText = NSString(format: "%.01f", Float(max ?? 0.0))
-                        self.valueLabel.text = "\(valueText)%"
-                        self.valueLabel.alpha = 1.0
-                    },
-                    completion: nil
-                )
+        if let slices = self.slices where slices.count > 0 {
+            let maxValue = maxElement(slices)
+            if let maxIndex = find(slices, maxValue),
+                let hdoService = self.hddService?.hdoServices?[maxIndex] {
+                    self.chartInformationView.setTitleText(
+                        String(format: NSLocalizedString("Proportion of %@", comment: "Chart information title text in ratio chart"),
+                            hdoService.nickName)
+                    )
+                    self.chartInformationView.setHidden(false, animated: true)
+                    UIView.animateWithDuration(
+                        NSTimeInterval(kJBChartViewDefaultAnimationDuration) * 0.5,
+                        delay: 0.0,
+                        options: UIViewAnimationOptions.BeginFromCurrentState,
+                        animations: {
+                            self.informationValueLabelSeparatorView.alpha = 1.0
+                            let valueText = NSString(format: "%.01f", Float(maxValue))
+                            self.valueLabel.text = "\(valueText)%"
+                            self.valueLabel.alpha = 1.0
+                        },
+                        completion: nil
+                    )
             }
         }
     }
@@ -194,7 +188,7 @@ class RatioChartViewController: BaseChartViewController, XYDoughnutChartDelegate
     }
 
     func doughnutChart(doughnutChart: XYDoughnutChart!, colorForSliceAtIndexPath indexPath: NSIndexPath!) -> UIColor! {
-        if let slices = self.slices {
+        if let slices = self.slices where slices.count > 0 {
             var max = maxElement(slices)
             max = max == 0 ? 1.0 : max
             let alpha = slices[indexPath.slice] / max
