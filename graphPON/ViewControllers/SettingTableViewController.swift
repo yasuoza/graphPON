@@ -256,15 +256,12 @@ class SettingTableViewController: UITableViewController, SettingTableHdoServiceS
     // MARK: - SettingTableHdoServiceSwitchCellDelegate
 
     func couponSwitchButtonValueDidChanged(switchButton: UISwitch, buttonCell: UITableViewCell) {
-        if let indexPath = self.tableView.indexPathForCell(buttonCell) {
-            if let hdoService = PacketInfoManager.sharedManager.hddServices[indexPath.section].hdoServices?[(indexPath.row - 1) / 2] {
-                let hdoServiceCode = hdoService.hdoServiceCode
-                if self.couponUseDict.removeValueForKey(hdoServiceCode) == nil {
-                    self.couponUseDict[hdoServiceCode] = switchButton.on
-                }
-                self.navigationItem.rightBarButtonItem?.enabled = !self.couponUseDict.keys.isEmpty
-            }
+        if let indexPath = self.tableView.indexPathForCell(buttonCell),
+            let hdoService = PacketInfoManager.sharedManager.hddServices[indexPath.section].hdoServices?[(indexPath.row - 1) / 2]
+            where self.couponUseDict.removeValueForKey(hdoService.hdoServiceCode) == nil {
+                self.couponUseDict[hdoService.hdoServiceCode] = switchButton.on
         }
+        self.navigationItem.rightBarButtonItem?.enabled = !self.couponUseDict.keys.isEmpty
     }
 
 }

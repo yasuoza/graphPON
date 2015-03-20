@@ -130,19 +130,15 @@ class AvailabilityChartViewController: BaseChartViewController, XYDoughnutChartD
     func reBuildChartData() {
         let logManager = PacketInfoManager.sharedManager
 
-        if let hddService = logManager.hddServiceForServiceCode(self.serviceCode)
-            ?? logManager.hddServices.first {
+        if let hddService = logManager.hddServiceForServiceCode(self.serviceCode) ?? logManager.hddServices.first {
             self.hddService = hddService
         } else {
             return
         }
 
-        for hdoInfo in self.hddService!.hdoServices! {
-            hdoInfo.duration = self.chartDurationSegment
-        }
-
-        let packetSum = self.hddService?.hdoServices?.map { hdoInfo -> CGFloat in
-            return hdoInfo.packetLogs.reduce(CGFloat(0.0), combine: { (hdoPacketSum, packetLog) in
+        let packetSum: [CGFloat]? = self.hddService?.hdoServices?.map { hdoService in
+            hdoService.duration = self.chartDurationSegment
+            return hdoService.packetLogs.reduce(CGFloat(0.0), combine: { (hdoPacketSum, packetLog) in
                 return hdoPacketSum + CGFloat(packetLog.withCoupon)
             })
         }

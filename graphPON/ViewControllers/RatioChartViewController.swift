@@ -115,19 +115,16 @@ class RatioChartViewController: BaseChartViewController, XYDoughnutChartDelegate
         let logManager = PacketInfoManager.sharedManager
         self.slices = []
 
-        if let hddService = logManager.hddServiceForServiceCode(self.serviceCode)
-            ?? logManager.hddServices.first {
+        if let hddService = logManager.hddServiceForServiceCode(self.serviceCode) ?? logManager.hddServices.first {
             self.hddService = hddService
         } else {
             return
         }
 
-        for hdoInfo in self.hddService!.hdoServices! {
-            hdoInfo.duration = self.chartDurationSegment
-        }
+        let packetSum: [CGFloat] = self.hddService?.hdoServices?.map { hdoService in
+            hdoService.duration = self.chartDurationSegment
 
-        let packetSum = self.hddService?.hdoServices?.map { hdoInfo -> CGFloat in
-            return hdoInfo.packetLogs.reduce(CGFloat(0.0), combine: { (hdoPacketSum, packetLog) in
+            return hdoService.packetLogs.reduce(CGFloat(0.0), combine: { (hdoPacketSum, packetLog) in
                 switch self.chartDataFilteringSegment {
                 case .All:
                     return hdoPacketSum + CGFloat(packetLog.withCoupon + packetLog.withoutCoupon)

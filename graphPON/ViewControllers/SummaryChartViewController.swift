@@ -133,7 +133,7 @@ class SummaryChartViewController: BaseChartViewController, JBLineChartViewDelega
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "MM/dd"
         dateFormatter.locale = NSLocale(localeIdentifier: "en_US")
-        var startDateOfThisMonth = ""
+        let startDateOfThisMonth: String
         switch self.chartDurationSegment {
         case .InThisMonth:
             startDateOfThisMonth = dateFormatter.stringFromDate(NSDate().startDateOfMonth()!)
@@ -166,21 +166,15 @@ class SummaryChartViewController: BaseChartViewController, JBLineChartViewDelega
         let logManager = PacketInfoManager.sharedManager
         self.chartData = []
 
-        if let hddService = logManager.hddServiceForServiceCode(self.serviceCode)
-            ?? logManager.hddServices.first {
+        if let hddService = logManager.hddServiceForServiceCode(self.serviceCode) ?? logManager.hddServices.first {
             self.hddService = hddService
         } else {
             return
         }
 
-        for hdoInfo in self.hddService!.hdoServices! {
-            hdoInfo.duration = self.chartDurationSegment
-        }
-
-        var totalSum = [CGFloat](count: self.hddService!.hdoServices!.first!.packetLogs.count, repeatedValue: 0.0)
-        self.chartData = self.hddService?.hdoServices?.reduce([] as [[CGFloat]], combine: { (var _chartData, hdoInfo) in
-            var hdoServiceindex = 0
-            let hdoPacketSum = hdoInfo.packetLogs.reduce([] as [CGFloat], combine: { (var _hdoPacketSum, packetLog) in
+        self.chartData = self.hddService?.hdoServices?.reduce([] as [[CGFloat]], combine: { (_chartData, hdoService) in
+            hdoService.duration = self.chartDurationSegment
+            let hdoPacketSum = hdoService.packetLogs.reduce([] as [CGFloat], combine: { (_hdoPacketSum, packetLog) in
                 var lastPacketAmount = _hdoPacketSum.last ?? 0.0
                 switch self.chartDataFilteringSegment {
                 case .All:
@@ -189,22 +183,22 @@ class SummaryChartViewController: BaseChartViewController, JBLineChartViewDelega
                     lastPacketAmount += CGFloat(packetLog.withCoupon)
                 case .WithoutCoupon:
                     lastPacketAmount += CGFloat(packetLog.withoutCoupon)
-                default:
-                    break
                 }
-                totalSum[hdoServiceindex++] += lastPacketAmount
-                _hdoPacketSum.append(lastPacketAmount)
-                return _hdoPacketSum
+                return _hdoPacketSum + [lastPacketAmount]
             })
-            _chartData.append(hdoPacketSum)
-            return _chartData
+            return _chartData + [hdoPacketSum]
         })
+
         self.chartHorizontalData = self.hddService?.hdoServices?.first?.packetLogs.map { packetLog in
             return packetLog.dateText()
         }
 
         // Total sum makes meaning only when user has more than one service
-        if self.chartData?.count > 1 {
+        if let chartData = self.chartData where chartData.count > 1, let firstData = chartData.first {
+            let initial = [CGFloat](count: firstData.count, repeatedValue: 0.0)
+            let totalSum = chartData.reduce(initial, combine: { (arr, data) in
+                return map(zip(arr, data), +)
+            })
             self.chartData?.append(totalSum)
         }
     }
@@ -241,7 +235,7 @@ class SummaryChartViewController: BaseChartViewController, JBLineChartViewDelega
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "MM/dd"
         dateFormatter.locale = NSLocale(localeIdentifier: "en_US")
-        var startDateOfThisMonth = ""
+        let startDateOfThisMonth: String
         switch self.chartDurationSegment {
         case .InThisMonth:
             startDateOfThisMonth = dateFormatter.stringFromDate(NSDate().startDateOfMonth()!)
