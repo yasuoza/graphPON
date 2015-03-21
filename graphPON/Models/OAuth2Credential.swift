@@ -19,18 +19,14 @@ class OAuth2Credential: NSObject, NSCoding {
 
     class func restoreCredential() -> OAuth2Credential? {
         var attrs = AccountStore.attributes
-        attrs[kSecReturnAttributes as! String] = kCFBooleanTrue
+        attrs[kSecReturnAttributes as String!] = kCFBooleanTrue
 
-        // http://stackoverflow.com/a/27721235/1427595
-        var result: AnyObject?
-        let status = withUnsafeMutablePointer(&result) { SecItemCopyMatching(attrs, UnsafeMutablePointer($0)) }
-
-        if status == errSecSuccess {
-            if let dict = result as? NSDictionary {
-                let key = String(kSecAttrGeneric)
-                if let data = dict[key] as? NSData {
+        var copy: Unmanaged<AnyObject>? = nil
+        if SecItemCopyMatching(attrs, &copy) == OSStatus(errSecSuccess)  {
+            let key = String(kSecAttrGeneric)
+            if let dict = copy?.takeRetainedValue() as? NSDictionary,
+                let data = dict[key] as? NSData {
                     return NSKeyedUnarchiver.unarchiveObjectWithData(data) as? OAuth2Credential
-                }
             }
         }
         return nil
