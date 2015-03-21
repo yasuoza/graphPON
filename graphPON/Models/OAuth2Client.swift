@@ -11,6 +11,7 @@ class OAuth2Client: NSObject {
     // MARK: - Singleton variables
 
     static let OAuthDidAuthorizeNotification = "graphPON.OAuthDidAuthorizeNotification"
+    static let sharedClient = OAuth2Client()
 
     // MARK: - Instance variables
 
@@ -46,14 +47,6 @@ class OAuth2Client: NSObject {
                 dict[elem.first!] = String(elem.last!).stringByRemovingPercentEncoding
                 return dict
         }
-    }
-
-    class var sharedClient: OAuth2Client {
-        struct Singleton {
-            static let instance = OAuth2Client()
-        }
-
-        return Singleton.instance
     }
 
     // MARK: - Instance methods
