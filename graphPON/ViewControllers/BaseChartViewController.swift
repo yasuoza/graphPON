@@ -92,7 +92,6 @@ class BaseChartViewController: BaseViewController, StateRestorable {
         
         self.navBarHairlineImageView = self.findHairlineImageViewUnder(self.navigationController!.navigationBar)
         self.navBarHairlineImageView?.hidden = true
-        self.navigationController?.navigationBar.translucent = true
     }
 
     override func viewWillAppear(animated: Bool) {
