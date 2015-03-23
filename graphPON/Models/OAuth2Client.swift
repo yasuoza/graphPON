@@ -41,10 +41,9 @@ class OAuth2Client: NSObject {
             .map { keyValue in
                 keyValue.componentsSeparatedByString("=")
             }.reduce([:] as [String: String]) { (var dict, elem) in
-                if elem.first == nil || elem.last == nil {
-                    return dict
+                if let key = elem.first, let value = elem.last {
+                    dict[key] = String(value).stringByRemovingPercentEncoding
                 }
-                dict[elem.first!] = String(elem.last!).stringByRemovingPercentEncoding
                 return dict
         }
     }

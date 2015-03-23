@@ -19,9 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
         if OAuth2Router.validOAuthCallbackURL(url) {
-            let parsedQuery = OAuth2Client.parseQuery(url.fragment)
-            if let dict = parsedQuery {
-                let credential = OAuth2Credential(dictionary: dict)
+            if let params = OAuth2Client.parseQuery(url.fragment) {
+                let credential = OAuth2Credential(dictionary: params)
                 if credential.save() {
                     if let tabBarController = self.window?.rootViewController as? UITabBarController,
                         let navVC = tabBarController.selectedViewController as? UINavigationController,
