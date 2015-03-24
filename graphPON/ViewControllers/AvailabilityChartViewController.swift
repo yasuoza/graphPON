@@ -152,11 +152,11 @@ class AvailabilityChartViewController: BaseChartViewController, XYDoughnutChartD
 
     // MARK: - XYDoughnutChartDelegate
 
-    func doughnutChart(doughnutChart: XYDoughnutChart!, willSelectSliceAtIndex indexPath: NSIndexPath) -> NSIndexPath? {
+    func doughnutChart(doughnutChart: XYDoughnutChart, willSelectSliceAtIndex indexPath: NSIndexPath) -> NSIndexPath? {
         return nil
     }
 
-    func doughnutChart(doughnutChart: XYDoughnutChart!, colorForSliceAtIndexPath indexPath: NSIndexPath!) -> UIColor! {
+    func doughnutChart(doughnutChart: XYDoughnutChart, colorForSliceAtIndexPath indexPath: NSIndexPath) -> UIColor {
         if indexPath.slice == 0 {
             return UIColor.whiteColor()
         }
@@ -166,11 +166,11 @@ class AvailabilityChartViewController: BaseChartViewController, XYDoughnutChartD
 
     // MARK: - XYDoughnutChartDataSource
 
-    func numberOfSlicesInDoughnutChart(doughnutChart: XYDoughnutChart!) -> Int {
+    func numberOfSlicesInDoughnutChart(doughnutChart: XYDoughnutChart) -> Int {
         return slices?.count ?? 0;
     }
 
-    func doughnutChart(doughnutChart: XYDoughnutChart!, valueForSliceAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func doughnutChart(doughnutChart: XYDoughnutChart, valueForSliceAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return CGFloat(self.slices?[indexPath.slice] ?? 0);
     }
 

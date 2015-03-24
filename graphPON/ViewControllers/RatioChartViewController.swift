@@ -143,7 +143,7 @@ class RatioChartViewController: BaseChartViewController, XYDoughnutChartDelegate
 
     // MARK: - XYDoughnutChartDelegate
 
-    func doughnutChart(doughnutChart: XYDoughnutChart!, didSelectSliceAtIndexPath indexPath: NSIndexPath) {
+    func doughnutChart(doughnutChart: XYDoughnutChart, didSelectSliceAtIndexPath indexPath: NSIndexPath) {
         if let hdoService = self.hddService?.hdoServices?[indexPath.slice] {
             self.chartInformationView.setTitleText(
                 String(format: NSLocalizedString("Proportion of %@", comment: "Chart information title text in ratio chart"),
@@ -166,7 +166,7 @@ class RatioChartViewController: BaseChartViewController, XYDoughnutChartDelegate
         )
     }
 
-    func doughnutChart(doughnutChart: XYDoughnutChart!, didDeselectSliceAtIndexPath indexPath: NSIndexPath) {
+    func doughnutChart(doughnutChart: XYDoughnutChart, didDeselectSliceAtIndexPath indexPath: NSIndexPath) {
         self.chartInformationView.setHidden(true, animated: true)
 
         UIView.animateWithDuration(
@@ -184,7 +184,7 @@ class RatioChartViewController: BaseChartViewController, XYDoughnutChartDelegate
         )
     }
 
-    func doughnutChart(doughnutChart: XYDoughnutChart!, colorForSliceAtIndexPath indexPath: NSIndexPath!) -> UIColor! {
+    func doughnutChart(doughnutChart: XYDoughnutChart, colorForSliceAtIndexPath indexPath: NSIndexPath) -> UIColor {
         if let slices = self.slices where slices.count > 0 {
             var max = maxElement(slices)
             max = max == 0 ? 1.0 : max
@@ -194,17 +194,17 @@ class RatioChartViewController: BaseChartViewController, XYDoughnutChartDelegate
         return UIColor.clearColor()
     }
 
-    func doughnutChart(doughnutChart: XYDoughnutChart!, selectedStrokeWidthForSliceAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func doughnutChart(doughnutChart: XYDoughnutChart, selectedStrokeWidthForSliceAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 2.0
     }
 
     // MARK: - XYDoughnutChartDataSource
 
-    func numberOfSlicesInDoughnutChart(doughnutChart: XYDoughnutChart!) -> Int {
+    func numberOfSlicesInDoughnutChart(doughnutChart: XYDoughnutChart) -> Int {
         return slices?.count ?? 0;
     }
 
-    func doughnutChart(doughnutChart: XYDoughnutChart!, valueForSliceAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func doughnutChart(doughnutChart: XYDoughnutChart, valueForSliceAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return CGFloat(self.slices?[indexPath.slice] ?? 0);
     }
 
