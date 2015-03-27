@@ -23,26 +23,30 @@
 		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Viewer</string>
+			<key>CFBundleURLIconFile</key>
+			<string></string>
 			<key>CFBundleURLName</key>
-			<string>com.yasuoza.graphPON</string>
+			<string>$(CFBundleIdentifier)</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>graphpon</string>
+				<string>$(IIJ_API_CALLBACK_SCHEME)</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>IIJAPICallbackScheme</key>
+	<string>$(IIJ_API_CALLBACK_SCHEME)</string>
+	<key>IIJAPICallbackURL</key>
+	<string>$(IIJ_API_CALLBACK_SCHEME)://$(IIJ_API_CALLBACK_DOMAIN)</string>
+	<key>IIJAPIClientKey</key>
+	<string>$(IIJ_API_CLIENT_KEY)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
-	<key>IIJAPIClientKey</key>
-	<string>${IIJ_API_CLIENT_KEY}</string>
-	<key>IIJAPICallbackURL</key>
-	<string>graphpon://${IIJ_API_CALLBACK_DOMAIN}</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
