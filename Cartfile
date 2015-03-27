@@ -1,4 +1,4 @@
-github "yasuoza/XYDoughnutChart" "master"
+github "yasuoza/XYDoughnutChart" "xcode-6.3"
 
 github "yasuoza/JBChartView" "carthage"
 
