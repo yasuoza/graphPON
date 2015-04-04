@@ -42,11 +42,6 @@ class HdoService: NSObject {
 
     private var allPacketLogs: [PacketLog] = []
 
-    init(hdoServiceCode: String, packetLogs: [PacketLog]) {
-        super.init()
-        self.hdoServiceCode = hdoServiceCode
-        self.packetLogs = packetLogs
-    }
 
     init(hdoServiceCode: String, number: String) {
         super.init()
