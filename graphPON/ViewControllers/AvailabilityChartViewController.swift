@@ -114,7 +114,7 @@ class AvailabilityChartViewController: BaseChartViewController, XYDoughnutChartD
                 delay: 0.0,
                 options: UIViewAnimationOptions.BeginFromCurrentState,
                 animations: {
-                    self.usedPercentageLabel.text = NSString(format: "%.01f%%", Float(usedPercentage * 100)) as String
+                    self.usedPercentageLabel.text = String(format: "%.01f%%", Float(usedPercentage * 100))
                     self.usedLabel.hidden = false
                     self.informationValueLabelSeparatorView.alpha = 1.0
                     self.valueLabel.text = PacketLog.stringForValue(slices.last)

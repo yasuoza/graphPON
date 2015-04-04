@@ -59,7 +59,7 @@ class HddService: NSObject {
             }
             return "MB"
             }()
-        return NSString(format: "%.01f", available) as! String + unit
+        return String(format: "%.01f", available) + unit
     }
 
     func hdoServiceForServiceCode(hdoServiceCode: String) -> HdoService? {

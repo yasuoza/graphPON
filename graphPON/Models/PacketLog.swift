@@ -19,7 +19,7 @@ struct PacketLog {
             }
             return "MB"
         }()
-        return NSString(format: "%.01f", Float(packetValue!)) as! String + unit
+        return String(format: "%.01f", Float(packetValue!)) + unit
     }
 
     // MARK: - Instance methods
