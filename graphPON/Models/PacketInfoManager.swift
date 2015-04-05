@@ -96,7 +96,7 @@ class PacketInfoManager: NSObject {
                     break
                 }
 
-                var tmpHddServices: [HddService] = []
+                var hddServices: [HddService] = []
                 for (_, hddServiceJSON) in json["couponInfo"] {
                     let hddServiceCode = hddServiceJSON["hddServiceCode"].stringValue
                     var tmpCoupons: [Coupon] = []
@@ -104,20 +104,24 @@ class PacketInfoManager: NSObject {
                         let coupon = Coupon(volume: couponJSON["volume"].intValue)
                         tmpCoupons.append(coupon)
                     }
-                    var tmpHdoServices: [HdoService] = []
+                    var hdoServices: [HdoService] = []
                     for (_, hdoServiceJson) in hddServiceJSON["hdoInfo"] {
                         let hdoService = HdoService(
                             hdoServiceCode: hdoServiceJson["hdoServiceCode"].stringValue,
                             number: hdoServiceJson["number"].stringValue
                         )
                         hdoService.couponUse = hdoServiceJson["couponUse"].boolValue
-                        tmpHdoServices.append(hdoService)
+                        for (_, simCouponJSON) in hdoServiceJson["coupon"] {
+                            let simCoupon = Coupon(volume: simCouponJSON["volume"].intValue)
+                            hdoService.coupons.append(simCoupon)
+                        }
+                        hdoServices.append(hdoService)
                     }
-                    tmpHddServices.append(
-                        HddService(hddServiceCode: hddServiceCode, coupons: tmpCoupons, hdoServices: tmpHdoServices)
+                    hddServices.append(
+                        HddService(hddServiceCode: hddServiceCode, coupons: tmpCoupons, hdoServices: hdoServices)
                     )
                 }
-                self.hddServices = tmpHddServices
+                self.hddServices = hddServices
                 _completion?(error: nil)
         }
     }

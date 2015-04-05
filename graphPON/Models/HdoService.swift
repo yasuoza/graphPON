@@ -8,7 +8,10 @@ class HdoService: NSObject {
 
     private(set) var hdoServiceCode = ""
     private(set) var number = ""
+    var coupons: [Coupon] = []
     var couponUse = true
+
+    private var allPacketLogs: [PacketLog] = []
     var packetLogs: [PacketLog] {
         get {
             switch self.duration {
@@ -22,6 +25,7 @@ class HdoService: NSObject {
             self.allPacketLogs = packets
         }
     }
+
     var nickName: String {
         get {
             if let nickname = NSUserDefaults.standardUserDefaults()
@@ -38,10 +42,8 @@ class HdoService: NSObject {
             }
         }
     }
+
     var duration: Duration = .InThisMonth
-
-    private var allPacketLogs: [PacketLog] = []
-
 
     init(hdoServiceCode: String, number: String) {
         super.init()

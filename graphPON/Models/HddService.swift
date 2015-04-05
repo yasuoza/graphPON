@@ -44,14 +44,19 @@ class HddService: NSObject {
         self.hdoServices = hdoServices
     }
 
-    func availableCouponVolume() -> Int {
-        return self.coupons.reduce(0, combine: { (sum , coupon) in
+    var availableCouponVolume: Int {
+        let simCoupons = self.hdoServices?.reduce([] as [Coupon], combine: { (arr, hdoService) in
+            arr + hdoService.coupons
+        }) ?? []
+        let allCoupons = self.coupons + simCoupons
+
+        return allCoupons.reduce(0, combine: { (sum , coupon) in
             return sum + coupon.volume
         })
     }
 
-    func availableCouponVolumeString() -> String {
-        var available = Float(self.availableCouponVolume())
+    var availableCouponVolumeString: String {
+        var available = Float(self.availableCouponVolume)
         let unit: String = { _ -> String in
             if available >= 1_000.0 {
                 available = available / 1_000.0

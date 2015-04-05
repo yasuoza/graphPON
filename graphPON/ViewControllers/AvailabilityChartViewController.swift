@@ -105,9 +105,8 @@ class AvailabilityChartViewController: BaseChartViewController, XYDoughnutChartD
             )
             self.chartInformationView.setHidden(false, animated: true)
 
-            var totalAvailability = self.slices?.reduce(0, combine: +) ?? 1.0
-            totalAvailability = totalAvailability != 0 ? totalAvailability : 1.0
-            let usedPercentage = slices.first! / totalAvailability
+            let totalAvailability = self.slices?.reduce(0, combine: +) ?? 0.0
+            let usedPercentage = totalAvailability == 0.0 ? 0.0 : slices.first! / totalAvailability
 
             UIView.animateWithDuration(
                 NSTimeInterval(kJBChartViewDefaultAnimationDuration) * 0.5,
@@ -136,17 +135,17 @@ class AvailabilityChartViewController: BaseChartViewController, XYDoughnutChartD
             return
         }
 
-        let packetSum: [CGFloat]? = self.hddService?.hdoServices?.map { hdoService in
+        let usedPackets: [CGFloat]? = self.hddService?.hdoServices?.map { hdoService in
             hdoService.duration = self.chartDurationSegment
             return hdoService.packetLogs.reduce(CGFloat(0.0), combine: { (hdoPacketSum, packetLog) in
                 return hdoPacketSum + CGFloat(packetLog.withCoupon)
             })
         }
 
-        if let usedPackets = packetSum {
+        if let usedPackets = usedPackets {
             let used = usedPackets.reduce(0, combine:+)
-            let available =  CGFloat(self.hddService?.availableCouponVolume() ?? 0)
-            self.slices = [used, available];
+            let available = CGFloat(self.hddService?.availableCouponVolume ?? 0)
+            self.slices = [used, available]
         }
     }
 
