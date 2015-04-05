@@ -45,9 +45,7 @@ class HddService: NSObject {
     }
 
     var availableCouponVolume: Int {
-        let simCoupons = self.hdoServices?.reduce([] as [Coupon], combine: { (arr, hdoService) in
-            arr + hdoService.coupons
-        }) ?? []
+        let simCoupons = self.hdoServices?.flatMap { $0.coupons } ?? []
         let allCoupons = self.coupons + simCoupons
 
         return allCoupons.reduce(0, combine: { (sum , coupon) in

@@ -55,7 +55,10 @@ class HdoService: NSObject {
             } else {
                 _number += "-"
             }
-            let range = Range(start: advance(number.startIndex, startIndex), end: advance(number.startIndex, (index + 1) * 4 - 1))
+            let range = Range(
+                start: advance(number.startIndex, startIndex),
+                end: advance(number.startIndex, (index + 1) * 4 - 1)
+            )
             return _number + number.substringWithRange(range)
         })
     }
