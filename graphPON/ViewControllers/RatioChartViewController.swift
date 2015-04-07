@@ -128,21 +128,11 @@ class RatioChartViewController: BaseChartViewController, XYDoughnutChartDelegate
             return
         }
 
-        for hdoInfo in self.hddService!.hdoServices! {
-            hdoInfo.duration = self.chartDurationSegment
-        }
-
         let packetSum = self.hddService?.hdoServices?.map { hdoInfo -> CGFloat in
-            return hdoInfo.packetLogs.reduce(CGFloat(0.0), combine: { (hdoPacketSum, packetLog) in
-                switch self.chartDataFilteringSegment {
-                case .All:
-                    return hdoPacketSum + CGFloat(packetLog.withCoupon + packetLog.withoutCoupon)
-                case .WithCoupon:
-                    return hdoPacketSum + CGFloat(packetLog.withCoupon)
-                case .WithoutCoupon:
-                    return hdoPacketSum + CGFloat(packetLog.withoutCoupon)
-                }
-            })
+            return hdoInfo.summarizeServiceUsageInDuration(
+                self.chartDurationSegment,
+                couponSwitch: self.chartDataFilteringSegment
+            ).reduce(0.0, combine: +)
         } ?? []
 
         var total = packetSum.reduce(0, combine:+)
@@ -230,7 +220,7 @@ class RatioChartViewController: BaseChartViewController, XYDoughnutChartDelegate
     // MARK: - DisplayPacketLogsSelectTableViewControllerDelegate
 
     func displayPacketLogSegmentDidSelected(segment: Int) {
-        self.chartDataFilteringSegment = ChartDataFilteringSegment(rawValue: segment)!
+        self.chartDataFilteringSegment = Coupon.Switch(rawValue: segment)!
         self.reBuildChartData()
         if self.traitCollection.horizontalSizeClass == .Regular {
             self.reloadChartView(true)

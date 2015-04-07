@@ -69,4 +69,40 @@ class HddService: NSObject {
         return nil
     }
 
+    func summarizeServiceUsageInDuration(duration: HdoService.Duration, couponSwitch: Coupon.Switch) -> [[CGFloat]] {
+        var chartData = self.hdoServices?.reduce([] as [[CGFloat]], combine: { (_chartData, hdoService) in
+            hdoService.duration = duration
+            let hdoPacketSum = hdoService.packetLogs.reduce([] as [CGFloat], combine: { (_hdoPacketSum, packetLog) in
+                var lastPacketAmount = _hdoPacketSum.last ?? 0.0
+                switch couponSwitch {
+                case .All:
+                    lastPacketAmount += CGFloat(packetLog.withCoupon + packetLog.withoutCoupon)
+                case .On:
+                    lastPacketAmount += CGFloat(packetLog.withCoupon)
+                case .Off:
+                    lastPacketAmount += CGFloat(packetLog.withoutCoupon)
+                }
+                return _hdoPacketSum + [lastPacketAmount]
+            })
+            return _chartData + [hdoPacketSum]
+        })
+
+        // Total sum makes meaning only when user has more than one service
+        if chartData?.count > 1 {
+            if var chartData = chartData {
+                if let firstData = chartData.first {
+                    let initial = [CGFloat](count: firstData.count, repeatedValue: 0.0)
+
+                    let totalSum = chartData.reduce(initial, combine: { (arr, data) in
+                        return map(Zip2(arr, data), +)
+                    })
+
+                    chartData.append(totalSum)
+                }
+            }
+        }
+
+        return chartData ?? []
+    }
+
 }

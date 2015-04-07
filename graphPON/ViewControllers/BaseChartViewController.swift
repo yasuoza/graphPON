@@ -24,28 +24,13 @@ class BaseChartViewController: BaseViewController, StateRestorable {
     @IBOutlet weak var chartDurationSegmentControl: UISegmentedControl?
 
     var serviceCode: String?
-    var chartDataFilteringSegment: ChartDataFilteringSegment = .All
+    var chartDataFilteringSegment: Coupon.Switch = .All
     var chartDurationSegment: HdoService.Duration = .InThisMonth
 
     private var navBarHairlineImageView: UIImageView?
     private var restrationalServiceCodeIdentifier: String!
     private var restrationalDurationSegmentIdentifier: String!
     private var restrationalDataFilteringSegmentIdentifier: String!
-
-    enum ChartDataFilteringSegment: Int {
-        case All = 0, WithCoupon = 1, WithoutCoupon = 2
-
-        func text() -> String {
-            switch self {
-            case .All:
-                return NSLocalizedString("All", comment: "All")
-            case .WithCoupon:
-                return NSLocalizedString("On", comment: "On")
-            case .WithoutCoupon:
-                return NSLocalizedString("Off", comment: "Off")
-            }
-        }
-    }
 
     enum Mode {
         case Summary, Daily, Ratio, Availability
@@ -183,11 +168,11 @@ class BaseChartViewController: BaseViewController, StateRestorable {
         self.chartDurationSegment
             = HdoService.Duration(rawValue: standardDefaults.integerForKey(self.restrationalDurationSegmentIdentifier))!
         self.chartDataFilteringSegment
-            = ChartDataFilteringSegment(rawValue: standardDefaults.integerForKey(self.restrationalDataFilteringSegmentIdentifier))!
+            = Coupon.Switch(rawValue: standardDefaults.integerForKey(self.restrationalDataFilteringSegmentIdentifier))!
 
         standardDefaults.setObject(nil, forKey: self.restrationalServiceCodeIdentifier)
         standardDefaults.setInteger(HdoService.Duration.InThisMonth.rawValue, forKey: self.restrationalDurationSegmentIdentifier)
-        standardDefaults.setInteger(ChartDataFilteringSegment.All.rawValue, forKey: self.restrationalDataFilteringSegmentIdentifier)
+        standardDefaults.setInteger(Coupon.Switch.All.rawValue, forKey: self.restrationalDataFilteringSegmentIdentifier)
     }
 
 }

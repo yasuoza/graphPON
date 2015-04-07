@@ -62,6 +62,20 @@ class HdoService: NSObject {
         })
     }
 
+    func summarizeServiceUsageInDuration(duration: HdoService.Duration, couponSwitch: Coupon.Switch) -> [CGFloat] {
+        self.duration = duration
+        return packetLogs.reduce([] as [CGFloat], combine: { (arr, packetLog) in
+            switch couponSwitch {
+            case .All:
+                return arr + [CGFloat(packetLog.withCoupon + packetLog.withoutCoupon)]
+            case .On:
+                return arr + [CGFloat(packetLog.withCoupon)]
+            case .Off:
+                return arr + [CGFloat(packetLog.withoutCoupon)]
+            }
+        })
+    }
+
     // MARK: - Private
 
     private func collectInThisMonthPacketLogs() -> [PacketLog] {

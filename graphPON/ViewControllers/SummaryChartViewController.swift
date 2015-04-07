@@ -173,39 +173,13 @@ class SummaryChartViewController: BaseChartViewController, JBLineChartViewDelega
             return
         }
 
-        for hdoInfo in self.hddService!.hdoServices! {
-            hdoInfo.duration = self.chartDurationSegment
-        }
+        self.chartData = self.hddService?.summarizeServiceUsageInDuration(
+            self.chartDurationSegment,
+            couponSwitch: self.chartDataFilteringSegment
+        )
 
-        var totalSum = [CGFloat](count: self.hddService!.hdoServices!.first!.packetLogs.count, repeatedValue: 0.0)
-        self.chartData = self.hddService?.hdoServices?.reduce([] as [[CGFloat]], combine: { (var _chartData, hdoInfo) in
-            var hdoServiceindex = 0
-            let hdoPacketSum = hdoInfo.packetLogs.reduce([] as [CGFloat], combine: { (var _hdoPacketSum, packetLog) in
-                var lastPacketAmount = _hdoPacketSum.last ?? 0.0
-                switch self.chartDataFilteringSegment {
-                case .All:
-                    lastPacketAmount += CGFloat(packetLog.withCoupon + packetLog.withoutCoupon)
-                case .WithCoupon:
-                    lastPacketAmount += CGFloat(packetLog.withCoupon)
-                case .WithoutCoupon:
-                    lastPacketAmount += CGFloat(packetLog.withoutCoupon)
-                default:
-                    break
-                }
-                totalSum[hdoServiceindex++] += lastPacketAmount
-                _hdoPacketSum.append(lastPacketAmount)
-                return _hdoPacketSum
-            })
-            _chartData.append(hdoPacketSum)
-            return _chartData
-        })
         self.chartHorizontalData = self.hddService?.hdoServices?.first?.packetLogs.map { packetLog in
             return packetLog.dateText()
-        }
-
-        // Total sum makes meaning only when user has more than one service
-        if self.chartData?.count > 1 {
-            self.chartData?.append(totalSum)
         }
     }
 
@@ -321,7 +295,7 @@ class SummaryChartViewController: BaseChartViewController, JBLineChartViewDelega
     // MARK: - DisplayPacketLogsSelectTableViewControllerDelegate
 
     func displayPacketLogSegmentDidSelected(segment: Int) {
-        self.chartDataFilteringSegment = ChartDataFilteringSegment(rawValue: segment)!
+        self.chartDataFilteringSegment = Coupon.Switch(rawValue: segment)!
         self.reBuildChartData()
         if self.traitCollection.horizontalSizeClass == .Regular {
             self.reloadChartView(true)
