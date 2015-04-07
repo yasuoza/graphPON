@@ -11,20 +11,14 @@ class ServiceListInterfaceController: WKInterfaceController {
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
         
-        PacketInfoManager.sharedManager.fetchLatestPacketLog(completion: { error in
-            if error != nil {
-                return
-            }
+        self.hddServiceCodes = PacketInfoManager.sharedManager.hddServiceCodes
 
-            self.hddServiceCodes = PacketInfoManager.sharedManager.hddServiceCodes
-
-            self.serviceListTable.setNumberOfRows(self.hddServiceCodes.count, withRowType: "default")
-            let serviceCodeCount = self.hddServiceCodes.count
-            for i in 0..<serviceCodeCount {
-                let row = self.serviceListTable.rowControllerAtIndex(i) as ServiceListCellController
-                row.serviceLabel.setText(self.hddServiceCodes[i])
-            }
-        })
+        self.serviceListTable.setNumberOfRows(self.hddServiceCodes.count, withRowType: "default")
+        let serviceCodeCount = self.hddServiceCodes.count
+        for i in 0..<serviceCodeCount {
+            let row = self.serviceListTable.rowControllerAtIndex(i) as ServiceListCellController
+            row.serviceLabel.setText(self.hddServiceCodes[i])
+        }
     }
 
     override func willActivate() {
@@ -41,7 +35,8 @@ class ServiceListInterfaceController: WKInterfaceController {
 
     override func table(table: WKInterfaceTable, didSelectRowAtIndex rowIndex: Int) {
         let context = ["serviceCode": self.hddServiceCodes[rowIndex]]
-        self.pushControllerWithName("ChartInterfaceController", context: context)
+
+        
     }
 
 }

@@ -68,7 +68,7 @@
 		A8DCA1571A4E7C3900CE73D3 /* XYDoughnutChart.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A804D4CD1A4AD62D00F22CFE /* XYDoughnutChart.framework */; };
 		A8DCA1581A4E7C5500CE73D3 /* OAuth2Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = A874C0B81A4BF6EB00887932 /* OAuth2Router.swift */; };
 		A8E0AC3E1A66215F00D4E043 /* StateRestorable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E0AC3D1A66215F00D4E043 /* StateRestorable.swift */; };
-		A8EB84581AD3C93E00F3638E /* ChartInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EB84571AD3C93E00F3638E /* ChartInterfaceController.swift */; };
+		A8EB84581AD3C93E00F3638E /* SummaryChartInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EB84571AD3C93E00F3638E /* SummaryChartInterfaceController.swift */; };
 		A8EB845A1AD3C93E00F3638E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A8EB84591AD3C93E00F3638E /* Images.xcassets */; };
 		A8EB845E1AD3C93E00F3638E /* graphPON WatchKit App.app in Resources */ = {isa = PBXBuildFile; fileRef = A8EB845D1AD3C93E00F3638E /* graphPON WatchKit App.app */; };
 		A8EB84661AD3C93E00F3638E /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8EB84641AD3C93E00F3638E /* Interface.storyboard */; };
@@ -92,6 +92,8 @@
 		A8EB84921AD3CFCD00F3638E /* DailyChartImageScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EB848F1AD3CFCD00F3638E /* DailyChartImageScene.swift */; };
 		A8EB84931AD3CFCD00F3638E /* SummaryChartScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EB84901AD3CFCD00F3638E /* SummaryChartScene.swift */; };
 		A8F036FC1A6CD0ED00DEFA61 /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F036FB1A6CD0ED00DEFA61 /* SettingTableViewController.swift */; };
+		A8F206A01AD3F8E500EE9BD5 /* DailyChartInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F2069E1AD3F8E200EE9BD5 /* DailyChartInterfaceController.swift */; };
+		A8F206A21AD3F92500EE9BD5 /* AvailabilityChartInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F206A11AD3F92500EE9BD5 /* AvailabilityChartInterfaceController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -215,7 +217,7 @@
 		A8E0AC3D1A66215F00D4E043 /* StateRestorable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StateRestorable.swift; path = Protocols/StateRestorable.swift; sourceTree = "<group>"; };
 		A8EB84531AD3C93E00F3638E /* graphPON WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "graphPON WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8EB84561AD3C93E00F3638E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A8EB84571AD3C93E00F3638E /* ChartInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChartInterfaceController.swift; path = Interfaces/ChartInterfaceController.swift; sourceTree = "<group>"; };
+		A8EB84571AD3C93E00F3638E /* SummaryChartInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SummaryChartInterfaceController.swift; path = Interfaces/SummaryChartInterfaceController.swift; sourceTree = "<group>"; };
 		A8EB84591AD3C93E00F3638E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A8EB845D1AD3C93E00F3638E /* graphPON WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "graphPON WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8EB84631AD3C93E00F3638E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -227,6 +229,8 @@
 		A8EB848F1AD3CFCD00F3638E /* DailyChartImageScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DailyChartImageScene.swift; path = Drawers/DailyChartImageScene.swift; sourceTree = "<group>"; };
 		A8EB84901AD3CFCD00F3638E /* SummaryChartScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SummaryChartScene.swift; path = Drawers/SummaryChartScene.swift; sourceTree = "<group>"; };
 		A8F036FB1A6CD0ED00DEFA61 /* SettingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingTableViewController.swift; path = ViewControllers/SettingTableViewController.swift; sourceTree = "<group>"; };
+		A8F2069E1AD3F8E200EE9BD5 /* DailyChartInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DailyChartInterfaceController.swift; path = Interfaces/DailyChartInterfaceController.swift; sourceTree = "<group>"; };
+		A8F206A11AD3F92500EE9BD5 /* AvailabilityChartInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AvailabilityChartInterfaceController.swift; path = Interfaces/AvailabilityChartInterfaceController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -496,7 +500,9 @@
 			children = (
 				A8EB84801AD3CA2200F3638E /* ServiceListInterfaceController.swift */,
 				A8EB84821AD3CA8C00F3638E /* ServiceListCellController.swift */,
-				A8EB84571AD3C93E00F3638E /* ChartInterfaceController.swift */,
+				A8EB84571AD3C93E00F3638E /* SummaryChartInterfaceController.swift */,
+				A8F2069E1AD3F8E200EE9BD5 /* DailyChartInterfaceController.swift */,
+				A8F206A11AD3F92500EE9BD5 /* AvailabilityChartInterfaceController.swift */,
 			);
 			name = Interfaces;
 			sourceTree = "<group>";
@@ -737,7 +743,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A8EB84581AD3C93E00F3638E /* ChartInterfaceController.swift in Sources */,
+				A8EB84581AD3C93E00F3638E /* SummaryChartInterfaceController.swift in Sources */,
 				A8EB84861AD3CB1F00F3638E /* HdoService.swift in Sources */,
 				A8EB84841AD3CAEC00F3638E /* PacketInfoManager.swift in Sources */,
 				A8EB84921AD3CFCD00F3638E /* DailyChartImageScene.swift in Sources */,
@@ -745,10 +751,12 @@
 				A8EB848A1AD3CBCD00F3638E /* OAuth2Router.swift in Sources */,
 				A8EB84881AD3CB2600F3638E /* Coupon.swift in Sources */,
 				A8EB84871AD3CB2200F3638E /* PacketLog.swift in Sources */,
+				A8F206A01AD3F8E500EE9BD5 /* DailyChartInterfaceController.swift in Sources */,
 				A8EB84911AD3CFCD00F3638E /* AvailabilityChartScene.swift in Sources */,
 				A8EB848B1AD3CBD000F3638E /* OAuth2Credential.swift in Sources */,
 				A8EB84831AD3CA8C00F3638E /* ServiceListCellController.swift in Sources */,
 				A8EB84811AD3CA2200F3638E /* ServiceListInterfaceController.swift in Sources */,
+				A8F206A21AD3F92500EE9BD5 /* AvailabilityChartInterfaceController.swift in Sources */,
 				A8EB84891AD3CBCA00F3638E /* OAuth2Client.swift in Sources */,
 				A8EB84931AD3CFCD00F3638E /* SummaryChartScene.swift in Sources */,
 				A8EB84851AD3CB1C00F3638E /* HddService.swift in Sources */,
