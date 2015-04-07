@@ -28,9 +28,10 @@ class BaseChartViewController: BaseViewController, StateRestorable {
     var chartDurationSegment: HdoService.Duration = .InThisMonth
 
     private var navBarHairlineImageView: UIImageView?
-    private var restrationalServiceCodeIdentifier: String!
-    private var restrationalDurationSegmentIdentifier: String!
-    private var restrationalDataFilteringSegmentIdentifier: String!
+
+    private(set) var restrationalServiceCodeIdentifier: String!
+    private(set) var restrationalDurationSegmentIdentifier: String!
+    private(set) var restrationalDataFilteringSegmentIdentifier: String!
 
     enum ChartDataFilteringSegment: Int {
         case All = 0, WithCoupon = 1, WithoutCoupon = 2
@@ -83,12 +84,12 @@ class BaseChartViewController: BaseViewController, StateRestorable {
         self.restrationalServiceCodeIdentifier = "\(self.restorationIdentifier!).serviceCode"
         self.restrationalDurationSegmentIdentifier = "\(self.restorationIdentifier!).durationSegment"
         self.restrationalDataFilteringSegmentIdentifier = "\(self.restorationIdentifier!).dataFilteringSegment"
+
+        self.restoreLastState()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.restoreLastState()
         
         self.navBarHairlineImageView = self.findHairlineImageViewUnder(self.navigationController!.navigationBar)
         self.navBarHairlineImageView?.hidden = true
