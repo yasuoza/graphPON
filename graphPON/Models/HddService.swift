@@ -92,16 +92,14 @@ class HddService: NSObject {
 
         // Total sum makes meaning only when user has more than one service
         if chartData?.count > 1 {
-            if var chartData = chartData {
-                if let firstData = chartData.first {
-                    let initial = [CGFloat](count: firstData.count, repeatedValue: 0.0)
+            if let firstData = chartData?.first {
+                let initial = [CGFloat](count: firstData.count, repeatedValue: 0.0)
 
-                    let totalSum = chartData.reduce(initial, combine: { (arr, data) in
-                        return map(Zip2(arr, data), +)
-                    })
+                let totalSum = chartData!.reduce(initial, combine: { (arr, data) in
+                    return map(Zip2(arr, data), +)
+                })
 
-                    chartData.append(totalSum)
-                }
+                chartData?.append(totalSum)
             }
         }
 
