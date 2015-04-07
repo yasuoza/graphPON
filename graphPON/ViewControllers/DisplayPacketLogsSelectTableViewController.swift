@@ -3,7 +3,7 @@ import UIKit
 class DisplayPacketLogsSelectTableViewController: UITableViewController {
 
     var delegate: DisplayPacketLogsSelectTableViewControllerDelegate?
-    var selectedFilteringSegment: BaseChartViewController.ChartDataFilteringSegment?
+    var selectedFilteringSegment: Coupon.Switch?
 
     // MARK: - IBActions
 
@@ -24,7 +24,7 @@ class DisplayPacketLogsSelectTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("FilterPacketLogsSelectCell", forIndexPath: indexPath) as! UITableViewCell
 
-        let chartDataSegment = BaseChartViewController.ChartDataFilteringSegment(rawValue: indexPath.row)
+        let chartDataSegment = Coupon.Switch(rawValue: indexPath.row)
 
         cell.textLabel?.text = chartDataSegment?.text() ?? ""
 

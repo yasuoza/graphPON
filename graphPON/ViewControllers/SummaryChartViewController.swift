@@ -172,34 +172,13 @@ class SummaryChartViewController: BaseChartViewController, JBLineChartViewDelega
             return
         }
 
-        self.chartData = self.hddService?.hdoServices?.reduce([] as [[CGFloat]], combine: { (_chartData, hdoService) in
-            hdoService.duration = self.chartDurationSegment
-            let hdoPacketSum = hdoService.packetLogs.reduce([] as [CGFloat], combine: { (_hdoPacketSum, packetLog) in
-                var lastPacketAmount = _hdoPacketSum.last ?? 0.0
-                switch self.chartDataFilteringSegment {
-                case .All:
-                    lastPacketAmount += CGFloat(packetLog.withCoupon + packetLog.withoutCoupon)
-                case .WithCoupon:
-                    lastPacketAmount += CGFloat(packetLog.withCoupon)
-                case .WithoutCoupon:
-                    lastPacketAmount += CGFloat(packetLog.withoutCoupon)
-                }
-                return _hdoPacketSum + [lastPacketAmount]
-            })
-            return _chartData + [hdoPacketSum]
-        })
+        self.chartData = self.hddService?.summarizeServiceUsageInDuration(
+            self.chartDurationSegment,
+            couponSwitch: self.chartDataFilteringSegment
+        )
 
         self.chartHorizontalData = self.hddService?.hdoServices?.first?.packetLogs.map { packetLog in
             return packetLog.dateText()
-        }
-
-        // Total sum makes meaning only when user has more than one service
-        if let chartData = self.chartData where chartData.count > 1, let firstData = chartData.first {
-            let initial = [CGFloat](count: firstData.count, repeatedValue: 0.0)
-            let totalSum = chartData.reduce(initial, combine: { (arr, data) in
-                return map(zip(arr, data), +)
-            })
-            self.chartData?.append(totalSum)
         }
     }
 
@@ -314,7 +293,7 @@ class SummaryChartViewController: BaseChartViewController, JBLineChartViewDelega
     // MARK: - DisplayPacketLogsSelectTableViewControllerDelegate
 
     func displayPacketLogSegmentDidSelected(segment: Int) {
-        self.chartDataFilteringSegment = ChartDataFilteringSegment(rawValue: segment)!
+        self.chartDataFilteringSegment = Coupon.Switch(rawValue: segment)!
         self.reBuildChartData()
         if self.traitCollection.horizontalSizeClass == .Regular {
             self.reloadChartView(true)

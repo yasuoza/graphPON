@@ -20,7 +20,7 @@ class AvailabilityChartViewController: BaseChartViewController, XYDoughnutChartD
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.chartDataFilteringSegment = .WithCoupon
+        self.chartDataFilteringSegment = .On
 
         self.view.backgroundColor = self.mode.backgroundColor()
 
@@ -135,14 +135,13 @@ class AvailabilityChartViewController: BaseChartViewController, XYDoughnutChartD
             return
         }
 
-        let usedPackets: [CGFloat]? = self.hddService?.hdoServices?.map { hdoService in
-            hdoService.duration = self.chartDurationSegment
-            return hdoService.packetLogs.reduce(CGFloat(0.0), combine: { (hdoPacketSum, packetLog) in
-                return hdoPacketSum + CGFloat(packetLog.withCoupon)
-            })
+        let packetSum = self.hddService?.hdoServices?.map { hdoInfo -> CGFloat in
+            hdoInfo
+                .summarizeServiceUsageInDuration(.InThisMonth, couponSwitch: .On)
+                .reduce(0.0, combine: +)
         }
 
-        if let usedPackets = usedPackets {
+        if let usedPackets = packetSum {
             let used = usedPackets.reduce(0, combine:+)
             let available = CGFloat(self.hddService?.availableCouponVolume ?? 0)
             self.slices = [used, available]

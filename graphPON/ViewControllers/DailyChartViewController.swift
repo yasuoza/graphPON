@@ -153,22 +153,12 @@ class DailyChartViewController: BaseChartViewController, JBBarChartViewDelegate,
             return
         }
 
-        self.hdoService?.duration = self.chartDurationSegment
+        self.chartData = self.hdoService?.summarizeServiceUsageInDuration(
+            self.chartDurationSegment,
+            couponSwitch: self.chartDataFilteringSegment
+        )
 
-        let data: (value: [CGFloat], horizontalValue: [String])? = self.hdoService?.packetLogs.reduce((value: [], horizontalValue: []),
-            combine: { (var tuple, packetLog) in
-                switch self.chartDataFilteringSegment {
-                case .All:
-                    tuple.value.append(CGFloat(packetLog.withCoupon + packetLog.withoutCoupon))
-                case .WithCoupon:
-                    tuple.value.append(CGFloat(packetLog.withCoupon))
-                case .WithoutCoupon:
-                    tuple.value.append(CGFloat(packetLog.withoutCoupon))
-                }
-                tuple.horizontalValue.append(packetLog.dateText())
-                return tuple
-        })
-        (self.chartData, self.chartHorizontalData) = (data?.value, data?.horizontalValue)
+        self.chartHorizontalData = self.hdoService?.packetLogs.map { $0.dateText() }
     }
 
     // MARK: - JBLineChartViewDataSource
@@ -242,7 +232,7 @@ class DailyChartViewController: BaseChartViewController, JBBarChartViewDelegate,
     // MARK: - DisplayPacketLogsSelectTableViewControllerDelegate
 
     func displayPacketLogSegmentDidSelected(segment: Int) {
-        self.chartDataFilteringSegment = ChartDataFilteringSegment(rawValue: segment)!
+        self.chartDataFilteringSegment = Coupon.Switch(rawValue: segment)!
         self.reBuildChartData()
         if self.traitCollection.horizontalSizeClass == .Regular {
             self.reloadChartView(true)
