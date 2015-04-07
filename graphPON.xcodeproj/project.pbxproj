@@ -19,6 +19,7 @@
 		A80D19D21A11CEDA0067A055 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A80D19D01A11CEDA0067A055 /* LaunchScreen.xib */; };
 		A8131D081A6D076E007C7D14 /* SettingTableHdoServiceSwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8131D071A6D076E007C7D14 /* SettingTableHdoServiceSwitchCell.swift */; };
 		A8131D0A1A6D1D00007C7D14 /* SettingTableHdoServiceSwitchCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8131D091A6D1D00007C7D14 /* SettingTableHdoServiceSwitchCellDelegate.swift */; };
+		A81BFC081AD3E13400BB6D97 /* NSDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BC51BD1A6B651500AE3B67 /* NSDate.swift */; };
 		A833C34D1A637E0800EBE788 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A833C34C1A637E0800EBE788 /* Constants.swift */; };
 		A83612821A3EB7E300BB1B3F /* RatioChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83612811A3EB7E300BB1B3F /* RatioChartViewController.swift */; };
 		A83612841A3EB9E100BB1B3F /* RatioChartContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83612831A3EB9E100BB1B3F /* RatioChartContainerView.swift */; };
@@ -67,6 +68,29 @@
 		A8DCA1571A4E7C3900CE73D3 /* XYDoughnutChart.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A804D4CD1A4AD62D00F22CFE /* XYDoughnutChart.framework */; };
 		A8DCA1581A4E7C5500CE73D3 /* OAuth2Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = A874C0B81A4BF6EB00887932 /* OAuth2Router.swift */; };
 		A8E0AC3E1A66215F00D4E043 /* StateRestorable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E0AC3D1A66215F00D4E043 /* StateRestorable.swift */; };
+		A8EB84581AD3C93E00F3638E /* ChartInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EB84571AD3C93E00F3638E /* ChartInterfaceController.swift */; };
+		A8EB845A1AD3C93E00F3638E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A8EB84591AD3C93E00F3638E /* Images.xcassets */; };
+		A8EB845E1AD3C93E00F3638E /* graphPON WatchKit App.app in Resources */ = {isa = PBXBuildFile; fileRef = A8EB845D1AD3C93E00F3638E /* graphPON WatchKit App.app */; };
+		A8EB84661AD3C93E00F3638E /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8EB84641AD3C93E00F3638E /* Interface.storyboard */; };
+		A8EB84681AD3C93E00F3638E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A8EB84671AD3C93E00F3638E /* Images.xcassets */; };
+		A8EB846B1AD3C93E00F3638E /* graphPON WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = A8EB84531AD3C93E00F3638E /* graphPON WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		A8EB847C1AD3C9C500F3638E /* JBChartFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A804D4CC1A4AD62D00F22CFE /* JBChartFramework.framework */; };
+		A8EB847D1AD3C9C500F3638E /* JBChartFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A804D4CC1A4AD62D00F22CFE /* JBChartFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A8EB847E1AD3C9C500F3638E /* XYDoughnutChart.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A804D4CD1A4AD62D00F22CFE /* XYDoughnutChart.framework */; };
+		A8EB847F1AD3C9C500F3638E /* XYDoughnutChart.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A804D4CD1A4AD62D00F22CFE /* XYDoughnutChart.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A8EB84811AD3CA2200F3638E /* ServiceListInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EB84801AD3CA2200F3638E /* ServiceListInterfaceController.swift */; };
+		A8EB84831AD3CA8C00F3638E /* ServiceListCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EB84821AD3CA8C00F3638E /* ServiceListCellController.swift */; };
+		A8EB84841AD3CAEC00F3638E /* PacketInfoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A807E1501A4D38950064BC11 /* PacketInfoManager.swift */; };
+		A8EB84851AD3CB1C00F3638E /* HddService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88925BE1A61704C0036B32B /* HddService.swift */; };
+		A8EB84861AD3CB1F00F3638E /* HdoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88BB36F1A2DDEA700E5AE4F /* HdoService.swift */; };
+		A8EB84871AD3CB2200F3638E /* PacketLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8549EFA1A2C6E9C000308AD /* PacketLog.swift */; };
+		A8EB84881AD3CB2600F3638E /* Coupon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C743C41A6B56A0001F688C /* Coupon.swift */; };
+		A8EB84891AD3CBCA00F3638E /* OAuth2Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = A874C0B71A4BF6EB00887932 /* OAuth2Client.swift */; };
+		A8EB848A1AD3CBCD00F3638E /* OAuth2Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = A874C0B81A4BF6EB00887932 /* OAuth2Router.swift */; };
+		A8EB848B1AD3CBD000F3638E /* OAuth2Credential.swift in Sources */ = {isa = PBXBuildFile; fileRef = A874C0BD1A4C04A800887932 /* OAuth2Credential.swift */; };
+		A8EB84911AD3CFCD00F3638E /* AvailabilityChartScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EB848E1AD3CFCD00F3638E /* AvailabilityChartScene.swift */; };
+		A8EB84921AD3CFCD00F3638E /* DailyChartImageScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EB848F1AD3CFCD00F3638E /* DailyChartImageScene.swift */; };
+		A8EB84931AD3CFCD00F3638E /* SummaryChartScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EB84901AD3CFCD00F3638E /* SummaryChartScene.swift */; };
 		A8F036FC1A6CD0ED00DEFA61 /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F036FB1A6CD0ED00DEFA61 /* SettingTableViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -77,6 +101,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = A80D19BF1A11CEDA0067A055;
 			remoteInfo = graphPON;
+		};
+		A8EB845F1AD3C93E00F3638E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A80D19B81A11CEDA0067A055 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A8EB845C1AD3C93E00F3638E;
+			remoteInfo = "graphPON WatchKit App";
+		};
+		A8EB84691AD3C93E00F3638E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A80D19B81A11CEDA0067A055 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A8EB84521AD3C93E00F3638E;
+			remoteInfo = "graphPON WatchKit Extension";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -91,6 +129,29 @@
 				A804D4D31A4AD63C00F22CFE /* XYDoughnutChart.framework in Embed Frameworks */,
 				A874C0AD1A4BDE7200887932 /* Alamofire.framework in Embed Frameworks */,
 				A804D4D11A4AD63C00F22CFE /* JBChartFramework.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A8EB84721AD3C93E00F3638E /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				A8EB846B1AD3C93E00F3638E /* graphPON WatchKit Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A8EB847A1AD3C99D00F3638E /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				A8EB847F1AD3C9C500F3638E /* XYDoughnutChart.framework in Embed Frameworks */,
+				A8EB847D1AD3C9C500F3638E /* JBChartFramework.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -152,6 +213,19 @@
 		A8CB1A611A789FD8002FA9F7 /* ErrorAlertPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ErrorAlertPresenter.swift; path = Protocols/ErrorAlertPresenter.swift; sourceTree = "<group>"; };
 		A8DCA1521A4E7B3E00CE73D3 /* OAuth2ClientTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuth2ClientTests.swift; sourceTree = "<group>"; };
 		A8E0AC3D1A66215F00D4E043 /* StateRestorable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StateRestorable.swift; path = Protocols/StateRestorable.swift; sourceTree = "<group>"; };
+		A8EB84531AD3C93E00F3638E /* graphPON WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "graphPON WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A8EB84561AD3C93E00F3638E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A8EB84571AD3C93E00F3638E /* ChartInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChartInterfaceController.swift; path = Interfaces/ChartInterfaceController.swift; sourceTree = "<group>"; };
+		A8EB84591AD3C93E00F3638E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		A8EB845D1AD3C93E00F3638E /* graphPON WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "graphPON WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A8EB84631AD3C93E00F3638E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A8EB84651AD3C93E00F3638E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		A8EB84671AD3C93E00F3638E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		A8EB84801AD3CA2200F3638E /* ServiceListInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ServiceListInterfaceController.swift; path = Interfaces/ServiceListInterfaceController.swift; sourceTree = "<group>"; };
+		A8EB84821AD3CA8C00F3638E /* ServiceListCellController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ServiceListCellController.swift; path = Interfaces/ServiceListCellController.swift; sourceTree = "<group>"; };
+		A8EB848E1AD3CFCD00F3638E /* AvailabilityChartScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AvailabilityChartScene.swift; path = Drawers/AvailabilityChartScene.swift; sourceTree = "<group>"; };
+		A8EB848F1AD3CFCD00F3638E /* DailyChartImageScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DailyChartImageScene.swift; path = Drawers/DailyChartImageScene.swift; sourceTree = "<group>"; };
+		A8EB84901AD3CFCD00F3638E /* SummaryChartScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SummaryChartScene.swift; path = Drawers/SummaryChartScene.swift; sourceTree = "<group>"; };
 		A8F036FB1A6CD0ED00DEFA61 /* SettingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingTableViewController.swift; path = ViewControllers/SettingTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -177,6 +251,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A8EB84501AD3C93E00F3638E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A8EB847E1AD3C9C500F3638E /* XYDoughnutChart.framework in Frameworks */,
+				A8EB847C1AD3C9C500F3638E /* JBChartFramework.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -192,9 +275,10 @@
 		A80D19B71A11CEDA0067A055 = {
 			isa = PBXGroup;
 			children = (
-				A80D19C21A11CEDA0067A055 /* graphPON */,
-				A80D19DA1A11CEDA0067A055 /* graphPONTests */,
 				A823DF371AA887300061A264 /* Config */,
+				A80D19C21A11CEDA0067A055 /* graphPON iOS */,
+				A8EB84731AD3C96200F3638E /* graphPON WatchKit */,
+				A80D19DA1A11CEDA0067A055 /* graphPONTests */,
 				A80D19C11A11CEDA0067A055 /* Products */,
 				F46B956D86CB6147453819A7 /* Frameworks */,
 			);
@@ -205,11 +289,13 @@
 			children = (
 				A80D19C01A11CEDA0067A055 /* graphPON.app */,
 				A80D19D71A11CEDA0067A055 /* graphPONTests.xctest */,
+				A8EB84531AD3C93E00F3638E /* graphPON WatchKit Extension.appex */,
+				A8EB845D1AD3C93E00F3638E /* graphPON WatchKit App.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		A80D19C21A11CEDA0067A055 /* graphPON */ = {
+		A80D19C21A11CEDA0067A055 /* graphPON iOS */ = {
 			isa = PBXGroup;
 			children = (
 				A80D19CE1A11CEDA0067A055 /* Images.xcassets */,
@@ -222,6 +308,7 @@
 				A80748631A135617008ADC0A /* Extensions */,
 				A80D19C31A11CEDA0067A055 /* Supporting Files */,
 			);
+			name = "graphPON iOS";
 			path = graphPON;
 			sourceTree = "<group>";
 		};
@@ -348,6 +435,72 @@
 			name = AlertControllers;
 			sourceTree = "<group>";
 		};
+		A8EB84541AD3C93E00F3638E /* graphPON WatchKit Extension */ = {
+			isa = PBXGroup;
+			children = (
+				A8EB848D1AD3CF6D00F3638E /* Interfaces */,
+				A8EB848C1AD3CF6200F3638E /* Scenes */,
+				A8EB84591AD3C93E00F3638E /* Images.xcassets */,
+				A8EB84551AD3C93E00F3638E /* Supporting Files */,
+			);
+			path = "graphPON WatchKit Extension";
+			sourceTree = "<group>";
+		};
+		A8EB84551AD3C93E00F3638E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A8EB84561AD3C93E00F3638E /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A8EB84611AD3C93E00F3638E /* graphPON WatchKit App */ = {
+			isa = PBXGroup;
+			children = (
+				A8EB84641AD3C93E00F3638E /* Interface.storyboard */,
+				A8EB84671AD3C93E00F3638E /* Images.xcassets */,
+				A8EB84621AD3C93E00F3638E /* Supporting Files */,
+			);
+			path = "graphPON WatchKit App";
+			sourceTree = "<group>";
+		};
+		A8EB84621AD3C93E00F3638E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A8EB84631AD3C93E00F3638E /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A8EB84731AD3C96200F3638E /* graphPON WatchKit */ = {
+			isa = PBXGroup;
+			children = (
+				A8EB84541AD3C93E00F3638E /* graphPON WatchKit Extension */,
+				A8EB84611AD3C93E00F3638E /* graphPON WatchKit App */,
+			);
+			name = "graphPON WatchKit";
+			sourceTree = "<group>";
+		};
+		A8EB848C1AD3CF6200F3638E /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				A8EB84901AD3CFCD00F3638E /* SummaryChartScene.swift */,
+				A8EB848F1AD3CFCD00F3638E /* DailyChartImageScene.swift */,
+				A8EB848E1AD3CFCD00F3638E /* AvailabilityChartScene.swift */,
+			);
+			name = Scenes;
+			sourceTree = "<group>";
+		};
+		A8EB848D1AD3CF6D00F3638E /* Interfaces */ = {
+			isa = PBXGroup;
+			children = (
+				A8EB84801AD3CA2200F3638E /* ServiceListInterfaceController.swift */,
+				A8EB84821AD3CA8C00F3638E /* ServiceListCellController.swift */,
+				A8EB84571AD3C93E00F3638E /* ChartInterfaceController.swift */,
+			);
+			name = Interfaces;
+			sourceTree = "<group>";
+		};
 		F46B956D86CB6147453819A7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -370,10 +523,12 @@
 				A80D19BD1A11CEDA0067A055 /* Frameworks */,
 				A80D19BE1A11CEDA0067A055 /* Resources */,
 				A84063231A484CFF0064A06A /* Embed Frameworks */,
+				A8EB84721AD3C93E00F3638E /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				A8EB846A1AD3C93E00F3638E /* PBXTargetDependency */,
 			);
 			name = graphPON;
 			productName = graphPON;
@@ -398,6 +553,40 @@
 			productReference = A80D19D71A11CEDA0067A055 /* graphPONTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		A8EB84521AD3C93E00F3638E /* graphPON WatchKit Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A8EB84711AD3C93E00F3638E /* Build configuration list for PBXNativeTarget "graphPON WatchKit Extension" */;
+			buildPhases = (
+				A8EB844F1AD3C93E00F3638E /* Sources */,
+				A8EB84501AD3C93E00F3638E /* Frameworks */,
+				A8EB84511AD3C93E00F3638E /* Resources */,
+				A8EB847A1AD3C99D00F3638E /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A8EB84601AD3C93E00F3638E /* PBXTargetDependency */,
+			);
+			name = "graphPON WatchKit Extension";
+			productName = "graphPON WatchKit Extension";
+			productReference = A8EB84531AD3C93E00F3638E /* graphPON WatchKit Extension.appex */;
+			productType = "com.apple.product-type.watchkit-extension";
+		};
+		A8EB845C1AD3C93E00F3638E /* graphPON WatchKit App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A8EB84701AD3C93E00F3638E /* Build configuration list for PBXNativeTarget "graphPON WatchKit App" */;
+			buildPhases = (
+				A8EB845B1AD3C93E00F3638E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "graphPON WatchKit App";
+			productName = "graphPON WatchKit App";
+			productReference = A8EB845D1AD3C93E00F3638E /* graphPON WatchKit App.app */;
+			productType = "com.apple.product-type.application.watchapp";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -413,6 +602,12 @@
 					A80D19D61A11CEDA0067A055 = {
 						CreatedOnToolsVersion = 6.1;
 						TestTargetID = A80D19BF1A11CEDA0067A055;
+					};
+					A8EB84521AD3C93E00F3638E = {
+						CreatedOnToolsVersion = 6.2;
+					};
+					A8EB845C1AD3C93E00F3638E = {
+						CreatedOnToolsVersion = 6.2;
 					};
 				};
 			};
@@ -432,6 +627,8 @@
 			targets = (
 				A80D19BF1A11CEDA0067A055 /* graphPON */,
 				A80D19D61A11CEDA0067A055 /* graphPONTests */,
+				A8EB84521AD3C93E00F3638E /* graphPON WatchKit Extension */,
+				A8EB845C1AD3C93E00F3638E /* graphPON WatchKit App */,
 			);
 		};
 /* End PBXProject section */
@@ -452,6 +649,24 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A8EB84511AD3C93E00F3638E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A8EB845A1AD3C93E00F3638E /* Images.xcassets in Resources */,
+				A8EB845E1AD3C93E00F3638E /* graphPON WatchKit App.app in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A8EB845B1AD3C93E00F3638E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A8EB84661AD3C93E00F3638E /* Interface.storyboard in Resources */,
+				A8EB84681AD3C93E00F3638E /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -518,6 +733,28 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A8EB844F1AD3C93E00F3638E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A8EB84581AD3C93E00F3638E /* ChartInterfaceController.swift in Sources */,
+				A8EB84861AD3CB1F00F3638E /* HdoService.swift in Sources */,
+				A8EB84841AD3CAEC00F3638E /* PacketInfoManager.swift in Sources */,
+				A8EB84921AD3CFCD00F3638E /* DailyChartImageScene.swift in Sources */,
+				A81BFC081AD3E13400BB6D97 /* NSDate.swift in Sources */,
+				A8EB848A1AD3CBCD00F3638E /* OAuth2Router.swift in Sources */,
+				A8EB84881AD3CB2600F3638E /* Coupon.swift in Sources */,
+				A8EB84871AD3CB2200F3638E /* PacketLog.swift in Sources */,
+				A8EB84911AD3CFCD00F3638E /* AvailabilityChartScene.swift in Sources */,
+				A8EB848B1AD3CBD000F3638E /* OAuth2Credential.swift in Sources */,
+				A8EB84831AD3CA8C00F3638E /* ServiceListCellController.swift in Sources */,
+				A8EB84811AD3CA2200F3638E /* ServiceListInterfaceController.swift in Sources */,
+				A8EB84891AD3CBCA00F3638E /* OAuth2Client.swift in Sources */,
+				A8EB84931AD3CFCD00F3638E /* SummaryChartScene.swift in Sources */,
+				A8EB84851AD3CB1C00F3638E /* HddService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -525,6 +762,16 @@
 			isa = PBXTargetDependency;
 			target = A80D19BF1A11CEDA0067A055 /* graphPON */;
 			targetProxy = A80D19D81A11CEDA0067A055 /* PBXContainerItemProxy */;
+		};
+		A8EB84601AD3C93E00F3638E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A8EB845C1AD3C93E00F3638E /* graphPON WatchKit App */;
+			targetProxy = A8EB845F1AD3C93E00F3638E /* PBXContainerItemProxy */;
+		};
+		A8EB846A1AD3C93E00F3638E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A8EB84521AD3C93E00F3638E /* graphPON WatchKit Extension */;
+			targetProxy = A8EB84691AD3C93E00F3638E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -553,6 +800,14 @@
 				A858714F1A7768C2007C78C1 /* ja */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		A8EB84641AD3C93E00F3638E /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A8EB84651AD3C93E00F3638E /* Base */,
+			);
+			name = Interface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -655,6 +910,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -674,6 +930,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -726,6 +983,74 @@
 			};
 			name = Release;
 		};
+		A8EB846C1AD3C93E00F3638E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "graphPON WatchKit Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		A8EB846D1AD3C93E00F3638E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = "graphPON WatchKit Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		A8EB846E1AD3C93E00F3638E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				IBSC_MODULE = graphPON_WatchKit_Extension;
+				INFOPLIST_FILE = "graphPON WatchKit App/Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
+			};
+			name = Debug;
+		};
+		A8EB846F1AD3C93E00F3638E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COPY_PHASE_STRIP = NO;
+				IBSC_MODULE = graphPON_WatchKit_Extension;
+				INFOPLIST_FILE = "graphPON WatchKit App/Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -752,6 +1077,24 @@
 			buildConfigurations = (
 				A80D19E51A11CEDA0067A055 /* Debug */,
 				A80D19E61A11CEDA0067A055 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A8EB84701AD3C93E00F3638E /* Build configuration list for PBXNativeTarget "graphPON WatchKit App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A8EB846E1AD3C93E00F3638E /* Debug */,
+				A8EB846F1AD3C93E00F3638E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A8EB84711AD3C93E00F3638E /* Build configuration list for PBXNativeTarget "graphPON WatchKit Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A8EB846C1AD3C93E00F3638E /* Debug */,
+				A8EB846D1AD3C93E00F3638E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

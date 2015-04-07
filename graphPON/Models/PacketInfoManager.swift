@@ -62,10 +62,8 @@ class PacketInfoManager: NSObject {
     }
 
     func fetchLatestCouponInfo(completion _completion: ((error: NSError?)->())?) {
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         Alamofire.request(OAuth2Router.Coupon)
             .responseJSON { (_, response, json, error) in
-                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
 
                 if error != nil {
                     _completion?(error: error)
@@ -132,19 +130,14 @@ class PacketInfoManager: NSObject {
     }
 
     func fetchLatestPacketLog(completion _completion: ((error: NSError?)->())?) {
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-
         self.fetchLatestCouponInfo(completion: { error in
             if error != nil {
                 _completion?(error: error)
                 return
             }
 
-            UIApplication.sharedApplication().networkActivityIndicatorVisible = true
             Alamofire.request(OAuth2Router.LogPacket)
                 .responseJSON { (_, response, json, error) in
-                    UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-
                     if error != nil {
                         _completion?(error: error)
                         return

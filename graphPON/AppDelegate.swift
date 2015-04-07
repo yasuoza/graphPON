@@ -32,7 +32,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         }
                     }
                     OAuth2Client.sharedClient.authorized(credential: credential)
+                    UIApplication.sharedApplication().networkActivityIndicatorVisible = true
                     PacketInfoManager.sharedManager.fetchLatestPacketLog(completion: { error in
+                        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
                         self.handleAPIError(error)
                     })
                     return true
@@ -71,7 +73,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(application: UIApplication) {
         switch OAuth2Client.sharedClient.state {
         case .Authorized:
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = true
             PacketInfoManager.sharedManager.fetchLatestPacketLog(completion: { error in
+                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
                 self.handleAPIError(error)
             })
         default:
