@@ -1,4 +1,4 @@
-import UIKit
+import WatchKit
 import QuartzCore
 import JBChartFramework
 
@@ -33,7 +33,8 @@ class DailyChartImageScene: NSObject, JBBarChartViewDataSource, JBBarChartViewDe
 
     func drawImage(#frame: CGRect) -> UIImage {
         let chart = JBBarChartView(frame: frame)
-        UIGraphicsBeginImageContext(chart.bounds.size)
+        let size = chart.bounds.size
+        UIGraphicsBeginImageContextWithOptions(size, false, WKInterfaceDevice.currentDevice().screenScale)
         chart.dataSource = self
         chart.delegate = self
         chart.minimumValue = 0.0

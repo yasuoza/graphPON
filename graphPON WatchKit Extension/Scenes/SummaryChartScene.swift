@@ -1,4 +1,4 @@
-import UIKit
+import WatchKit
 import QuartzCore
 import JBChartFramework
 
@@ -21,7 +21,8 @@ class SummaryChartScene: NSObject, JBLineChartViewDataSource, JBLineChartViewDel
 
     func drawImage(#frame: CGRect) -> UIImage {
         let chart = JBLineChartView(frame: frame)
-        UIGraphicsBeginImageContext(chart.bounds.size)
+        let size = chart.bounds.size
+        UIGraphicsBeginImageContextWithOptions(size, false, WKInterfaceDevice.currentDevice().screenScale)
         chart.dataSource = self
         chart.delegate = self
         chart.reloadData()
