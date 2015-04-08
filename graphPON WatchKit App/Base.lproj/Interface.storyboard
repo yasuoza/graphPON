@@ -12,7 +12,7 @@
                     <items>
                         <table alignment="left" id="hZh-gv-zdb">
                             <items>
-                                <tableRow id="bKQ-Mw-3xQ" customClass="ServiceListCellController" customModule="graphPON_WatchKit_Extension">
+                                <tableRow identifier="default" id="bKQ-Mw-3xQ" customClass="ServiceListCellController" customModule="graphPON_WatchKit_Extension">
                                     <group key="rootItem" width="1" alignment="left" id="a8t-Uj-qf7">
                                         <items>
                                             <label alignment="left" verticalAlignment="center" text="Label" id="WOF-Ql-Al0"/>
@@ -32,10 +32,10 @@
             </objects>
             <point key="canvasLocation" x="791" y="301"/>
         </scene>
-        <!--Summary-->
+        <!--SummaryChartInterfaceController-->
         <scene sceneID="OGk-ZS-JTZ">
             <objects>
-                <controller identifier="SummaryChartInterfaceController" title="Summary" id="DRe-PZ-ERk" customClass="SummaryChartInterfaceController" customModule="graphPON_WatchKit_Extension">
+                <controller identifier="SummaryChartInterfaceController" id="DRe-PZ-ERk" customClass="SummaryChartInterfaceController" customModule="graphPON_WatchKit_Extension">
                     <items>
                         <label alignment="center" text=" " id="lTF-jT-N8U">
                             <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
@@ -96,10 +96,10 @@
             </objects>
             <point key="canvasLocation" x="604" y="567"/>
         </scene>
-        <!--Daily-->
+        <!--DailyChartInterfaceController-->
         <scene sceneID="AEy-hj-h89">
             <objects>
-                <controller identifier="DailyChartInterfaceController" title="Daily" id="agg-XQ-c1q" customClass="DailyChartInterfaceController" customModule="graphPON_WatchKit_Extension">
+                <controller identifier="DailyChartInterfaceController" id="agg-XQ-c1q" customClass="DailyChartInterfaceController" customModule="graphPON_WatchKit_Extension">
                     <items>
                         <label alignment="center" text=" " id="qZI-91-rOG">
                             <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
@@ -160,10 +160,10 @@
             </objects>
             <point key="canvasLocation" x="791" y="567"/>
         </scene>
-        <!--Available-->
+        <!--AvailabilityChartInterfaceController-->
         <scene sceneID="W7o-aV-hjs">
             <objects>
-                <controller identifier="AvailabilityChartInterfaceController" title="Available" id="GtJ-Hv-WWp" customClass="AvailabilityChartInterfaceController" customModule="graphPON_WatchKit_Extension">
+                <controller identifier="AvailabilityChartInterfaceController" id="GtJ-Hv-WWp" customClass="AvailabilityChartInterfaceController" customModule="graphPON_WatchKit_Extension">
                     <items>
                         <label alignment="center" text=" " id="cWK-t3-JQ0">
                             <fontDescription key="font" style="UICTFontTextStyleCaption2"/>

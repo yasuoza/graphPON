@@ -20,8 +20,10 @@ class DailyChartInterfaceController: WKInterfaceController {
         NSNotificationCenter.defaultCenter().addObserverForName(
             PacketInfoManager.LatestPacketLogsDidFetchNotification,
             object: nil, queue: nil, usingBlock: { _ in
-                self.serviceCode = PacketInfoManager.sharedManager.hddServiceCodes.first
-                self.reloadChartData()
+                if let serviceCode = Context.sharedContext.serviceCode {
+                    self.serviceCode = serviceCode
+                    self.reloadChartData()
+                }
         })
     }
 
@@ -30,8 +32,12 @@ class DailyChartInterfaceController: WKInterfaceController {
     }
 
     override func willActivate() {
-        // This method is called when watch view controller is about to be visible to user
         super.willActivate()
+
+        if self.serviceCode != Context.sharedContext.serviceCode {
+            self.serviceCode = Context.sharedContext.serviceCode
+            self.reloadChartData()
+        }
     }
 
     override func didDeactivate() {
@@ -69,6 +75,7 @@ class DailyChartInterfaceController: WKInterfaceController {
         self.chartImageView.setImage(image)
         self.chartValueLabel.setText(scene.valueText)
         self.durationLabel.setText(scene.durationText)
+        self.setTitle(Context.sharedContext.serviceNickname)
     }
     
 }

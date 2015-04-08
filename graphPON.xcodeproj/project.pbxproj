@@ -29,6 +29,7 @@
 		A857096D1A723DD100A11F2D /* AvailabilityChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A857096C1A723DD100A11F2D /* AvailabilityChartViewController.swift */; };
 		A858714C1A7766B3007C78C1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A858714A1A7766B3007C78C1 /* Localizable.strings */; };
 		A85DB6431AD4E3E5009E6B37 /* GPUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8ADA2911AD4AD0600CA7039 /* GPUserDefaults.swift */; };
+		A85DB6461AD4F510009E6B37 /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85DB6451AD4F510009E6B37 /* Context.swift */; };
 		A85FA8A71A5798FC00992948 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A85FA8A61A5798FC00992948 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		A85FA8A81A5798FC00992948 /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A85FA8A61A5798FC00992948 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A874C0AC1A4BDE7200887932 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A874C0AB1A4BDE7200887932 /* Alamofire.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -191,6 +192,7 @@
 		A85871461A776109007C78C1 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
 		A858714B1A7766B3007C78C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A858714F1A7768C2007C78C1 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A85DB6451AD4F510009E6B37 /* Context.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Context.swift; path = Models/Context.swift; sourceTree = "<group>"; };
 		A85FA8A61A5798FC00992948 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 		A874C0AB1A4BDE7200887932 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		A874C0B71A4BF6EB00887932 /* OAuth2Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OAuth2Client.swift; path = Models/OAuth2Client.swift; sourceTree = "<group>"; };
@@ -231,9 +233,9 @@
 		A8EB84671AD3C93E00F3638E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A8EB84801AD3CA2200F3638E /* ServiceListInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ServiceListInterfaceController.swift; path = Interfaces/ServiceListInterfaceController.swift; sourceTree = "<group>"; };
 		A8EB84821AD3CA8C00F3638E /* ServiceListCellController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ServiceListCellController.swift; path = Interfaces/ServiceListCellController.swift; sourceTree = "<group>"; };
-		A8EB848E1AD3CFCD00F3638E /* AvailabilityChartScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AvailabilityChartScene.swift; path = Drawers/AvailabilityChartScene.swift; sourceTree = "<group>"; };
-		A8EB848F1AD3CFCD00F3638E /* DailyChartImageScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DailyChartImageScene.swift; path = Drawers/DailyChartImageScene.swift; sourceTree = "<group>"; };
-		A8EB84901AD3CFCD00F3638E /* SummaryChartScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SummaryChartScene.swift; path = Drawers/SummaryChartScene.swift; sourceTree = "<group>"; };
+		A8EB848E1AD3CFCD00F3638E /* AvailabilityChartScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvailabilityChartScene.swift; sourceTree = "<group>"; };
+		A8EB848F1AD3CFCD00F3638E /* DailyChartImageScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyChartImageScene.swift; sourceTree = "<group>"; };
+		A8EB84901AD3CFCD00F3638E /* SummaryChartScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummaryChartScene.swift; sourceTree = "<group>"; };
 		A8F036FB1A6CD0ED00DEFA61 /* SettingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingTableViewController.swift; path = ViewControllers/SettingTableViewController.swift; sourceTree = "<group>"; };
 		A8F2069E1AD3F8E200EE9BD5 /* DailyChartInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DailyChartInterfaceController.swift; path = Interfaces/DailyChartInterfaceController.swift; sourceTree = "<group>"; };
 		A8F206A11AD3F92500EE9BD5 /* AvailabilityChartInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AvailabilityChartInterfaceController.swift; path = Interfaces/AvailabilityChartInterfaceController.swift; sourceTree = "<group>"; };
@@ -287,8 +289,8 @@
 			children = (
 				A823DF371AA887300061A264 /* Config */,
 				A80D19C21A11CEDA0067A055 /* graphPON iOS */,
-				A8EB84731AD3C96200F3638E /* graphPON WatchKit */,
 				A80D19DA1A11CEDA0067A055 /* graphPONTests */,
+				A8EB84731AD3C96200F3638E /* graphPON WatchKit */,
 				A80D19C11A11CEDA0067A055 /* Products */,
 				F46B956D86CB6147453819A7 /* Frameworks */,
 			);
@@ -390,6 +392,14 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
+		A85DB6441AD4F4DF009E6B37 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A85DB6451AD4F510009E6B37 /* Context.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		A874C0B01A4BF45C00887932 /* OAuth2 */ = {
 			isa = PBXGroup;
 			children = (
@@ -450,6 +460,7 @@
 		A8EB84541AD3C93E00F3638E /* graphPON WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
+				A85DB6441AD4F4DF009E6B37 /* Models */,
 				A8EB848D1AD3CF6D00F3638E /* Interfaces */,
 				A8EB848C1AD3CF6200F3638E /* Scenes */,
 				A8EB84591AD3C93E00F3638E /* Images.xcassets */,
@@ -500,7 +511,7 @@
 				A8EB848F1AD3CFCD00F3638E /* DailyChartImageScene.swift */,
 				A8EB848E1AD3CFCD00F3638E /* AvailabilityChartScene.swift */,
 			);
-			name = Scenes;
+			path = Scenes;
 			sourceTree = "<group>";
 		};
 		A8EB848D1AD3CF6D00F3638E /* Interfaces */ = {
@@ -759,6 +770,7 @@
 				A8EB84841AD3CAEC00F3638E /* PacketInfoManager.swift in Sources */,
 				A8EB84921AD3CFCD00F3638E /* DailyChartImageScene.swift in Sources */,
 				A81BFC081AD3E13400BB6D97 /* NSDate.swift in Sources */,
+				A85DB6461AD4F510009E6B37 /* Context.swift in Sources */,
 				A8EB848A1AD3CBCD00F3638E /* OAuth2Router.swift in Sources */,
 				A8EB84881AD3CB2600F3638E /* Coupon.swift in Sources */,
 				A8EB84871AD3CB2200F3638E /* PacketLog.swift in Sources */,
@@ -1044,14 +1056,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
 				IBSC_MODULE = graphPON_WatchKit_Extension;
 				INFOPLIST_FILE = "graphPON WatchKit App/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 4;
 				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
 			};
@@ -1061,9 +1076,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				COPY_PHASE_STRIP = NO;
 				IBSC_MODULE = graphPON_WatchKit_Extension;
 				INFOPLIST_FILE = "graphPON WatchKit App/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;

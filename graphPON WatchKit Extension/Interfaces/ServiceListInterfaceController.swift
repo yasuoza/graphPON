@@ -7,17 +7,19 @@ class ServiceListInterfaceController: WKInterfaceController {
     @IBOutlet weak var serviceListTable: WKInterfaceTable!
 
     private var hddServiceCodes = [String]()
+    private var hddServiceNickNames = [String]()
 
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
         
         self.hddServiceCodes = PacketInfoManager.sharedManager.hddServiceCodes
+        self.hddServiceNickNames = PacketInfoManager.sharedManager.hddServices.map { $0.nickName }
 
         self.serviceListTable.setNumberOfRows(self.hddServiceCodes.count, withRowType: "default")
         let serviceCodeCount = self.hddServiceCodes.count
         for i in 0..<serviceCodeCount {
             let row = self.serviceListTable.rowControllerAtIndex(i) as ServiceListCellController
-            row.serviceLabel.setText(self.hddServiceCodes[i])
+            row.serviceLabel.setText(self.hddServiceNickNames[i])
         }
     }
 
@@ -34,9 +36,10 @@ class ServiceListInterfaceController: WKInterfaceController {
     // MARK: - WKInterfaceTable stack
 
     override func table(table: WKInterfaceTable, didSelectRowAtIndex rowIndex: Int) {
-        let context = ["serviceCode": self.hddServiceCodes[rowIndex]]
+        Context.sharedContext.serviceCode = self.hddServiceCodes[rowIndex]
+        Context.sharedContext.serviceNickname = self.hddServiceNickNames[rowIndex]
 
-        
+        self.dismissController()
     }
 
 }
