@@ -73,7 +73,7 @@ class OAuth2Client: NSObject {
 
             // willSet and didSet observers are not called when a property
             // is set in an initializer before delegation takes place.
-            // https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Properties.html#//apple_ref/doc/uid/TP40014097-CH14-XID_390
+            // https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Properties.html#//apple_ref/doc/uid/TP40014097-CH14-ID262
             self.credential = credential
         }
     }
