@@ -197,11 +197,13 @@ class PacketInfoManager: NSObject {
                             }
                         }
                     }
+
+                    _completion?(error: nil)
+
                     NSNotificationCenter.defaultCenter().postNotificationName(
                         PacketInfoManager.LatestPacketLogsDidFetchNotification,
                         object: nil
                     )
-                    _completion?(error: nil)
             }
         })
 
