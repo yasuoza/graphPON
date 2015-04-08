@@ -30,8 +30,8 @@ class AvailabilityChartScene: NSObject, XYDoughnutChartDataSource, XYDoughnutCha
     }
 
     func drawImage(#frame: CGRect) -> UIImage {
-        UIGraphicsBeginImageContext(frame.size)
         let chart = XYDoughnutChart(frame: frame)
+        UIGraphicsBeginImageContext(chart.bounds.size)
         chart.dataSource = self
         chart.delegate = self
         chart.showLabel = false

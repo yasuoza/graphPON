@@ -79,7 +79,7 @@ class SummaryChartInterfaceController: WKInterfaceController {
     // MARK: - Update views
 
     private func reloadChartData() {
-        let frame = CGRectMake(0, 0, 312, 184)
+        let frame = CGRectMake(0, 0, contentFrame.width, contentFrame.height / 2)
         let scene = SummaryChartScene(serviceCode: serviceCode, duration: duration)
         let image = scene.drawImage(frame: frame)
         self.chartImageView.setImage(image)

@@ -20,7 +20,6 @@ class SummaryChartScene: NSObject, JBLineChartViewDataSource, JBLineChartViewDel
     }
 
     func drawImage(#frame: CGRect) -> UIImage {
-        let frame = CGRectMake(0, 0, 312, 184)
         let chart = JBLineChartView(frame: frame)
         UIGraphicsBeginImageContext(chart.bounds.size)
         chart.dataSource = self

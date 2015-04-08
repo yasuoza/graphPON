@@ -32,8 +32,8 @@ class DailyChartImageScene: NSObject, JBBarChartViewDataSource, JBBarChartViewDe
     }
 
     func drawImage(#frame: CGRect) -> UIImage {
-        UIGraphicsBeginImageContext(frame.size)
         let chart = JBBarChartView(frame: frame)
+        UIGraphicsBeginImageContext(chart.bounds.size)
         chart.dataSource = self
         chart.delegate = self
         chart.minimumValue = 0.0
