@@ -30,6 +30,8 @@
 		A858714C1A7766B3007C78C1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A858714A1A7766B3007C78C1 /* Localizable.strings */; };
 		A85DB6431AD4E3E5009E6B37 /* GPUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8ADA2911AD4AD0600CA7039 /* GPUserDefaults.swift */; };
 		A85DB6461AD4F510009E6B37 /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85DB6451AD4F510009E6B37 /* Context.swift */; };
+		A85DB6481AD50323009E6B37 /* Settings-Watch.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A85DB6471AD50323009E6B37 /* Settings-Watch.bundle */; };
+		A85DB6491AD50323009E6B37 /* Settings-Watch.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A85DB6471AD50323009E6B37 /* Settings-Watch.bundle */; };
 		A85FA8A71A5798FC00992948 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A85FA8A61A5798FC00992948 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		A85FA8A81A5798FC00992948 /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A85FA8A61A5798FC00992948 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A874C0AC1A4BDE7200887932 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A874C0AB1A4BDE7200887932 /* Alamofire.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -50,6 +52,7 @@
 		A8B212BC1A11EEDC005988DC /* SummaryChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B212BB1A11EEDC005988DC /* SummaryChartViewController.swift */; };
 		A8B212C01A1204B2005988DC /* LineChartFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B212BF1A1204B2005988DC /* LineChartFooterView.swift */; };
 		A8B39C391A41713E009F519E /* BaseChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B39C381A41713E009F519E /* BaseChartViewController.swift */; };
+		A8B833AB1AD505D90019132F /* Settings-Watch.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A85DB6471AD50323009E6B37 /* Settings-Watch.bundle */; };
 		A8BC2A7D1A50030400E6A36A /* OAuth2CredentialTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BC2A7C1A50030400E6A36A /* OAuth2CredentialTests.swift */; };
 		A8BC2A7E1A50032500E6A36A /* OAuth2Credential.swift in Sources */ = {isa = PBXBuildFile; fileRef = A874C0BD1A4C04A800887932 /* OAuth2Credential.swift */; };
 		A8BC51BC1A6B58E400AE3B67 /* Coupon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C743C41A6B56A0001F688C /* Coupon.swift */; };
@@ -193,6 +196,7 @@
 		A858714B1A7766B3007C78C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A858714F1A7768C2007C78C1 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A85DB6451AD4F510009E6B37 /* Context.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Context.swift; path = Models/Context.swift; sourceTree = "<group>"; };
+		A85DB6471AD50323009E6B37 /* Settings-Watch.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = "Settings-Watch.bundle"; path = "graphPON WatchKit App/Settings-Watch.bundle"; sourceTree = SOURCE_ROOT; };
 		A85FA8A61A5798FC00992948 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 		A874C0AB1A4BDE7200887932 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		A874C0B71A4BF6EB00887932 /* OAuth2Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OAuth2Client.swift; path = Models/OAuth2Client.swift; sourceTree = "<group>"; };
@@ -310,6 +314,7 @@
 		A80D19C21A11CEDA0067A055 /* graphPON iOS */ = {
 			isa = PBXGroup;
 			children = (
+				A85DB6471AD50323009E6B37 /* Settings-Watch.bundle */,
 				A80D19CE1A11CEDA0067A055 /* Images.xcassets */,
 				A80D19C51A11CEDA0067A055 /* AppDelegate.swift */,
 				A833C34C1A637E0800EBE788 /* Constants.swift */,
@@ -664,6 +669,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A858714C1A7766B3007C78C1 /* Localizable.strings in Resources */,
+				A8B833AB1AD505D90019132F /* Settings-Watch.bundle in Resources */,
 				A80D19CD1A11CEDA0067A055 /* Main.storyboard in Resources */,
 				A80D19D21A11CEDA0067A055 /* LaunchScreen.xib in Resources */,
 				A80D19CF1A11CEDA0067A055 /* Images.xcassets in Resources */,
@@ -683,6 +689,7 @@
 			files = (
 				A8EB845A1AD3C93E00F3638E /* Images.xcassets in Resources */,
 				A8EB845E1AD3C93E00F3638E /* graphPON WatchKit App.app in Resources */,
+				A85DB6481AD50323009E6B37 /* Settings-Watch.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -692,6 +699,7 @@
 			files = (
 				A8EB84661AD3C93E00F3638E /* Interface.storyboard in Resources */,
 				A8EB84681AD3C93E00F3638E /* Images.xcassets in Resources */,
+				A85DB6491AD50323009E6B37 /* Settings-Watch.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
