@@ -24,16 +24,16 @@ class HdoService: NSObject {
     }
     var nickName: String {
         get {
-            if let nickname = NSUserDefaults.standardUserDefaults().objectForKey("\(self.hdoServiceCode):nickName") as String?  {
+            if let nickname = GPUserDefaults.sharedDefaults().objectForKey("\(self.hdoServiceCode):nickName") as String?  {
                 return nickname
             }
             return self.number
         }
         set(nickname) {
             if nickname != "" {
-                NSUserDefaults.standardUserDefaults().setObject(nickname, forKey: "\(self.hdoServiceCode):nickName")
+                GPUserDefaults.sharedDefaults().setObject(nickname, forKey: "\(self.hdoServiceCode):nickName")
             } else {
-                NSUserDefaults.standardUserDefaults().removeObjectForKey("\(self.hdoServiceCode):nickName")
+                GPUserDefaults.sharedDefaults().removeObjectForKey("\(self.hdoServiceCode):nickName")
             }
         }
     }

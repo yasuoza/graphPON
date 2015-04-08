@@ -78,10 +78,6 @@ class OAuth2Client: NSObject {
         }
     }
 
-    func openOAuthAuthorizeURL() {
-        UIApplication.sharedApplication().openURL(OAuth2Router.Authorize.URLRequest.URL)
-    }
-
     func authorized(credential cred: OAuth2Credential) {
         self.state = .Authorized(cred)
     }

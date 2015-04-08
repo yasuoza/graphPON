@@ -152,7 +152,7 @@ class BaseChartViewController: BaseViewController, StateRestorable {
     // MARK: - StateRestorableProtocol
 
     func storeCurrentState() {
-        let standardDefaults = NSUserDefaults.standardUserDefaults()
+        let standardDefaults = GPUserDefaults.sharedDefaults()
         if let serviceCode = self.serviceCode {
             standardDefaults.setObject(serviceCode, forKey: self.restrationalServiceCodeIdentifier)
         }
@@ -161,7 +161,7 @@ class BaseChartViewController: BaseViewController, StateRestorable {
     }
 
     func restoreLastState() {
-        let standardDefaults = NSUserDefaults.standardUserDefaults()
+        let standardDefaults = GPUserDefaults.sharedDefaults()
         if let serviceCode = standardDefaults.objectForKey(self.restrationalServiceCodeIdentifier) as? String {
             self.serviceCode = serviceCode
         }
