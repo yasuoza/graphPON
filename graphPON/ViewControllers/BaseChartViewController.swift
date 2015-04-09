@@ -76,9 +76,12 @@ class BaseChartViewController: UIViewController, StateRestorable, PromptLoginPre
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.navBarHairlineImageView = self.findHairlineImageViewUnder(self.navigationController!.navigationBar)
+
+        self.navBarHairlineImageView = self.stealHairlineImageViewUnder(self.navigationController!.navigationBar)
         self.navBarHairlineImageView?.hidden = true
+        if let navBarHairlineImageView = self.navBarHairlineImageView {
+            self.view.addSubview(navBarHairlineImageView)
+        }
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -104,6 +107,10 @@ class BaseChartViewController: UIViewController, StateRestorable, PromptLoginPre
         default:
             break
         }
+    }
+
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
     }
 
     override func viewDidLayoutSubviews() {
@@ -173,12 +180,18 @@ class BaseChartViewController: UIViewController, StateRestorable, PromptLoginPre
 
     // MARK: - Private
 
-    private func findHairlineImageViewUnder(view: UIView) -> UIImageView? {
-        if view.isKindOfClass(UIImageView) && view.bounds.size.height <= 1.0 {
-            return view as? UIImageView
+    private func stealHairlineImageViewUnder(view: UIView) -> UIImageView? {
+        if let imageView = view as? UIImageView where imageView.bounds.size.height <= 1.0 {
+            imageView.hidden = true
+            imageView.removeFromSuperview()
+
+            let footerImageView = UIImageView(frame: imageView.frame)
+            footerImageView.image = imageView.image
+            return footerImageView
+
         }
         for subview in view.subviews {
-            if let view = self.findHairlineImageViewUnder(subview as! UIView) {
+            if let view = self.stealHairlineImageViewUnder(subview as! UIView) {
                 return view
             }
         }
