@@ -5,6 +5,7 @@ import SwiftyJSON
 class SettingTableViewController: UITableViewController, SettingTableHdoServiceSwitchCellDelegate, PromptLoginPresenter, ErrorAlertPresenter {
 
     private var couponUseDict: [String: Bool] = [:]
+    private var promptLoginWhenApplicationDidBecomeObserver: NSObjectProtocol?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +24,7 @@ class SettingTableViewController: UITableViewController, SettingTableHdoServiceS
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
 
-        NSNotificationCenter.defaultCenter().addObserverForName(
+        self.promptLoginWhenApplicationDidBecomeObserver = NSNotificationCenter.defaultCenter().addObserverForName(
             UIApplicationDidBecomeActiveNotification,
             object: nil,
             queue: NSOperationQueue.mainQueue(),
@@ -36,6 +37,14 @@ class SettingTableViewController: UITableViewController, SettingTableHdoServiceS
             self.presentPromptLoginControllerIfNeeded()
         default:
             break
+        }
+    }
+
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        if let observer = self.promptLoginWhenApplicationDidBecomeObserver {
+            NSNotificationCenter.defaultCenter().removeObserver(observer)
         }
     }
 
@@ -106,7 +115,7 @@ class SettingTableViewController: UITableViewController, SettingTableHdoServiceS
         switch OAuth2Client.sharedClient.state {
         case OAuth2Client.AuthorizationState.UnAuthorized:
             if let _ = self.presentedViewController as? PromptLoginController {
-                break
+                return
             }
             return self.presentViewController(
                 PromptLoginController.alertController(),
