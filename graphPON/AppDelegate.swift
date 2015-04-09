@@ -14,6 +14,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             tabBarController.selectedIndex = selectedIndex
         }
 
+        self.fetchLatestPacketLog()
+
         return true
     }
 
@@ -29,9 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
                     }
                     OAuth2Client.sharedClient.authorized(credential: credential)
-                    PacketInfoManager.sharedManager.fetchLatestPacketLog(completion: { error in
-                        self.handleAPIError(error)
-                    })
+                    self.fetchLatestPacketLog()
                     return true
                 }
             }
@@ -62,25 +62,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
-        // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+        self.fetchLatestPacketLog()
     }
 
     func applicationDidBecomeActive(application: UIApplication) {
+        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the backgro
+    }
+
+    func applicationWillTerminate(application: UIApplication) {
+        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the backgrond, optionally refresh the user interface.
+    }
+
+    // MARK: - Private methods
+
+    private func fetchLatestPacketLog() {
         switch OAuth2Client.sharedClient.state {
         case .Authorized:
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = true
             PacketInfoManager.sharedManager.fetchLatestPacketLog(completion: { error in
+                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
                 self.handleAPIError(error)
             })
         default:
             break
         }
     }
-
-    func applicationWillTerminate(application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-    }
-
-    // MARK: - Private methods
 
     private func handleAPIError(error: NSError?) {
         if let error = error,

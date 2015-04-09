@@ -13,7 +13,7 @@ let kJBAreaChartViewControllerChartFooterHeight   = CGFloat(20.0)
 let kJBAreaChartViewControllerChartFooterPadding  = CGFloat(5.0)
 let kJBAreaChartViewControllerChartLineWidth      = CGFloat(2.0)
 
-class BaseChartViewController: BaseViewController, StateRestorable {
+class BaseChartViewController: UIViewController, StateRestorable, PromptLoginPresenter, ErrorAlertPresenter {
 
     @IBOutlet weak var extendedNavBarView: ExtendedNavBarView?
     @IBOutlet weak var loadingIndicatorView: UIActivityIndicatorView!
@@ -28,10 +28,11 @@ class BaseChartViewController: BaseViewController, StateRestorable {
     var chartDurationSegment: HdoService.Duration = .InThisMonth
 
     private var navBarHairlineImageView: UIImageView?
-
+    
     private(set) var restrationalServiceCodeIdentifier: String!
     private(set) var restrationalDurationSegmentIdentifier: String!
     private(set) var restrationalDataFilteringSegmentIdentifier: String!
+    private var promptLoginWhenApplicationDidBecomeObserver: NSObjectProtocol?
 
     enum Mode {
         case Summary, Daily, Ratio, Availability
@@ -89,7 +90,7 @@ class BaseChartViewController: BaseViewController, StateRestorable {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
 
-        NSNotificationCenter.defaultCenter().addObserverForName(
+        self.promptLoginWhenApplicationDidBecomeObserver = NSNotificationCenter.defaultCenter().addObserverForName(
             UIApplicationDidBecomeActiveNotification,
             object: nil,
             queue: NSOperationQueue.mainQueue(),
@@ -123,6 +124,42 @@ class BaseChartViewController: BaseViewController, StateRestorable {
             self.valueLabelTopSpaceConstraint.constant = -8.0
             self.valueLabel.font = UIFont(name: GlobalValueFontFamily, size: 60.0)
         }
+    }
+
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        if let observer = self.promptLoginWhenApplicationDidBecomeObserver {
+            NSNotificationCenter.defaultCenter().removeObserver(observer)
+        }
+    }
+
+    // MARK: - PromptLoginPresenter
+
+    func presentPromptLoginControllerIfNeeded() {
+        switch OAuth2Client.sharedClient.state {
+        case OAuth2Client.AuthorizationState.UnAuthorized:
+            if let _ = self.presentedViewController as? PromptLoginController {
+                return
+            }
+            return self.presentViewController(
+                PromptLoginController.alertController(),
+                animated: true,
+                completion: nil
+            )
+        default:
+            break
+        }
+    }
+
+    // MARK: - ErrorAlertPresenter
+
+    func presentErrorAlertController(error: NSError) {
+        self.presentViewController(
+            ErrorAlertController.initWithError(error),
+            animated: true,
+            completion: nil
+        )
     }
 
     // MARK: - Internal
