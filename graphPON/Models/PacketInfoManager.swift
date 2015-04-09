@@ -4,21 +4,12 @@ import SwiftyJSON
 
 class PacketInfoManager: NSObject {
 
-    // MARK: - Singleton methods
+    // MARK: - Singleton variables
 
-    class var LatestPacketLogsDidFetchNotification: String {
-        struct Notification {
-            static let name = "graphPON.LatestPacketLogsDidFetchNotification"
-        }
-        return Notification.name
-    }
+    static let LatestPacketLogsDidFetchNotification = "graphPON.LatestPacketLogsDidFetchNotification"
+    static let sharedManager = PacketInfoManager()
 
-    class var sharedManager : PacketInfoManager {
-        struct Static {
-            static let instance : PacketInfoManager = PacketInfoManager()
-        }
-        return Static.instance
-    }
+    // MARK: - Instance variables
 
     private let dateFormatter = NSDateFormatter()
 
@@ -30,8 +21,8 @@ class PacketInfoManager: NSObject {
 
     var hdoServiceCodes: [String] {
         return self.hddServices.reduce([] as [String], combine: { (var _hddServiceCodes, hddService) in
-            if let hdoInfos = hddService.hdoServices {
-                return _hddServiceCodes + hdoInfos.reduce([] as [String], combine: { (var _hdoInfoCodes, hdoInfo) in
+            if let hdoServices = hddService.hdoServices {
+                return _hddServiceCodes + hdoServices.reduce([] as [String], combine: { (var _hdoInfoCodes, hdoInfo) in
                     return _hdoInfoCodes + [hdoInfo.hdoServiceCode]
                 })
             } else {
@@ -42,8 +33,8 @@ class PacketInfoManager: NSObject {
 
     var hdoServiceNumbers: [String] {
         return self.hddServices.reduce([] as [String], combine: { (var _hddServiceCodes, hddService) in
-            if let hdoInfos = hddService.hdoServices {
-                return _hddServiceCodes + hdoInfos.reduce([] as [String], combine: { (var _hdoInfoCodes, hdoInfo) in
+            if let hdoServices = hddService.hdoServices {
+                return _hddServiceCodes + hdoServices.reduce([] as [String], combine: { (var _hdoInfoCodes, hdoInfo) in
                     return _hdoInfoCodes + [hdoInfo.number]
                 })
             } else {
@@ -105,7 +96,7 @@ class PacketInfoManager: NSObject {
                     break
                 }
 
-                var tmpHddServices: [HddService] = []
+                var hddServices: [HddService] = []
                 for (_, hddServiceJSON) in json["couponInfo"] {
                     let hddServiceCode = hddServiceJSON["hddServiceCode"].stringValue
                     var tmpCoupons: [Coupon] = []
@@ -113,20 +104,24 @@ class PacketInfoManager: NSObject {
                         let coupon = Coupon(volume: couponJSON["volume"].intValue)
                         tmpCoupons.append(coupon)
                     }
-                    var tmpHdoServices: [HdoService] = []
+                    var hdoServices: [HdoService] = []
                     for (_, hdoServiceJson) in hddServiceJSON["hdoInfo"] {
                         let hdoService = HdoService(
                             hdoServiceCode: hdoServiceJson["hdoServiceCode"].stringValue,
                             number: hdoServiceJson["number"].stringValue
                         )
                         hdoService.couponUse = hdoServiceJson["couponUse"].boolValue
-                        tmpHdoServices.append(hdoService)
+                        for (_, simCouponJSON) in hdoServiceJson["coupon"] {
+                            let simCoupon = Coupon(volume: simCouponJSON["volume"].intValue)
+                            hdoService.coupons.append(simCoupon)
+                        }
+                        hdoServices.append(hdoService)
                     }
-                    tmpHddServices.append(
-                        HddService(hddServiceCode: hddServiceCode, coupons: tmpCoupons, hdoInfos: tmpHdoServices)
+                    hddServices.append(
+                        HddService(hddServiceCode: hddServiceCode, coupons: tmpCoupons, hdoServices: hdoServices)
                     )
                 }
-                self.hddServices = tmpHddServices
+                self.hddServices = hddServices
                 _completion?(error: nil)
         }
     }

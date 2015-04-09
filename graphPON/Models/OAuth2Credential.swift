@@ -2,35 +2,28 @@ import Foundation
 import Security
 
 class OAuth2Credential: NSObject, NSCoding {
+    private static let keychainServiceName = "com.iijmio.api"
+    private static let keychainAttributes: [String: AnyObject] = [
+        String(kSecClass): kSecClassGenericPassword,
+        String(kSecAttrService): keychainServiceName,
+    ]
+
     private(set) var accessToken: String? = ""
     private(set) var tokenType: String? = ""
     private(set) var expiryDate: NSDate? = NSDate()
 
-    struct AccountStore {
-        private static let serviceName = "com.iijmio.api"
-
-        static let attributes: Dictionary<String, AnyObject> = [
-            kSecClass: kSecClassGenericPassword,
-            kSecAttrService: serviceName,
-        ]
-    }
-
     // MARK: - Singleton methods
 
     class func restoreCredential() -> OAuth2Credential? {
-        var attrs = AccountStore.attributes
-        attrs[kSecReturnAttributes] = kCFBooleanTrue
+        var attrs = self.keychainAttributes
+        attrs[kSecReturnAttributes as String!] = kCFBooleanTrue
 
-        // http://stackoverflow.com/a/27721235/1427595
-        var result: AnyObject?
-        let status = withUnsafeMutablePointer(&result) { SecItemCopyMatching(attrs, UnsafeMutablePointer($0)) }
-
-        if status == errSecSuccess {
-            if let dict = result as? NSDictionary {
-                let key = String(kSecAttrGeneric)
-                if let data = dict[key] as? NSData {
+        var copy: Unmanaged<AnyObject>? = nil
+        if SecItemCopyMatching(attrs, &copy) == errSecSuccess  {
+            let key = String(kSecAttrGeneric)
+            if let dict = copy?.takeRetainedValue() as? NSDictionary,
+                let data = dict[key] as? NSData {
                     return NSKeyedUnarchiver.unarchiveObjectWithData(data) as? OAuth2Credential
-                }
             }
         }
         return nil
@@ -56,21 +49,21 @@ class OAuth2Credential: NSObject, NSCoding {
     }
 
     func save() -> Bool {
-        var attrs = AccountStore.attributes
+        var attrs = self.dynamicType.keychainAttributes
 
-        attrs[kSecAttrGeneric] = NSKeyedArchiver.archivedDataWithRootObject(self)
+        attrs[kSecAttrGeneric as! String] = NSKeyedArchiver.archivedDataWithRootObject(self)
 
         let status = SecItemAdd(attrs, nil)
-        if status == OSStatus(errSecDuplicateItem) {
+        if status == errSecDuplicateItem {
             if OAuth2Credential.restoreCredential()?.destroy() == true {
-                return SecItemAdd(attrs, nil) == OSStatus(errSecSuccess)
+                return SecItemAdd(attrs, nil) == errSecSuccess
             }
         }
-        return status == OSStatus(errSecSuccess)
+        return status == errSecSuccess
     }
 
     func destroy() -> Bool {
-        if !(SecItemDelete(AccountStore.attributes) == OSStatus(errSecSuccess)) {
+        if !(SecItemDelete(self.dynamicType.keychainAttributes) == errSecSuccess) {
             return false
         }
 

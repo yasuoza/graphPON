@@ -28,9 +28,10 @@ class BaseChartViewController: UIViewController, StateRestorable, PromptLoginPre
     var chartDurationSegment: HdoService.Duration = .InThisMonth
 
     private var navBarHairlineImageView: UIImageView?
-    private var restrationalServiceCodeIdentifier: String!
-    private var restrationalDurationSegmentIdentifier: String!
-    private var restrationalDataFilteringSegmentIdentifier: String!
+
+    private(set) var restrationalServiceCodeIdentifier: String!
+    private(set) var restrationalDurationSegmentIdentifier: String!
+    private(set) var restrationalDataFilteringSegmentIdentifier: String!
     private var promptLoginWhenApplicationDidBecomeObserver: NSObjectProtocol?
 
     enum Mode {
@@ -75,10 +76,12 @@ class BaseChartViewController: UIViewController, StateRestorable, PromptLoginPre
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.navBarHairlineImageView = self.findHairlineImageViewUnder(self.navigationController!.navigationBar)
+
+        self.navBarHairlineImageView = self.stealHairlineImageViewUnder(self.navigationController!.navigationBar)
         self.navBarHairlineImageView?.hidden = true
-        self.navigationController?.navigationBar.translucent = true
+        if let navBarHairlineImageView = self.navBarHairlineImageView {
+            self.view.addSubview(navBarHairlineImageView)
+        }
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -106,11 +109,15 @@ class BaseChartViewController: UIViewController, StateRestorable, PromptLoginPre
         }
     }
 
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+    }
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        if let extendedNavBarView = self.extendedNavBarView {
-            if let navBarFooterImageView = self.navBarHairlineImageView {
+        if let extendedNavBarView = self.extendedNavBarView,
+            let navBarFooterImageView = self.navBarHairlineImageView {
                 navBarFooterImageView.hidden = false
                 navBarFooterImageView.frame = CGRectMake(
                     extendedNavBarView.frame.origin.x,
@@ -118,7 +125,6 @@ class BaseChartViewController: UIViewController, StateRestorable, PromptLoginPre
                     navBarFooterImageView.frame.width,
                     navBarFooterImageView.frame.height
                 )
-            }
         }
 
         if iOS3_5InchPortraitOrientation() {
@@ -174,12 +180,18 @@ class BaseChartViewController: UIViewController, StateRestorable, PromptLoginPre
 
     // MARK: - Private
 
-    private func findHairlineImageViewUnder(view: UIView) -> UIImageView? {
-        if view.isKindOfClass(UIImageView) && view.bounds.size.height <= 1.0 {
-            return view as? UIImageView
+    private func stealHairlineImageViewUnder(view: UIView) -> UIImageView? {
+        if let imageView = view as? UIImageView where imageView.bounds.size.height <= 1.0 {
+            imageView.hidden = true
+            imageView.removeFromSuperview()
+
+            let footerImageView = UIImageView(frame: imageView.frame)
+            footerImageView.image = imageView.image
+            return footerImageView
+
         }
         for subview in view.subviews {
-            if let view = self.findHairlineImageViewUnder(subview as UIView) {
+            if let view = self.stealHairlineImageViewUnder(subview as! UIView) {
                 return view
             }
         }

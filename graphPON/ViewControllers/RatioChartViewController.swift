@@ -56,13 +56,13 @@ class RatioChartViewController: BaseChartViewController, XYDoughnutChartDelegate
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "HddServiceListFromRatioChartSegue" {
-            let navigationController = segue.destinationViewController as UINavigationController
-            let hddServiceListViewController = navigationController.topViewController as HddServiceListTableViewController
+            let navigationController = segue.destinationViewController as! UINavigationController
+            let hddServiceListViewController = navigationController.topViewController as! HddServiceListTableViewController
             hddServiceListViewController.delegate = self
             hddServiceListViewController.selectedService = self.serviceCode ?? ""
         } else if segue.identifier == "DisplayPacketLogsSelectFromRatioChartSegue" {
-            let navigationController = segue.destinationViewController as UINavigationController
-            let displayPacketLogSelectViewController = navigationController.topViewController as DisplayPacketLogsSelectTableViewController
+            let navigationController = segue.destinationViewController as! UINavigationController
+            let displayPacketLogSelectViewController = navigationController.topViewController as! DisplayPacketLogsSelectTableViewController
             displayPacketLogSelectViewController.delegate = self
             displayPacketLogSelectViewController.selectedFilteringSegment = self.chartDataFilteringSegment
         }
@@ -84,33 +84,27 @@ class RatioChartViewController: BaseChartViewController, XYDoughnutChartDelegate
     }
 
     func displayLatestTotalChartInformation() {
-        if let slices = self.slices {
-            if slices.count == 0 {
-                return
-            }
-            let max = maxElement(slices)
-            let maxIndex = find(slices, max)
-            if maxIndex == nil {
-                return
-            }
-            if let hdoService = self.hddService?.hdoServices?[maxIndex!] {
-                self.chartInformationView.setTitleText(
-                    String(format: NSLocalizedString("Proportion of %@", comment: "Chart information title text in ratio chart"),
-                        hdoService.nickName)
-                )
-                self.chartInformationView.setHidden(false, animated: true)
-                UIView.animateWithDuration(
-                    NSTimeInterval(kJBChartViewDefaultAnimationDuration) * 0.5,
-                    delay: 0.0,
-                    options: UIViewAnimationOptions.BeginFromCurrentState,
-                    animations: {
-                        self.informationValueLabelSeparatorView.alpha = 1.0
-                        let valueText = NSString(format: "%.01f", Float(max ?? 0.0))
-                        self.valueLabel.text = "\(valueText)%"
-                        self.valueLabel.alpha = 1.0
-                    },
-                    completion: nil
-                )
+        if let slices = self.slices where slices.count > 0 {
+            let maxValue = maxElement(slices)
+            if let maxIndex = find(slices, maxValue),
+                let hdoService = self.hddService?.hdoServices?[maxIndex] {
+                    self.chartInformationView.setTitleText(
+                        String(format: NSLocalizedString("Proportion of %@", comment: "Chart information title text in ratio chart"),
+                            hdoService.nickName)
+                    )
+                    self.chartInformationView.setHidden(false, animated: true)
+                    UIView.animateWithDuration(
+                        NSTimeInterval(kJBChartViewDefaultAnimationDuration) * 0.5,
+                        delay: 0.0,
+                        options: UIViewAnimationOptions.BeginFromCurrentState,
+                        animations: {
+                            self.informationValueLabelSeparatorView.alpha = 1.0
+                            let valueText = String(format: "%.01f", Float(maxValue))
+                            self.valueLabel.text = "\(valueText)%"
+                            self.valueLabel.alpha = 1.0
+                        },
+                        completion: nil
+                    )
             }
         }
     }
@@ -121,8 +115,7 @@ class RatioChartViewController: BaseChartViewController, XYDoughnutChartDelegate
         let logManager = PacketInfoManager.sharedManager
         self.slices = []
 
-        if let hddService = logManager.hddServiceForServiceCode(self.serviceCode)
-            ?? logManager.hddServices.first {
+        if let hddService = logManager.hddServiceForServiceCode(self.serviceCode) ?? logManager.hddServices.first {
             self.hddService = hddService
         } else {
             return
@@ -132,8 +125,8 @@ class RatioChartViewController: BaseChartViewController, XYDoughnutChartDelegate
             return hdoInfo.summarizeServiceUsageInDuration(
                 self.chartDurationSegment,
                 couponSwitch: self.chartDataFilteringSegment
-            ).reduce(0.0, combine: +)
-        } ?? []
+                ).reduce(0.0, combine: +)
+            } ?? []
 
         var total = packetSum.reduce(0, combine:+)
         total = total == 0 ? 1 : total
@@ -142,7 +135,7 @@ class RatioChartViewController: BaseChartViewController, XYDoughnutChartDelegate
 
     // MARK: - XYDoughnutChartDelegate
 
-    func doughnutChart(doughnutChart: XYDoughnutChart!, didSelectSliceAtIndexPath indexPath: NSIndexPath) {
+    func doughnutChart(doughnutChart: XYDoughnutChart, didSelectSliceAtIndexPath indexPath: NSIndexPath) {
         if let hdoService = self.hddService?.hdoServices?[indexPath.slice] {
             self.chartInformationView.setTitleText(
                 String(format: NSLocalizedString("Proportion of %@", comment: "Chart information title text in ratio chart"),
@@ -157,7 +150,7 @@ class RatioChartViewController: BaseChartViewController, XYDoughnutChartDelegate
             options: UIViewAnimationOptions.BeginFromCurrentState,
             animations: {
                 self.informationValueLabelSeparatorView.alpha = 1.0
-                let valueText = NSString(format: "%.01f", Float(self.slices?[indexPath.slice] ?? 0.0))
+                let valueText = String(format: "%.01f", Float(self.slices?[indexPath.slice] ?? 0.0))
                 self.valueLabel.text = "\(valueText)%"
                 self.valueLabel.alpha = 1.0
             },
@@ -165,7 +158,7 @@ class RatioChartViewController: BaseChartViewController, XYDoughnutChartDelegate
         )
     }
 
-    func doughnutChart(doughnutChart: XYDoughnutChart!, didDeselectSliceAtIndexPath indexPath: NSIndexPath) {
+    func doughnutChart(doughnutChart: XYDoughnutChart, didDeselectSliceAtIndexPath indexPath: NSIndexPath) {
         self.chartInformationView.setHidden(true, animated: true)
 
         UIView.animateWithDuration(
@@ -183,8 +176,8 @@ class RatioChartViewController: BaseChartViewController, XYDoughnutChartDelegate
         )
     }
 
-    func doughnutChart(doughnutChart: XYDoughnutChart!, colorForSliceAtIndexPath indexPath: NSIndexPath!) -> UIColor! {
-        if let slices = self.slices {
+    func doughnutChart(doughnutChart: XYDoughnutChart, colorForSliceAtIndexPath indexPath: NSIndexPath) -> UIColor {
+        if let slices = self.slices where slices.count > 0 {
             var max = maxElement(slices)
             max = max == 0 ? 1.0 : max
             let alpha = slices[indexPath.slice] / max
@@ -193,17 +186,17 @@ class RatioChartViewController: BaseChartViewController, XYDoughnutChartDelegate
         return UIColor.clearColor()
     }
 
-    func doughnutChart(doughnutChart: XYDoughnutChart!, selectedStrokeWidthForSliceAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func doughnutChart(doughnutChart: XYDoughnutChart, selectedStrokeWidthForSliceAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 2.0
     }
 
     // MARK: - XYDoughnutChartDataSource
 
-    func numberOfSlicesInDoughnutChart(doughnutChart: XYDoughnutChart!) -> Int {
+    func numberOfSlicesInDoughnutChart(doughnutChart: XYDoughnutChart) -> Int {
         return slices?.count ?? 0;
     }
 
-    func doughnutChart(doughnutChart: XYDoughnutChart!, valueForSliceAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func doughnutChart(doughnutChart: XYDoughnutChart, valueForSliceAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return CGFloat(self.slices?[indexPath.slice] ?? 0);
     }
 

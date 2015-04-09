@@ -2,9 +2,9 @@ import UIKit
 
 struct PacketLog {
 
-    var date: NSDate!
-    var withCoupon: Int = 0
-    var withoutCoupon: Int = 0
+    let date: NSDate
+    let withCoupon: Int
+    let withoutCoupon: Int
 
     private let dateFormatter = NSDateFormatter()
 
@@ -19,7 +19,7 @@ struct PacketLog {
             }
             return "MB"
         }()
-        return NSString(format: "%.01f", Float(packetValue!)) + unit
+        return String(format: "%.01f", Float(packetValue!)) + unit
     }
 
     // MARK: - Instance methods

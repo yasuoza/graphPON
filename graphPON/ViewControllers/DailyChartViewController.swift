@@ -40,7 +40,7 @@ class DailyChartViewController: BaseChartViewController, JBBarChartViewDelegate,
         footerView.rightLabel.textColor = UIColor.whiteColor()
         self.chartViewContainerView.chartView.footerView = footerView
 
-        self.chartInformationView.hidden = true
+        self.chartInformationView.setHidden(true, animated: false)
 
         if self.serviceCode == nil {
             if let hdoService = PacketInfoManager.sharedManager.hddServices.first?.hdoServices?.first {
@@ -78,14 +78,14 @@ class DailyChartViewController: BaseChartViewController, JBBarChartViewDelegate,
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "HddServiceListFromDailyChartSegue" {
-            let navigationController = segue.destinationViewController as UINavigationController
-            let hddServiceListViewController = navigationController.topViewController as HddServiceListTableViewController
+            let navigationController = segue.destinationViewController as! UINavigationController
+            let hddServiceListViewController = navigationController.topViewController as! HddServiceListTableViewController
             hddServiceListViewController.delegate = self
             hddServiceListViewController.mode = .Daily
             hddServiceListViewController.selectedService = self.hdoService?.number ?? ""
         } else if segue.identifier == "DisplayPacketLogsSelectFromSummaryChartSegue" {
-            let navigationController = segue.destinationViewController as UINavigationController
-            let displayPacketLogSelectViewController = navigationController.topViewController as DisplayPacketLogsSelectTableViewController
+            let navigationController = segue.destinationViewController as! UINavigationController
+            let displayPacketLogSelectViewController = navigationController.topViewController as! DisplayPacketLogsSelectTableViewController
             displayPacketLogSelectViewController.delegate = self
             displayPacketLogSelectViewController.selectedFilteringSegment = self.chartDataFilteringSegment
         }
@@ -102,10 +102,9 @@ class DailyChartViewController: BaseChartViewController, JBBarChartViewDelegate,
             self.navigationItem.title = "\(hdoService.nickName) (\(self.chartDataFilteringSegment.text()))"
         }
 
-        if let chartData = self.chartData {
-            if chartData.count > 0 {
-                self.chartViewContainerView.chartView.maximumValue = maxElement(chartData)
-            }
+        if let chartData = self.chartData where chartData.count > 0 {
+            self.chartViewContainerView.chartView.minimumValue = 0
+            self.chartViewContainerView.chartView.maximumValue = maxElement(chartData)
         }
 
         if let footerView = self.chartViewContainerView.chartView.footerView as? LineChartFooterView {
@@ -120,14 +119,14 @@ class DailyChartViewController: BaseChartViewController, JBBarChartViewDelegate,
     }
 
     func displayLatestTotalChartInformation() {
-        if let packetLog = self.hdoService?.packetLogs.last? {
+        if let packetLog = self.hdoService?.packetLogs.last {
             self.chartInformationView.setTitleText(
                 String(format: NSLocalizedString("Used in %@", comment: "Chart information title text in daily chart"),
                     packetLog.dateText())
             )
             self.chartInformationView.setHidden(false, animated: true)
         } else {
-            self.chartInformationView.setHidden(true)
+            self.chartInformationView.setHidden(true, animated: false)
             self.informationValueLabelSeparatorView.alpha = 0.0
             self.valueLabel.alpha = 0.0
             return
