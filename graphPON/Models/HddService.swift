@@ -32,16 +32,14 @@ class HddService: NSObject {
         }
     }
 
-    init(hddServiceCode: String, hdoServices: [HdoService]) {
-        self.hddServiceCode = hddServiceCode
-        self.coupons = []
-        self.hdoServices = hdoServices
-    }
-
     init(hddServiceCode: String, coupons: [Coupon], hdoServices: [HdoService]) {
         self.hddServiceCode = hddServiceCode
         self.coupons = coupons
         self.hdoServices = hdoServices
+    }
+
+    convenience init(hddServiceCode: String, hdoServices: [HdoService]) {
+        self.init(hddServiceCode: hddServiceCode, coupons: [], hdoServices: hdoServices)
     }
 
     var availableCouponVolume: Int {
