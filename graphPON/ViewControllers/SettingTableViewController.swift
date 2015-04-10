@@ -215,20 +215,24 @@ class SettingTableViewController: UITableViewController, SettingTableHdoServiceS
                 message: NSLocalizedString("ToLogoutFromServiceTapLogoutButton", comment: "Logout confirm alert message text"),
                 preferredStyle: UIAlertControllerStyle.Alert
             )
-            let logoutAction = UIAlertAction(title: "Logout", style: .Default, handler: { (_) in
+
+            let logoutAction = UIAlertAction(title: "Logout", style: .Destructive, handler: { (_) in
                 OAuth2Client.sharedClient.deauthorize()
                 OAuth2Credential.restoreCredential()?.destroy()
                 OAuth2Client.sharedClient.openOAuthAuthorizeURL()
             })
             let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+
             alertController.addAction(logoutAction)
             alertController.addAction(cancelAction)
+
             self.presentViewController(alertController, animated: true, completion: nil)
             return
         }
 
         // Save nickname action
         let alertController = UIAlertController(title: "Nickname", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
+
         let saveAction = UIAlertAction(title: "Save", style: .Default) { (_) in
             let nicknameTextField = alertController.textFields![0] as! UITextField
             if indexPath.row == 0 {
@@ -242,6 +246,7 @@ class SettingTableViewController: UITableViewController, SettingTableHdoServiceS
             self.tableView.reloadData()
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+
         alertController.addTextFieldWithConfigurationHandler { (textField) in
             textField.clearButtonMode = .WhileEditing
             textField.autocapitalizationType = .Words
