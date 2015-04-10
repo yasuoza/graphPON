@@ -1,5 +1,5 @@
 import UIKit
 
 @objc protocol SettingTableHdoServiceSwitchCellDelegate {
-    func couponSwitchButtonValueDidChanged(switchButton:UISwitch, buttonCell: UITableViewCell)
+    func couponSwitchButtonValueDidChanged(buttonCell: UITableViewCell, switchButton:UISwitch)
 }

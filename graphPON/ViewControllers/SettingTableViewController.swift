@@ -269,7 +269,7 @@ class SettingTableViewController: UITableViewController, SettingTableHdoServiceS
 
     // MARK: - SettingTableHdoServiceSwitchCellDelegate
 
-    func couponSwitchButtonValueDidChanged(switchButton: UISwitch, buttonCell: UITableViewCell) {
+    func couponSwitchButtonValueDidChanged(buttonCell: UITableViewCell, switchButton: UISwitch) {
         if let indexPath = self.tableView.indexPathForCell(buttonCell),
             let hdoService = PacketInfoManager.sharedManager.hddServices[indexPath.section].hdoServices?[(indexPath.row - 1) / 2]
             where self.couponUseDict.removeValueForKey(hdoService.hdoServiceCode) == nil {
