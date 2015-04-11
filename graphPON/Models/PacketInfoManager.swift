@@ -13,34 +13,18 @@ class PacketInfoManager: NSObject {
 
     private let dateFormatter = NSDateFormatter()
 
-    private(set) var hddServices: [HddService] = []
+    private(set) var hddServices = [HddService]()
 
     var hddServiceCodes: [String] {
         return self.hddServices.map { $0.hddServiceCode }
     }
 
     var hdoServiceCodes: [String] {
-        return self.hddServices.reduce([] as [String], combine: { (var _hddServiceCodes, hddService) in
-            if let hdoServices = hddService.hdoServices {
-                return _hddServiceCodes + hdoServices.reduce([] as [String], combine: { (var _hdoInfoCodes, hdoInfo) in
-                    return _hdoInfoCodes + [hdoInfo.hdoServiceCode]
-                })
-            } else {
-                return []
-            }
-        })
+        return self.hddServices.flatMap { $0.hdoServices ?? [] }.map { $0.hdoServiceCode }
     }
 
     var hdoServiceNumbers: [String] {
-        return self.hddServices.reduce([] as [String], combine: { (var _hddServiceCodes, hddService) in
-            if let hdoServices = hddService.hdoServices {
-                return _hddServiceCodes + hdoServices.reduce([] as [String], combine: { (var _hdoInfoCodes, hdoInfo) in
-                    return _hdoInfoCodes + [hdoInfo.number]
-                })
-            } else {
-                return []
-            }
-        })
+        return self.hddServices.flatMap { $0.hdoServices ?? [] }.map { $0.number }
     }
 
     // MARK: - Instance methods
@@ -210,7 +194,7 @@ class PacketInfoManager: NSObject {
     }
 
     func hddServiceForServiceCode(hddServiceCode: String?) -> HddService? {
-        return self.hddServices.filter { $0.hddServiceCode == hddServiceCode }.first
+        return hddServiceCode.flatMap { find(self.hddServiceCodes, $0) }.flatMap { self.hddServices[$0] }
     }
 
     func hdoServiceForServiceCode(hdoServiceCode: String?) -> HdoService? {

@@ -6,13 +6,7 @@ class HddService: NSObject {
     let coupons: [Coupon]!
     var hdoServiceCodes: [String] {
         get {
-            if let hdoServices = hdoServices {
-                return hdoServices.reduce([] as [String], combine: { (var arr, hdoInfo) in
-                    return arr + [hdoInfo.hdoServiceCode]
-                })
-            } else {
-                return []
-            }
+            return self.hdoServices?.map { $0.hdoServiceCode } ?? []
         }
     }
     var nickName: String {
