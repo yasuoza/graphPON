@@ -24,7 +24,7 @@ class AvailabilityChartScene: NSObject, XYDoughnutChartDataSource, XYDoughnutCha
 
         if let usedPackets = packetSum {
             let used = usedPackets.reduce(0, combine:+)
-            let available = CGFloat(hddService?.availableCouponVolume() ?? 0)
+            let available = CGFloat(hddService?.availableCouponVolume ?? 0)
             self.slices = [used, available];
         }
     }
@@ -59,17 +59,17 @@ class AvailabilityChartScene: NSObject, XYDoughnutChartDataSource, XYDoughnutCha
 
     // MARK: - XYDoughnutChartDataSource
 
-    func numberOfSlicesInDoughnutChart(doughnutChart: XYDoughnutChart!) -> Int {
+    func numberOfSlicesInDoughnutChart(doughnutChart: XYDoughnutChart) -> Int {
         return slices.count
     }
 
-    func doughnutChart(doughnutChart: XYDoughnutChart!, valueForSliceAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
+    func doughnutChart(doughnutChart: XYDoughnutChart, valueForSliceAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return slices[indexPath.slice]
     }
 
     // MARK: - XYDoughnutChartDelegate
 
-    func doughnutChart(doughnutChart: XYDoughnutChart!, colorForSliceAtIndexPath indexPath: NSIndexPath!) -> UIColor! {
+    func doughnutChart(doughnutChart: XYDoughnutChart, colorForSliceAtIndexPath indexPath: NSIndexPath) -> UIColor {
         if indexPath.slice == 0 {
             return UIColor.whiteColor()
         }

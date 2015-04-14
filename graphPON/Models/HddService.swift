@@ -11,8 +11,9 @@ class HddService: NSObject {
     }
     var nickName: String {
         get {
-            if let nickname = GPUserDefaults.sharedDefaults().objectForKey("\(self.hddServiceCode):nickName") as String?  {
-                return nickname
+            if let nickname = GPUserDefaults.sharedDefaults()
+                .objectForKey("\(self.hddServiceCode):nickName") as? String  {
+                    return nickname
             }
             return self.hddServiceCode
         }

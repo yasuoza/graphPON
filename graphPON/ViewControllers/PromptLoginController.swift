@@ -14,7 +14,7 @@ class PromptLoginController: UIAlertController {
                 title: NSLocalizedString("Open", comment: "Open"),
                 style: UIAlertActionStyle.Default,
                 handler: { action in
-                    UIApplication.sharedApplication().openURL(OAuth2Router.Authorize.URLRequest.URL)
+                    UIApplication.sharedApplication().openURL(OAuth2Router.Authorize.URLRequest.URL!)
                     return
                 }
             )

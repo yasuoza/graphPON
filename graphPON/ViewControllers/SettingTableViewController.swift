@@ -219,7 +219,7 @@ class SettingTableViewController: UITableViewController, SettingTableHdoServiceS
             let logoutAction = UIAlertAction(title: "Logout", style: .Destructive, handler: { (_) in
                 OAuth2Client.sharedClient.deauthorize()
                 OAuth2Credential.restoreCredential()?.destroy()
-                UIApplication.sharedApplication().openURL(OAuth2Router.Authorize.URLRequest.URL)
+                UIApplication.sharedApplication().openURL(OAuth2Router.Authorize.URLRequest.URL!)
             })
             let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
 

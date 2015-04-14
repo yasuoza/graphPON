@@ -18,7 +18,7 @@ class ServiceListInterfaceController: WKInterfaceController {
         self.serviceListTable.setNumberOfRows(self.hddServiceCodes.count, withRowType: "default")
         let serviceCodeCount = self.hddServiceCodes.count
         for i in 0..<serviceCodeCount {
-            let row = self.serviceListTable.rowControllerAtIndex(i) as ServiceListCellController
+            let row = self.serviceListTable.rowControllerAtIndex(i) as! ServiceListCellController
             row.serviceLabel.setText(self.hddServiceNickNames[i])
         }
     }
