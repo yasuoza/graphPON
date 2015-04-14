@@ -23,10 +23,6 @@ class ChartInformationView: UIView {
         }
     }
 
-    func setHidden(hidden: Bool) {
-        setHidden(hidden, animated: false)
-    }
-
     func setTitleText(titleText: String) {
         self.titleLabel.text = titleText
     }

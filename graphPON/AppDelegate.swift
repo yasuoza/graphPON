@@ -5,7 +5,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         window?.tintColor = GlobalTintColor
@@ -17,28 +16,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             tabBarController.selectedIndex = selectedIndex
         }
 
+        self.fetchLatestPacketLog()
+
         return true
     }
 
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
         if OAuth2Router.validOAuthCallbackURL(url) {
-            let parsedQuery = OAuth2Client.parseQuery(url.fragment)
-            if let dict = parsedQuery {
-                let credential = OAuth2Credential(dictionary: dict)
+            if let params = OAuth2Client.parseQuery(url.fragment) {
+                let credential = OAuth2Credential(dictionary: params)
                 if credential.save() {
-                    if let tabBarController = self.window?.rootViewController as? UITabBarController {
-                        if let navVC = tabBarController.selectedViewController as? UINavigationController {
-                            if let loginController = navVC.visibleViewController as? PromptLoginController {
-                                loginController.dismissViewControllerAnimated(true, completion: nil)
-                            }
-                        }
+                    if let tabBarController = self.window?.rootViewController as? UITabBarController,
+                        let navVC = tabBarController.selectedViewController as? UINavigationController,
+                        let loginController = navVC.visibleViewController as? PromptLoginController {
+                            loginController.dismissViewControllerAnimated(true, completion: nil)
+
                     }
                     OAuth2Client.sharedClient.authorized(credential: credential)
-                    UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-                    PacketInfoManager.sharedManager.fetchLatestPacketLog(completion: { error in
-                        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-                        self.handleAPIError(error)
-                    })
+                    self.fetchLatestPacketLog()
                     return true
                 }
             }
@@ -55,24 +50,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 
-        if let tabBarController = window?.rootViewController as UITabBarController? {
+        if let tabBarController = window?.rootViewController as? UITabBarController {
             let selectedIndex = tabBarController.selectedIndex
             GPUserDefaults.sharedDefaults().setInteger(selectedIndex, forKey: "selectedIndex")
             for vc in tabBarController.viewControllers! {
-                if let navVC = vc as? UINavigationController {
-                    if let vc = navVC.viewControllers.first as? StateRestorable {
+                if let navVC = vc as? UINavigationController,
+                    let vc = navVC.viewControllers.first as? StateRestorable {
                         vc.storeCurrentState()
-                    }
                 }
             }
+            NSUserDefaults.standardUserDefaults().synchronize()
         }
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
-        // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+        self.fetchLatestPacketLog()
     }
 
     func applicationDidBecomeActive(application: UIApplication) {
+        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the backgro
+    }
+
+    func applicationWillTerminate(application: UIApplication) {
+        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the backgrond, optionally refresh the user interface.
+    }
+
+    // MARK: - Private methods
+
+    private func fetchLatestPacketLog() {
         switch OAuth2Client.sharedClient.state {
         case .Authorized:
             UIApplication.sharedApplication().networkActivityIndicatorVisible = true
@@ -85,27 +90,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 
-    func applicationWillTerminate(application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-    }
-
-    // MARK: - Private methods
-
     private func handleAPIError(error: NSError?) {
-        if error == nil {
-            return
-        }
-
-        if let tabBarController = self.window?.rootViewController as? UITabBarController {
-            if let navVC = tabBarController.selectedViewController as? UINavigationController {
-                if error!.domain == OAuth2Router.APIErrorDomain && error!.code == OAuth2Router.AuthorizationFailureErrorCode {
-                    if let vc = navVC.visibleViewController as? PromptLoginPresenter {
+        if let error = error,
+            let tabBarController = self.window?.rootViewController as? UITabBarController,
+            let navVC = tabBarController.selectedViewController as? UINavigationController {
+                if error.domain == OAuth2Router.APIErrorDomain && error.code == OAuth2Router.AuthorizationFailureErrorCode,
+                    let vc = navVC.visibleViewController as? PromptLoginPresenter {
                         return vc.presentPromptLoginControllerIfNeeded()
-                    }
                 } else if let vc = navVC.visibleViewController as? ErrorAlertPresenter {
-                    return vc.presentErrorAlertController(error!)
+                    return vc.presentErrorAlertController(error)
                 }
-            }
         }
     }
 

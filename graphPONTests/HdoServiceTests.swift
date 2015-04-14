@@ -10,7 +10,7 @@ class HdoServiceTests: XCTestCase {
     override func setUp() {
         super.setUp()
 
-        let calendar = NSCalendar(calendarIdentifier: NSGregorianCalendar)!
+        let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
         var comps = calendar.components(
             (NSCalendarUnit.CalendarUnitYear|NSCalendarUnit.CalendarUnitMonth|NSCalendarUnit.CalendarUnitDay),
             fromDate: NSDate()
@@ -20,8 +20,9 @@ class HdoServiceTests: XCTestCase {
         logToday = PacketLog(date: NSDate(), withCoupon: 0, withoutCoupon: 0)
         hdoService = HdoService(
             hdoServiceCode: "hdoServiceCode",
-            packetLogs: [logLastMonth, logToday]
+            number: "080-1234-5678"
         )
+        hdoService.packetLogs = [logLastMonth, logToday]
     }
 
     override func tearDown() {

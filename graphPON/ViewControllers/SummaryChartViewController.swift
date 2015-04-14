@@ -44,7 +44,7 @@ class SummaryChartViewController: BaseChartViewController, JBLineChartViewDelega
         footerView.hidden = true
         self.chartViewContainerView.chartView.footerView = footerView
 
-        self.chartInformationView.hidden = true
+        self.chartInformationView.setHidden(true, animated: false)
 
         self.reBuildChartData()
     }
@@ -76,13 +76,13 @@ class SummaryChartViewController: BaseChartViewController, JBLineChartViewDelega
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "HddServiceListFromSummaryChartSegue" {
-            let navigationController = segue.destinationViewController as UINavigationController
-            let hddServiceListViewController = navigationController.topViewController as HddServiceListTableViewController
+            let navigationController = segue.destinationViewController as! UINavigationController
+            let hddServiceListViewController = navigationController.topViewController as! HddServiceListTableViewController
             hddServiceListViewController.delegate = self
             hddServiceListViewController.selectedService = self.serviceCode ?? ""
         } else if segue.identifier == "DisplayPacketLogsSelectFromSummaryChartSegue" {
-            let navigationController = segue.destinationViewController as UINavigationController
-            let displayPacketLogSelectViewController = navigationController.topViewController as DisplayPacketLogsSelectTableViewController
+            let navigationController = segue.destinationViewController as! UINavigationController
+            let displayPacketLogSelectViewController = navigationController.topViewController as! DisplayPacketLogsSelectTableViewController
             displayPacketLogSelectViewController.delegate = self
             displayPacketLogSelectViewController.selectedFilteringSegment = self.chartDataFilteringSegment
         }
@@ -124,7 +124,7 @@ class SummaryChartViewController: BaseChartViewController, JBLineChartViewDelega
         )
 
         if dateText == nil {
-            self.chartInformationView.setHidden(true)
+            self.chartInformationView.setHidden(true, animated: false)
             self.informationValueLabelSeparatorView.alpha = 0.0
             self.valueLabel.alpha = 0.0
             return
@@ -133,7 +133,7 @@ class SummaryChartViewController: BaseChartViewController, JBLineChartViewDelega
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "MM/dd"
         dateFormatter.locale = NSLocale(localeIdentifier: "en_US")
-        var startDateOfThisMonth = ""
+        let startDateOfThisMonth: String
         switch self.chartDurationSegment {
         case .InThisMonth:
             startDateOfThisMonth = dateFormatter.stringFromDate(NSDate().startDateOfMonth()!)
@@ -166,8 +166,7 @@ class SummaryChartViewController: BaseChartViewController, JBLineChartViewDelega
         let logManager = PacketInfoManager.sharedManager
         self.chartData = []
 
-        if let hddService = logManager.hddServiceForServiceCode(self.serviceCode)
-            ?? logManager.hddServices.first {
+        if let hddService = logManager.hddServiceForServiceCode(self.serviceCode) ?? logManager.hddServices.first {
             self.hddService = hddService
         } else {
             return
@@ -215,7 +214,7 @@ class SummaryChartViewController: BaseChartViewController, JBLineChartViewDelega
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "MM/dd"
         dateFormatter.locale = NSLocale(localeIdentifier: "en_US")
-        var startDateOfThisMonth = ""
+        let startDateOfThisMonth: String
         switch self.chartDurationSegment {
         case .InThisMonth:
             startDateOfThisMonth = dateFormatter.stringFromDate(NSDate().startDateOfMonth()!)
@@ -259,7 +258,6 @@ class SummaryChartViewController: BaseChartViewController, JBLineChartViewDelega
                 }
             }
         )
-
     }
 
     func lineChartView(lineChartView: JBLineChartView!, colorForLineAtLineIndex lineIndex: UInt) -> UIColor! {

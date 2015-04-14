@@ -5,6 +5,7 @@ import SwiftyJSON
 class SettingTableViewController: UITableViewController, SettingTableHdoServiceSwitchCellDelegate, PromptLoginPresenter, ErrorAlertPresenter {
 
     private var couponUseDict: [String: Bool] = [:]
+    private var promptLoginWhenApplicationDidBecomeObserver: NSObjectProtocol?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +24,7 @@ class SettingTableViewController: UITableViewController, SettingTableHdoServiceS
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
 
-        NSNotificationCenter.defaultCenter().addObserverForName(
+        self.promptLoginWhenApplicationDidBecomeObserver = NSNotificationCenter.defaultCenter().addObserverForName(
             UIApplicationDidBecomeActiveNotification,
             object: nil,
             queue: NSOperationQueue.mainQueue(),
@@ -36,6 +37,14 @@ class SettingTableViewController: UITableViewController, SettingTableHdoServiceS
             self.presentPromptLoginControllerIfNeeded()
         default:
             break
+        }
+    }
+
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        if let observer = self.promptLoginWhenApplicationDidBecomeObserver {
+            NSNotificationCenter.defaultCenter().removeObserver(observer)
         }
     }
 
@@ -106,7 +115,7 @@ class SettingTableViewController: UITableViewController, SettingTableHdoServiceS
         switch OAuth2Client.sharedClient.state {
         case OAuth2Client.AuthorizationState.UnAuthorized:
             if let _ = self.presentedViewController as? PromptLoginController {
-                break
+                return
             }
             return self.presentViewController(
                 PromptLoginController.alertController(),
@@ -144,7 +153,7 @@ class SettingTableViewController: UITableViewController, SettingTableHdoServiceS
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         // Logout cell
         if indexPath.section == self.numberOfSectionsInTableView(tableView) - 1 {
-            let cell = tableView.dequeueReusableCellWithIdentifier("SettingTableServiceLogoutCell", forIndexPath: indexPath) as UITableViewCell
+            let cell = tableView.dequeueReusableCellWithIdentifier("SettingTableServiceLogoutCell", forIndexPath: indexPath) as! UITableViewCell
             cell.textLabel?.text = NSLocalizedString("Logout", comment: "Logout from service")
             cell.textLabel?.textAlignment = .Center
             cell.textLabel?.textColor = GlobalTintColor
@@ -153,16 +162,16 @@ class SettingTableViewController: UITableViewController, SettingTableHdoServiceS
 
         // Service cells
         if indexPath.row == 0 {
-            let cell = tableView.dequeueReusableCellWithIdentifier("SettingTableHddServiceNicknameCell", forIndexPath: indexPath) as UITableViewCell
+            let cell = tableView.dequeueReusableCellWithIdentifier("SettingTableHddServiceNicknameCell", forIndexPath: indexPath) as! UITableViewCell
             cell.detailTextLabel?.text = PacketInfoManager.sharedManager.hddServices[indexPath.section].nickName
             return cell
         } else if (indexPath.row - 1) % 2 == 0 {
-            let cell = tableView.dequeueReusableCellWithIdentifier("SettingTableHdoServiceNicknameCell", forIndexPath: indexPath) as UITableViewCell
+            let cell = tableView.dequeueReusableCellWithIdentifier("SettingTableHdoServiceNicknameCell", forIndexPath: indexPath) as! UITableViewCell
             let hdoNickname = PacketInfoManager.sharedManager.hddServices[indexPath.section].hdoServices?[(indexPath.row - 1) / 2 ].nickName
             cell.detailTextLabel?.text = hdoNickname
             return cell
         } else {
-            let cell = tableView.dequeueReusableCellWithIdentifier("SettingTableHdoServiceSwitchCell", forIndexPath: indexPath) as SettingTableHdoServiceSwitchCell
+            let cell = tableView.dequeueReusableCellWithIdentifier("SettingTableHdoServiceSwitchCell", forIndexPath: indexPath) as! SettingTableHdoServiceSwitchCell
             cell.textLabel?.text = NSLocalizedString("UseCoupon", comment: "Use coupon or not in setting table cell")
             cell.textLabel?.backgroundColor = UIColor.clearColor()
             cell.delegate = self
@@ -206,22 +215,26 @@ class SettingTableViewController: UITableViewController, SettingTableHdoServiceS
                 message: NSLocalizedString("ToLogoutFromServiceTapLogoutButton", comment: "Logout confirm alert message text"),
                 preferredStyle: UIAlertControllerStyle.Alert
             )
-            let logoutAction = UIAlertAction(title: "Logout", style: .Default, handler: { (_) in
+
+            let logoutAction = UIAlertAction(title: "Logout", style: .Destructive, handler: { (_) in
                 OAuth2Client.sharedClient.deauthorize()
                 OAuth2Credential.restoreCredential()?.destroy()
                 UIApplication.sharedApplication().openURL(OAuth2Router.Authorize.URLRequest.URL)
             })
             let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+
             alertController.addAction(logoutAction)
             alertController.addAction(cancelAction)
+
             self.presentViewController(alertController, animated: true, completion: nil)
             return
         }
 
         // Save nickname action
         let alertController = UIAlertController(title: "Nickname", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
+
         let saveAction = UIAlertAction(title: "Save", style: .Default) { (_) in
-            let nicknameTextField = alertController.textFields![0] as UITextField
+            let nicknameTextField = alertController.textFields![0] as! UITextField
             if indexPath.row == 0 {
                 let hddService = PacketInfoManager.sharedManager.hddServices[indexPath.section]
                 hddService.nickName = nicknameTextField.text
@@ -233,6 +246,7 @@ class SettingTableViewController: UITableViewController, SettingTableHdoServiceS
             self.tableView.reloadData()
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+
         alertController.addTextFieldWithConfigurationHandler { (textField) in
             textField.clearButtonMode = .WhileEditing
             textField.autocapitalizationType = .Words
@@ -255,16 +269,13 @@ class SettingTableViewController: UITableViewController, SettingTableHdoServiceS
 
     // MARK: - SettingTableHdoServiceSwitchCellDelegate
 
-    func couponSwitchButtonValueDidChanged(switchButton: UISwitch, buttonCell: UITableViewCell) {
-        if let indexPath = self.tableView.indexPathForCell(buttonCell) {
-            if let hdoService = PacketInfoManager.sharedManager.hddServices[indexPath.section].hdoServices?[(indexPath.row - 1) / 2] {
-                let hdoServiceCode = hdoService.hdoServiceCode
-                if self.couponUseDict.removeValueForKey(hdoServiceCode) == nil {
-                    self.couponUseDict[hdoServiceCode] = switchButton.on
-                }
-                self.navigationItem.rightBarButtonItem?.enabled = !self.couponUseDict.keys.isEmpty
-            }
+    func couponSwitchButtonValueDidChanged(buttonCell: UITableViewCell, switchButton: UISwitch) {
+        if let indexPath = self.tableView.indexPathForCell(buttonCell),
+            let hdoService = PacketInfoManager.sharedManager.hddServices[indexPath.section].hdoServices?[(indexPath.row - 1) / 2]
+            where self.couponUseDict.removeValueForKey(hdoService.hdoServiceCode) == nil {
+                self.couponUseDict[hdoService.hdoServiceCode] = switchButton.on
         }
+        self.navigationItem.rightBarButtonItem?.enabled = !self.couponUseDict.keys.isEmpty
     }
 
 }

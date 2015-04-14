@@ -8,12 +8,12 @@ class OAuth2Client: NSObject {
         case Authorized(OAuth2Credential)
     }
 
-    class var OAuthDidAuthorizeNotification: String {
-        struct Notification {
-            static let name = "graphPON.OAuthDidAuthorizeNotification"
-        }
-        return Notification.name
-    }
+    // MARK: - Singleton variables
+
+    static let OAuthDidAuthorizeNotification = "graphPON.OAuthDidAuthorizeNotification"
+    static let sharedClient = OAuth2Client()
+
+    // MARK: - Instance variables
 
     let iijDeveloperID: String!
     let iijOAuthCallbackURI: NSURL!
@@ -41,34 +41,23 @@ class OAuth2Client: NSObject {
             .map { keyValue in
                 keyValue.componentsSeparatedByString("=")
             }.reduce([:] as [String: String]) { (var dict, elem) in
-                if elem.first? == nil || elem.last? == nil {
-                    return dict
+                if let key = elem.first, let value = elem.last {
+                    dict[key] = String(value).stringByRemovingPercentEncoding
                 }
-                dict[elem.first!] = String(elem.last!).stringByRemovingPercentEncoding
                 return dict
         }
-    }
-
-    class var sharedClient: OAuth2Client {
-        struct Singleton {
-            static let instance = OAuth2Client()
-        }
-
-        return Singleton.instance
     }
 
     // MARK: - Instance methods
 
     override init() {
-        super.init()
-
         let callbackURLString = NSBundle(forClass: self.dynamicType)
-            .objectForInfoDictionaryKey("IIJAPICallbackURL") as String
+            .objectForInfoDictionaryKey("IIJAPICallbackURL") as! String
         self.iijDeveloperID = NSBundle(forClass: self.dynamicType)
-            .objectForInfoDictionaryKey("IIJAPIClientKey") as String
+            .objectForInfoDictionaryKey("IIJAPIClientKey") as! String
         self.iijOAuthCallbackURI = NSURL(string: callbackURLString)
 
-        if let credential = OAuth2Credential.restoreCredential()? {
+        if let credential = OAuth2Credential.restoreCredential() {
             self.state = .Authorized(credential)
 
             // willSet and didSet observers are not called when a property

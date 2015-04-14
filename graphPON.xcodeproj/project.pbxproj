@@ -7,10 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A804D4D01A4AD63C00F22CFE /* JBChartFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A804D4CC1A4AD62D00F22CFE /* JBChartFramework.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		A804D4D11A4AD63C00F22CFE /* JBChartFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A804D4CC1A4AD62D00F22CFE /* JBChartFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		A804D4D21A4AD63C00F22CFE /* XYDoughnutChart.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A804D4CD1A4AD62D00F22CFE /* XYDoughnutChart.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		A804D4D31A4AD63C00F22CFE /* XYDoughnutChart.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A804D4CD1A4AD62D00F22CFE /* XYDoughnutChart.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A804D4D01A4AD63C00F22CFE /* JBChartFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A804D4CC1A4AD62D00F22CFE /* JBChartFramework.framework */; settings = {ATTRIBUTES = (
+				Weak,
+				); }; };
+		A804D4D11A4AD63C00F22CFE /* JBChartFramework.framework in None */ = {isa = PBXBuildFile; fileRef = A804D4CC1A4AD62D00F22CFE /* JBChartFramework.framework */; settings = {ATTRIBUTES = (
+				CodeSignOnCopy,RemoveHeadersOnCopy,
+				); }; };
+		A804D4D21A4AD63C00F22CFE /* XYDoughnutChart.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A804D4CD1A4AD62D00F22CFE /* XYDoughnutChart.framework */; settings = {ATTRIBUTES = (
+				Weak,
+				); }; };
+		A804D4D31A4AD63C00F22CFE /* XYDoughnutChart.framework in None */ = {isa = PBXBuildFile; fileRef = A804D4CD1A4AD62D00F22CFE /* XYDoughnutChart.framework */; settings = {ATTRIBUTES = (
+				CodeSignOnCopy,RemoveHeadersOnCopy,
+				); }; };
 		A80748621A134417008ADC0A /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80748611A134417008ADC0A /* UIColor.swift */; };
 		A807E1511A4D38950064BC11 /* PacketInfoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A807E1501A4D38950064BC11 /* PacketInfoManager.swift */; };
 		A80D19C61A11CEDA0067A055 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80D19C51A11CEDA0067A055 /* AppDelegate.swift */; };
@@ -32,10 +40,18 @@
 		A85DB6461AD4F510009E6B37 /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85DB6451AD4F510009E6B37 /* Context.swift */; };
 		A85DB6481AD50323009E6B37 /* Settings-Watch.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A85DB6471AD50323009E6B37 /* Settings-Watch.bundle */; };
 		A85DB6491AD50323009E6B37 /* Settings-Watch.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A85DB6471AD50323009E6B37 /* Settings-Watch.bundle */; };
-		A85FA8A71A5798FC00992948 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A85FA8A61A5798FC00992948 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		A85FA8A81A5798FC00992948 /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A85FA8A61A5798FC00992948 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		A874C0AC1A4BDE7200887932 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A874C0AB1A4BDE7200887932 /* Alamofire.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		A874C0AD1A4BDE7200887932 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A874C0AB1A4BDE7200887932 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A85FA8A71A5798FC00992948 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A85FA8A61A5798FC00992948 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (
+				Weak,
+				); }; };
+		A85FA8A81A5798FC00992948 /* SwiftyJSON.framework in None */ = {isa = PBXBuildFile; fileRef = A85FA8A61A5798FC00992948 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (
+				CodeSignOnCopy,RemoveHeadersOnCopy,
+				); }; };
+		A874C0AC1A4BDE7200887932 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A874C0AB1A4BDE7200887932 /* Alamofire.framework */; settings = {ATTRIBUTES = (
+				Weak,
+				); }; };
+		A874C0AD1A4BDE7200887932 /* Alamofire.framework in None */ = {isa = PBXBuildFile; fileRef = A874C0AB1A4BDE7200887932 /* Alamofire.framework */; settings = {ATTRIBUTES = (
+				CodeSignOnCopy,RemoveHeadersOnCopy,
+				); }; };
 		A874C0B91A4BF6EB00887932 /* OAuth2Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = A874C0B71A4BF6EB00887932 /* OAuth2Client.swift */; };
 		A874C0BA1A4BF6EB00887932 /* OAuth2Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = A874C0B81A4BF6EB00887932 /* OAuth2Router.swift */; };
 		A874C0BE1A4C04A800887932 /* OAuth2Credential.swift in Sources */ = {isa = PBXBuildFile; fileRef = A874C0BD1A4C04A800887932 /* OAuth2Credential.swift */; };
@@ -64,7 +80,6 @@
 		A8BE14A51A625E070071ADDD /* PacketLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8549EFA1A2C6E9C000308AD /* PacketLog.swift */; };
 		A8BE14A71A6260C60071ADDD /* HdoServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BE14A61A6260C60071ADDD /* HdoServiceTests.swift */; };
 		A8C743C51A6B56A0001F688C /* Coupon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C743C41A6B56A0001F688C /* Coupon.swift */; };
-		A8CB1A591A786110002FA9F7 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CB1A581A786110002FA9F7 /* BaseViewController.swift */; };
 		A8CB1A5B1A789606002FA9F7 /* PromptLoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CB1A5A1A789606002FA9F7 /* PromptLoginPresenter.swift */; };
 		A8CB1A5D1A7898FF002FA9F7 /* PromptLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CB1A5C1A7898FF002FA9F7 /* PromptLoginController.swift */; };
 		A8CB1A601A789929002FA9F7 /* ErrorAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CB1A5F1A789929002FA9F7 /* ErrorAlertController.swift */; };
@@ -81,11 +96,17 @@
 		A8EB845E1AD3C93E00F3638E /* graphPON WatchKit App.app in Resources */ = {isa = PBXBuildFile; fileRef = A8EB845D1AD3C93E00F3638E /* graphPON WatchKit App.app */; };
 		A8EB84661AD3C93E00F3638E /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8EB84641AD3C93E00F3638E /* Interface.storyboard */; };
 		A8EB84681AD3C93E00F3638E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A8EB84671AD3C93E00F3638E /* Images.xcassets */; };
-		A8EB846B1AD3C93E00F3638E /* graphPON WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = A8EB84531AD3C93E00F3638E /* graphPON WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		A8EB846B1AD3C93E00F3638E /* graphPON WatchKit Extension.appex in None */ = {isa = PBXBuildFile; fileRef = A8EB84531AD3C93E00F3638E /* graphPON WatchKit Extension.appex */; settings = {ATTRIBUTES = (
+				RemoveHeadersOnCopy,
+				); }; };
 		A8EB847C1AD3C9C500F3638E /* JBChartFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A804D4CC1A4AD62D00F22CFE /* JBChartFramework.framework */; };
-		A8EB847D1AD3C9C500F3638E /* JBChartFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A804D4CC1A4AD62D00F22CFE /* JBChartFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A8EB847D1AD3C9C500F3638E /* JBChartFramework.framework in None */ = {isa = PBXBuildFile; fileRef = A804D4CC1A4AD62D00F22CFE /* JBChartFramework.framework */; settings = {ATTRIBUTES = (
+				CodeSignOnCopy,RemoveHeadersOnCopy,
+				); }; };
 		A8EB847E1AD3C9C500F3638E /* XYDoughnutChart.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A804D4CD1A4AD62D00F22CFE /* XYDoughnutChart.framework */; };
-		A8EB847F1AD3C9C500F3638E /* XYDoughnutChart.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A804D4CD1A4AD62D00F22CFE /* XYDoughnutChart.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A8EB847F1AD3C9C500F3638E /* XYDoughnutChart.framework in None */ = {isa = PBXBuildFile; fileRef = A804D4CD1A4AD62D00F22CFE /* XYDoughnutChart.framework */; settings = {ATTRIBUTES = (
+				CodeSignOnCopy,RemoveHeadersOnCopy,
+				); }; };
 		A8EB84811AD3CA2200F3638E /* ServiceListInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EB84801AD3CA2200F3638E /* ServiceListInterfaceController.swift */; };
 		A8EB84831AD3CA8C00F3638E /* ServiceListCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EB84821AD3CA8C00F3638E /* ServiceListCellController.swift */; };
 		A8EB84841AD3CAEC00F3638E /* PacketInfoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A807E1501A4D38950064BC11 /* PacketInfoManager.swift */; };
@@ -129,39 +150,39 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		A84063231A484CFF0064A06A /* Embed Frameworks */ = {
+		A84063231A484CFF0064A06A /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				A85FA8A81A5798FC00992948 /* SwiftyJSON.framework in Embed Frameworks */,
-				A804D4D31A4AD63C00F22CFE /* XYDoughnutChart.framework in Embed Frameworks */,
-				A874C0AD1A4BDE7200887932 /* Alamofire.framework in Embed Frameworks */,
-				A804D4D11A4AD63C00F22CFE /* JBChartFramework.framework in Embed Frameworks */,
+				A85FA8A81A5798FC00992948 /* SwiftyJSON.framework in None */,
+				A804D4D31A4AD63C00F22CFE /* XYDoughnutChart.framework in None */,
+				A874C0AD1A4BDE7200887932 /* Alamofire.framework in None */,
+				A804D4D11A4AD63C00F22CFE /* JBChartFramework.framework in None */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A8EB84721AD3C93E00F3638E /* Embed App Extensions */ = {
+		A8EB84721AD3C93E00F3638E /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				A8EB846B1AD3C93E00F3638E /* graphPON WatchKit Extension.appex in Embed App Extensions */,
+				A8EB846B1AD3C93E00F3638E /* graphPON WatchKit Extension.appex in None */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A8EB847A1AD3C99D00F3638E /* Embed Frameworks */ = {
+		A8EB847A1AD3C99D00F3638E /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				A8EB847F1AD3C9C500F3638E /* XYDoughnutChart.framework in Embed Frameworks */,
-				A8EB847D1AD3C9C500F3638E /* JBChartFramework.framework in Embed Frameworks */,
+				A8EB847F1AD3C9C500F3638E /* XYDoughnutChart.framework in None */,
+				A8EB847D1AD3C9C500F3638E /* JBChartFramework.framework in None */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -220,7 +241,6 @@
 		A8BE14A01A625D2C0071ADDD /* HddServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HddServiceTests.swift; sourceTree = "<group>"; };
 		A8BE14A61A6260C60071ADDD /* HdoServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HdoServiceTests.swift; sourceTree = "<group>"; };
 		A8C743C41A6B56A0001F688C /* Coupon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Coupon.swift; path = Models/Coupon.swift; sourceTree = "<group>"; };
-		A8CB1A581A786110002FA9F7 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseViewController.swift; path = ViewControllers/BaseViewController.swift; sourceTree = "<group>"; };
 		A8CB1A5A1A789606002FA9F7 /* PromptLoginPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PromptLoginPresenter.swift; path = Protocols/PromptLoginPresenter.swift; sourceTree = "<group>"; };
 		A8CB1A5C1A7898FF002FA9F7 /* PromptLoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PromptLoginController.swift; path = ViewControllers/PromptLoginController.swift; sourceTree = "<group>"; };
 		A8CB1A5F1A789929002FA9F7 /* ErrorAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ErrorAlertController.swift; path = ViewControllers/ErrorAlertController.swift; sourceTree = "<group>"; };
@@ -445,7 +465,6 @@
 			children = (
 				A8CB1A5E1A789909002FA9F7 /* AlertControllers */,
 				A8B212B91A11EEAB005988DC /* CharViewControllers */,
-				A8CB1A581A786110002FA9F7 /* BaseViewController.swift */,
 				A8F036FB1A6CD0ED00DEFA61 /* SettingTableViewController.swift */,
 				A8867A0B1A304E8B001D8578 /* HddServiceListTableViewController.swift */,
 				A88398BF1A5CF40700B3DE5B /* DisplayPacketLogsSelectTableViewController.swift */,
@@ -552,8 +571,8 @@
 				A80D19BC1A11CEDA0067A055 /* Sources */,
 				A80D19BD1A11CEDA0067A055 /* Frameworks */,
 				A80D19BE1A11CEDA0067A055 /* Resources */,
-				A84063231A484CFF0064A06A /* Embed Frameworks */,
-				A8EB84721AD3C93E00F3638E /* Embed App Extensions */,
+				A84063231A484CFF0064A06A /* CopyFiles */,
+				A8EB84721AD3C93E00F3638E /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -590,7 +609,7 @@
 				A8EB844F1AD3C93E00F3638E /* Sources */,
 				A8EB84501AD3C93E00F3638E /* Frameworks */,
 				A8EB84511AD3C93E00F3638E /* Resources */,
-				A8EB847A1AD3C99D00F3638E /* Embed Frameworks */,
+				A8EB847A1AD3C99D00F3638E /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -726,7 +745,6 @@
 				A8549EFB1A2C6E9C000308AD /* PacketLog.swift in Sources */,
 				A80D19C61A11CEDA0067A055 /* AppDelegate.swift in Sources */,
 				A8867A0F1A304EB0001D8578 /* HddServiceListTableViewControllerDelegate.swift in Sources */,
-				A8CB1A591A786110002FA9F7 /* BaseViewController.swift in Sources */,
 				A88398C01A5CF40700B3DE5B /* DisplayPacketLogsSelectTableViewController.swift in Sources */,
 				A8409FB91A16F4A8007573EC /* ChartViewContainerView.swift in Sources */,
 				A8131D081A6D076E007C7D14 /* SettingTableHdoServiceSwitchCell.swift in Sources */,

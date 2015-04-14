@@ -13,7 +13,7 @@ let kJBAreaChartViewControllerChartFooterHeight   = CGFloat(20.0)
 let kJBAreaChartViewControllerChartFooterPadding  = CGFloat(5.0)
 let kJBAreaChartViewControllerChartLineWidth      = CGFloat(2.0)
 
-class BaseChartViewController: BaseViewController, StateRestorable {
+class BaseChartViewController: UIViewController, StateRestorable, PromptLoginPresenter, ErrorAlertPresenter {
 
     @IBOutlet weak var extendedNavBarView: ExtendedNavBarView?
     @IBOutlet weak var loadingIndicatorView: UIActivityIndicatorView!
@@ -28,9 +28,11 @@ class BaseChartViewController: BaseViewController, StateRestorable {
     var chartDurationSegment: HdoService.Duration = .InThisMonth
 
     private var navBarHairlineImageView: UIImageView?
-    private var restrationalServiceCodeIdentifier: String!
-    private var restrationalDurationSegmentIdentifier: String!
-    private var restrationalDataFilteringSegmentIdentifier: String!
+
+    private(set) var restrationalServiceCodeIdentifier: String!
+    private(set) var restrationalDurationSegmentIdentifier: String!
+    private(set) var restrationalDataFilteringSegmentIdentifier: String!
+    private var promptLoginWhenApplicationDidBecomeObserver: NSObjectProtocol?
 
     enum Mode {
         case Summary, Daily, Ratio, Availability
@@ -62,22 +64,24 @@ class BaseChartViewController: BaseViewController, StateRestorable {
         }
     }
 
-    required override init(coder aDecoder: NSCoder) {
+    required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
 
         self.restrationalServiceCodeIdentifier = "\(self.restorationIdentifier!).serviceCode"
         self.restrationalDurationSegmentIdentifier = "\(self.restorationIdentifier!).durationSegment"
         self.restrationalDataFilteringSegmentIdentifier = "\(self.restorationIdentifier!).dataFilteringSegment"
+
+        self.restoreLastState()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.restoreLastState()
-        
-        self.navBarHairlineImageView = self.findHairlineImageViewUnder(self.navigationController!.navigationBar)
+        self.navBarHairlineImageView = self.stealHairlineImageViewUnder(self.navigationController!.navigationBar)
         self.navBarHairlineImageView?.hidden = true
-        self.navigationController?.navigationBar.translucent = true
+        if let navBarHairlineImageView = self.navBarHairlineImageView {
+            self.view.addSubview(navBarHairlineImageView)
+        }
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -89,7 +93,7 @@ class BaseChartViewController: BaseViewController, StateRestorable {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
 
-        NSNotificationCenter.defaultCenter().addObserverForName(
+        self.promptLoginWhenApplicationDidBecomeObserver = NSNotificationCenter.defaultCenter().addObserverForName(
             UIApplicationDidBecomeActiveNotification,
             object: nil,
             queue: NSOperationQueue.mainQueue(),
@@ -105,11 +109,15 @@ class BaseChartViewController: BaseViewController, StateRestorable {
         }
     }
 
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+    }
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        if let extendedNavBarView = self.extendedNavBarView {
-            if let navBarFooterImageView = self.navBarHairlineImageView {
+        if let extendedNavBarView = self.extendedNavBarView,
+            let navBarFooterImageView = self.navBarHairlineImageView {
                 navBarFooterImageView.hidden = false
                 navBarFooterImageView.frame = CGRectMake(
                     extendedNavBarView.frame.origin.x,
@@ -117,13 +125,48 @@ class BaseChartViewController: BaseViewController, StateRestorable {
                     navBarFooterImageView.frame.width,
                     navBarFooterImageView.frame.height
                 )
-            }
         }
 
         if iOS3_5InchPortraitOrientation() {
             self.valueLabelTopSpaceConstraint.constant = -8.0
             self.valueLabel.font = UIFont(name: GlobalValueFontFamily, size: 60.0)
         }
+    }
+
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        if let observer = self.promptLoginWhenApplicationDidBecomeObserver {
+            NSNotificationCenter.defaultCenter().removeObserver(observer)
+        }
+    }
+
+    // MARK: - PromptLoginPresenter
+
+    func presentPromptLoginControllerIfNeeded() {
+        switch OAuth2Client.sharedClient.state {
+        case OAuth2Client.AuthorizationState.UnAuthorized:
+            if let _ = self.presentedViewController as? PromptLoginController {
+                return
+            }
+            return self.presentViewController(
+                PromptLoginController.alertController(),
+                animated: true,
+                completion: nil
+            )
+        default:
+            break
+        }
+    }
+
+    // MARK: - ErrorAlertPresenter
+
+    func presentErrorAlertController(error: NSError) {
+        self.presentViewController(
+            ErrorAlertController.initWithError(error),
+            animated: true,
+            completion: nil
+        )
     }
 
     // MARK: - Internal
@@ -137,12 +180,18 @@ class BaseChartViewController: BaseViewController, StateRestorable {
 
     // MARK: - Private
 
-    private func findHairlineImageViewUnder(view: UIView) -> UIImageView? {
-        if view.isKindOfClass(UIImageView) && view.bounds.size.height <= 1.0 {
-            return view as? UIImageView
+    private func stealHairlineImageViewUnder(view: UIView) -> UIImageView? {
+        if let imageView = view as? UIImageView where imageView.bounds.size.height <= 1.0 {
+            imageView.hidden = true
+            imageView.removeFromSuperview()
+
+            let footerImageView = UIImageView(frame: imageView.frame)
+            footerImageView.image = imageView.image
+            return footerImageView
+
         }
         for subview in view.subviews {
-            if let view = self.findHairlineImageViewUnder(subview as UIView) {
+            if let view = self.stealHairlineImageViewUnder(subview as! UIView) {
                 return view
             }
         }

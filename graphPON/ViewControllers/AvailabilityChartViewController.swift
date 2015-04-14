@@ -70,8 +70,8 @@ class AvailabilityChartViewController: BaseChartViewController, XYDoughnutChartD
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "HddServiceListFromRatioChartSegue" {
-            let navigationController = segue.destinationViewController as UINavigationController
-            let hddServiceListViewController = navigationController.topViewController as HddServiceListTableViewController
+            let navigationController = segue.destinationViewController as! UINavigationController
+            let hddServiceListViewController = navigationController.topViewController as! HddServiceListTableViewController
             hddServiceListViewController.delegate = self
             hddServiceListViewController.selectedService = self.serviceCode ?? ""
         }
@@ -93,10 +93,7 @@ class AvailabilityChartViewController: BaseChartViewController, XYDoughnutChartD
     }
 
     func displayLatestTotalChartInformation() {
-        if let slices = self.slices {
-            if slices.first == nil {
-                return
-            }
+        if let slices = self.slices where slices.first != nil {
             let dateFormatter = NSDateFormatter()
             dateFormatter.dateFormat = "MM/dd"
             dateFormatter.locale = NSLocale(localeIdentifier: "en_US")
@@ -108,16 +105,15 @@ class AvailabilityChartViewController: BaseChartViewController, XYDoughnutChartD
             )
             self.chartInformationView.setHidden(false, animated: true)
 
-            var totalAvailability = self.slices?.reduce(0, combine: +) ?? 1.0
-            totalAvailability = totalAvailability != 0 ? totalAvailability : 1.0
-            let usedPercentage = slices.first! / totalAvailability
+            let totalAvailability = self.slices?.reduce(0, combine: +) ?? 0.0
+            let usedPercentage = totalAvailability == 0.0 ? 0.0 : slices.first! / totalAvailability
 
             UIView.animateWithDuration(
                 NSTimeInterval(kJBChartViewDefaultAnimationDuration) * 0.5,
                 delay: 0.0,
                 options: UIViewAnimationOptions.BeginFromCurrentState,
                 animations: {
-                    self.usedPercentageLabel.text = NSString(format: "%.01f%%", Float(usedPercentage * 100))
+                    self.usedPercentageLabel.text = String(format: "%.01f%%", Float(usedPercentage * 100))
                     self.usedLabel.hidden = false
                     self.informationValueLabelSeparatorView.alpha = 1.0
                     self.valueLabel.text = PacketLog.stringForValue(slices.last)
@@ -133,8 +129,7 @@ class AvailabilityChartViewController: BaseChartViewController, XYDoughnutChartD
     func reBuildChartData() {
         let logManager = PacketInfoManager.sharedManager
 
-        if let hddService = logManager.hddServiceForServiceCode(self.serviceCode)
-            ?? logManager.hddServices.first {
+        if let hddService = logManager.hddServiceForServiceCode(self.serviceCode) ?? logManager.hddServices.first {
             self.hddService = hddService
         } else {
             return
@@ -148,18 +143,18 @@ class AvailabilityChartViewController: BaseChartViewController, XYDoughnutChartD
 
         if let usedPackets = packetSum {
             let used = usedPackets.reduce(0, combine:+)
-            let available = CGFloat(self.hddService?.availableCouponVolume() ?? 0)
-            self.slices = [used, available];
+            let available = CGFloat(self.hddService?.availableCouponVolume ?? 0)
+            self.slices = [used, available]
         }
     }
 
     // MARK: - XYDoughnutChartDelegate
 
-    func doughnutChart(doughnutChart: XYDoughnutChart!, willSelectSliceAtIndex indexPath: NSIndexPath) -> NSIndexPath? {
+    func doughnutChart(doughnutChart: XYDoughnutChart, willSelectSliceAtIndex indexPath: NSIndexPath) -> NSIndexPath? {
         return nil
     }
 
-    func doughnutChart(doughnutChart: XYDoughnutChart!, colorForSliceAtIndexPath indexPath: NSIndexPath!) -> UIColor! {
+    func doughnutChart(doughnutChart: XYDoughnutChart, colorForSliceAtIndexPath indexPath: NSIndexPath) -> UIColor {
         if indexPath.slice == 0 {
             return UIColor.whiteColor()
         }
@@ -169,11 +164,11 @@ class AvailabilityChartViewController: BaseChartViewController, XYDoughnutChartD
 
     // MARK: - XYDoughnutChartDataSource
 
-    func numberOfSlicesInDoughnutChart(doughnutChart: XYDoughnutChart!) -> Int {
+    func numberOfSlicesInDoughnutChart(doughnutChart: XYDoughnutChart) -> Int {
         return slices?.count ?? 0;
     }
 
-    func doughnutChart(doughnutChart: XYDoughnutChart!, valueForSliceAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func doughnutChart(doughnutChart: XYDoughnutChart, valueForSliceAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return CGFloat(self.slices?[indexPath.slice] ?? 0);
     }
 

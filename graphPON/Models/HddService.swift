@@ -1,18 +1,12 @@
 import UIKit
 
 class HddService: NSObject {
-    private(set) var hddServiceCode: String!
-    private(set) var hdoServices: [HdoService]?
-    private(set) var coupons: [Coupon] = []
+    let hddServiceCode: String!
+    let hdoServices: [HdoService]?
+    let coupons: [Coupon]!
     var hdoServiceCodes: [String] {
         get {
-            if let hdoService = hdoServices {
-                return hdoService.reduce([] as [String], combine: { (var arr, hdoInfo) in
-                    return arr + [hdoInfo.hdoServiceCode]
-                })
-            } else {
-                return []
-            }
+            return self.hdoServices?.map { $0.hdoServiceCode } ?? []
         }
     }
     var nickName: String {
@@ -31,27 +25,27 @@ class HddService: NSObject {
         }
     }
 
-    init(hddServiceCode: String, hdoInfos: [HdoService]) {
-        super.init()
-        self.hddServiceCode = hddServiceCode
-        self.hdoServices = hdoInfos
-    }
-
-    init(hddServiceCode: String, coupons: [Coupon], hdoInfos: [HdoService]) {
-        super.init()
+    init(hddServiceCode: String, coupons: [Coupon], hdoServices: [HdoService]) {
         self.hddServiceCode = hddServiceCode
         self.coupons = coupons
-        self.hdoServices = hdoInfos
+        self.hdoServices = hdoServices
     }
 
-    func availableCouponVolume() -> Int {
-        return self.coupons.reduce(0, combine: { (sum , coupon) in
+    convenience init(hddServiceCode: String, hdoServices: [HdoService]) {
+        self.init(hddServiceCode: hddServiceCode, coupons: [], hdoServices: hdoServices)
+    }
+
+    var availableCouponVolume: Int {
+        let simCoupons = self.hdoServices?.flatMap { $0.coupons } ?? []
+        let allCoupons = self.coupons + simCoupons
+
+        return allCoupons.reduce(0, combine: { (sum , coupon) in
             return sum + coupon.volume
         })
     }
 
-    func availableCouponVolumeString() -> String {
-        var available = Float(self.availableCouponVolume())
+    var availableCouponVolumeString: String {
+        var available = Float(self.availableCouponVolume)
         let unit: String = { _ -> String in
             if available >= 1_000.0 {
                 available = available / 1_000.0
@@ -59,7 +53,7 @@ class HddService: NSObject {
             }
             return "MB"
             }()
-        return NSString(format: "%.01f", available) + unit
+        return String(format: "%.01f", available) + unit
     }
 
     func hdoServiceForServiceCode(hdoServiceCode: String) -> HdoService? {
@@ -88,16 +82,12 @@ class HddService: NSObject {
         })
 
         // Total sum makes meaning only when user has more than one service
-        if chartData?.count > 1 {
-            if let firstData = chartData?.first {
-                let initial = [CGFloat](count: firstData.count, repeatedValue: 0.0)
-
-                let totalSum = chartData!.reduce(initial, combine: { (arr, data) in
-                    return map(Zip2(arr, data), +)
-                })
-
-                chartData?.append(totalSum)
-            }
+        if let chartData = chartData where chartData.count > 1, let firstData = chartData.first {
+            let initial = [CGFloat](count: firstData.count, repeatedValue: 0.0)
+            let totalSum = chartData.reduce(initial, combine: { (arr, data) in
+                return map(zip(arr, data), +)
+            })
+            return chartData + [totalSum]
         }
 
         return chartData ?? []

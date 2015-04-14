@@ -5,17 +5,8 @@ class SettingTableHdoServiceSwitchCell: UITableViewCell {
 
     weak var delegate: SettingTableHdoServiceSwitchCellDelegate?
 
-    @IBAction func switchButtonValueChanged(sender: AnyObject) {
-        var senderButton: AnyObject = sender
-        var cell: UITableViewCell? = nil
-        while cell == nil {
-            if let cell = senderButton.superview as? UITableViewCell {
-                self.delegate?.couponSwitchButtonValueDidChanged(sender as UISwitch, buttonCell: cell)
-                break
-            } else {
-                senderButton = senderButton.superview!!
-            }
-        }
+    @IBAction func switchButtonValueChanged(switchButton: UISwitch) {
+        self.delegate?.couponSwitchButtonValueDidChanged(self, switchButton: switchButton)
     }
 
 }

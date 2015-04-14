@@ -8,7 +8,10 @@ class HdoService: NSObject {
 
     private(set) var hdoServiceCode = ""
     private(set) var number = ""
+    var coupons: [Coupon] = []
     var couponUse = true
+
+    private var allPacketLogs: [PacketLog] = []
     var packetLogs: [PacketLog] {
         get {
             switch self.duration {
@@ -22,9 +25,11 @@ class HdoService: NSObject {
             self.allPacketLogs = packets
         }
     }
+
     var nickName: String {
         get {
-            if let nickname = GPUserDefaults.sharedDefaults().objectForKey("\(self.hdoServiceCode):nickName") as String?  {
+            if let nickname = GPUserDefaults.sharedDefaults()
+                .objectForKey("\(self.hdoServiceCode):nickName") as? String  {
                 return nickname
             }
             return self.number
@@ -37,15 +42,8 @@ class HdoService: NSObject {
             }
         }
     }
+
     var duration: Duration = .InThisMonth
-
-    private var allPacketLogs: [PacketLog] = []
-
-    init(hdoServiceCode: String, packetLogs: [PacketLog]) {
-        super.init()
-        self.hdoServiceCode = hdoServiceCode
-        self.packetLogs = packetLogs
-    }
 
     init(hdoServiceCode: String, number: String) {
         super.init()
@@ -57,7 +55,10 @@ class HdoService: NSObject {
             } else {
                 _number += "-"
             }
-            let range = Range(start: advance(number.startIndex, startIndex), end: advance(number.startIndex, (index + 1) * 4 - 1))
+            let range = Range(
+                start: advance(number.startIndex, startIndex),
+                end: advance(number.startIndex, (index + 1) * 4 - 1)
+            )
             return _number + number.substringWithRange(range)
         })
     }
@@ -80,12 +81,12 @@ class HdoService: NSObject {
 
     private func collectInThisMonthPacketLogs() -> [PacketLog] {
         let todayComp = NSCalendar.currentCalendar().components(
-            NSCalendarUnit.DayCalendarUnit|NSCalendarUnit.MonthCalendarUnit|NSCalendarUnit.YearCalendarUnit,
+            .CalendarUnitDay | .CalendarUnitMonth | .CalendarUnitYear,
             fromDate: NSDate()
         )
         return self.allPacketLogs.filter { (packetLog) in
             let component = NSCalendar.currentCalendar().components(
-                NSCalendarUnit.DayCalendarUnit|NSCalendarUnit.MonthCalendarUnit|NSCalendarUnit.YearCalendarUnit,
+                .CalendarUnitDay | .CalendarUnitMonth | .CalendarUnitYear,
                 fromDate: packetLog.date
             )
             if component.year < todayComp.year || component.month < todayComp.month {
