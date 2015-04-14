@@ -11,7 +11,6 @@
 		A804D4D11A4AD63C00F22CFE /* JBChartFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A804D4CC1A4AD62D00F22CFE /* JBChartFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A804D4D21A4AD63C00F22CFE /* XYDoughnutChart.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A804D4CD1A4AD62D00F22CFE /* XYDoughnutChart.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		A804D4D31A4AD63C00F22CFE /* XYDoughnutChart.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A804D4CD1A4AD62D00F22CFE /* XYDoughnutChart.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		A80592531ADD1ED10057840B /* DailyChartScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80592521ADD1ED10057840B /* DailyChartScene.swift */; };
 		A80748621A134417008ADC0A /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80748611A134417008ADC0A /* UIColor.swift */; };
 		A807E1511A4D38950064BC11 /* PacketInfoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A807E1501A4D38950064BC11 /* PacketInfoManager.swift */; };
 		A80D19C61A11CEDA0067A055 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80D19C51A11CEDA0067A055 /* AppDelegate.swift */; };
@@ -23,35 +22,9 @@
 		A833C34D1A637E0800EBE788 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A833C34C1A637E0800EBE788 /* Constants.swift */; };
 		A83612821A3EB7E300BB1B3F /* RatioChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83612811A3EB7E300BB1B3F /* RatioChartViewController.swift */; };
 		A83612841A3EB9E100BB1B3F /* RatioChartContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83612831A3EB9E100BB1B3F /* RatioChartContainerView.swift */; };
-		A83C3DA21ADD178500529E13 /* graphPON WatchKit App.app in Resources */ = {isa = PBXBuildFile; fileRef = A83C3DA11ADD178500529E13 /* graphPON WatchKit App.app */; };
-		A83C3DB61ADD17BA00529E13 /* JBChartFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A804D4CC1A4AD62D00F22CFE /* JBChartFramework.framework */; };
-		A83C3DB71ADD17BA00529E13 /* JBChartFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A804D4CC1A4AD62D00F22CFE /* JBChartFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		A83C3DB91ADD17BD00529E13 /* XYDoughnutChart.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A804D4CD1A4AD62D00F22CFE /* XYDoughnutChart.framework */; };
-		A83C3DBA1ADD17BD00529E13 /* XYDoughnutChart.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A804D4CD1A4AD62D00F22CFE /* XYDoughnutChart.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		A83C3DBB1ADD1AFD00529E13 /* graphPON WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = A83C3D941ADD178400529E13 /* graphPON WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A83F30EC1A2EF4AF00FE2D86 /* ChartInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83F30EB1A2EF4AF00FE2D86 /* ChartInformationView.swift */; };
 		A8409FB91A16F4A8007573EC /* ChartViewContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8409FB81A16F4A8007573EC /* ChartViewContainerView.swift */; };
 		A8549EFB1A2C6E9C000308AD /* PacketLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8549EFA1A2C6E9C000308AD /* PacketLog.swift */; };
-		A8562D921ADD1D84006DEDED /* Settings-Watch.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A85DB6471AD50323009E6B37 /* Settings-Watch.bundle */; };
-		A8562D931ADD1DC8006DEDED /* InitialInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85C01801ADCF498002FEC47 /* InitialInterfaceController.swift */; };
-		A8562D941ADD1DCD006DEDED /* SummaryChartInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EB84571AD3C93E00F3638E /* SummaryChartInterfaceController.swift */; };
-		A8562D951ADD1DD1006DEDED /* DailyChartInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F2069E1AD3F8E200EE9BD5 /* DailyChartInterfaceController.swift */; };
-		A8562D961ADD1DD4006DEDED /* AvailabilityChartInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F206A11AD3F92500EE9BD5 /* AvailabilityChartInterfaceController.swift */; };
-		A8562D971ADD1DD7006DEDED /* ServiceListInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EB84801AD3CA2200F3638E /* ServiceListInterfaceController.swift */; };
-		A8562D981ADD1DDA006DEDED /* ServiceListCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EB84821AD3CA8C00F3638E /* ServiceListCellController.swift */; };
-		A8562D991ADD1DDD006DEDED /* SummaryChartScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EB84901AD3CFCD00F3638E /* SummaryChartScene.swift */; };
-		A8562D9B1ADD1DE3006DEDED /* AvailabilityChartScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EB848E1AD3CFCD00F3638E /* AvailabilityChartScene.swift */; };
-		A8562D9C1ADD1DE8006DEDED /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85DB6451AD4F510009E6B37 /* Context.swift */; };
-		A8562D9D1ADD1E07006DEDED /* OAuth2Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = A874C0B71A4BF6EB00887932 /* OAuth2Client.swift */; };
-		A8562D9E1ADD1E07006DEDED /* OAuth2Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = A874C0B81A4BF6EB00887932 /* OAuth2Router.swift */; };
-		A8562D9F1ADD1E07006DEDED /* OAuth2Credential.swift in Sources */ = {isa = PBXBuildFile; fileRef = A874C0BD1A4C04A800887932 /* OAuth2Credential.swift */; };
-		A8562DA01ADD1E07006DEDED /* PacketInfoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A807E1501A4D38950064BC11 /* PacketInfoManager.swift */; };
-		A8562DA11ADD1E07006DEDED /* HddService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88925BE1A61704C0036B32B /* HddService.swift */; };
-		A8562DA21ADD1E07006DEDED /* HdoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88BB36F1A2DDEA700E5AE4F /* HdoService.swift */; };
-		A8562DA31ADD1E07006DEDED /* PacketLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8549EFA1A2C6E9C000308AD /* PacketLog.swift */; };
-		A8562DA41ADD1E07006DEDED /* Coupon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C743C41A6B56A0001F688C /* Coupon.swift */; };
-		A8562DA51ADD1E07006DEDED /* GPUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8ADA2911AD4AD0600CA7039 /* GPUserDefaults.swift */; };
-		A8562DA61ADD1E17006DEDED /* NSDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BC51BD1A6B651500AE3B67 /* NSDate.swift */; };
 		A857096D1A723DD100A11F2D /* AvailabilityChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A857096C1A723DD100A11F2D /* AvailabilityChartViewController.swift */; };
 		A858714C1A7766B3007C78C1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A858714A1A7766B3007C78C1 /* Localizable.strings */; };
 		A85FA8A71A5798FC00992948 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A85FA8A61A5798FC00992948 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -108,35 +81,9 @@
 			remoteGlobalIDString = A80D19BF1A11CEDA0067A055;
 			remoteInfo = graphPON;
 		};
-		A83C3DA31ADD178500529E13 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A80D19B81A11CEDA0067A055 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A83C3DA01ADD178500529E13;
-			remoteInfo = "graphPON WatchKit App";
-		};
-		A83C3DAD1ADD178500529E13 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A80D19B81A11CEDA0067A055 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A83C3D931ADD178400529E13;
-			remoteInfo = "graphPON WatchKit Extension";
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		A83C3DB81ADD17BA00529E13 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				A83C3DBA1ADD17BD00529E13 /* XYDoughnutChart.framework in Embed Frameworks */,
-				A83C3DB71ADD17BA00529E13 /* JBChartFramework.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		A84063231A484CFF0064A06A /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -157,7 +104,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				A83C3DBB1ADD1AFD00529E13 /* graphPON WatchKit Extension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -184,8 +130,6 @@
 		A833C34C1A637E0800EBE788 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A83612811A3EB7E300BB1B3F /* RatioChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RatioChartViewController.swift; path = ViewControllers/RatioChartViewController.swift; sourceTree = "<group>"; };
 		A83612831A3EB9E100BB1B3F /* RatioChartContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RatioChartContainerView.swift; path = Views/RatioChartContainerView.swift; sourceTree = "<group>"; };
-		A83C3D941ADD178400529E13 /* graphPON WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "graphPON WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A83C3DA11ADD178500529E13 /* graphPON WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "graphPON WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A83F30EB1A2EF4AF00FE2D86 /* ChartInformationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChartInformationView.swift; path = Views/ChartInformationView.swift; sourceTree = "<group>"; };
 		A8409FB81A16F4A8007573EC /* ChartViewContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChartViewContainerView.swift; path = Views/ChartViewContainerView.swift; sourceTree = "<group>"; };
 		A8549EFA1A2C6E9C000308AD /* PacketLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PacketLog.swift; path = Models/PacketLog.swift; sourceTree = "<group>"; };
@@ -263,15 +207,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A83C3D911ADD178400529E13 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A83C3DB91ADD17BD00529E13 /* XYDoughnutChart.framework in Frameworks */,
-				A83C3DB61ADD17BA00529E13 /* JBChartFramework.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -301,8 +236,6 @@
 			children = (
 				A80D19C01A11CEDA0067A055 /* graphPON.app */,
 				A80D19D71A11CEDA0067A055 /* graphPONTests.xctest */,
-				A83C3D941ADD178400529E13 /* graphPON WatchKit Extension.appex */,
-				A83C3DA11ADD178500529E13 /* graphPON WatchKit App.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -554,7 +487,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				A83C3DAE1ADD178500529E13 /* PBXTargetDependency */,
 			);
 			name = graphPON;
 			productName = graphPON;
@@ -578,40 +510,6 @@
 			productName = graphPONTests;
 			productReference = A80D19D71A11CEDA0067A055 /* graphPONTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		A83C3D931ADD178400529E13 /* graphPON WatchKit Extension */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A83C3DB31ADD178500529E13 /* Build configuration list for PBXNativeTarget "graphPON WatchKit Extension" */;
-			buildPhases = (
-				A83C3D901ADD178400529E13 /* Sources */,
-				A83C3D911ADD178400529E13 /* Frameworks */,
-				A83C3D921ADD178400529E13 /* Resources */,
-				A83C3DB81ADD17BA00529E13 /* Embed Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				A83C3DA41ADD178500529E13 /* PBXTargetDependency */,
-			);
-			name = "graphPON WatchKit Extension";
-			productName = "graphPON WatchKit Extension";
-			productReference = A83C3D941ADD178400529E13 /* graphPON WatchKit Extension.appex */;
-			productType = "com.apple.product-type.watchkit-extension";
-		};
-		A83C3DA01ADD178500529E13 /* graphPON WatchKit App */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A83C3DB01ADD178500529E13 /* Build configuration list for PBXNativeTarget "graphPON WatchKit App" */;
-			buildPhases = (
-				A83C3D9F1ADD178500529E13 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "graphPON WatchKit App";
-			productName = "graphPON WatchKit App";
-			productReference = A83C3DA11ADD178500529E13 /* graphPON WatchKit App.app */;
-			productType = "com.apple.product-type.application.watchapp";
 		};
 /* End PBXNativeTarget section */
 
@@ -647,8 +545,6 @@
 			targets = (
 				A80D19BF1A11CEDA0067A055 /* graphPON */,
 				A80D19D61A11CEDA0067A055 /* graphPONTests */,
-				A83C3D931ADD178400529E13 /* graphPON WatchKit Extension */,
-				A83C3DA01ADD178500529E13 /* graphPON WatchKit App */,
 			);
 		};
 /* End PBXProject section */
@@ -667,22 +563,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		A80D19D51A11CEDA0067A055 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A83C3D921ADD178400529E13 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A8562D921ADD1D84006DEDED /* Settings-Watch.bundle in Resources */,
-				A83C3DA21ADD178500529E13 /* graphPON WatchKit App.app in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A83C3D9F1ADD178500529E13 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -754,33 +634,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A83C3D901ADD178400529E13 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A8562D951ADD1DD1006DEDED /* DailyChartInterfaceController.swift in Sources */,
-				A8562D9D1ADD1E07006DEDED /* OAuth2Client.swift in Sources */,
-				A8562D9F1ADD1E07006DEDED /* OAuth2Credential.swift in Sources */,
-				A8562DA41ADD1E07006DEDED /* Coupon.swift in Sources */,
-				A8562DA01ADD1E07006DEDED /* PacketInfoManager.swift in Sources */,
-				A8562DA51ADD1E07006DEDED /* GPUserDefaults.swift in Sources */,
-				A8562D981ADD1DDA006DEDED /* ServiceListCellController.swift in Sources */,
-				A80592531ADD1ED10057840B /* DailyChartScene.swift in Sources */,
-				A8562D931ADD1DC8006DEDED /* InitialInterfaceController.swift in Sources */,
-				A8562D9C1ADD1DE8006DEDED /* Context.swift in Sources */,
-				A8562DA21ADD1E07006DEDED /* HdoService.swift in Sources */,
-				A8562D9E1ADD1E07006DEDED /* OAuth2Router.swift in Sources */,
-				A8562DA11ADD1E07006DEDED /* HddService.swift in Sources */,
-				A8562D971ADD1DD7006DEDED /* ServiceListInterfaceController.swift in Sources */,
-				A8562DA61ADD1E17006DEDED /* NSDate.swift in Sources */,
-				A8562DA31ADD1E07006DEDED /* PacketLog.swift in Sources */,
-				A8562D941ADD1DCD006DEDED /* SummaryChartInterfaceController.swift in Sources */,
-				A8562D9B1ADD1DE3006DEDED /* AvailabilityChartScene.swift in Sources */,
-				A8562D961ADD1DD4006DEDED /* AvailabilityChartInterfaceController.swift in Sources */,
-				A8562D991ADD1DDD006DEDED /* SummaryChartScene.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -788,16 +641,6 @@
 			isa = PBXTargetDependency;
 			target = A80D19BF1A11CEDA0067A055 /* graphPON */;
 			targetProxy = A80D19D81A11CEDA0067A055 /* PBXContainerItemProxy */;
-		};
-		A83C3DA41ADD178500529E13 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A83C3DA01ADD178500529E13 /* graphPON WatchKit App */;
-			targetProxy = A83C3DA31ADD178500529E13 /* PBXContainerItemProxy */;
-		};
-		A83C3DAE1ADD178500529E13 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A83C3D931ADD178400529E13 /* graphPON WatchKit Extension */;
-			targetProxy = A83C3DAD1ADD178500529E13 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -954,8 +797,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Yasuharu Ozaki (G9YU6356N7)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Yasuharu Ozaki (G9YU6356N7)";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1009,89 +852,6 @@
 			};
 			name = Release;
 		};
-		A83C3DB11ADD178500529E13 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				IBSC_MODULE = graphPON_WatchKit_Extension;
-				INFOPLIST_FILE = "graphPON WatchKit App/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = 4;
-				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
-			};
-			name = Debug;
-		};
-		A83C3DB21ADD178500529E13 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Yasuharu Ozaki (G9YU6356N7)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Yasuharu Ozaki (G9YU6356N7)";
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_NO_COMMON_BLOCKS = YES;
-				IBSC_MODULE = graphPON_WatchKit_Extension;
-				INFOPLIST_FILE = "graphPON WatchKit App/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = 4;
-				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
-			};
-			name = Release;
-		};
-		A83C3DB41ADD178500529E13 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "graphPON WatchKit Extension/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_NAME = "${TARGET_NAME}";
-				SKIP_INSTALL = YES;
-			};
-			name = Debug;
-		};
-		A83C3DB51ADD178500529E13 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Yasuharu Ozaki (G9YU6356N7)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Yasuharu Ozaki (G9YU6356N7)";
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "graphPON WatchKit Extension/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_NAME = "${TARGET_NAME}";
-				SKIP_INSTALL = YES;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1118,24 +878,6 @@
 			buildConfigurations = (
 				A80D19E51A11CEDA0067A055 /* Debug */,
 				A80D19E61A11CEDA0067A055 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		A83C3DB01ADD178500529E13 /* Build configuration list for PBXNativeTarget "graphPON WatchKit App" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A83C3DB11ADD178500529E13 /* Debug */,
-				A83C3DB21ADD178500529E13 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		A83C3DB31ADD178500529E13 /* Build configuration list for PBXNativeTarget "graphPON WatchKit Extension" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A83C3DB41ADD178500529E13 /* Debug */,
-				A83C3DB51ADD178500529E13 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
