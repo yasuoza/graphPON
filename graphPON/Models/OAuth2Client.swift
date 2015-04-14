@@ -19,7 +19,7 @@ class OAuth2Client: NSObject {
     let iijOAuthCallbackURI: NSURL!
 
     private(set) var credential: OAuth2Credential?
-    private(set) var state: AuthorizationState = AuthorizationState.UnAuthorized {
+    private(set) var state: AuthorizationState = .UnAuthorized {
         didSet {
             switch self.state {
             case .Authorized(let credential):
