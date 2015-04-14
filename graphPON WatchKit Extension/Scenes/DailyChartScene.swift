@@ -2,7 +2,7 @@ import WatchKit
 import QuartzCore
 import JBChartFramework
 
-class DailyChartImageScene: NSObject, JBBarChartViewDataSource, JBBarChartViewDelegate {
+class DailyChartScene: NSObject, JBBarChartViewDataSource, JBBarChartViewDelegate {
 
     var serviceCode: String!
     var duration: HdoService.Duration = .InThisMonth
@@ -18,7 +18,7 @@ class DailyChartImageScene: NSObject, JBBarChartViewDataSource, JBBarChartViewDe
             .hddServiceForServiceCode(serviceCode)?.hdoServices?
             .map {
                 $0.summarizeServiceUsageInDuration(duration, couponSwitch: .On)
-            }
+        }
 
         if let chartDatas = chartDatas {
             if chartDatas.count > 1 {
@@ -75,5 +75,5 @@ class DailyChartImageScene: NSObject, JBBarChartViewDataSource, JBBarChartViewDe
     func barChartView(barChartView: JBBarChartView!, heightForBarViewAtIndex index: UInt) -> CGFloat {
         return chartData[Int(index)]
     }
-
+    
 }

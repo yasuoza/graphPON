@@ -7,7 +7,7 @@ class GPUserDefaultsTests: XCTestCase {
         let sharedDefaults = GPUserDefaults.sharedDefaults()
         sharedDefaults.setBool(false, forKey: "GPUserDefaultsAlreadyMigrated")
         for key in sharedDefaults.dictionaryRepresentation().keys {
-            sharedDefaults.removeObjectForKey(key as String)
+            sharedDefaults.removeObjectForKey(String(_cocoaString: key))
         }
         sharedDefaults.synchronize()
 
@@ -30,7 +30,7 @@ class GPUserDefaultsTests: XCTestCase {
 
         GPUserDefaults.migrateFromOldDefaultsIfNeeded()
         XCTAssertNil(systemDefaults.valueForKey(key))
-        XCTAssertEqual(sharedDefaults.valueForKey(key) as String, val)
+        XCTAssertEqual(String(_cocoaString: sharedDefaults.valueForKey(key)!), val)
     }
 
 }

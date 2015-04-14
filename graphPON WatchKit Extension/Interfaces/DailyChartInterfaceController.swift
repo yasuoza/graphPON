@@ -70,7 +70,7 @@ class DailyChartInterfaceController: WKInterfaceController {
 
     private func reloadChartData() {
         let frame = CGRectMake(0, 0, contentFrame.width, contentFrame.height / 2)
-        let scene = DailyChartImageScene(serviceCode: serviceCode, duration: duration)
+        let scene = DailyChartScene(serviceCode: serviceCode, duration: duration)
         let image = scene.drawImage(frame: frame)
         self.chartImageView.setImage(image)
         self.chartValueLabel.setText(scene.valueText)
