@@ -12,7 +12,6 @@ public class OAuth2Credential: NSObject, NSCoding {
     public private(set) var accessToken: String? = ""
     public private(set) var tokenType: String? = ""
     public private(set) var expireDate: NSDate? = NSDate()
-    private var needsMigrate = false
 
     // MARK: - Singleton methods
 
@@ -26,24 +25,6 @@ public class OAuth2Credential: NSObject, NSCoding {
             if let dict = copy?.takeRetainedValue() as? NSDictionary,
                 let data = dict[key] as? NSData {
                     return NSKeyedUnarchiver.unarchiveObjectWithData(data) as? OAuth2Credential
-            }
-        }
-        return nil
-    }
-
-    public class func restoreOldCredential() -> OAuth2Credential? {
-        var attrs = self.keychainAttributes
-        attrs[String(kSecReturnAttributes)] = kCFBooleanTrue
-        attrs.removeValueForKey(String(kSecAttrAccessGroup))
-
-        var copy: Unmanaged<AnyObject>? = nil
-        if SecItemCopyMatching(attrs, &copy) == errSecSuccess  {
-            let key = String(kSecAttrGeneric)
-            if let dict = copy?.takeRetainedValue() as? NSDictionary,
-                let data = dict[key] as? NSData,
-                let credential = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? OAuth2Credential {
-                    credential.needsMigrate = true
-                    return credential
             }
         }
         return nil
@@ -82,8 +63,6 @@ public class OAuth2Credential: NSObject, NSCoding {
         attrs[String(kSecAttrGeneric)] = NSKeyedArchiver.archivedDataWithRootObject(self)
 
         let status = SecItemAdd(attrs, nil)
-        println("------------------------------")
-        println(status)
         if status == errSecDuplicateItem {
             if OAuth2Credential.restoreCredential()?.destroy() == true {
                 return SecItemAdd(attrs, nil) == errSecSuccess
@@ -94,10 +73,6 @@ public class OAuth2Credential: NSObject, NSCoding {
 
     public func destroy() -> Bool {
         var attrs = self.dynamicType.keychainAttributes
-
-        if self.needsMigrate {
-            attrs.removeValueForKey(String(kSecAttrAccessGroup))
-        }
 
         if !(SecItemDelete(attrs) == errSecSuccess) {
             return false
