@@ -14,21 +14,9 @@ class DailyChartScene: NSObject, JBBarChartViewDataSource, JBBarChartViewDelegat
         self.serviceCode = serviceCode
         self.duration = duration
 
-        let chartDatas: [[CGFloat]]? = PacketInfoManager.sharedManager
-            .hddServiceForServiceCode(serviceCode)?.hdoServices?
-            .map {
-                $0.summarizeServiceUsageInDuration(duration, couponSwitch: .On)
-        }
-
-        if let chartDatas = chartDatas {
-            if chartDatas.count > 1 {
-                let initial = [CGFloat](count: chartDatas.first!.count, repeatedValue: 0.0)
-
-                self.chartData = chartDatas.reduce(initial, combine: { (arr, data) in
-                    return map(Zip2(arr, data), +)
-                })
-            }
-        }
+        self.chartData = PacketInfoManager.sharedManager
+            .hddServiceForServiceCode(serviceCode)?
+            .dailyTotalUsageInDuration(duration, couponSwitch: .On) ?? []
     }
 
     func drawImage(#frame: CGRect) -> UIImage {
