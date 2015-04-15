@@ -237,7 +237,7 @@
 		A8867A041A30333C001D8578 /* ExtendedNavBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExtendedNavBarView.swift; path = Views/ExtendedNavBarView.swift; sourceTree = "<group>"; };
 		A8867A0B1A304E8B001D8578 /* HddServiceListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HddServiceListTableViewController.swift; path = ViewControllers/HddServiceListTableViewController.swift; sourceTree = "<group>"; };
 		A8867A0E1A304EB0001D8578 /* HddServiceListTableViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HddServiceListTableViewControllerDelegate.swift; path = Protocols/HddServiceListTableViewControllerDelegate.swift; sourceTree = "<group>"; };
-		A88D887B1ADD313000C0E2C4 /* graphPON.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = graphPON.entitlements; path = graphPON/graphPON.entitlements; sourceTree = "<group>"; };
+		A88D887B1ADD313000C0E2C4 /* graphPON.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = graphPON.entitlements; sourceTree = "<group>"; };
 		A88D887C1ADD315C00C0E2C4 /* graphPON WatchKit Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = "graphPON WatchKit Extension.entitlements"; path = "graphPON WatchKit Extension/graphPON WatchKit Extension.entitlements"; sourceTree = "<group>"; };
 		A8AC38531ADE3110009F018F /* GraphPONDataKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GraphPONDataKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8AC38561ADE3111009F018F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -350,7 +350,6 @@
 		A80D19B71A11CEDA0067A055 = {
 			isa = PBXGroup;
 			children = (
-				A88D887B1ADD313000C0E2C4 /* graphPON.entitlements */,
 				A823DF371AA887300061A264 /* Config */,
 				A80D19C21A11CEDA0067A055 /* graphPON iOS */,
 				A80D19DA1A11CEDA0067A055 /* graphPONTests */,
@@ -378,6 +377,7 @@
 		A80D19C21A11CEDA0067A055 /* graphPON iOS */ = {
 			isa = PBXGroup;
 			children = (
+				A88D887B1ADD313000C0E2C4 /* graphPON.entitlements */,
 				A80D19CE1A11CEDA0067A055 /* Images.xcassets */,
 				A80D19C51A11CEDA0067A055 /* AppDelegate.swift */,
 				A833C34C1A637E0800EBE788 /* Constants.swift */,
