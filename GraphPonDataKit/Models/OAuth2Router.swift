@@ -1,11 +1,11 @@
 import UIKit
 import Alamofire
 
-enum OAuth2Router: URLRequestConvertible {
-    static let APIErrorDomain: String = "com.yasuoza.graphPON.apierror"
-    static let AuthorizationFailureErrorCode: Int = 403
-    static let TooManyRequestErrorCode: Int = 429
-    static let UnknownErrorCode: Int = 500
+public enum OAuth2Router: URLRequestConvertible {
+    public static let APIErrorDomain: String = "com.yasuoza.graphPON.apierror"
+    public static let AuthorizationFailureErrorCode: Int = 403
+    public static let TooManyRequestErrorCode: Int = 429
+    public static let UnknownErrorCode: Int = 500
 
     private static let baseURL = NSURL(string: "https://api.iijmio.jp/mobile/d/v1")!
 
@@ -54,7 +54,7 @@ enum OAuth2Router: URLRequestConvertible {
 
     // MARK: - URLStringConvertible
 
-    var URLRequest: NSURLRequest {
+    public var URLRequest: NSURLRequest {
         let URL = OAuth2Router.baseURL
         let request = NSMutableURLRequest(URL: URL.URLByAppendingPathComponent(path))
         request.HTTPMethod = method.rawValue
@@ -83,7 +83,7 @@ enum OAuth2Router: URLRequestConvertible {
 
     // MARK: - Singleton methods
 
-    static func validOAuthCallbackURL(url: NSURL) -> Bool {
+    public static func validOAuthCallbackURL(url: NSURL) -> Bool {
         return url.host == OAuth2Client.sharedClient.iijOAuthCallbackURI.host
     }
 

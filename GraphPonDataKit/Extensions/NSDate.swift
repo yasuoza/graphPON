@@ -2,7 +2,7 @@ import Foundation
 
 extension NSDate {
 
-    func startDateOfMonth() -> NSDate? {
+    public func startDateOfMonth() -> NSDate? {
         let calendar = NSCalendar.currentCalendar()
         let currentDateComponents = calendar.components(.CalendarUnitYear | .CalendarUnitMonth, fromDate: self)
         let startOfMonth = calendar.dateFromComponents(currentDateComponents)
@@ -10,7 +10,7 @@ extension NSDate {
         return startOfMonth
     }
 
-    func endDateOfMonth() -> NSDate? {
+    public func endDateOfMonth() -> NSDate? {
         let calendar = NSCalendar.currentCalendar()
         if let plusOneMonthDate = self.dateByAddingMonths(1) {
             let plusOneMonthDateComponents = calendar.components(

@@ -1,11 +1,11 @@
 import UIKit
 
-struct Coupon {
+public struct Coupon {
 
-    enum Switch: Int {
+    public enum Switch: Int {
         case All = 0, On = 1, Off = 2
 
-        func text() -> String {
+        public func text() -> String {
             switch self {
             case .All:
                 return NSLocalizedString("All", comment: "All")

@@ -2,28 +2,28 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-class PacketInfoManager: NSObject {
+public class PacketInfoManager: NSObject {
 
     // MARK: - Singleton variables
 
-    static let LatestPacketLogsDidFetchNotification = "graphPON.LatestPacketLogsDidFetchNotification"
-    static let sharedManager = PacketInfoManager()
+    public static let LatestPacketLogsDidFetchNotification = "graphPON.LatestPacketLogsDidFetchNotification"
+    public static let sharedManager = PacketInfoManager()
 
     // MARK: - Instance variables
 
     private let dateFormatter = NSDateFormatter()
 
-    private(set) var hddServices = [HddService]()
+    public private(set) var hddServices = [HddService]()
 
-    var hddServiceCodes: [String] {
+    public var hddServiceCodes: [String] {
         return self.hddServices.map { $0.hddServiceCode }
     }
 
-    var hdoServiceCodes: [String] {
+    public var hdoServiceCodes: [String] {
         return self.hddServices.flatMap { $0.hdoServices ?? [] }.map { $0.hdoServiceCode }
     }
 
-    var hdoServiceNumbers: [String] {
+    public var hdoServiceNumbers: [String] {
         return self.hddServices.flatMap { $0.hdoServices ?? [] }.map { $0.number }
     }
 
@@ -108,7 +108,7 @@ class PacketInfoManager: NSObject {
         }
     }
 
-    func fetchLatestPacketLog(completion _completion: ((error: NSError?)->())?) {
+    public func fetchLatestPacketLog(completion _completion: ((error: NSError?)->())?) {
         self.fetchLatestCouponInfo(completion: { error in
             if error != nil {
                 _completion?(error: error)
@@ -188,11 +188,11 @@ class PacketInfoManager: NSObject {
 
     }
 
-    func hddServiceForServiceCode(hddServiceCode: String?) -> HddService? {
+    public func hddServiceForServiceCode(hddServiceCode: String?) -> HddService? {
         return hddServiceCode.flatMap { find(self.hddServiceCodes, $0) }.flatMap { self.hddServices[$0] }
     }
 
-    func hdoServiceForServiceCode(hdoServiceCode: String?) -> HdoService? {
+    public func hdoServiceForServiceCode(hdoServiceCode: String?) -> HdoService? {
         if let hdoServiceCode = hdoServiceCode {
             for hddService in self.hddServices {
                 if let hdoService = hddService.hdoServiceForServiceCode(hdoServiceCode) {

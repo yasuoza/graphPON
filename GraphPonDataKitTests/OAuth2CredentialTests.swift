@@ -24,12 +24,12 @@ class OAuth2CredentialTests: XCTestCase {
         super.tearDown()
     }
 
-    func testInit() {
+    func testInitWithDictionary() {
         XCTAssertEqual(credential.accessToken!, credentialDict["access_token"]!)
         XCTAssertEqual(credential.tokenType!, credentialDict["token_type"]!)
         let expires_in = credentialDict["expires_in"]!.toInt()!
         let expected = NSDate(timeIntervalSinceNow: NSTimeInterval(expires_in)).timeIntervalSinceReferenceDate
-        XCTAssertEqualWithAccuracy(credential.expiryDate!.timeIntervalSinceReferenceDate, expected, 0.001)
+        XCTAssertEqualWithAccuracy(credential.expireDate!.timeIntervalSinceReferenceDate, expected, 0.001)
     }
 
     func testSave() {
@@ -38,6 +38,7 @@ class OAuth2CredentialTests: XCTestCase {
 
     func testOverrideSave() {
         let anotherCredential = OAuth2Credential(dictionary: credentialDict)
+        anotherCredential.save()
         XCTAssert(anotherCredential.save())
         XCTAssertEqual(anotherCredential.accessToken!, credentialDict["access_token"]!)
         XCTAssertEqual(anotherCredential.tokenType!, credentialDict["token_type"]!)
@@ -50,7 +51,7 @@ class OAuth2CredentialTests: XCTestCase {
         XCTAssertEqual(restoredCrdtl.tokenType!, credentialDict["token_type"]!)
         let expires_in = credentialDict["expires_in"]!.toInt()!
         let expected = NSDate(timeIntervalSinceNow: NSTimeInterval(expires_in)).timeIntervalSinceReferenceDate
-        XCTAssertEqualWithAccuracy(restoredCrdtl.expiryDate!.timeIntervalSinceReferenceDate, expected, 1.0)
+        XCTAssertEqualWithAccuracy(restoredCrdtl.expireDate!.timeIntervalSinceReferenceDate, expected, 1.0)
     }
 
     func testDestroyEmptyCredential() {

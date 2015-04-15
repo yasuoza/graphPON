@@ -1,15 +1,15 @@
 import Foundation
 
-class GPUserDefaults: NSObject {
+public class GPUserDefaults: NSObject {
 
     static let suiteName = NSBundle(forClass: GPUserDefaults.self).objectForInfoDictionaryKey("GraphPonAppGroupID") as! String
     private static let defaults = NSUserDefaults(suiteName: suiteName)!
 
-    class func sharedDefaults() -> NSUserDefaults {
+    public class func sharedDefaults() -> NSUserDefaults {
         return defaults
     }
 
-    class func migrateFromOldDefaultsIfNeeded() {
+    public class func migrateFromOldDefaultsIfNeeded() {
         let userDefaultsAlreadyMigrated = "GPUserDefaultsAlreadyMigrated"
 
         if sharedDefaults().boolForKey(userDefaultsAlreadyMigrated) {

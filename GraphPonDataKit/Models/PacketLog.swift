@@ -1,6 +1,6 @@
 import UIKit
 
-struct PacketLog {
+public struct PacketLog {
 
     let date: NSDate
     let withCoupon: Int
@@ -10,7 +10,7 @@ struct PacketLog {
 
     // MARK: - Singleton methods
 
-    static func stringForValue(var packetValue: CGFloat?) -> String {
+    public static func stringForValue(var packetValue: CGFloat?) -> String {
         packetValue = packetValue ?? 0.0
         let unit: String = { _ -> String in
             if packetValue >= 1_000.0 {
@@ -33,7 +33,7 @@ struct PacketLog {
         self.dateFormatter.locale = NSLocale(localeIdentifier: "en_US")
     }
 
-    func dateText() -> String {
+    public func dateText() -> String {
         return dateFormatter.stringFromDate(self.date)
     }
 

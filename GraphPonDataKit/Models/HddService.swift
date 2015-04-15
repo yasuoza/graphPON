@@ -1,15 +1,15 @@
 import UIKit
 
-class HddService: NSObject {
-    let hddServiceCode: String!
-    let hdoServices: [HdoService]?
+public class HddService: NSObject {
+    public let hddServiceCode: String!
+    public let hdoServices: [HdoService]?
     let coupons: [Coupon]!
-    var hdoServiceCodes: [String] {
+    public var hdoServiceCodes: [String] {
         get {
             return self.hdoServices?.map { $0.hdoServiceCode } ?? []
         }
     }
-    var nickName: String {
+    public var nickName: String {
         get {
             if let nickname = GPUserDefaults.sharedDefaults()
                 .objectForKey("\(self.hddServiceCode):nickName") as? String  {
@@ -36,7 +36,7 @@ class HddService: NSObject {
         self.init(hddServiceCode: hddServiceCode, coupons: [], hdoServices: hdoServices)
     }
 
-    var availableCouponVolume: Int {
+    public var availableCouponVolume: Int {
         let simCoupons = self.hdoServices?.flatMap { $0.coupons } ?? []
         let allCoupons = self.coupons + simCoupons
 
@@ -45,7 +45,7 @@ class HddService: NSObject {
         })
     }
 
-    var availableCouponVolumeString: String {
+    public var availableCouponVolumeString: String {
         var available = Float(self.availableCouponVolume)
         let unit: String = { _ -> String in
             if available >= 1_000.0 {
@@ -57,14 +57,14 @@ class HddService: NSObject {
         return String(format: "%.01f", available) + unit
     }
 
-    func hdoServiceForServiceCode(hdoServiceCode: String) -> HdoService? {
+    public func hdoServiceForServiceCode(hdoServiceCode: String) -> HdoService? {
         if let hdoServiceIndex = find(self.hdoServiceCodes, hdoServiceCode) {
             return self.hdoServices?[hdoServiceIndex]
         }
         return nil
     }
 
-    func summarizeServiceUsageInDuration(duration: HdoService.Duration, couponSwitch: Coupon.Switch) -> [[CGFloat]] {
+    public func summarizeServiceUsageInDuration(duration: HdoService.Duration, couponSwitch: Coupon.Switch) -> [[CGFloat]] {
         var chartData = self.hdoServices?.reduce([] as [[CGFloat]], combine: { (_chartData, hdoService) in
             hdoService.duration = duration
             let hdoPacketSum = hdoService.packetLogs.reduce([] as [CGFloat], combine: { (_hdoPacketSum, packetLog) in
@@ -94,7 +94,7 @@ class HddService: NSObject {
         return chartData ?? []
     }
 
-    func dailyTotalUsageInDuration(duration: HdoService.Duration, couponSwitch: Coupon.Switch) -> [CGFloat] {
+    public func dailyTotalUsageInDuration(duration: HdoService.Duration, couponSwitch: Coupon.Switch) -> [CGFloat] {
         let chartDatas: [[CGFloat]]? = self.hdoServices?
             .map {
                 $0.summarizeServiceUsageInDuration(duration, couponSwitch: couponSwitch)

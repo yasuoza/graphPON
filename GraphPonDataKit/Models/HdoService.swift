@@ -1,18 +1,18 @@
 import UIKit
 
-class HdoService: NSObject {
+public class HdoService: NSObject {
 
-    enum Duration: Int {
+    public enum Duration: Int {
         case InThisMonth = 0, InLast30Days = 1
     }
 
-    private(set) var hdoServiceCode = ""
-    private(set) var number = ""
+    public private(set) var hdoServiceCode = ""
+    public private(set) var number = ""
     var coupons: [Coupon] = []
-    var couponUse = true
+    public var couponUse = true
 
     private var allPacketLogs: [PacketLog] = []
-    var packetLogs: [PacketLog] {
+    public var packetLogs: [PacketLog] {
         get {
             switch self.duration {
             case .InThisMonth:
@@ -26,7 +26,7 @@ class HdoService: NSObject {
         }
     }
 
-    var nickName: String {
+    public var nickName: String {
         get {
             if let nickname = GPUserDefaults.sharedDefaults()
                 .objectForKey("\(self.hdoServiceCode):nickName") as? String  {
@@ -43,7 +43,7 @@ class HdoService: NSObject {
         }
     }
 
-    var duration: Duration = .InThisMonth
+    public var duration: Duration = .InThisMonth
 
     init(hdoServiceCode: String, number: String) {
         super.init()
@@ -63,7 +63,7 @@ class HdoService: NSObject {
         })
     }
 
-    func summarizeServiceUsageInDuration(duration: HdoService.Duration, couponSwitch: Coupon.Switch) -> [CGFloat] {
+    public func summarizeServiceUsageInDuration(duration: HdoService.Duration, couponSwitch: Coupon.Switch) -> [CGFloat] {
         self.duration = duration
         return packetLogs.reduce([] as [CGFloat], combine: { (arr, packetLog) in
             switch couponSwitch {

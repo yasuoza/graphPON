@@ -1,17 +1,17 @@
 import UIKit
 import Alamofire
 
-class OAuth2Client: NSObject {
+public class OAuth2Client: NSObject {
 
-    enum AuthorizationState {
+    public enum AuthorizationState {
         case UnAuthorized
         case Authorized(OAuth2Credential)
     }
 
     // MARK: - Singleton variables
 
-    static let OAuthDidAuthorizeNotification = "graphPON.OAuthDidAuthorizeNotification"
-    static let sharedClient = OAuth2Client()
+    public static let OAuthDidAuthorizeNotification = "com.yasuoza.mobilegraphpon.OAuthDidAuthorizeNotification"
+    public static let sharedClient = OAuth2Client()
 
     // MARK: - Instance variables
 
@@ -19,7 +19,7 @@ class OAuth2Client: NSObject {
     let iijOAuthCallbackURI: NSURL!
 
     private(set) var credential: OAuth2Credential?
-    private(set) var state: AuthorizationState = .UnAuthorized {
+    public private(set) var state: AuthorizationState = .UnAuthorized {
         didSet {
             switch self.state {
             case .Authorized(let credential):
@@ -36,7 +36,7 @@ class OAuth2Client: NSObject {
 
     // MARK: - Singleton methods
 
-    class func parseQuery(query: String?) -> [String: String]? {
+    public class func parseQuery(query: String?) -> [String: String]? {
         return query?.componentsSeparatedByString("&")
             .map { keyValue in
                 keyValue.componentsSeparatedByString("=")
@@ -67,11 +67,11 @@ class OAuth2Client: NSObject {
         }
     }
 
-    func authorized(credential cred: OAuth2Credential) {
+    public func authorized(credential cred: OAuth2Credential) {
         self.state = .Authorized(cred)
     }
 
-    func deauthorize() {
+    public func deauthorize() {
         self.state = .UnAuthorized
     }
 
