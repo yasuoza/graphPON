@@ -1,5 +1,6 @@
 import WatchKit
 import QuartzCore
+import GraphPONDataKit
 import JBChartFramework
 
 class DailyChartScene: NSObject, JBBarChartViewDataSource, JBBarChartViewDelegate {

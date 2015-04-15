@@ -1,4 +1,5 @@
 import UIKit
+import GraphPONDataKit
 
 let kJBLineChartFooterViewSeparatorWidth          = CGFloat(0.5)
 let kJBLineChartFooterViewSeparatorHeight         = CGFloat(3.0)

@@ -1,4 +1,5 @@
 import UIKit
+import GraphPONDataKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -10,6 +11,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.tintColor = GlobalTintColor
 
         GPUserDefaults.migrateFromOldDefaultsIfNeeded()
+        self.migrateOAuth2CredentialIfNeeded()
 
         let selectedIndex = GPUserDefaults.sharedDefaults().integerForKey("selectedIndex")
         if let tabBarController = window?.rootViewController as? UITabBarController {
@@ -24,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
         if OAuth2Router.validOAuthCallbackURL(url) {
             if let params = OAuth2Client.parseQuery(url.fragment) {
-                let credential = OAuth2Credential(dictionary: params)
+                let credential = GraphPONDataKit.OAuth2Credential(dictionary: params)
                 if credential.save() {
                     if let tabBarController = self.window?.rootViewController as? UITabBarController,
                         let navVC = tabBarController.selectedViewController as? UINavigationController,
@@ -100,6 +102,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 } else if let vc = navVC.visibleViewController as? ErrorAlertPresenter {
                     return vc.presentErrorAlertController(error)
                 }
+        }
+    }
+
+    private func migrateOAuth2CredentialIfNeeded() {
+        if let oldCred = graphPON.OAuth2Credential.restoreCredential() {
+            let newCred = GraphPONDataKit.OAuth2Credential(
+                accessToken: oldCred.accessToken,
+                tokenType: oldCred.tokenType,
+                expireDate: oldCred.expireDate
+            )
+            oldCred.destroy()
+            newCred.save()
         }
     }
 

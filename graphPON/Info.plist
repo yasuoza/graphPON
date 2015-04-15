@@ -43,6 +43,8 @@
 	<string>$(IIJ_API_CALLBACK_SCHEME)://$(IIJ_API_CALLBACK_DOMAIN)</string>
 	<key>IIJAPIClientKey</key>
 	<string>$(IIJ_API_CLIENT_KEY)</string>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>

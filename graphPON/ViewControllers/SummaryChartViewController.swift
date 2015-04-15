@@ -1,7 +1,6 @@
 import UIKit
+import GraphPONDataKit
 import JBChartFramework
-import Alamofire
-import SwiftyJSON
 
 class SummaryChartViewController: BaseChartViewController, JBLineChartViewDelegate, JBLineChartViewDataSource, HddServiceListTableViewControllerDelegate, DisplayPacketLogsSelectTableViewControllerDelegate {
 
