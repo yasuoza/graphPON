@@ -16,8 +16,8 @@ class HdoServiceTests: XCTestCase {
             fromDate: NSDate()
         )
         comps.month = comps.month - 1
-        logLastMonth = PacketLog(date: calendar.dateFromComponents(comps)!, withCoupon: 0, withoutCoupon: 0)
-        logToday = PacketLog(date: NSDate(), withCoupon: 0, withoutCoupon: 0)
+        logLastMonth = PacketLog(date: calendar.dateFromComponents(comps)!, withCoupon: 10, withoutCoupon: 5)
+        logToday = PacketLog(date: NSDate(), withCoupon: 20, withoutCoupon: 10)
         hdoService = HdoService(
             hdoServiceCode: "hdoServiceCode",
             number: "080-1234-5678"
@@ -40,6 +40,26 @@ class HdoServiceTests: XCTestCase {
         hdoService.duration = .InLast30Days
         XCTAssertEqual(hdoService.duration, HdoService.Duration.InLast30Days)
         XCTAssertEqual(hdoService.packetLogs.map { $0.date }, [logLastMonth.date, logToday.date])
+    }
+
+    func testSummarizeServiceUsageInDurationInThisMonthWithCouponOn() {
+        let summary = hdoService.summarizeServiceUsageInDuration(.InThisMonth, couponSwitch: .On)
+        XCTAssertEqual(summary, [20])
+    }
+
+    func testSummarizeServiceUsageInDurationInLast30DaysWithCouponOn() {
+        let summary = hdoService.summarizeServiceUsageInDuration(.InLast30Days, couponSwitch: .On)
+        XCTAssertEqual(summary, [10.0, 20.0])
+    }
+
+    func testSummarizeServiceUsageInDurationInThisMonthWithCouponOff() {
+        let summary = hdoService.summarizeServiceUsageInDuration(.InThisMonth, couponSwitch: .Off)
+        XCTAssertEqual(summary, [10])
+    }
+
+    func testSummarizeServiceUsageInDurationInLast30DaysWithCouponOff() {
+        let summary = hdoService.summarizeServiceUsageInDuration(.InLast30Days, couponSwitch: .Off)
+        XCTAssertEqual(summary, [5.0, 10.0])
     }
 
     func testInitWithNumber() {

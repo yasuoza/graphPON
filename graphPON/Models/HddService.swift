@@ -94,4 +94,21 @@ class HddService: NSObject {
         return chartData ?? []
     }
 
+    func dailyTotalUsageInDuration(duration: HdoService.Duration, couponSwitch: Coupon.Switch) -> [CGFloat] {
+        let chartDatas: [[CGFloat]]? = self.hdoServices?
+            .map {
+                $0.summarizeServiceUsageInDuration(duration, couponSwitch: couponSwitch)
+        }
+
+        if let chartDatas = chartDatas,
+            let firstData = chartDatas.first {
+                let initial = [CGFloat](count: firstData.count, repeatedValue: 0.0)
+                return chartDatas.reduce(initial, combine: { (arr, data) in
+                    return map(zip(arr, data), +)
+                })
+        }
+
+        return []
+    }
+
 }
