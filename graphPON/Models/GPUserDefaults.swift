@@ -18,15 +18,17 @@ class GPUserDefaults: NSObject {
 
         let domain = NSBundle.mainBundle().bundleIdentifier!
         let systemDefaults = NSUserDefaults.standardUserDefaults()
-        let dict = systemDefaults.persistentDomainForName(domain)!
-        for origKey in dict.keys {
-            let key = String(_cocoaString: origKey)
-            sharedDefaults().setObject(dict[origKey], forKey: key)
-            systemDefaults.removeObjectForKey(key)
+        let dict = systemDefaults.persistentDomainForName(domain)
+        if let dict = dict {
+            for origKey in dict.keys {
+                let key = String(_cocoaString: origKey)
+                sharedDefaults().setObject(dict[origKey], forKey: key)
+                systemDefaults.removeObjectForKey(key)
+            }
+            sharedDefaults().setBool(true, forKey: userDefaultsAlreadyMigrated)
+            defaults.synchronize()
+            systemDefaults.synchronize()
         }
-        sharedDefaults().setBool(true, forKey: userDefaultsAlreadyMigrated)
-        defaults.synchronize()
-        systemDefaults.synchronize()
     }
 
 }
