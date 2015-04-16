@@ -1,4 +1,4 @@
-import UIKit
+import Foundation
 import Alamofire
 
 public class OAuth2Client: NSObject {

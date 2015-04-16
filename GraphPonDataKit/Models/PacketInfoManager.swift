@@ -36,6 +36,25 @@ public class PacketInfoManager: NSObject {
         self.dateFormatter.locale = NSLocale(localeIdentifier: "en_US")
     }
 
+    // MARK: - ServiceCode to Service Object
+
+    public func hddServiceForServiceCode(hddServiceCode: String?) -> HddService? {
+        return hddServiceCode.flatMap { find(self.hddServiceCodes, $0) }.flatMap { self.hddServices[$0] }
+    }
+
+    public func hdoServiceForServiceCode(hdoServiceCode: String?) -> HdoService? {
+        if let hdoServiceCode = hdoServiceCode {
+            for hddService in self.hddServices {
+                if let hdoService = hddService.hdoServiceForServiceCode(hdoServiceCode) {
+                    return hdoService
+                }
+            }
+        }
+        return nil
+    }
+
+    // MARK: - Fetch service data
+
     func fetchLatestCouponInfo(completion _completion: ((error: NSError?)->())?) {
         Alamofire.request(OAuth2Router.Coupon)
             .responseJSON { (_, response, json, error) in
@@ -186,21 +205,6 @@ public class PacketInfoManager: NSObject {
             }
         })
 
-    }
-
-    public func hddServiceForServiceCode(hddServiceCode: String?) -> HddService? {
-        return hddServiceCode.flatMap { find(self.hddServiceCodes, $0) }.flatMap { self.hddServices[$0] }
-    }
-
-    public func hdoServiceForServiceCode(hdoServiceCode: String?) -> HdoService? {
-        if let hdoServiceCode = hdoServiceCode {
-            for hddService in self.hddServices {
-                if let hdoService = hddService.hdoServiceForServiceCode(hdoServiceCode) {
-                    return hdoService
-                }
-            }
-        }
-        return nil
     }
 
 }

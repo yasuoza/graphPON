@@ -811,6 +811,7 @@
 					};
 					A80D19BF1A11CEDA0067A055 = {
 						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = 672SW64532;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -1521,6 +1522,7 @@
 				A8AC386E1ADE3111009F018F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A8AC386F1ADE3111009F018F /* Build configuration list for PBXNativeTarget "GraphPONDataKitTests" */ = {
 			isa = XCConfigurationList;
@@ -1529,6 +1531,7 @@
 				A8AC38711ADE3111009F018F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -1,14 +1,18 @@
 import UIKit
 
 public class HddService: NSObject {
+
     public let hddServiceCode: String!
     public let hdoServices: [HdoService]?
+
     let coupons: [Coupon]!
+
     public var hdoServiceCodes: [String] {
         get {
             return self.hdoServices?.map { $0.hdoServiceCode } ?? []
         }
     }
+
     public var nickName: String {
         get {
             if let nickname = GPUserDefaults.sharedDefaults()

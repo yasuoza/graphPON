@@ -2,6 +2,7 @@ import Foundation
 import Security
 
 public class OAuth2Credential: NSObject, NSCoding {
+
     private static let keychainServiceName = "com.iijmio.api"
     private static let keychainAttributes: [String: AnyObject] = [
         String(kSecClass): kSecClassGenericPassword,

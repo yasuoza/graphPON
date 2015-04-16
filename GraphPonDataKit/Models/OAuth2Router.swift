@@ -1,7 +1,8 @@
-import UIKit
+import Foundation
 import Alamofire
 
 public enum OAuth2Router: URLRequestConvertible {
+
     public static let APIErrorDomain: String = "com.yasuoza.graphPON.apierror"
     public static let AuthorizationFailureErrorCode: Int = 403
     public static let TooManyRequestErrorCode: Int = 429

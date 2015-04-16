@@ -24,8 +24,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
-        if OAuth2Router.validOAuthCallbackURL(url) {
-            if let params = OAuth2Client.parseQuery(url.fragment) {
+        if OAuth2Router.validOAuthCallbackURL(url),
+            let params = OAuth2Client.parseQuery(url.fragment) {
                 let credential = GraphPONDataKit.OAuth2Credential(dictionary: params)
                 if credential.save() {
                     if let tabBarController = self.window?.rootViewController as? UITabBarController,
@@ -38,8 +38,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     self.fetchLatestPacketLog()
                     return true
                 }
-            }
         }
+
         return false
     }
 
