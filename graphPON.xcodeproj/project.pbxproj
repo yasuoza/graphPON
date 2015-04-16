@@ -352,7 +352,7 @@
 			children = (
 				A823DF371AA887300061A264 /* Config */,
 				A80D19C21A11CEDA0067A055 /* graphPON iOS */,
-				A80D19DA1A11CEDA0067A055 /* graphPONTests */,
+				A80D19DA1A11CEDA0067A055 /* graphPON iOS Tests */,
 				A8EB84731AD3C96200F3638E /* graphPON WatchKit */,
 				A8AC38541ADE3110009F018F /* GraphPONDataKit */,
 				A8AC38631ADE3111009F018F /* GraphPonDataKitTests */,
@@ -388,8 +388,7 @@
 				A80748631A135617008ADC0A /* Extensions */,
 				A80D19C31A11CEDA0067A055 /* Supporting Files */,
 			);
-			name = "graphPON iOS";
-			path = graphPON;
+			path = "graphPON iOS";
 			sourceTree = "<group>";
 		};
 		A80D19C31A11CEDA0067A055 /* Supporting Files */ = {
@@ -401,12 +400,12 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		A80D19DA1A11CEDA0067A055 /* graphPONTests */ = {
+		A80D19DA1A11CEDA0067A055 /* graphPON iOS Tests */ = {
 			isa = PBXGroup;
 			children = (
 				A80D19DB1A11CEDA0067A055 /* Supporting Files */,
 			);
-			path = graphPONTests;
+			path = "graphPON iOS Tests";
 			sourceTree = "<group>";
 		};
 		A80D19DB1A11CEDA0067A055 /* Supporting Files */ = {
@@ -1277,7 +1276,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = graphPON/graphPON.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "graphPON iOS/graphPON.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
@@ -1286,7 +1285,7 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = graphPON/Info.plist;
+				INFOPLIST_FILE = "graphPON iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1298,8 +1297,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = graphPON/graphPON.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_ENTITLEMENTS = "graphPON iOS/graphPON.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = NO;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
@@ -1308,7 +1307,7 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = graphPON/Info.plist;
+				INFOPLIST_FILE = "graphPON iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1331,7 +1330,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = graphPONTests/Info.plist;
+				INFOPLIST_FILE = "graphPON iOS Tests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1351,7 +1350,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = graphPONTests/Info.plist;
+				INFOPLIST_FILE = "graphPON iOS Tests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/graphPON.app/graphPON";
@@ -1449,6 +1448,7 @@
 		};
 		A8AC38711ADE3111009F018F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A856C4F81AA8897E007735C0 /* Test.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				COPY_PHASE_STRIP = NO;
