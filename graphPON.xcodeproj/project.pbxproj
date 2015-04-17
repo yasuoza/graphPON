@@ -355,7 +355,7 @@
 				A80D19DA1A11CEDA0067A055 /* graphPON iOS Tests */,
 				A8EB84731AD3C96200F3638E /* graphPON WatchKit */,
 				A8AC38541ADE3110009F018F /* GraphPONDataKit */,
-				A8AC38631ADE3111009F018F /* GraphPonDataKitTests */,
+				A8AC38631ADE3111009F018F /* GraphPonDataKit Tests */,
 				A80D19C11A11CEDA0067A055 /* Products */,
 				F46B956D86CB6147453819A7 /* Frameworks */,
 			);
@@ -488,7 +488,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		A8AC38631ADE3111009F018F /* GraphPonDataKitTests */ = {
+		A8AC38631ADE3111009F018F /* GraphPonDataKit Tests */ = {
 			isa = PBXGroup;
 			children = (
 				A8AC388C1ADE36B1009F018F /* GPUserDefaultsTests.swift */,
@@ -498,8 +498,8 @@
 				A8AC38901ADE36B1009F018F /* OAuth2CredentialTests.swift */,
 				A8AC38641ADE3111009F018F /* Supporting Files */,
 			);
-			name = GraphPonDataKitTests;
-			path = GraphPONDataKitTests;
+			name = "GraphPonDataKit Tests";
+			path = "GraphPONDataKit Tests";
 			sourceTree = "<group>";
 		};
 		A8AC38641ADE3111009F018F /* Supporting Files */ = {
@@ -1437,7 +1437,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = GraphPonDataKitTests/Info.plist;
+				INFOPLIST_FILE = "GraphPonDataKit Tests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1459,7 +1459,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = GraphPonDataKitTests/Info.plist;
+				INFOPLIST_FILE = "GraphPonDataKit Tests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
