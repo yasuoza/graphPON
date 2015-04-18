@@ -128,7 +128,7 @@ class BaseChartViewController: UIViewController, StateRestorable, PromptLoginPre
                 )
         }
 
-        if iOS3_5InchPortraitOrientation() {
+        if iOS3_5InchDevicePortraitOrientation() {
             self.valueLabelTopSpaceConstraint.constant = -8.0
             self.valueLabel.font = UIFont(name: GlobalValueFontFamily, size: 60.0)
         }
@@ -172,11 +172,25 @@ class BaseChartViewController: UIViewController, StateRestorable, PromptLoginPre
 
     // MARK: - Internal
 
-    func iOS3_5InchPortraitOrientation() -> Bool {
+    func iOS3_5InchDevicePortraitOrientation() -> Bool {
         let compactWregularH = self.traitCollection.horizontalSizeClass == .Compact
             && self.traitCollection.verticalSizeClass == .Regular
 
         return compactWregularH && self.view.frame.height == 480.0
+    }
+
+    func iOS4InchDeviceLandscapeOrientation() -> Bool {
+        let compactWcompactH = self.traitCollection.horizontalSizeClass == .Compact
+            && self.traitCollection.verticalSizeClass == .Compact
+
+        return compactWcompactH && self.view.frame.width == 568.0
+    }
+
+    func iOS4InchDevicePortaitOrientation() -> Bool {
+        let compactWregularH = self.traitCollection.horizontalSizeClass == .Compact
+            && self.traitCollection.verticalSizeClass == .Regular
+
+        return compactWregularH && self.view.frame.height == 568.0
     }
 
     // MARK: - Private
