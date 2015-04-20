@@ -15,9 +15,12 @@ class SummaryChartScene: NSObject, JBLineChartViewDataSource, JBLineChartViewDel
         self.serviceCode = serviceCode
         self.duration = duration
 
+        let displayAllDataUsage = GPUserDefaults.sharedDefaults().boolForKey("display_all_data_usage")
+        let couponSwitch: Coupon.Switch = displayAllDataUsage ? .All : .On
+
         self.chartData = PacketInfoManager.sharedManager
             .hddServiceForServiceCode(serviceCode)?
-            .summarizeServiceUsageInDuration(duration, couponSwitch: .On).last ?? []
+            .summarizeServiceUsageInDuration(duration, couponSwitch: couponSwitch).last ?? []
     }
 
     func drawImage(#frame: CGRect) -> UIImage {

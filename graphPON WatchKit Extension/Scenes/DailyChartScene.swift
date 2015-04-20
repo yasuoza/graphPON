@@ -15,9 +15,12 @@ class DailyChartScene: NSObject, JBBarChartViewDataSource, JBBarChartViewDelegat
         self.serviceCode = serviceCode
         self.duration = duration
 
+        let displayAllDataUsage = GPUserDefaults.sharedDefaults().boolForKey("display_all_data_usage")
+        let couponSwitch: Coupon.Switch = displayAllDataUsage ? .All : .On
+
         self.chartData = PacketInfoManager.sharedManager
             .hddServiceForServiceCode(serviceCode)?
-            .dailyTotalUsageInDuration(duration, couponSwitch: .On) ?? []
+            .dailyTotalUsageInDuration(duration, couponSwitch: couponSwitch) ?? []
     }
 
     func drawImage(#frame: CGRect) -> UIImage {

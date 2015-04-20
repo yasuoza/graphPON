@@ -16,7 +16,6 @@ class AvailabilityChartScene: NSObject, XYDoughnutChartDataSource, XYDoughnutCha
         self.duration = duration
 
         let hddService = PacketInfoManager.sharedManager.hddServiceForServiceCode(serviceCode)
-
         let packetSum = hddService?.hdoServices?.map { hdoInfo -> CGFloat in
             hdoInfo
                 .summarizeServiceUsageInDuration(.InThisMonth, couponSwitch: .On)
