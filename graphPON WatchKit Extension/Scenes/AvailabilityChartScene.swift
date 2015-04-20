@@ -33,12 +33,21 @@ class AvailabilityChartScene: NSObject, XYDoughnutChartDataSource, XYDoughnutCha
     func drawImage(#frame: CGRect) -> UIImage {
         let chart = XYDoughnutChart(frame: frame)
         let size = chart.bounds.size
+
         UIGraphicsBeginImageContextWithOptions(size, false, WKInterfaceDevice.currentDevice().screenScale)
         chart.dataSource = self
         chart.delegate = self
         chart.showLabel = false
         chart.radiusOffset = 0.8
         chart.reloadData()
+
+        let label = UILabel(frame: frame)
+        label.text = self.usedPercentageText
+        label.textAlignment = .Center
+        label.textColor = UIColor.whiteColor()
+        label.backgroundColor = UIColor.clearColor()
+        chart.addSubview(label)
+
         chart.layer.renderInContext(UIGraphicsGetCurrentContext())
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
@@ -56,6 +65,12 @@ class AvailabilityChartScene: NSObject, XYDoughnutChartDataSource, XYDoughnutCha
 
     var valueText: String {
         return PacketLog.stringForValue(self.slices.last)
+    }
+
+    var usedPercentageText: String {
+        let totalAvailability = self.slices.reduce(0, combine: +)
+        let usedPercentage = totalAvailability == 0.0 ? 0.0 : slices.first! / totalAvailability
+        return String(format: "%.01f%%", Float(usedPercentage * 100))
     }
 
     // MARK: - XYDoughnutChartDataSource
