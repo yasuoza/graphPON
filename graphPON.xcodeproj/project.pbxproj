@@ -89,12 +89,9 @@
 		A8FB1C821AE6104A00F46D9F /* XYDoughnutChart.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A804D4CD1A4AD62D00F22CFE /* XYDoughnutChart.framework */; };
 		A8FB1C831AE6107B00F46D9F /* JBChartFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A804D4CC1A4AD62D00F22CFE /* JBChartFramework.framework */; };
 		A8FB1C841AE6107B00F46D9F /* XYDoughnutChart.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A804D4CD1A4AD62D00F22CFE /* XYDoughnutChart.framework */; };
-		A8FB1C851AE611EF00F46D9F /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A85FA8A61A5798FC00992948 /* SwiftyJSON.framework */; };
-		A8FB1C861AE611EF00F46D9F /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A874C0AB1A4BDE7200887932 /* Alamofire.framework */; };
 		A8FB1C8E1AE6153500F46D9F /* GraphPONDataKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8AC38531ADE3110009F018F /* GraphPONDataKit.framework */; };
 		A8FB1C8F1AE615B500F46D9F /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A874C0AB1A4BDE7200887932 /* Alamofire.framework */; };
 		A8FB1C901AE615B800F46D9F /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A85FA8A61A5798FC00992948 /* SwiftyJSON.framework */; };
-		A8FB1C921AE6190100F46D9F /* GraphPONDataKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8AC38531ADE3110009F018F /* GraphPONDataKit.framework */; };
 		A8FB1C931AE6190100F46D9F /* GraphPONDataKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A8AC38531ADE3110009F018F /* GraphPONDataKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
@@ -268,7 +265,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A8FB1C921AE6190100F46D9F /* GraphPONDataKit.framework in Frameworks */,
 				A8FB1C811AE6104A00F46D9F /* JBChartFramework.framework in Frameworks */,
 				A8FB1C821AE6104A00F46D9F /* XYDoughnutChart.framework in Frameworks */,
 				A8FB1C8F1AE615B500F46D9F /* Alamofire.framework in Frameworks */,
@@ -290,8 +286,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A8FB1C851AE611EF00F46D9F /* SwiftyJSON.framework in Frameworks */,
-				A8FB1C861AE611EF00F46D9F /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1349,7 +1343,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -1385,7 +1379,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
