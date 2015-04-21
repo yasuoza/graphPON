@@ -7,10 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A804D4D01A4AD63C00F22CFE /* JBChartFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A804D4CC1A4AD62D00F22CFE /* JBChartFramework.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		A804D4D11A4AD63C00F22CFE /* JBChartFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A804D4CC1A4AD62D00F22CFE /* JBChartFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		A804D4D21A4AD63C00F22CFE /* XYDoughnutChart.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A804D4CD1A4AD62D00F22CFE /* XYDoughnutChart.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		A804D4D31A4AD63C00F22CFE /* XYDoughnutChart.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A804D4CD1A4AD62D00F22CFE /* XYDoughnutChart.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A80592691ADD20EE0057840B /* graphPON WatchKit App.app in Resources */ = {isa = PBXBuildFile; fileRef = A80592681ADD20EE0057840B /* graphPON WatchKit App.app */; };
 		A80592761ADD20EE0057840B /* graphPON WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = A805925B1ADD20ED0057840B /* graphPON WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A805927D1ADD21120057840B /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85DB6451AD4F510009E6B37 /* Context.swift */; };
@@ -21,10 +17,6 @@
 		A80592831ADD21120057840B /* ServiceListCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EB84821AD3CA8C00F3638E /* ServiceListCellController.swift */; };
 		A80592841ADD21120057840B /* SummaryChartScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EB84901AD3CFCD00F3638E /* SummaryChartScene.swift */; };
 		A80592851ADD21120057840B /* AvailabilityChartScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EB848E1AD3CFCD00F3638E /* AvailabilityChartScene.swift */; };
-		A80592871ADD216A0057840B /* JBChartFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A804D4CC1A4AD62D00F22CFE /* JBChartFramework.framework */; };
-		A80592881ADD216A0057840B /* JBChartFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A804D4CC1A4AD62D00F22CFE /* JBChartFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		A805928A1ADD216D0057840B /* XYDoughnutChart.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A804D4CD1A4AD62D00F22CFE /* XYDoughnutChart.framework */; };
-		A805928B1ADD216D0057840B /* XYDoughnutChart.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A804D4CD1A4AD62D00F22CFE /* XYDoughnutChart.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A80748621A134417008ADC0A /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80748611A134417008ADC0A /* UIColor.swift */; };
 		A80D19C61A11CEDA0067A055 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80D19C51A11CEDA0067A055 /* AppDelegate.swift */; };
 		A80D19CD1A11CEDA0067A055 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A80D19CB1A11CEDA0067A055 /* Main.storyboard */; };
@@ -42,10 +34,6 @@
 		A8409FB91A16F4A8007573EC /* ChartViewContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8409FB81A16F4A8007573EC /* ChartViewContainerView.swift */; };
 		A857096D1A723DD100A11F2D /* AvailabilityChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A857096C1A723DD100A11F2D /* AvailabilityChartViewController.swift */; };
 		A858714C1A7766B3007C78C1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A858714A1A7766B3007C78C1 /* Localizable.strings */; };
-		A85FA8A71A5798FC00992948 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A85FA8A61A5798FC00992948 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		A85FA8A81A5798FC00992948 /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A85FA8A61A5798FC00992948 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		A874C0AC1A4BDE7200887932 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A874C0AB1A4BDE7200887932 /* Alamofire.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		A874C0AD1A4BDE7200887932 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A874C0AB1A4BDE7200887932 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A88398C01A5CF40700B3DE5B /* DisplayPacketLogsSelectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88398BF1A5CF40700B3DE5B /* DisplayPacketLogsSelectTableViewController.swift */; };
 		A88398C21A5CF67700B3DE5B /* DisplayPacketLogsSelectTableViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88398C11A5CF67700B3DE5B /* DisplayPacketLogsSelectTableViewControllerDelegate.swift */; };
 		A8867A051A30333C001D8578 /* ExtendedNavBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8867A041A30333C001D8578 /* ExtendedNavBarView.swift */; };
@@ -54,8 +42,6 @@
 		A88D887A1ADD301C00C0E2C4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A8EB84671AD3C93E00F3638E /* Images.xcassets */; };
 		A8AC38581ADE3111009F018F /* GraphPONDataKit.h in Headers */ = {isa = PBXBuildFile; fileRef = A8AC38571ADE3111009F018F /* GraphPONDataKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A8AC385E1ADE3111009F018F /* GraphPONDataKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8AC38531ADE3110009F018F /* GraphPONDataKit.framework */; };
-		A8AC386A1ADE3111009F018F /* GraphPONDataKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8AC38531ADE3110009F018F /* GraphPONDataKit.framework */; };
-		A8AC386B1ADE3111009F018F /* GraphPONDataKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A8AC38531ADE3110009F018F /* GraphPONDataKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A8AC38771ADE3184009F018F /* OAuth2Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AC38741ADE3184009F018F /* OAuth2Client.swift */; };
 		A8AC38781ADE3184009F018F /* OAuth2Credential.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AC38751ADE3184009F018F /* OAuth2Credential.swift */; };
 		A8AC38791ADE3184009F018F /* OAuth2Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AC38761ADE3184009F018F /* OAuth2Router.swift */; };
@@ -65,10 +51,6 @@
 		A8AC38831ADE3192009F018F /* HdoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AC387D1ADE3192009F018F /* HdoService.swift */; };
 		A8AC38841ADE3192009F018F /* PacketInfoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AC387E1ADE3192009F018F /* PacketInfoManager.swift */; };
 		A8AC38851ADE3192009F018F /* PacketLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AC387F1ADE3192009F018F /* PacketLog.swift */; };
-		A8AC38861ADE31A5009F018F /* GraphPONDataKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8AC38531ADE3110009F018F /* GraphPONDataKit.framework */; };
-		A8AC38871ADE31A5009F018F /* GraphPONDataKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A8AC38531ADE3110009F018F /* GraphPONDataKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		A8AC388A1ADE31CB009F018F /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A874C0AB1A4BDE7200887932 /* Alamofire.framework */; };
-		A8AC388B1ADE31CF009F018F /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A85FA8A61A5798FC00992948 /* SwiftyJSON.framework */; };
 		A8AC38911ADE36B1009F018F /* GPUserDefaultsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AC388C1ADE36B1009F018F /* GPUserDefaultsTests.swift */; };
 		A8AC38921ADE36B1009F018F /* HddServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AC388D1ADE36B1009F018F /* HddServiceTests.swift */; };
 		A8AC38931ADE36B1009F018F /* HdoServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AC388E1ADE36B1009F018F /* HdoServiceTests.swift */; };
@@ -103,6 +85,17 @@
 		A8DCA1571A4E7C3900CE73D3 /* XYDoughnutChart.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A804D4CD1A4AD62D00F22CFE /* XYDoughnutChart.framework */; };
 		A8E0AC3E1A66215F00D4E043 /* StateRestorable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E0AC3D1A66215F00D4E043 /* StateRestorable.swift */; };
 		A8F036FC1A6CD0ED00DEFA61 /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F036FB1A6CD0ED00DEFA61 /* SettingTableViewController.swift */; };
+		A8FB1C811AE6104A00F46D9F /* JBChartFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A804D4CC1A4AD62D00F22CFE /* JBChartFramework.framework */; };
+		A8FB1C821AE6104A00F46D9F /* XYDoughnutChart.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A804D4CD1A4AD62D00F22CFE /* XYDoughnutChart.framework */; };
+		A8FB1C831AE6107B00F46D9F /* JBChartFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A804D4CC1A4AD62D00F22CFE /* JBChartFramework.framework */; };
+		A8FB1C841AE6107B00F46D9F /* XYDoughnutChart.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A804D4CD1A4AD62D00F22CFE /* XYDoughnutChart.framework */; };
+		A8FB1C851AE611EF00F46D9F /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A85FA8A61A5798FC00992948 /* SwiftyJSON.framework */; };
+		A8FB1C861AE611EF00F46D9F /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A874C0AB1A4BDE7200887932 /* Alamofire.framework */; };
+		A8FB1C8E1AE6153500F46D9F /* GraphPONDataKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8AC38531ADE3110009F018F /* GraphPONDataKit.framework */; };
+		A8FB1C8F1AE615B500F46D9F /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A874C0AB1A4BDE7200887932 /* Alamofire.framework */; };
+		A8FB1C901AE615B800F46D9F /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A85FA8A61A5798FC00992948 /* SwiftyJSON.framework */; };
+		A8FB1C921AE6190100F46D9F /* GraphPONDataKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8AC38531ADE3110009F018F /* GraphPONDataKit.framework */; };
+		A8FB1C931AE6190100F46D9F /* GraphPONDataKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A8AC38531ADE3110009F018F /* GraphPONDataKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -141,51 +134,16 @@
 			remoteGlobalIDString = A80D19BF1A11CEDA0067A055;
 			remoteInfo = graphPON;
 		};
-		A8AC38681ADE3111009F018F /* PBXContainerItemProxy */ = {
+		A8FB1C941AE6190100F46D9F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A80D19B81A11CEDA0067A055 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = A8AC38521ADE3110009F018F;
-			remoteInfo = GraphPonDataKit;
-		};
-		A8AC38881ADE31A5009F018F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A80D19B81A11CEDA0067A055 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A8AC38521ADE3110009F018F;
-			remoteInfo = GraphPonDataKit;
+			remoteInfo = GraphPONDataKit;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		A80592891ADD216A0057840B /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				A8AC38871ADE31A5009F018F /* GraphPONDataKit.framework in Embed Frameworks */,
-				A805928B1ADD216D0057840B /* XYDoughnutChart.framework in Embed Frameworks */,
-				A80592881ADD216A0057840B /* JBChartFramework.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A84063231A484CFF0064A06A /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				A85FA8A81A5798FC00992948 /* SwiftyJSON.framework in Embed Frameworks */,
-				A804D4D31A4AD63C00F22CFE /* XYDoughnutChart.framework in Embed Frameworks */,
-				A8AC386B1ADE3111009F018F /* GraphPONDataKit.framework in Embed Frameworks */,
-				A874C0AD1A4BDE7200887932 /* Alamofire.framework in Embed Frameworks */,
-				A804D4D11A4AD63C00F22CFE /* JBChartFramework.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		A8EB84721AD3C93E00F3638E /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -195,6 +153,17 @@
 				A80592761ADD20EE0057840B /* graphPON WatchKit Extension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A8FB1C961AE6190200F46D9F /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				A8FB1C931AE6190100F46D9F /* GraphPONDataKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -289,9 +258,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A8AC38861ADE31A5009F018F /* GraphPONDataKit.framework in Frameworks */,
-				A805928A1ADD216D0057840B /* XYDoughnutChart.framework in Frameworks */,
-				A80592871ADD216A0057840B /* JBChartFramework.framework in Frameworks */,
+				A8FB1C8E1AE6153500F46D9F /* GraphPONDataKit.framework in Frameworks */,
+				A8FB1C831AE6107B00F46D9F /* JBChartFramework.framework in Frameworks */,
+				A8FB1C841AE6107B00F46D9F /* XYDoughnutChart.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,11 +268,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A85FA8A71A5798FC00992948 /* SwiftyJSON.framework in Frameworks */,
-				A804D4D21A4AD63C00F22CFE /* XYDoughnutChart.framework in Frameworks */,
-				A8AC386A1ADE3111009F018F /* GraphPONDataKit.framework in Frameworks */,
-				A874C0AC1A4BDE7200887932 /* Alamofire.framework in Frameworks */,
-				A804D4D01A4AD63C00F22CFE /* JBChartFramework.framework in Frameworks */,
+				A8FB1C921AE6190100F46D9F /* GraphPONDataKit.framework in Frameworks */,
+				A8FB1C811AE6104A00F46D9F /* JBChartFramework.framework in Frameworks */,
+				A8FB1C821AE6104A00F46D9F /* XYDoughnutChart.framework in Frameworks */,
+				A8FB1C8F1AE615B500F46D9F /* Alamofire.framework in Frameworks */,
+				A8FB1C901AE615B800F46D9F /* SwiftyJSON.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,8 +290,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A8AC388A1ADE31CB009F018F /* Alamofire.framework in Frameworks */,
-				A8AC388B1ADE31CF009F018F /* SwiftyJSON.framework in Frameworks */,
+				A8FB1C851AE611EF00F46D9F /* SwiftyJSON.framework in Frameworks */,
+				A8FB1C861AE611EF00F46D9F /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -679,13 +648,11 @@
 				A80592571ADD20ED0057840B /* Sources */,
 				A80592581ADD20ED0057840B /* Frameworks */,
 				A80592591ADD20ED0057840B /* Resources */,
-				A80592891ADD216A0057840B /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				A805926B1ADD20EE0057840B /* PBXTargetDependency */,
-				A8AC38891ADE31A5009F018F /* PBXTargetDependency */,
 			);
 			name = "graphPON WatchKit Extension";
 			productName = "graphPON WatchKit Extension";
@@ -714,14 +681,15 @@
 				A80D19BC1A11CEDA0067A055 /* Sources */,
 				A80D19BD1A11CEDA0067A055 /* Frameworks */,
 				A80D19BE1A11CEDA0067A055 /* Resources */,
-				A84063231A484CFF0064A06A /* Embed Frameworks */,
 				A8EB84721AD3C93E00F3638E /* Embed App Extensions */,
+				A8FB1C961AE6190200F46D9F /* Embed Frameworks */,
+				A8FB1C7B1AE606F700F46D9F /* ShellScript */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				A80592751ADD20EE0057840B /* PBXTargetDependency */,
-				A8AC38691ADE3111009F018F /* PBXTargetDependency */,
+				A8FB1C951AE6190100F46D9F /* PBXTargetDependency */,
 			);
 			name = graphPON;
 			productName = graphPON;
@@ -911,6 +879,26 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		A8FB1C7B1AE606F700F46D9F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/JBChartFramework.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/XYDoughnutChart.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SwiftyJSON.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		A80592571ADD20ED0057840B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -1037,15 +1025,10 @@
 			target = A80D19BF1A11CEDA0067A055 /* graphPON */;
 			targetProxy = A8AC38611ADE3111009F018F /* PBXContainerItemProxy */;
 		};
-		A8AC38691ADE3111009F018F /* PBXTargetDependency */ = {
+		A8FB1C951AE6190100F46D9F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = A8AC38521ADE3110009F018F /* GraphPONDataKit */;
-			targetProxy = A8AC38681ADE3111009F018F /* PBXContainerItemProxy */;
-		};
-		A8AC38891ADE31A5009F018F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A8AC38521ADE3110009F018F /* GraphPONDataKit */;
-			targetProxy = A8AC38881ADE31A5009F018F /* PBXContainerItemProxy */;
+			targetProxy = A8FB1C941AE6190100F46D9F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1139,7 +1122,6 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -1166,7 +1148,6 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -1279,7 +1260,6 @@
 				CODE_SIGN_ENTITLEMENTS = "graphPON iOS/graphPON.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1301,7 +1281,6 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = NO;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1370,6 +1349,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -1405,6 +1385,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
