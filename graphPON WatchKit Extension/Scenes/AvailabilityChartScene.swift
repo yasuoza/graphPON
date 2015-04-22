@@ -29,7 +29,7 @@ class AvailabilityChartScene: NSObject, XYDoughnutChartDataSource, XYDoughnutCha
         }
     }
 
-    func drawImage(#frame: CGRect) -> UIImage {
+    func drawImage(#frame: CGRect) -> UIImage? {
         let chart = XYDoughnutChart(frame: frame)
         let size = chart.bounds.size
 

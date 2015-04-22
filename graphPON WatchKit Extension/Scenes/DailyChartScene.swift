@@ -23,7 +23,7 @@ class DailyChartScene: NSObject, JBBarChartViewDataSource, JBBarChartViewDelegat
             .dailyTotalUsageInDuration(duration, couponSwitch: couponSwitch) ?? []
     }
 
-    func drawImage(#frame: CGRect) -> UIImage {
+    func drawImage(#frame: CGRect) -> UIImage? {
         let chart = JBBarChartView(frame: frame)
         let size = chart.bounds.size
         UIGraphicsBeginImageContextWithOptions(size, false, WKInterfaceDevice.currentDevice().screenScale)

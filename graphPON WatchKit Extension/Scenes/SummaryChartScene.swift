@@ -23,7 +23,7 @@ class SummaryChartScene: NSObject, JBLineChartViewDataSource, JBLineChartViewDel
             .summarizeServiceUsageInDuration(duration, couponSwitch: couponSwitch).last ?? []
     }
 
-    func drawImage(#frame: CGRect) -> UIImage {
+    func drawImage(#frame: CGRect) -> UIImage? {
         let chart = JBLineChartView(frame: frame)
         let size = chart.bounds.size
         UIGraphicsBeginImageContextWithOptions(size, false, WKInterfaceDevice.currentDevice().screenScale)
