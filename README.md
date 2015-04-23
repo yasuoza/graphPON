@@ -1,6 +1,6 @@
 # graphPON
 
-![](https://raw.githubusercontent.com/yasuoza/graphPON/master/images/App%20Icon%20%5BRounded%5D/Icon-60@3x.png)
+![](https://raw.githubusercontent.com/yasuoza/graphPON/master/images/graphPON%20iOS/App%20Icon%20%5BRounded%5D/Icon-60@3x.png)
 
 ## Screens
 
