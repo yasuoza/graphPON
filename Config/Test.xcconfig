@@ -5,3 +5,5 @@
 IIJ_API_CLIENT_KEY = YOUR DEVLOPER ID HERE
 IIJ_API_CALLBACK_SCHEME = app
 IIJ_API_CALLBACK_DOMAIN = your_callback_uri_here
+
+GRAPHPON_APP_GROUP_ID = group.com.yourcompany.app

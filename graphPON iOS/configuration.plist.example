@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IIJ_API</key>
+	<dict>
+		<key>CLIENT_KEY</key>
+		<string>YOUR DEVLOPER ID HERE</string>
+		<key>OAUTH_CALLBACK_URI</key>
+		<string>YOUR CALLBACK URI HERE</string>
+	</dict>
+</dict>
+</plist>
