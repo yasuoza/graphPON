@@ -7,6 +7,7 @@ public class OAuth2Credential: NSObject, NSCoding {
     private static let keychainAttributes: [String: AnyObject] = [
         String(kSecClass): kSecClassGenericPassword,
         String(kSecAttrService): keychainServiceName,
+        String(kSecAttrAccessible): kSecAttrAccessibleAfterFirstUnlock,
         String(kSecAttrAccessGroup): NSBundle.mainBundle().objectForInfoDictionaryKey("GraphPonAppGroupID") as! String
     ]
 

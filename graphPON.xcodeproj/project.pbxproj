@@ -181,7 +181,6 @@
 		A80D19DC1A11CEDA0067A055 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A8131D071A6D076E007C7D14 /* SettingTableHdoServiceSwitchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingTableHdoServiceSwitchCell.swift; path = Views/SettingTableHdoServiceSwitchCell.swift; sourceTree = "<group>"; };
 		A8131D091A6D1D00007C7D14 /* SettingTableHdoServiceSwitchCellDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingTableHdoServiceSwitchCellDelegate.swift; path = Protocols/SettingTableHdoServiceSwitchCellDelegate.swift; sourceTree = "<group>"; };
-		A823DF381AA8874E0061A264 /* graphPON.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = graphPON.xcconfig; path = Config/graphPON.xcconfig; sourceTree = "<group>"; };
 		A833C34C1A637E0800EBE788 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A83612811A3EB7E300BB1B3F /* RatioChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RatioChartViewController.swift; path = ViewControllers/RatioChartViewController.swift; sourceTree = "<group>"; };
 		A83612831A3EB9E100BB1B3F /* RatioChartContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RatioChartContainerView.swift; path = Views/RatioChartContainerView.swift; sourceTree = "<group>"; };
@@ -397,7 +396,6 @@
 		A823DF371AA887300061A264 /* Config */ = {
 			isa = PBXGroup;
 			children = (
-				A823DF381AA8874E0061A264 /* graphPON.xcconfig */,
 				A856C4F81AA8897E007735C0 /* Test.xcconfig */,
 			);
 			name = Config;
@@ -1158,7 +1156,6 @@
 		};
 		A80D19DF1A11CEDA0067A055 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A823DF381AA8874E0061A264 /* graphPON.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -1207,7 +1204,6 @@
 		};
 		A80D19E01A11CEDA0067A055 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A823DF381AA8874E0061A264 /* graphPON.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";

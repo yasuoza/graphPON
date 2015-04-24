@@ -11,7 +11,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.tintColor = GlobalTintColor
 
         GPUserDefaults.migrateFromOldDefaultsIfNeeded()
-        self.migrateOAuth2CredentialIfNeeded()
 
         let selectedIndex = GPUserDefaults.sharedDefaults().integerForKey("selectedIndex")
         if let tabBarController = window?.rootViewController as? UITabBarController {
@@ -102,18 +101,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 } else if let vc = navVC.visibleViewController as? ErrorAlertPresenter {
                     return vc.presentErrorAlertController(error)
                 }
-        }
-    }
-
-    private func migrateOAuth2CredentialIfNeeded() {
-        if let oldCred = graphPON.OAuth2Credential.restoreCredential() {
-            let newCred = GraphPONDataKit.OAuth2Credential(
-                accessToken: oldCred.accessToken,
-                tokenType: oldCred.tokenType,
-                expireDate: oldCred.expireDate
-            )
-            oldCred.destroy()
-            newCred.save()
         }
     }
 
